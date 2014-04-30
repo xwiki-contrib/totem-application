@@ -64,6 +64,7 @@ totem.edit.editblocksource.help=Commencez à saisir le nom de l'élément à int
 totem.edit.editblocksource.itemslink=Administrer les éléments
 totem.edit.additem.button=Ajouter une section au totem
 totem.edit.exitedit=Revenir à la liste des totems
+totem.edit.removeitem.button=Supprimer la section
 totem.edit.removeitem.confirmation=Êtes-vous sûr de vouloir supprimer cet section du totem ? Les éléments le composant seront conservés.
 TotemCode.TotemBlockClass_type=Type d'affichage
 TotemCode.TotemBlockClass_title=Titre de la section

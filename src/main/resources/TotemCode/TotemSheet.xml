@@ -512,7 +512,7 @@ document.observe('xwiki:dom:loading', function() {
       &lt;input type="hidden" name="xredirect" value="$escapetool.xml($editURL)" /&gt;
       &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
    &lt;/span&gt;
-  &lt;input type="submit" value="$msg.get('delete')" class="deletebutton" /&gt;
+  &lt;input type="submit" value="$msg.get('totem.edit.removeitem.button')" class="deletebutton" /&gt;
   &lt;/form&gt;
 #end
 
