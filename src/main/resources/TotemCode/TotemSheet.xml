@@ -1,0 +1,630 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xwikidoc>
+<web>TotemCode</web>
+<name>TotemSheet</name>
+<language></language>
+<defaultLanguage>fr</defaultLanguage>
+<translation>0</translation>
+<parent>TotemCode.TotemClass</parent>
+<creator>XWiki.Admin</creator>
+<author>XWiki.Admin</author>
+<customClass></customClass>
+<contentAuthor>XWiki.Admin</contentAuthor>
+<creationDate>1398855257000</creationDate>
+<date>1398855257000</date>
+<contentUpdateDate>1398855257000</contentUpdateDate>
+<version>1.1</version>
+<title>#if($doc.name == 'TotemSheet')Totem Sheet#{else}$services.display.title($doc, {'displayerHint': 'default'})#end</title>
+<defaultTemplate></defaultTemplate>
+<validationScript></validationScript>
+<comment>Importé depuis un le XAR</comment>
+<minorEdit>false</minorEdit>
+<syntaxId>xwiki/2.1</syntaxId>
+<hidden>true</hidden>
+<object>
+<class>
+<name>XWiki.JavaScriptExtension</name>
+<customClass></customClass>
+<customMapping></customMapping>
+<defaultViewSheet></defaultViewSheet>
+<defaultEditSheet></defaultEditSheet>
+<defaultWeb></defaultWeb>
+<nameField></nameField>
+<validationScript></validationScript>
+<cache>
+<cache>0</cache>
+<disabled>0</disabled>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>cache</name>
+<number>5</number>
+<prettyName>Caching policy</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>1</size>
+<unmodifiable>0</unmodifiable>
+<values>long|short|default|forbid</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</cache>
+<code>
+<disabled>0</disabled>
+<name>code</name>
+<number>2</number>
+<prettyName>Code</prettyName>
+<rows>20</rows>
+<size>50</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+</code>
+<name>
+<disabled>0</disabled>
+<name>name</name>
+<number>1</number>
+<prettyName>Name</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</name>
+<parse>
+<disabled>0</disabled>
+<displayFormType>select</displayFormType>
+<displayType>yesno</displayType>
+<name>parse</name>
+<number>4</number>
+<prettyName>Parse content</prettyName>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+</parse>
+<use>
+<cache>0</cache>
+<disabled>0</disabled>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>use</name>
+<number>3</number>
+<prettyName>Use this extension</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>1</size>
+<unmodifiable>0</unmodifiable>
+<values>currentPage=Always on this page|onDemand=On demand|always=Always on this wiki</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</use>
+</class>
+<name>TotemCode.TotemSheet</name>
+<number>0</number>
+<className>XWiki.JavaScriptExtension</className>
+<guid>051ad43d-c5cc-4f31-9032-9fb070f3e28e</guid>
+<property>
+<cache>long</cache>
+</property>
+<property>
+<code>var XWiki = (function (XWiki) {
+  var widgets = XWiki.widgets = XWiki.widgets || {};
+  widgets.TotemEditor = Class.create({
+  initialize: function() {
+    this.hookEditOrder();
+    $$('.totemBlocks .totemBlock').each(function(item){
+      this.hookEditButton(item);
+      this.hookEditSourceButton(item);
+      this.hookDeleteButton(item);
+    }.bind(this));
+    
+    this.hookAddButton();
+  },
+  
+  hookEditOrder : function () {
+    // find the editorder form
+    var editForm = $$('form.editorderform')[0];
+    if (!editForm) {
+      return;
+    }
+    this.editOrderForm = editForm;
+    // find the input
+    // this name is not always the same here, but will work in 80% of the cases, at least
+    var orderInput = editForm.down("input[name='TotemCode.TotemClass_0_blockOrder']")
+    if (!orderInput) {
+      return;
+    }
+    this.blockOrderInput = orderInput;
+    this.setupDragDrop();
+    // hide the input and disable the save button until a change is made
+    this.blockOrderInput.addClassName('hidden');
+    // find the button and disable it
+    var saveButton = editForm.down('input[type=submit]');
+    if (saveButton) {
+      saveButton.writeAttribute('disabled', 'disabled');
+    }
+  },
+  
+  setupDragDrop : function() {
+    var onMove = this.onBlockMoved.bind(this);
+    Sortable.create('totemBlocks', {
+      tag: 'div',
+      only: 'totemBlock',
+      handle: 'blocktitle', 
+      overlap: 'vertical', 
+      scroll: window, 
+      dropOnEmpty: true, 
+      constraint: false,
+      ghosting: false,
+      hoverclass: 'blocktitle-hover-highlight',
+      onUpdate: onMove
+    });
+  },
+  
+  onBlockMoved : function() {
+    // write the new block order
+    var newBlockOrder = $$('.totemBlock').collect(function(item) { return item.readAttribute('id').substring(11); }).join(',');
+    this.blockOrderInput.value = newBlockOrder;
+    // enable the save button
+    var saveButton = this.editOrderForm.down('input[type=submit]');
+    if (saveButton) {
+      saveButton.writeAttribute('disabled', false);
+    }
+  },
+  
+  hookEditButton : function(totemBlockItem) {
+    // find the edit button in the actions
+    var editButton = totemBlockItem.down('.editactions .editbutton');
+    if (!editButton) {
+      return;
+    }
+    editButton.observe('click', function(event) {
+      // find the edit form and show it
+      var editForm = totemBlockItem.down('.editblockform');
+      if (!editForm) {
+        return;
+      }
+      // we have an edit form, stop the event
+      event.stop();
+      editForm.removeClassName('hidden');
+      var blockDisplayer = totemBlockItem.down('.blockdisplayer');
+      if (blockDisplayer) {
+        blockDisplayer.addClassName('hidden');
+      }
+      var editSourceForm = totemBlockItem.down('.editsourceblockform');
+      if (editSourceForm) {
+        editSourceForm.addClassName('hidden');
+      }
+    });
+    // find the cancel button of this edit form and make it hide the form
+    var cancelButton = totemBlockItem.down('.editblockform a.cancelbutton');
+    if (cancelButton) {
+      cancelButton.observe('click', function(event){
+        var editForm = event.findElement('.editblockform');
+        if (!editForm) {
+          return;
+        }
+        event.stop();
+        editForm.addClassName('hidden');
+        var blockDisplayer = totemBlockItem.down('.blockdisplayer');
+        if (blockDisplayer) {
+          blockDisplayer.removeClassName('hidden');
+        }
+      }.bind(this));
+    }
+  },
+  
+  hookEditSourceButton : function(totemBlockItem) {
+    // find the edit button in the actions
+    var editSourceButton = totemBlockItem.down('.editactions .editsourcebutton');
+    if (!editSourceButton) {
+      return;
+    }
+    editSourceButton.observe('click', function(event) {
+      // find the edit form and show it
+      var editSourceForm = totemBlockItem.down('.editsourceblockform');
+      if (!editSourceForm) {
+        return;
+      }
+      // we have an edit form, stop the event
+      event.stop();
+      editSourceForm.removeClassName('hidden');
+      var blockDisplayer = totemBlockItem.down('.blockdisplayer');
+      if (blockDisplayer) {
+        blockDisplayer.addClassName('hidden');
+      }
+      var editForm = totemBlockItem.down('.editblockform');
+      if (editForm) {
+        editForm.addClassName('hidden');
+      }
+    });
+    // find the cancel button of this edit form and make it hide the form
+    var cancelButton = totemBlockItem.down('.editsourceblockform a.cancelbutton');
+    if (cancelButton) {
+      cancelButton.observe('click', function(event){
+        var editForm = event.findElement('.editsourceblockform');
+        if (!editForm) {
+          return;
+        }
+        event.stop();
+        editForm.addClassName('hidden');
+        var blockDisplayer = totemBlockItem.down('.blockdisplayer');
+        if (blockDisplayer) {
+          blockDisplayer.removeClassName('hidden');
+        }
+      }.bind(this));
+    }
+  },
+  
+  hookDeleteButton : function(totemBlockItem) {
+    // get the delete form and add a conversation message to the submit
+    var deleteForm = totemBlockItem.down('form.removeblockform');
+    deleteForm.observe('submit', function(event){
+      event.stop();
+      var _this = event.findElement('form.removeblockform');
+      new XWiki.widgets.ConfirmationBox(
+        {
+          onYes : function() {_this.submit();},
+        },
+        {confirmationText: "$msg.get('totem.edit.removeitem.confirmation')",}
+        )
+    }.bind(this));
+  },
+  
+  hookAddButton : function() {
+    // find the edit button in the actions
+    var addButton = $$('.addactions a.addblock')[0];
+    if (!addButton) {
+      return;
+    }
+    addButton.observe('click', function(event) {
+      // find the edit form and show it
+      var addForm = $$('.addblockform')[0];
+      if (!addForm) {
+        return;
+      }
+      // we have an edit form, stop the event
+      event.stop();
+      addForm.removeClassName('hidden');
+    });
+    // find the cancel button of this add form and make it hide the form
+    var cancelButton = $$('.addblockform a.cancelbutton')[0];
+    if (cancelButton) {
+      cancelButton.observe('click', function(event){
+        var addForm = event.findElement('.addblockform');
+        if (!addForm) {
+          return;
+        }
+        event.stop();
+        addForm.addClassName('hidden');
+      }.bind(this));
+    }
+  }  
+});
+  return XWiki;
+}(XWiki || {}));
+
+document.observe('xwiki:dom:loading', function() {
+  new XWiki.widgets.TotemEditor();
+});</code>
+</property>
+<property>
+<name>Totem javascript</name>
+</property>
+<property>
+<parse>1</parse>
+</property>
+<property>
+<use>onDemand</use>
+</property>
+</object>
+<object>
+<class>
+<name>XWiki.StyleSheetExtension</name>
+<customClass></customClass>
+<customMapping></customMapping>
+<defaultViewSheet></defaultViewSheet>
+<defaultEditSheet></defaultEditSheet>
+<defaultWeb></defaultWeb>
+<nameField></nameField>
+<validationScript></validationScript>
+<cache>
+<cache>0</cache>
+<disabled>0</disabled>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>cache</name>
+<number>5</number>
+<prettyName>Caching policy</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>1</size>
+<unmodifiable>0</unmodifiable>
+<values>long|short|default|forbid</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</cache>
+<code>
+<disabled>0</disabled>
+<name>code</name>
+<number>2</number>
+<prettyName>Code</prettyName>
+<rows>20</rows>
+<size>50</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+</code>
+<name>
+<disabled>0</disabled>
+<name>name</name>
+<number>1</number>
+<prettyName>Name</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</name>
+<parse>
+<disabled>0</disabled>
+<displayFormType>select</displayFormType>
+<displayType>yesno</displayType>
+<name>parse</name>
+<number>4</number>
+<prettyName>Parse content</prettyName>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+</parse>
+<use>
+<cache>0</cache>
+<disabled>0</disabled>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>use</name>
+<number>3</number>
+<prettyName>Use this extension</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>1</size>
+<unmodifiable>0</unmodifiable>
+<values>currentPage=Always on this page|onDemand=On demand|always=Always on this wiki</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</use>
+</class>
+<name>TotemCode.TotemSheet</name>
+<number>0</number>
+<className>XWiki.StyleSheetExtension</className>
+<guid>ad3ccc13-bcaf-4352-82cc-4f076e90b678</guid>
+<property>
+<cache>long</cache>
+</property>
+<property>
+<code>.totemBlock .removeblockform {
+  display: inline;
+}
+
+.totemBlock .editactions {
+  /*text-align: right;*/
+}
+
+.totemBlocksEdit .blocktitle {
+   cursor: move;
+}
+
+</code></property><property><name>Totem editor stylesheet</name>
+</property>
+<property>
+<parse></parse>
+</property>
+<property>
+<use>onDemand</use>
+</property>
+</object>
+<content>{{include document="DisplayerCode.DisplayerMacros" /}}
+
+{{velocity output="false"}}
+#macro(displayTotemBlock $totemBlock $withEdit $cancelURL $editURL $totemItemClass $sheetFieldsMapping $totemItemsURL)
+  ## display the block. get its values and then call the displayer macro
+  #set($totemBlockSheet = $totemBlock.getProperty('type').value)   
+  #set($width   = "$!totemBlock.getProperty('width').value")
+  #set($height  = "$!totemBlock.getProperty('height').value")   
+  #displayBlock($totemBlockSheet, '', $totemBlock.getProperty('title').value, $totemBlock.getProperty('footer').value, 'doclist', $totemBlock.getProperty('source').value, $totemItemClass, 0, $sheetFieldsMapping.get($totemBlockSheet),"$!{width}","$!{height}")
+  #if($withEdit)
+    (%class="#if("$!request.editblock" != "$totemBlock.number")hidden#end editblockform"%)(((
+      #displayTotemBlockEditForm($totemBlock, false, $cancelURL, $editURL)
+    )))
+    (%class="#if("$!request.editblocksource" != "$totemBlock.number")hidden#end editsourceblockform"%)(((
+      #displayTotemBlockEditSourceForm($totemBlock, $totemItemsURL, $cancelURL, $editURL)
+    )))
+  #end
+  #if($withEdit)
+    (%class="editactions"%)((({{html clean="false"}}
+    &lt;a href="$escapetool.xml($doc.getURL('view', "showEdit=true&amp;editblock=${totemBlock.number}"))" class="editbutton"&gt;$msg.get('totem.edit.editblock.button')&lt;/a&gt;
+    &lt;a href="$escapetool.xml($doc.getURL('view', "showEdit=true&amp;editblocksource=${totemBlock.number}"))" class="editsourcebutton"&gt;$msg.get('totem.edit.editblocksource.button')&lt;/a&gt;
+    #displayTotemBlockRemoveForm($totemBlock, $cancelURL, $editURL){{/html}})))
+  #end
+#end
+
+#macro(displayTotemBlockEditForm $totemBlock $isNewBlock $cancelURL $editURL)
+  #set($formAction = "$doc.getURL('save')")
+  #if ($isNewBlock)
+    #set($formAction = "$doc.getURL('objectadd')")
+  #end
+  {{html clean="false"}}
+    &lt;form action="$formAction" method="post" class="xform"&gt;
+    &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
+    &lt;input type="hidden" name="xredirect" value="$escapetool.xml($editURL)" /&gt;
+    #if ($isNewBlock)
+      &lt;input type="hidden" name="classname" value="TotemCode.TotemBlockClass" /&gt;
+    #end
+  {{/html}}
+  ## display the totem editable properties
+  #set($totemBlockClass = $totemBlock.xWikiClass)
+  #foreach ($propName in ['type', 'title','width','height', 'footer'])
+    ; $doc.displayPrettyName($propName, $totemBlock)
+    : #if($isNewBlock){{html clean="false"}}$doc.displayEdit($totemBlockClass.get($propName), 'TotemCode.TotemBlockClass_', $totemBlock){{/html}}
+      #else$doc.display($propName, 'edit', $totemBlock)
+      #end
+  #end
+  {{html clean="false"}}
+    &lt;div class="buttonwrapper"&gt;
+      &lt;input type="submit" value="$msg.get('save')" class="button" /&gt;
+      &lt;a href="$cancelURL" class="cancelbutton"&gt;$msg.get('cancel')&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;/form&gt;
+  {{/html}}
+#end
+
+#macro(displayTotemBlockEditSourceForm $totemBlock $totemItemsURL $cancelURL $editURL)
+  {{container layoutStyle="columns"}}
+  (((
+    #set($formAction = "$doc.getURL('save')")
+    {{html clean="false"}}
+      &lt;form action="$formAction" method="post" class="xform"&gt;
+      &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
+      &lt;input type="hidden" name="xredirect" value="$escapetool.xml($editURL)" /&gt;
+    {{/html}}
+    ## display the totem source property
+    #set($totemBlockClass = $totemBlock.xWikiClass)
+    #foreach ($propName in ['source'])
+      ; $doc.displayPrettyName($propName, $totemBlock)
+      : $doc.display($propName, 'edit', $totemBlock)
+    #end
+    {{html clean="false"}}
+      &lt;div class="buttonwrapper"&gt;
+        &lt;input type="submit" value="$msg.get('save')" class="button" /&gt;
+        &lt;a href="$cancelURL" class="cancelbutton"&gt;$msg.get('cancel')&lt;/a&gt;
+      &lt;/div&gt;
+      &lt;/form&gt;
+    {{/html}}
+  )))
+  (((
+  {{info}}$msg.get('totem.edit.editblocksource.help'){{/info}}
+
+  (%class="buttonwrapper"%)[[$msg.get('totem.edit.editblocksource.itemslink')&gt;&gt;path:$totemItemsURL||class="button" rel="__blank"]](%%)
+  )))
+  {{/container}}
+#end
+
+#macro(displayTotemBlockRemoveForm $totemBlock $cancelURL $editURL)
+  &lt;form action="$doc.getURL('objectremove')" method="post" class="removeblockform"&gt;
+    &lt;span&gt;
+      &lt;input type="hidden" name="classname" value="TotemCode.TotemBlockClass" /&gt;
+      &lt;input type="hidden" name="classid" value="$totemBlock.number" /&gt;
+      &lt;input type="hidden" name="cancelURL" value="$escapetool.xml($cancelURL)" /&gt;
+      &lt;input type="hidden" name="xredirect" value="$escapetool.xml($editURL)" /&gt;
+      &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
+   &lt;/span&gt;
+  &lt;input type="submit" value="$msg.get('delete')" class="deletebutton" /&gt;
+  &lt;/form&gt;
+#end
+
+#macro(displayEditOrderForm $editURL)
+  {{html clean="false"}}
+    &lt;form action="$doc.getURL('save')" method="post" class="editorderform"&gt;
+    &lt;fieldset&gt;
+      &lt;input type="hidden" name="xredirect" value="$escapetool.xml($editURL)" /&gt;
+      &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
+    &lt;/fieldset&gt;
+    #set($totemObject = $doc.getObject('TotemCode.TotemClass'))
+    $doc.displayEdit($totemObject.xWikiClass.get('blockOrder'), "TotemCode.TotemClass_${totemObject.number}_", $totemObject)
+    &lt;div class="buttonwrapper"&gt;
+      &lt;input type="submit" value="$msg.get('save')" class="button" /&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+  {{/html}}
+#end
+{{/velocity}}
+
+{{velocity}}
+## set a couple of constants that we want to be able to edit fast.
+## 1/ class items of the totem
+#set($totemItemClass = 'TotemCode.SimpleTotemItemClass')
+## 2/ a couple of mappings between the different types of blocks and the items from this totem class that should be used. 
+## TODO: Normally this should be demanded by the sheet somehow but I don't know exactly how for now :(
+#set($sheetFieldsMapping = {'DisplayerCode.ListDisplayerSheet' : ['date', 'doc.title', 'url'],  'DisplayerCode.EvenementDisplayer' : ['image', 'doc.title', 'url'],
+                       'DisplayerCode.CarouselDisplayerSheet' : []})
+## 3/ the page where the items to be displayed in totem blocks are held: the page called items in the current space
+#set($totemItemsURL = $xwiki.getURL('Items'))
+#set($isEdit = ($xcontext.action == "inline" || $xcontext.action == "edit"))
+#set($enableEdit = "$!request.showEdit" == "true")
+#if (!$hasEdit)
+  ## if user does not have edit right, editing is not enabled
+  #set($enableEdit = false)
+#end
+## put the edit url in a var, so that we go to the edit mode using this url whenever needed
+#set($editURL = $doc.getURL('view', 'showEdit=true'))
+#if (!$isEdit)
+  ## include the extra ssx / jsx for the totem, as set in the totem object
+  #set($extraSSX = $doc.getObject('TotemCode.TotemClass').getProperty('ssx').value)
+  #if("$!extraSSX" != "")
+    #set($discard = $xwiki.ssx.use($extraSSX))
+  #end
+  #set($extraJSX = $doc.getObject('TotemCode.TotemClass').getProperty('jsx').value)
+  #if("$!extraJSX" != "")
+    #set($discard = $xwiki.jsx.use($extraJSX))
+  #end
+  ## if edit is enabled, add the jsx and the ssx of the totemsheet (for enhancements of the edit form)
+  ## IMHO no ssx/jsx from the sheet should be needed in view mode, I don't see any totem generic styling that could be done in view mode: 
+  ## displayers will do their styling for blocks, the extra jsx / ssx will handle styling specific to a particular totem.
+  #if ($enableEdit)
+    #set($discard = $xwiki.jsfx.use("js/scriptaculous/effects.js"))
+    #set($discard = $xwiki.jsfx.use("js/scriptaculous/dragdrop.js"))
+    #set($discard = $xwiki.jsx.use('TotemCode.TotemSheet', {'minify' : false}))
+    #set($discard = $xwiki.ssx.use('TotemCode.TotemSheet', {'minify' : false}))
+  #end
+  ## make up the cancel URL for the form cancellation and other cancels
+  #set($cancelURL = $doc.getURL())
+  #if ($enableEdit)
+    ## if editing is enabled, forms should be cancelled to the base edit screen
+    #set($cancelURL = $doc.getURL('view', 'showEdit=true'))
+  #end
+  ## if edit is enabled, add the input and form to save the order of the blocks which will be edited in js
+  #if ($enableEdit)
+    {{info}}
+    $msg.get('totem.edit.editorder.info')    
+    {{/info}}
+  #end
+  ## view mode of a totem
+  ## get all the objects of type TotemBlockClass in the order defined in here and display them with the macro
+  #set($blockNumbers = $doc.getObject('TotemCode.TotemClass').getProperty('blockOrder').value.split(','))
+  ## remember the displayed blocks, so that we can display all undisplayed blocks after the order read
+  #set($displayedBlocks = [])
+  (%class="totemBlocks #if($enableEdit)totemBlocksEdit#end" id="totemBlocks"%)(((
+    #set($isOdd = true)
+    #foreach($blockNumber in $blockNumbers)
+      #set($intNumber = $mathtool.toInteger($blockNumber))
+      #set($totemBlock = $doc.getObject('TotemCode.TotemBlockClass', $intNumber))
+      #if ($totemBlock)
+        (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end" id="totemBlock_${totemBlock.number}"%)(((
+          #displayTotemBlock($totemBlock, $enableEdit, $cancelURL, $editURL $totemItemClass, $sheetFieldsMapping, $totemItemsURL)
+        )))
+        #set($discard = $displayedBlocks.add($totemBlock.number))
+        #set($isOdd = !$isOdd)
+      #end
+    #end
+    ## for all the blocks that were not displayed before, display them
+    #foreach($totemLeftBlock in $doc.getObjects('TotemCode.TotemBlockClass'))
+      #if(!$displayedBlocks.contains($totemLeftBlock.number))
+        (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end" id="totemBlock_${totemLeftBlock.number}"%)(((
+          #displayTotemBlock($totemLeftBlock, $enableEdit, $cancelURL, $editURL $totemItemClass, $sheetFieldsMapping, $totemItemsURL)
+        )))
+        #set($discard = $displayedBlocks.add($totemBlock.number))
+        #set($isOdd = !$isOdd)
+      #end
+    #end
+  )))
+
+  ## add new block item form
+  #if($enableEdit)
+    (%class="addactions"%)(((
+     [[$msg.get('totem.edit.additem.button')&gt;&gt;path:$doc.getURL('view', 'showEdit=true&amp;additem=true')||class="addblock"]]
+      ## display a button to exit the edit form. TODO: move me in an appropriate place (where?)
+     (%class="totemeditactions buttonwrapper"%)((([[$msg.get('totem.edit.exitedit')&gt;&gt;Totem.WebHome]])))
+     #displayEditOrderForm($editURL)
+    )))
+    (%class="#if("$!request.additem" != 'true')hidden#end addblockform"%)(((
+      #set($fakeTotemBlock = $doc.newObject("TotemCode.TotemBlockClass"))    
+      #displayTotemBlockEditForm($fakeTotemBlock, true, $cancelURL, $editURL)
+    )))
+  #end
+
+  {{html clean="false"}}#template("textarea_wysiwyg.vm"){{/html}}
+#else
+  ## if we're in edit mode, send a redirect to the edit screen, since the totem has a special edit form (available in view).
+  $response.sendRedirect("$editURL")
+#end
+{{/velocity}}</content></xwikidoc>

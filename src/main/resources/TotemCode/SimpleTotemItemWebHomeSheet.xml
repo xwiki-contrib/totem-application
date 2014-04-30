@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xwikidoc>
+<web>TotemCode</web>
+<name>SimpleTotemItemWebHomeSheet</name>
+<language></language>
+<defaultLanguage>fr</defaultLanguage>
+<translation>0</translation>
+<parent>TotemCode.WebHome</parent>
+<creator>XWiki.Admin</creator>
+<author>XWiki.Admin</author>
+<customClass></customClass>
+<contentAuthor>XWiki.Admin</contentAuthor>
+<creationDate>1398855257000</creationDate>
+<date>1398855257000</date>
+<contentUpdateDate>1398855257000</contentUpdateDate>
+<version>1.1</version>
+<title>$msg.get('totem.items.webhome.title')</title>
+<defaultTemplate></defaultTemplate>
+<validationScript></validationScript>
+<comment>Importé depuis un le XAR</comment>
+<minorEdit>false</minorEdit>
+<syntaxId>xwiki/2.0</syntaxId>
+<hidden>false</hidden>
+<content>{{velocity}}
+#if ($xwiki.hasAccessLevel('edit', $xcontext.user, "${doc.space}.${xwiki.getUniquePageName($doc.space)}"))
+  == $msg.get('totem.items.webhome.createform') ==
+
+  {{html clean="false"}}
+  &lt;form action="$escapetool.xml($doc.getURL('create'))" class="xformInline" method="get" /&gt;
+    &lt;div&gt;
+      &lt;input type="hidden" value="page" name="tocreate" /&gt;          
+      &lt;input type="hidden" value="$escapetool.xml($doc.space)" name="space" /&gt;
+      &lt;input type="hidden" value="$escapetool.xml($doc.fullName)" name="parent" /&gt;
+      &lt;input type="hidden" value="TotemCode.SimpleTotemItemTemplateProvider" name="templateprovider"&gt;
+      &lt;label for="createform-page"&gt;$msg.get('totem.items.createform.namelabel')&lt;/label&gt;
+      &lt;input id="createform-page" name="page" type="text" value="" size="30"/&gt;
+      &lt;span class="buttonwrapper"&gt;
+        &lt;input class="button" type="submit" value="$msg.get('create')"/&gt;
+      &lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+  {{/html}}
+#end
+
+== $msg.get('totem.items.webhome.entries') ==
+
+#set($columnsProperties = {
+  'doc.name': {'type': 'text', 'link': 'view', 'size': 10, 'filterable': true, 'sortable': true},
+  'doc.title': {'type': 'text', 'link': 'view', 'size': 10, 'filterable': true, 'sortable': true},
+  'doc.author': {'type': 'text', 'link': 'author', 'size': 10, 'filterable': true, 'sortable': true},
+  '_actions': {'html': true, 'sortable': false, 'actions': ['edit', 'delete']}
+})
+#set($options = {
+  'className': 'TotemCode.SimpleTotemItemClass',
+  'translationPrefix': 'totem.items.',
+  'tagCloud': true,
+  'rowCount': 15,
+  'maxPages': 10,
+  'selectedColumn': 'doc.name',
+  'defaultOrder': 'asc'
+})
+#set($columns = ['doc.title', 'doc.date', 'doc.author', '_actions'])
+#livetable('simpletotemitem' $columns $columnsProperties $options)
+{{/velocity}}</content></xwikidoc>
