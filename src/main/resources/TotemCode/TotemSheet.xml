@@ -543,7 +543,8 @@ document.observe('xwiki:dom:loading', function() {
                        'DisplayerCode.CarouselDisplayerSheet' : []})
 ## 3/ the page where the items to be displayed in totem blocks are held: the page called items in the current space
 #set($totemItemsURL = $xwiki.getURL('Items'))
-#set($isEdit = ($xcontext.action == "inline" || $xcontext.action == "edit"))
+## figure out if we're in edit mode. If we are but the document is loaded for editing in the wysiwyg, then pretend we're in view :) -- this makes include work
+#set($isEdit = ($xcontext.action == "inline" || $xcontext.action == "edit") &amp;&amp; "$!request.xpage" != 'wysiwyginput')
 #set($enableEdit = "$!request.showEdit" == "true")
 #if (!$hasEdit)
   ## if user does not have edit right, editing is not enabled
