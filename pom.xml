@@ -52,6 +52,11 @@
       <name>Sidali Djebloun</name>
       <organization>XWiki SAS</organization>
     </developer>
+    <developer>
+      <id>ykebir</id>
+      <name>Yacine Kebir</name>
+      <organization>XWiki SAS</organization>
+    </developer>
   </developers>
   <distributionManagement>
     <repository>
