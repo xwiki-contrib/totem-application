@@ -1,90 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <xwikidoc>
-  <web>TotemCode</web>
-  <name>TotemTemplate</name>
-  <language/>
-  <defaultLanguage/>
-  <translation>0</translation>
-  <parent>Main.WebHome</parent>
-  <creator>xwiki:XWiki.Admin</creator>
-  <author>xwiki:XWiki.Admin</author>
-  <customClass/>
-  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-  <creationDate>1398855801000</creationDate>
-  <date>1398855818000</date>
-  <contentUpdateDate>1398855816000</contentUpdateDate>
-  <version>1.1</version>
-  <title/>
-  <defaultTemplate/>
-  <validationScript/>
-  <comment/>
-  <minorEdit>false</minorEdit>
-  <syntaxId>xwiki/2.1</syntaxId>
-  <hidden>true</hidden>
-  <object>
-    <class>
-      <name>TotemCode.TotemClass</name>
-      <customClass/>
-      <customMapping/>
-      <defaultViewSheet/>
-      <defaultEditSheet/>
-      <defaultWeb/>
-      <nameField/>
-      <validationScript/>
-      <blockOrder>
-        <customDisplay/>
-        <disabled>0</disabled>
-        <name>blockOrder</name>
-        <number>1</number>
-        <picker>0</picker>
-        <prettyName>blockOrder</prettyName>
-        <size>30</size>
-        <unmodifiable>0</unmodifiable>
-        <validationMessage/>
-        <validationRegExp/>
-        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
-      </blockOrder>
-      <jsx>
-        <customDisplay/>
-        <disabled>0</disabled>
-        <name>jsx</name>
-        <number>3</number>
-        <picker>0</picker>
-        <prettyName>jsx</prettyName>
-        <size>30</size>
-        <unmodifiable>0</unmodifiable>
-        <validationMessage/>
-        <validationRegExp/>
-        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
-      </jsx>
-      <ssx>
-        <customDisplay/>
-        <disabled>0</disabled>
-        <name>ssx</name>
-        <number>2</number>
-        <picker>0</picker>
-        <prettyName>ssx</prettyName>
-        <size>30</size>
-        <unmodifiable>0</unmodifiable>
-        <validationMessage/>
-        <validationRegExp/>
-        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
-      </ssx>
-    </class>
-    <name>TotemCode.TotemTemplate</name>
-    <number>0</number>
-    <className>TotemCode.TotemClass</className>
-    <guid>ba458475-2d32-4a1a-8dca-0f6f1d78ec16</guid>
-    <property>
-      <blockOrder/>
-    </property>
-    <property>
-      <jsx/>
-    </property>
-    <property>
-      <ssx/>
-    </property>
-  </object>
-  <content/>
-</xwikidoc>
+<web>TotemCode</web>
+<name>TotemTemplate</name>
+<language></language>
+<defaultLanguage></defaultLanguage>
+<translation>0</translation>
+<parent>Main.WebHome</parent>
+<creator>XWiki.Admin</creator>
+<author>XWiki.Admin</author>
+<customClass></customClass>
+<contentAuthor>XWiki.Admin</contentAuthor>
+<creationDate>1398855801000</creationDate>
+<date>1422027885000</date>
+<contentUpdateDate>1422027885000</contentUpdateDate>
+<version>1.1</version>
+<title></title>
+<defaultTemplate></defaultTemplate>
+<validationScript></validationScript>
+<comment>Imported from XAR</comment>
+<minorEdit>false</minorEdit>
+<syntaxId>xwiki/2.1</syntaxId>
+<hidden>true</hidden>
+<object>
+<class>
+<name>TotemCode.TotemClass</name>
+<customClass></customClass>
+<customMapping></customMapping>
+<defaultViewSheet></defaultViewSheet>
+<defaultEditSheet></defaultEditSheet>
+<defaultWeb></defaultWeb>
+<nameField></nameField>
+<validationScript></validationScript>
+<blockOrder>
+<customDisplay></customDisplay>
+<disabled>0</disabled>
+<name>blockOrder</name>
+<number>1</number>
+<picker>0</picker>
+<prettyName>blockOrder</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<validationMessage></validationMessage>
+<validationRegExp></validationRegExp>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</blockOrder>
+<contentSize>
+<disabled>0</disabled>
+<name>contentSize</name>
+<number>5</number>
+<prettyName>contentSize</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</contentSize>
+<fullscreen>
+<disabled>0</disabled>
+<displayFormType>select</displayFormType>
+<name>fullscreen</name>
+<number>4</number>
+<prettyName>fullscreen</prettyName>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+</fullscreen>
+<jsx>
+<customDisplay></customDisplay>
+<disabled>0</disabled>
+<name>jsx</name>
+<number>3</number>
+<picker>0</picker>
+<prettyName>jsx</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<validationMessage></validationMessage>
+<validationRegExp></validationRegExp>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</jsx>
+<ssx>
+<customDisplay></customDisplay>
+<disabled>0</disabled>
+<name>ssx</name>
+<number>2</number>
+<picker>0</picker>
+<prettyName>ssx</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<validationMessage></validationMessage>
+<validationRegExp></validationRegExp>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</ssx>
+</class>
+<name>TotemCode.TotemTemplate</name>
+<number>0</number>
+<className>TotemCode.TotemClass</className>
+<guid>ba458475-2d32-4a1a-8dca-0f6f1d78ec16</guid>
+<property>
+<blockOrder></blockOrder>
+</property>
+<property>
+<jsx></jsx>
+</property>
+<property>
+<ssx></ssx>
+</property>
+</object>
+<content></content></xwikidoc>

@@ -1,108 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <xwikidoc>
-  <web>TotemCode</web>
-  <name>TotemSheet</name>
-  <language/>
-  <defaultLanguage/>
-  <translation>0</translation>
-  <parent>TotemCode.TotemClass</parent>
-  <creator>xwiki:XWiki.Admin</creator>
-  <author>xwiki:XWiki.Admin</author>
-  <customClass/>
-  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-  <creationDate>1399932000000</creationDate>
-  <date>1399932000000</date>
-  <contentUpdateDate>1399932000000</contentUpdateDate>
-  <version>1.1</version>
-  <title>#if($doc.name == 'TotemSheet')Totem Sheet#{else}$services.display.title($doc, {'displayerHint': 'default'})#end</title>
-  <defaultTemplate/>
-  <validationScript/>
-  <comment/>
-  <minorEdit>false</minorEdit>
-  <syntaxId>xwiki/2.1</syntaxId>
-  <hidden>true</hidden>
-  <object>
-    <class>
-      <name>XWiki.JavaScriptExtension</name>
-      <customClass/>
-      <customMapping/>
-      <defaultViewSheet/>
-      <defaultEditSheet/>
-      <defaultWeb/>
-      <nameField/>
-      <validationScript/>
-      <cache>
-        <cache>0</cache>
-        <disabled>0</disabled>
-        <displayType>select</displayType>
-        <multiSelect>0</multiSelect>
-        <name>cache</name>
-        <number>5</number>
-        <prettyName>Caching policy</prettyName>
-        <relationalStorage>0</relationalStorage>
-        <separator> </separator>
-        <separators> ,|</separators>
-        <size>1</size>
-        <unmodifiable>0</unmodifiable>
-        <values>long|short|default|forbid</values>
-        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
-      </cache>
-      <code>
-        <disabled>0</disabled>
-        <name>code</name>
-        <number>2</number>
-        <prettyName>Code</prettyName>
-        <rows>20</rows>
-        <size>50</size>
-        <unmodifiable>0</unmodifiable>
-        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
-      </code>
-      <name>
-        <disabled>0</disabled>
-        <name>name</name>
-        <number>1</number>
-        <prettyName>Name</prettyName>
-        <size>30</size>
-        <unmodifiable>0</unmodifiable>
-        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
-      </name>
-      <parse>
-        <disabled>0</disabled>
-        <displayFormType>select</displayFormType>
-        <displayType>yesno</displayType>
-        <name>parse</name>
-        <number>4</number>
-        <prettyName>Parse content</prettyName>
-        <unmodifiable>0</unmodifiable>
-        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
-      </parse>
-      <use>
-        <cache>0</cache>
-        <disabled>0</disabled>
-        <displayType>select</displayType>
-        <multiSelect>0</multiSelect>
-        <name>use</name>
-        <number>3</number>
-        <prettyName>Use this extension</prettyName>
-        <relationalStorage>0</relationalStorage>
-        <separator> </separator>
-        <separators> ,|</separators>
-        <size>1</size>
-        <unmodifiable>0</unmodifiable>
-        <values>currentPage=Always on this page|onDemand=On demand|always=Always on this wiki</values>
-        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
-      </use>
-    </class>
-    <name>TotemCode.TotemSheet</name>
-    <number>0</number>
-    <className>XWiki.JavaScriptExtension</className>
-    <guid>051ad43d-c5cc-4f31-9032-9fb070f3e28e</guid>
-    <property>
-      <cache>long</cache>
-    </property>
-    <property>
-      <code>var XWiki = (function (XWiki) {
+<web>TotemCode</web>
+<name>TotemSheet</name>
+<language></language>
+<defaultLanguage></defaultLanguage>
+<translation>0</translation>
+<parent>TotemCode.TotemClass</parent>
+<creator>XWiki.Admin</creator>
+<author>XWiki.Admin</author>
+<customClass></customClass>
+<contentAuthor>XWiki.Admin</contentAuthor>
+<creationDate>1399932000000</creationDate>
+<date>1423660158000</date>
+<contentUpdateDate>1423660158000</contentUpdateDate>
+<version>9.18</version>
+<title>#if($doc.name == 'TotemSheet')Totem Sheet#{else}$services.display.title($doc, {'displayerHint': 'default'})#end</title>
+<defaultTemplate></defaultTemplate>
+<validationScript></validationScript>
+<comment></comment>
+<minorEdit>true</minorEdit>
+<syntaxId>xwiki/2.1</syntaxId>
+<hidden>true</hidden>
+<object>
+<class>
+<name>XWiki.JavaScriptExtension</name>
+<customClass></customClass>
+<customMapping></customMapping>
+<defaultViewSheet></defaultViewSheet>
+<defaultEditSheet></defaultEditSheet>
+<defaultWeb></defaultWeb>
+<nameField></nameField>
+<validationScript></validationScript>
+<cache>
+<cache>0</cache>
+<disabled>0</disabled>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>cache</name>
+<number>5</number>
+<prettyName>Caching policy</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>1</size>
+<unmodifiable>0</unmodifiable>
+<values>long|short|default|forbid</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</cache>
+<code>
+<disabled>0</disabled>
+<name>code</name>
+<number>2</number>
+<prettyName>Code</prettyName>
+<rows>20</rows>
+<size>50</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+</code>
+<name>
+<disabled>0</disabled>
+<name>name</name>
+<number>1</number>
+<prettyName>Name</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</name>
+<parse>
+<disabled>0</disabled>
+<displayFormType>select</displayFormType>
+<displayType>yesno</displayType>
+<name>parse</name>
+<number>4</number>
+<prettyName>Parse content</prettyName>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+</parse>
+<use>
+<cache>0</cache>
+<disabled>0</disabled>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>use</name>
+<number>3</number>
+<prettyName>Use this extension</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>1</size>
+<unmodifiable>0</unmodifiable>
+<values>currentPage|onDemand|always</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</use>
+</class>
+<name>TotemCode.TotemSheet</name>
+<number>0</number>
+<className>XWiki.JavaScriptExtension</className>
+<guid>051ad43d-c5cc-4f31-9032-9fb070f3e28e</guid>
+<property>
+<cache>long</cache>
+</property>
+<property>
+<code>var XWiki = (function (XWiki) {
   var widgets = XWiki.widgets = XWiki.widgets || {};
   widgets.TotemEditor = Class.create({
   initialize: function() {
@@ -114,6 +113,7 @@
     }.bind(this));
     
     this.hookAddButton();
+    this.setupAdditionalDataEdit();
   },
   
   hookEditOrder : function () {
@@ -294,7 +294,13 @@
         addForm.addClassName('hidden');
       }.bind(this));
     }
-  }  
+  },
+
+  setupAdditionalDataEdit : function() {
+  	$('.displayerAdditionalData').observe('change', function(event) {
+	  //TODO
+	});
+  }
 });
   return XWiki;
 }(XWiki || {}));
@@ -302,98 +308,271 @@
 document.observe('xwiki:dom:loading', function() {
   new XWiki.widgets.TotemEditor();
 });</code>
-    </property>
-    <property>
-      <name>Totem javascript</name>
-    </property>
-    <property>
-      <parse>1</parse>
-    </property>
-    <property>
-      <use>onDemand</use>
-    </property>
-  </object>
-  <object>
-    <class>
-      <name>XWiki.StyleSheetExtension</name>
-      <customClass/>
-      <customMapping/>
-      <defaultViewSheet/>
-      <defaultEditSheet/>
-      <defaultWeb/>
-      <nameField/>
-      <validationScript/>
-      <cache>
-        <cache>0</cache>
-        <disabled>0</disabled>
-        <displayType>select</displayType>
-        <multiSelect>0</multiSelect>
-        <name>cache</name>
-        <number>5</number>
-        <prettyName>Caching policy</prettyName>
-        <relationalStorage>0</relationalStorage>
-        <separator> </separator>
-        <separators> ,|</separators>
-        <size>1</size>
-        <unmodifiable>0</unmodifiable>
-        <values>long|short|default|forbid</values>
-        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
-      </cache>
-      <code>
-        <disabled>0</disabled>
-        <name>code</name>
-        <number>2</number>
-        <prettyName>Code</prettyName>
-        <rows>20</rows>
-        <size>50</size>
-        <unmodifiable>0</unmodifiable>
-        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
-      </code>
-      <name>
-        <disabled>0</disabled>
-        <name>name</name>
-        <number>1</number>
-        <prettyName>Name</prettyName>
-        <size>30</size>
-        <unmodifiable>0</unmodifiable>
-        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
-      </name>
-      <parse>
-        <disabled>0</disabled>
-        <displayFormType>select</displayFormType>
-        <displayType>yesno</displayType>
-        <name>parse</name>
-        <number>4</number>
-        <prettyName>Parse content</prettyName>
-        <unmodifiable>0</unmodifiable>
-        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
-      </parse>
-      <use>
-        <cache>0</cache>
-        <disabled>0</disabled>
-        <displayType>select</displayType>
-        <multiSelect>0</multiSelect>
-        <name>use</name>
-        <number>3</number>
-        <prettyName>Use this extension</prettyName>
-        <relationalStorage>0</relationalStorage>
-        <separator> </separator>
-        <separators> ,|</separators>
-        <size>1</size>
-        <unmodifiable>0</unmodifiable>
-        <values>currentPage=Always on this page|onDemand=On demand|always=Always on this wiki</values>
-        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
-      </use>
-    </class>
-    <name>TotemCode.TotemSheet</name>
-    <number>0</number>
-    <className>XWiki.StyleSheetExtension</className>
-    <guid>ad3ccc13-bcaf-4352-82cc-4f076e90b678</guid>
-    <property>
-      <cache>long</cache>
-    </property>
-    <property>
-      <code>.totemBlock .removeblockform {
+</property>
+<property>
+<name>Totem javascript</name>
+</property>
+<property>
+<parse>1</parse>
+</property>
+<property>
+<use>onDemand</use>
+</property>
+</object>
+<object>
+<class>
+<name>XWiki.JavaScriptExtension</name>
+<customClass></customClass>
+<customMapping></customMapping>
+<defaultViewSheet></defaultViewSheet>
+<defaultEditSheet></defaultEditSheet>
+<defaultWeb></defaultWeb>
+<nameField></nameField>
+<validationScript></validationScript>
+<cache>
+<cache>0</cache>
+<disabled>0</disabled>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>cache</name>
+<number>5</number>
+<prettyName>Caching policy</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>1</size>
+<unmodifiable>0</unmodifiable>
+<values>long|short|default|forbid</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</cache>
+<code>
+<disabled>0</disabled>
+<name>code</name>
+<number>2</number>
+<prettyName>Code</prettyName>
+<rows>20</rows>
+<size>50</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+</code>
+<name>
+<disabled>0</disabled>
+<name>name</name>
+<number>1</number>
+<prettyName>Name</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</name>
+<parse>
+<disabled>0</disabled>
+<displayFormType>select</displayFormType>
+<displayType>yesno</displayType>
+<name>parse</name>
+<number>4</number>
+<prettyName>Parse content</prettyName>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+</parse>
+<use>
+<cache>0</cache>
+<disabled>0</disabled>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>use</name>
+<number>3</number>
+<prettyName>Use this extension</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>1</size>
+<unmodifiable>0</unmodifiable>
+<values>currentPage|onDemand|always</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</use>
+</class>
+<name>TotemCode.TotemSheet</name>
+<number>1</number>
+<className>XWiki.JavaScriptExtension</className>
+<guid>7ceb9a37-4b00-4549-806f-6e2c62429505</guid>
+<property>
+<cache>long</cache>
+</property>
+<property>
+<code>document.observe('xwiki:dom:loading', function() {
+// Configure require.js to use Colpick (https://github.com/josedvq/colpick-jQuery-Color-Picker/)
+require.config({
+  paths: {
+    'colpick': '$services.webjars.url('colpick/2.0.2/js/colpick.js')'
+  },
+  shim: {
+    'colpick' : ['jquery']
+  }
+});
+// Beginning of the script
+require(['jquery', 'colpick'], function($, Colpick) {
+
+  // Get the inputs that need to be enhanced
+  var inputs = $('.color-picker');
+  
+  // For each input
+  for (var i=0; i&lt;inputs.length; ++i) {
+    var input = $(inputs[i]);
+    var parent = input.parent();
+    
+    // Create the color preview box
+    parent.append('&lt;span class="input-group-addon"&gt;&lt;span class="color-preview"&gt;&lt;/span&gt;&lt;/span&gt;');
+    
+    // Update the color preview box
+    parent.find('.color-preview').css('background-color', input.val());
+    
+    // Enable the color picker
+    input.colpick({
+      layout: 'hex',
+      submit: true,
+      color: input.val(),
+      onSubmit: function(hsb, hex, rgb, el) {
+        var element = $(el);
+        // Hide the color picker
+        element.colpickHide();
+        // Update the filled value
+        element.val('#'+hex);
+        // Update the color preview box
+        element.parent().find('.color-preview').css('background-color', '#'+hex);
+        // Emit the "change" event
+        element.trigger('change');
+      }
+    });
+    
+    // If the user write a value manually
+    input.keyup(function(event){
+      var element = $(event.target);
+      // Update the color preview box
+      element.parent().find('.color-preview').css('background-color', element.val());
+      // Update the color picker
+      element.colpickSetColor(element.val(), false);
+    });
+  }
+  
+  // Hide the color picker if the user scrolls
+  $('.tab-content').scroll(function(){
+    // For each input
+    for (var i=0; i&lt;inputs.length; ++i) {
+      var input = inputs[i];
+      $(input).colpickHide();
+    }
+  });
+});
+
+});</code>
+</property>
+<property>
+<name>Color picker</name>
+</property>
+<property>
+<parse>1</parse>
+</property>
+<property>
+<use>onDemand</use>
+</property>
+</object>
+<object>
+<class>
+<name>XWiki.StyleSheetExtension</name>
+<customClass></customClass>
+<customMapping></customMapping>
+<defaultViewSheet></defaultViewSheet>
+<defaultEditSheet></defaultEditSheet>
+<defaultWeb></defaultWeb>
+<nameField></nameField>
+<validationScript></validationScript>
+<cache>
+<cache>0</cache>
+<disabled>0</disabled>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>cache</name>
+<number>5</number>
+<prettyName>Caching policy</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>1</size>
+<unmodifiable>0</unmodifiable>
+<values>long|short|default|forbid</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</cache>
+<code>
+<disabled>0</disabled>
+<name>code</name>
+<number>2</number>
+<prettyName>Code</prettyName>
+<rows>20</rows>
+<size>50</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+</code>
+<contentType>
+<cache>0</cache>
+<disabled>0</disabled>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>contentType</name>
+<number>6</number>
+<prettyName>Content Type</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>1</size>
+<unmodifiable>0</unmodifiable>
+<values>CSS|LESS</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</contentType>
+<name>
+<disabled>0</disabled>
+<name>name</name>
+<number>1</number>
+<prettyName>Name</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</name>
+<parse>
+<disabled>0</disabled>
+<displayFormType>select</displayFormType>
+<displayType>yesno</displayType>
+<name>parse</name>
+<number>4</number>
+<prettyName>Parse content</prettyName>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+</parse>
+<use>
+<cache>0</cache>
+<disabled>0</disabled>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>use</name>
+<number>3</number>
+<prettyName>Use this extension</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>1</size>
+<unmodifiable>0</unmodifiable>
+<values>currentPage|onDemand|always</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</use>
+</class>
+<name>TotemCode.TotemSheet</name>
+<number>0</number>
+<className>XWiki.StyleSheetExtension</className>
+<guid>ad3ccc13-bcaf-4352-82cc-4f076e90b678</guid>
+<property>
+<cache>long</cache>
+</property>
+<property>
+<code>.totemBlock .removeblockform {
   display: inline;
 }
 
@@ -404,45 +583,74 @@ document.observe('xwiki:dom:loading', function() {
 .totemBlocksEdit .blocktitle {
    cursor: move;
 }
-
-</code>
-    </property>
-    <property>
-      <name>Totem editor stylesheet</name>
-    </property>
-    <property>
-      <parse/>
-    </property>
-    <property>
-      <use>onDemand</use>
-    </property>
-  </object>
-  <content>{{include document="DisplayerCode.DisplayerMacros" /}}
+</code></property><property><contentType>CSS</contentType>
+</property>
+<property>
+<name>Totem editor stylesheet</name>
+</property>
+<property>
+<parse>1</parse>
+</property>
+<property>
+<use>onDemand</use>
+</property>
+</object>
+<content>{{include document="DisplayerCode.DisplayerMacros" /}}
 
 {{velocity output="false"}}
 #macro(displayTotemBlock $totemBlock $withEdit $cancelURL $editURL $totemItemClass $sheetFieldsMapping $totemItemsURL)
-  ## display the block. get its values and then call the displayer macro
-  #set($totemBlockSheet = $totemBlock.getProperty('type').value)   
-  #set($width   = "$!totemBlock.getProperty('width').value")
-  #set($height  = "$!totemBlock.getProperty('height').value")   
-  #displayBlock($totemBlockSheet, '', $totemBlock.getProperty('title').value, $totemBlock.getProperty('footer').value, 'doclist', $totemBlock.getProperty('source').value, $totemItemClass, 0, $sheetFieldsMapping.get($totemBlockSheet),"$!{width}","$!{height}")
-  #if($withEdit)
-    (%class="#if("$!request.editblock" != "$totemBlock.number")hidden#end editblockform"%)(((
-      #displayTotemBlockEditForm($totemBlock, false, $cancelURL, $editURL)
-    )))
-    (%class="#if("$!request.editblocksource" != "$totemBlock.number")hidden#end editsourceblockform"%)(((
-      #displayTotemBlockEditSourceForm($totemBlock, $totemItemsURL, $cancelURL, $editURL)
-    )))
+  #set( $isBlockFullscreen = $doc.getObject('TotemCode.TotemClass').getProperty('fullscreen').value )
+  #set( $blockContentSize = $doc.getObject('TotemCode.TotemClass').getProperty('contentSize').value )
+  #set( $totemBlockContentStyle = '' )
+  #if( ${isBlockFullscreen} == 1 &amp;&amp; "${blockContentSize}" != "")
+    #set( $totemBlockContentStyle = "max-width: ${blockContentSize}px; margin: 0 auto;" )
   #end
-  #if($withEdit)
-    (%class="editactions"%)((({{html clean="false"}}
-    &lt;a href="$escapetool.xml($doc.getURL('view', "showEdit=true&amp;editblock=${totemBlock.number}"))" class="editbutton"&gt;$msg.get('totem.edit.editblock.button')&lt;/a&gt;
-    &lt;a href="$escapetool.xml($doc.getURL('view', "showEdit=true&amp;editblocksource=${totemBlock.number}"))" class="editsourcebutton"&gt;$msg.get('totem.edit.editblocksource.button')&lt;/a&gt;
-    #displayTotemBlockRemoveForm($totemBlock, $cancelURL, $editURL){{/html}})))
+    (%class="totemBlockContent" style="${totemBlockContentStyle}"%)(((
+      ## display the block. get its values and then call the displayer macro
+      #set($totemBlockSheet = $totemBlock.getProperty('type').value)   
+      #displayBlock($totemBlockSheet, '', $totemBlock.getProperty('title').value, $totemBlock.getProperty('footer').value, 'doclist', $totemBlock.getProperty('source').value, $totemItemClass, 0, $sheetFieldsMapping.get($totemBlockSheet))
+      #if($withEdit)
+        ## load the css used by the color picker input in edit mode
+        #set($discard = $xwiki.linkx.use($services.webjars.url('colpick/2.0.2/css/colpick.css'), {'rel': 'stylesheet'}))
+        (%class="#if("$!request.editblock" != "$totemBlock.number")hidden#end editblockform"%)(((
+          #displayTotemBlockEditForm($totemBlock, false, $cancelURL, $editURL, $totemItemClass)
+        )))
+        (%class="#if("$!request.editblocksource" != "$totemBlock.number")hidden#end editsourceblockform"%)(((
+          #displayTotemBlockEditSourceForm($totemBlock, $totemItemsURL, $cancelURL, $editURL)
+        )))
+      #end
+      #if($withEdit)
+        (%class="editactions"%)((({{html clean="false"}}
+        &lt;a href="$escapetool.xml($doc.getURL('view', "showEdit=true&amp;editblock=${totemBlock.number}"))" class="editbutton"&gt;$msg.get('totem.edit.editblock.button')&lt;/a&gt;
+        &lt;a href="$escapetool.xml($doc.getURL('view', "showEdit=true&amp;editblocksource=${totemBlock.number}"))" class="editsourcebutton"&gt;$msg.get('totem.edit.editblocksource.button')&lt;/a&gt;
+        #displayTotemBlockRemoveForm($totemBlock, $cancelURL, $editURL){{/html}})))
+      #end
+    )))
+#end
+
+#macro(getDisplayerAdditionalDataInMap $totemItemAdditionalDataObjects $totemBlockStoredData)
+  ## Read stored data
+  #set( $totemBlockStoredDataMap = {} )
+  #foreach( $dataLine in $!{totemBlockStoredData.replaceAll("\r", "").replaceAll("\n", "").replaceAll(" ", "").split(",")} )
+  #set( $dkey = "" )
+  #set( $dvalue = "" )
+    #foreach( $d in ${dataLine.split(":")})
+      #if( ${foreach.index} == 0 )
+        #set( $dkey = "$!{d}" )
+      #else
+        #set( $dvalue = "$!{d}" )
+      #end
+    #end
+    #set( $discard = $totemBlockStoredDataMap.put("${dkey}","${dvalue}") )
+  #end
+  ## Set additional data from displayer keys
+  #set( $displayerAdditionalDataMap = {}) ## Map
+  #foreach( $additionalData in $!{totemItemAdditionalDataObjects})
+    #set( $discard = $displayerAdditionalDataMap.put("${additionalData.key}","$!{totemBlockStoredDataMap.get(${additionalData.key})}") )
   #end
 #end
 
-#macro(displayTotemBlockEditForm $totemBlock $isNewBlock $cancelURL $editURL)
+#macro(displayTotemBlockEditForm $totemBlock $isNewBlock $cancelURL $editURL, $totemItemClass)
   #set($formAction = "$doc.getURL('save')")
   #if ($isNewBlock)
     #set($formAction = "$doc.getURL('objectadd')")
@@ -457,12 +665,38 @@ document.observe('xwiki:dom:loading', function() {
   {{/html}}
   ## display the totem editable properties
   #set($totemBlockClass = $totemBlock.xWikiClass)
-  #foreach ($propName in ['type', 'title','width','height', 'footer'])
+  #foreach ($propName in ['type', 'title', 'size']) ## - footer, data
     ; $doc.displayPrettyName($propName, $totemBlock)
     : #if($isNewBlock){{html clean="false"}}$doc.displayEdit($totemBlockClass.get($propName), 'TotemCode.TotemBlockClass_', $totemBlock){{/html}}
       #else$doc.display($propName, 'edit', $totemBlock)
       #end
+     #set($discard = $xwiki.jsx.use('TotemCode.TotemSheet'))
   #end
+    ## Background-color Custom input in order to display the color picker. Note : add color-picker class with javascript
+    ; $doc.displayPrettyName('background-color', $totemBlock)
+    {{html clean=false}}
+      &lt;input id="TotemCode.TotemBlockClass_${totemBlock.number}_background-color" type="text" name="TotemCode.TotemBlockClass_${totemBlock.number}_background-color" class="color-picker" value="$escapetool.xml($!doc.getValue('background-color', ${totemBlock}))"&gt;
+    {{/html}}
+    ## Background-image Custom input to use an attachment selector
+    ; $doc.displayPrettyName('background-image', $totemBlock)
+    {{attachmentSelector classname="${totemBlockClass.name}" object="${totemBlock.number}" property="background-image" savemode="direct"
+displayImage="false" link="true" filter="png,jpg,gif"/}}
+     ## Background-image Custom input to use an attachment selector
+    ; $doc.displayPrettyName('background-video', $totemBlock)
+    {{attachmentSelector classname="${totemBlockClass.name}" object="${totemBlock.number}" property="background-video" savemode="direct"
+displayImage="false" link="true" filter="mp4, avi, mpg"/}}
+    ## Add additional specific data from the displayer
+    #set( $totemItemAdditionalDataObjects = $xwiki.getDocument("DisplayerCode.${totemBlock.type}").getObjects('TotemCode.TotemItemAdditionalDataClass') )
+    #getDisplayerAdditionalDataInMap($totemItemAdditionalDataObjects $!doc.getValue('data', ${totemBlock}))
+    #foreach( $additionalData in $!{totemItemAdditionalDataObjects} )
+      ; $additionalData.key
+    {{html clean=false}}
+      &lt;input id="${additionalData.key}_${totemBlock.number}" type="text" name="${additionalData.key}_${totemBlock.number}" value="$!{displayerAdditionalDataMap.get(${additionalData.key})}" class="displayerAdditionalData"&gt;
+    {{/html}}
+    #end
+    {{html clean=false}}
+    &lt;input type="hidden" id="TotemCode.TotemBlockClass_${totemBlock.number}_data" name="TotemCode.TotemBlockClass_${totemBlock.number}_data" value="$escapetool.xml($!doc.getValue('data', ${totemBlock}))"/&gt;
+    {{/html}}
   {{html clean="false"}}
     &lt;div class="buttonwrapper"&gt;
       &lt;input type="submit" value="$msg.get('save')" class="button" /&gt;
@@ -516,14 +750,30 @@ document.observe('xwiki:dom:loading', function() {
   &lt;/form&gt;
 #end
 
-#macro(displayEditOrderForm $editURL)
-  {{html clean="false"}}
-    &lt;form action="$doc.getURL('save')" method="post" class="editorderform"&gt;
+#macro(displayEditTotemConfigurationForm)
+  {{html clean="false" wiki="true"}}
+    &lt;form action="$doc.getURL('save')" method="post"&gt;
     &lt;fieldset&gt;
       &lt;input type="hidden" name="xredirect" value="$escapetool.xml($editURL)" /&gt;
       &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
     &lt;/fieldset&gt;
     #set($totemObject = $doc.getObject('TotemCode.TotemClass'))
+    enable fullscreen : $totemObject.display('fullscreen','edit')&lt;br&gt;
+    content size : $totemObject.display('contentSize','edit') px (not applied if empty)
+    &lt;div class="buttonwrapper"&gt;
+      &lt;input type="submit" value="$msg.get('Save Configuration')" class="button" /&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+  {{/html}}
+#end
+
+#macro(displayEditOrderForm $editURL)
+  {{html clean="false" wiki="true"}}
+    &lt;form action="$doc.getURL('save')" method="post" class="editorderform"&gt;
+    &lt;fieldset&gt;
+      &lt;input type="hidden" name="xredirect" value="$escapetool.xml($editURL)" /&gt;
+      &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
+    &lt;/fieldset&gt;
     $doc.displayEdit($totemObject.xWikiClass.get('blockOrder'), "TotemCode.TotemClass_${totemObject.number}_", $totemObject)
     &lt;div class="buttonwrapper"&gt;
       &lt;input type="submit" value="$msg.get('totem.order.save')" class="button" /&gt;
@@ -534,6 +784,9 @@ document.observe('xwiki:dom:loading', function() {
 {{/velocity}}
 
 {{velocity}}
+#set($xwikipanelwidth = 0)
+#set($rightPanelsWidth= 0)
+
 ## set a couple of constants that we want to be able to edit fast.
 ## 1/ class items of the totem
 #set($totemItemClass = 'TotemCode.SimpleTotemItemClass')
@@ -565,11 +818,19 @@ document.observe('xwiki:dom:loading', function() {
   ## if edit is enabled, add the jsx and the ssx of the totemsheet (for enhancements of the edit form)
   ## IMHO no ssx/jsx from the sheet should be needed in view mode, I don't see any totem generic styling that could be done in view mode: 
   ## displayers will do their styling for blocks, the extra jsx / ssx will handle styling specific to a particular totem.
+
+    #set($discard = $xwiki.jsx.use('TotemCode.TotemSheet'))
   #if ($enableEdit)
     #set($discard = $xwiki.jsfx.use("js/scriptaculous/effects.js"))
     #set($discard = $xwiki.jsfx.use("js/scriptaculous/dragdrop.js"))
     #set($discard = $xwiki.jsx.use('TotemCode.TotemSheet', {'minify' : false}))
     #set($discard = $xwiki.ssx.use('TotemCode.TotemSheet', {'minify' : false}))
+  #end
+  ## pass the totem application fullscreen
+  #set($enableFullscreen = $doc.getObject('TotemCode.TotemClass').getProperty('fullscreen').value)
+  #if($enableFullscreen == 1 )
+    #set($discard = $xwiki.ssx.use('TotemCode.TotemFullscreen', {'minify' : false}))  
+    #set($discard = $xwiki.jsx.use('TotemCode.TotemFullscreen'))
   #end
   ## make up the cancel URL for the form cancellation and other cancels
   #set($cancelURL = $doc.getURL())
@@ -580,6 +841,10 @@ document.observe('xwiki:dom:loading', function() {
   ## if edit is enabled, add the input and form to save the order of the blocks which will be edited in js
   #if ($enableEdit)
     {{info}}
+    #displayEditTotemConfigurationForm()
+    {{/info}}
+    ----
+    {{info}}
     $msg.get('totem.edit.editorder.info')    
     #displayEditOrderForm($editURL)
     {{/info}}
@@ -589,29 +854,43 @@ document.observe('xwiki:dom:loading', function() {
   #set($blockNumbers = $doc.getObject('TotemCode.TotemClass').getProperty('blockOrder').value.split(','))
   ## remember the displayed blocks, so that we can display all undisplayed blocks after the order read
   #set($displayedBlocks = [])
-  (%class="totemBlocks #if($enableEdit)totemBlocksEdit#end" id="totemBlocks"%)(((
-    #set($isOdd = true)
-    #foreach($blockNumber in $blockNumbers)
-      #set($intNumber = $mathtool.toInteger($blockNumber))
-      #set($totemBlock = $doc.getObject('TotemCode.TotemBlockClass', $intNumber))
-      #if ($totemBlock)
-        (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end" id="totemBlock_${totemBlock.number}"%)(((
-          #displayTotemBlock($totemBlock, $enableEdit, $cancelURL, $editURL $totemItemClass, $sheetFieldsMapping, $totemItemsURL)
-        )))
-        #set($discard = $displayedBlocks.add($totemBlock.number))
-        #set($isOdd = !$isOdd)
+  (%class="container-fluid"%)(((
+    (%class="totemBlocks #if($enableEdit)totemBlocksEdit#end row" id="totemBlocks"%)(((
+      #set($isOdd = true)
+      #foreach($blockNumber in $blockNumbers)
+        #set($intNumber = $mathtool.toInteger($blockNumber))
+        #set($totemBlock = $doc.getObject('TotemCode.TotemBlockClass', $intNumber))
+        #set($totemBlockSize = 12 )
+        #if("${totemBlock.size}" != "")
+          #set($totemBlockSize = ${totemBlock.size})
+        #end
+        #if ($totemBlock)
+          #set($urlBackground = $doc.getAttachmentURL("${totemBlock.getValue('background-image')}"))
+          (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end col-sm-${totemBlockSize}" id="totemBlock_${totemBlock.number}" style="background:url(${urlBackground});  background-size: 100% 100%; background-color: ${totemBlock.background-color};  object-fit: cover;"%)(((
+            #if( !$doc.getAttachment("${totemBlock.getValue('background-image')}").isImage() )
+            ## {{html}}
+            ## &lt;video autoplay autoloop muted id="bgvid"&gt;
+            ##    &lt;source src="${urlBackground}" type="video/mp4"&gt;
+            ## &lt;/video&gt;
+            ## {{/html}}
+            #end
+            #displayTotemBlock($totemBlock, $enableEdit, $cancelURL, $editURL $totemItemClass, $sheetFieldsMapping, $totemItemsURL)
+          )))
+          #set($discard = $displayedBlocks.add($totemBlock.number))
+          #set($isOdd = !$isOdd)
+        #end
       #end
-    #end
-    ## for all the blocks that were not displayed before, display them
-    #foreach($totemLeftBlock in $doc.getObjects('TotemCode.TotemBlockClass'))
-      #if(!$displayedBlocks.contains($totemLeftBlock.number))
-        (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end" id="totemBlock_${totemLeftBlock.number}"%)(((
-          #displayTotemBlock($totemLeftBlock, $enableEdit, $cancelURL, $editURL $totemItemClass, $sheetFieldsMapping, $totemItemsURL)
-        )))
-        #set($discard = $displayedBlocks.add($totemBlock.number))
-        #set($isOdd = !$isOdd)
+      ## for all the blocks that were not displayed before, display them
+      #foreach($totemLeftBlock in $doc.getObjects('TotemCode.TotemBlockClass'))
+        #if(!$displayedBlocks.contains($totemLeftBlock.number))
+          (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end col-sm-${totemBlockSize}" id="totemBlock_${totemLeftBlock.number}" style="background:url(${urlBackground});  background-size: 100% 100%; background-color: ${totemBlock.background-color};  object-fit: cover;"%)(((
+            #displayTotemBlock($totemLeftBlock, $enableEdit, $cancelURL, $editURL $totemItemClass, $sheetFieldsMapping, $totemItemsURL)
+          )))
+          #set($discard = $displayedBlocks.add($totemBlock.number))
+          #set($isOdd = !$isOdd)
+        #end
       #end
-    #end
+    )))
   )))
 
   ## add new block item form
@@ -632,5 +911,11 @@ document.observe('xwiki:dom:loading', function() {
   ## if we're in edit mode, send a redirect to the edit screen, since the totem has a special edit form (available in view).
   $response.sendRedirect("$editURL")
 #end
-{{/velocity}}</content>
-</xwikidoc>
+## {{html}}
+## &lt;video autoplay loop muted id="bgvid"&gt;
+## &lt;source src="http://florian-xwiki:8080/download/Sandbox/Video/small.mp4" type="video/mp4"&gt;
+## &lt;/video&gt;
+## {{/html}}
+{{/velocity}}
+
+</content></xwikidoc>
