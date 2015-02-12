@@ -1,62 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <xwikidoc>
-<web>TotemCode</web>
-<name>Translations</name>
-<language></language>
-<defaultLanguage></defaultLanguage>
-<translation>0</translation>
-<parent>TotemCode.WebHome</parent>
-<creator>XWiki.Admin</creator>
-<author>XWiki.Admin</author>
-<customClass></customClass>
-<contentAuthor>XWiki.Admin</contentAuthor>
-<creationDate>1398855255000</creationDate>
-<date>1422027885000</date>
-<contentUpdateDate>1422027885000</contentUpdateDate>
-<version>1.1</version>
-<title>Translations</title>
-<defaultTemplate></defaultTemplate>
-<validationScript></validationScript>
-<comment>Imported from XAR</comment>
-<minorEdit>false</minorEdit>
-<syntaxId>xwiki/2.1</syntaxId>
-<hidden>true</hidden>
-<object>
-<class>
-<name>XWiki.TranslationDocumentClass</name>
-<customClass></customClass>
-<customMapping></customMapping>
-<defaultViewSheet></defaultViewSheet>
-<defaultEditSheet></defaultEditSheet>
-<defaultWeb></defaultWeb>
-<nameField></nameField>
-<validationScript></validationScript>
-<scope>
-<cache>0</cache>
-<disabled>0</disabled>
-<displayType>select</displayType>
-<multiSelect>0</multiSelect>
-<name>scope</name>
-<number>1</number>
-<prettyName>Scope</prettyName>
-<relationalStorage>0</relationalStorage>
-<separator> </separator>
-<separators> ,|</separators>
-<size>1</size>
-<unmodifiable>0</unmodifiable>
-<values>GLOBAL|WIKI|USER|ON_DEMAND</values>
-<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
-</scope>
-</class>
-<name>TotemCode.Translations</name>
-<number>0</number>
-<className>XWiki.TranslationDocumentClass</className>
-<guid>eec57ead-81f6-465e-86ba-87f2c1f30f21</guid>
-<property>
-<scope>GLOBAL</scope>
-</property>
-</object>
-<content>totem.edit.editorder.info=Vous pouvez ici modifier chacune des sections du totem.\r\n* Vous pouvez changer l'ordre d'affichage des sections d'un simple glisser/déposer\r\n* En cliquant sur modifier la section, vous pouvez changer le type de la section, son titre et l'affichage du bas.\r\n* En cliquant sur Modifier les éléments de cette section, vous pouvez choisir les éléments qui constitueront cette section, en ajouter, en enlever, etc.\r\n\r\n
+  <web>TotemCode</web>
+  <name>Translations</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <parent>TotemCode.WebHome</parent>
+  <creator>xwiki:XWiki.Admin</creator>
+  <author>xwiki:XWiki.Admin</author>
+  <customClass/>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <creationDate>1398855255000</creationDate>
+  <date>1422027885000</date>
+  <contentUpdateDate>1422027885000</contentUpdateDate>
+  <version>1.1</version>
+  <title>Translations</title>
+  <defaultTemplate/>
+  <validationScript/>
+  <comment/>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>true</hidden>
+  <object>
+    <class>
+      <name>XWiki.TranslationDocumentClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <scope>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>scope</name>
+        <number>1</number>
+        <prettyName>Scope</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>GLOBAL|WIKI|USER|ON_DEMAND</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </scope>
+    </class>
+    <name>TotemCode.Translations</name>
+    <number>0</number>
+    <className>XWiki.TranslationDocumentClass</className>
+    <guid>eec57ead-81f6-465e-86ba-87f2c1f30f21</guid>
+    <property>
+      <scope>GLOBAL</scope>
+    </property>
+  </object>
+  <content>totem.edit.editorder.info=Vous pouvez ici modifier chacune des sections du totem.\r\n* Vous pouvez changer l'ordre d'affichage des sections d'un simple glisser/déposer\r\n* En cliquant sur modifier la section, vous pouvez changer le type de la section, son titre et l'affichage du bas.\r\n* En cliquant sur Modifier les éléments de cette section, vous pouvez choisir les éléments qui constitueront cette section, en ajouter, en enlever, etc.\r\n\r\n
 totem.edit.editblock.button=Modifier cette section
 totem.edit.editblocksource.button=Modifier les éléments de cette section
 totem.edit.editblocksource.help=Commencez à saisir le nom de l'élément à intégrer et des résultats vous seront suggérés.\r\nSi vous n'avez pas encore créé d'éléments ou que vous voulez en créer des nouveaux, cliquez sur "Administrer les éléments" ci-dessous.
@@ -102,4 +103,5 @@ xe.totem.inputmustnotbeempty=Ce champ est obligatoire
 xe.totem.validinput=OK.
 xe.totem.title=Titre du totem
 xe.totem.create=Créer
-xe.totem.createtoteminfo=Cette application vous permet de créer des totems afin de les intégrer dans des pages de votre wiki via la macro "include" et l'information donnée dans la colonne "Nom technique" du tableau ci-dessous.\r\n* Un totem est formé de différentes sections pouvant utiliser un style différent.\r\n* Chaque section est composée d'éléments qui peuvent être ajoutés aux totems. </content></xwikidoc>
+xe.totem.createtoteminfo=Cette application vous permet de créer des totems afin de les intégrer dans des pages de votre wiki via la macro "include" et l'information donnée dans la colonne "Nom technique" du tableau ci-dessous.\r\n* Un totem est formé de différentes sections pouvant utiliser un style différent.\r\n* Chaque section est composée d'éléments qui peuvent être ajoutés aux totems. </content>
+</xwikidoc>
