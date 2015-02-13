@@ -15,3 +15,6 @@ In order to build you'll need [maven](http://maven.apache.org). Make sure you ha
 
 * run `mvn install`
 * Import the generated XAR under `totem-application/target/` to an XWiki instance.
+
+## Dependencies
+* Multiselect custom display 1.2 (to install through the Extension Manager)
