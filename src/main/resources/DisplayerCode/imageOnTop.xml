@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -191,9 +190,9 @@
   padding: 0;
 }
 
-.link{
+.imgTopLink{
   float: right;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: bold;
 }
 
@@ -205,6 +204,11 @@
 @media only screen and (max-device-width: 640px) {
 
   .topTitle { font-size: 18px }
+
+}
+@media only screen and (max-device-width: 640px) {
+
+  .imgTopLink &gt; a { font-size: 14px }
 
 }</code>
     </property>
@@ -222,35 +226,37 @@
 $xwiki.ssx.use('DisplayerCode.imageOnTop')
 
 {{html wiki="true"}}
-#foreach($document in $blockDisplayerDocList)
-  #set($title = $document.getTitle())
-  #set($description = $document.description)
-  #set($url = $document.url)
-  #set($urlLogo = $document.getAttachmentURL($document.getValue('image'), 'download'))
+&lt;div class="row"&gt;
+  #foreach($document in $blockDisplayerDocList)
+    #set($title = $document.getTitle())
+    #set($description = $document.description)
+    #set($url = $document.url)
+    #set($urlLogo = $document.getAttachmentURL($document.getValue('image'), 'download'))
 
-  &lt;div class="col-xs-12 col-md-3 row topRow topdisplayer"&gt;
-    &lt;div class="col-md-12 display-table vcenter center topimgContainer"&gt;
-      &lt;div class="display-cell"&gt;
-        &lt;span class='topTitle'&gt;
-          $title
-        &lt;/span&gt;
-        &lt;img class="topImage" src="${urlLogo}" alt="Responsive image"&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;#*
-  *#&lt;div class="col-md-12 display-table topdContainer vcenter"&gt;
-      &lt;div class="display-cell"&gt;
-        &lt;div class="topDescription"&gt;
-    $description
+    &lt;div class="col-xs-12 col-md-3 row topRow topdisplayer"&gt;
+      &lt;div class="col-md-12 display-table vcenter center topimgContainer"&gt;
+        &lt;div class="display-cell"&gt;
+          &lt;span class='topTitle'&gt;
+            $title
+          &lt;/span&gt;
+          &lt;img class="topImage" src="${urlLogo}" alt="Responsive image"&gt;
         &lt;/div&gt;
-        {{html}}
-        &lt;div class="link"&gt;
-          &lt;a href='$escapetool.xml($url)'&gt;link&lt;/a&gt;
-        &lt;/div&gt; 
-        {{/html}}
+      &lt;/div&gt;#*
+    *#&lt;div class="col-md-12 display-table topdContainer vcenter"&gt;
+        &lt;div class="display-cell"&gt;
+          &lt;div class="topDescription"&gt;
+      $description
+          &lt;/div&gt;
+          {{html}}
+          &lt;div class="imgTopLink"&gt;
+            &lt;a href='$escapetool.xml($url)'&gt;More info&lt;/a&gt;
+          &lt;/div&gt; 
+          {{/html}}
+        &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-  &lt;/div&gt;
-#end
+  #end
+&lt;/div&gt;
 {{/html}}
 {{/velocity}}</content>
 </xwikidoc>

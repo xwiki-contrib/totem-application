@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -383,84 +382,86 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
 #set($sectionSize=100 + 'vw')
 #set($height='100%')
 {{html wiki='true'}}
-&lt;div id="myCarousel" class="carousel slide hidden-xs"&gt;
-  &lt;div class="carousel-inner"&gt;
-  #set($start = 1)
-  #set($end = $blockDisplayerDocList.size() - 1)
-  #set($range = [$start..$end])
-  #set($firstImgSrc = $blockDisplayerDocList[0].getAttachmentURL($blockDisplayerDocList[0].getValue('image'), 'download'))
-    &lt;div class="item active"&gt;
-      &lt;div class="col-md-2 carouselImgContainer"&gt;&lt;a href="#"&gt;&lt;img src="${firstImgSrc}" class="img-responsive"&gt;&lt;/a&gt;&lt;/div&gt;
-    &lt;/div&gt;
-    #foreach($i in $range)
-      #set($document = $blockDisplayerDocList[$i])
-      #set($sectionNumber = $mathtool.sub($velocityCount, 1))    
-      #set($image = $document.getValue('image'))
-      #if($image!='')
-      #set($imgSrc = $document.getAttachmentURL($document.getValue('image'), 'download'))
-      &lt;div class="item"&gt;
-        &lt;div class="col-md-2 carouselImgContainer"&gt;
-          {{html}}
-            &lt;a href="${url}"&gt;&lt;img src="${imgSrc}" class="img-responsive"&gt;&lt;/a&gt;
-          {{/html}}
+&lt;div class="row"&gt;
+  &lt;div id="myCarousel" class="carousel slide hidden-xs"&gt;
+    &lt;div class="carousel-inner"&gt;
+    #set($start = 1)
+    #set($end = $blockDisplayerDocList.size() - 1)
+    #set($range = [$start..$end])
+    #set($firstImgSrc = $blockDisplayerDocList[0].getAttachmentURL($blockDisplayerDocList[0].getValue('image'), 'download'))
+      &lt;div class="item active"&gt;
+        &lt;div class="col-md-2 carouselImgContainer"&gt;&lt;a href="#"&gt;&lt;img src="${firstImgSrc}" class="img-responsive"&gt;&lt;/a&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      #foreach($i in $range)
+        #set($document = $blockDisplayerDocList[$i])
+        #set($sectionNumber = $mathtool.sub($velocityCount, 1))    
+        #set($image = $document.getValue('image'))
+        #if($image!='')
+        #set($imgSrc = $document.getAttachmentURL($document.getValue('image'), 'download'))
+        &lt;div class="item"&gt;
+          &lt;div class="col-md-2 carouselImgContainer"&gt;
+            {{html}}
+              &lt;a href="${url}"&gt;&lt;img src="${imgSrc}" class="img-responsive"&gt;&lt;/a&gt;
+            {{/html}}
+          &lt;/div&gt;
         &lt;/div&gt;
+        #end
+      #end
+    &lt;/div&gt;
+
+    &lt;a class="left carousel-control hidden-xs" href="#myCarousel" role="button" data-slide="prev"&gt;
+      &lt;span class="glyphicon glyphicon-chevron-left" aria-hidden="true"&gt;&lt;/span&gt;
+      &lt;span class="sr-only"&gt;Previous&lt;/span&gt;
+    &lt;/a&gt;
+    &lt;a class="right carousel-control hidden-xs" href="#myCarousel" role="button" data-slide="next"&gt;
+      &lt;span class="glyphicon glyphicon-chevron-right" aria-hidden="true"&gt;&lt;/span&gt;
+      &lt;span class="sr-only"&gt;Next&lt;/span&gt;
+    &lt;/a&gt;
+  &lt;/div&gt;
+
+  &lt;div class="col-xs-12 hidden-md hidden-lg"&gt;
+    #set($counter = 0)
+    #foreach($document in $blockDisplayerDocList)
+      #set($counter = $counter + 1)
+      #set($title = $document.getTitle())
+      #set($url = $document.url)
+      #set($urlLogo = $document.getAttachmentURL($document.getValue('image'), 'download'))
+      #if($counter &lt;= 6)
+      &lt;div class="col-xs-4 col-md-2 multiImgRow multiImgdisplayer"&gt;
+          &lt;div class="display-cell center imageContainer"&gt;
+          &lt;div id="effect-1"&gt;
+            &lt;div id="box" class="box"&gt;
+              &lt;img class="multiImgImage "src="${urlLogo}" alt="Responsive image"&gt;
+              &lt;div class="overlay center"&gt;
+                {{html}}
+                &lt;a href='${url}' class="expand"&gt;+&lt;/a&gt;
+                {{/html}}
+            &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt; 
+          &lt;/div&gt;
+      &lt;/div&gt;
+      #else
+      &lt;div class="col-xs-4 col-md-2 multiImgRow multiImgdisplayermob" style="display: none"&gt;
+          &lt;div class="display-cell center imageContainer"&gt;
+          &lt;div id="effect-1"&gt;
+            &lt;div id="box" class="box"&gt;
+              &lt;img class="multiImgImage "src="${urlLogo}" alt="Responsive image"&gt;
+              &lt;div class="overlay center"&gt;
+                {{html}}
+                &lt;a href='${url}' class="expand"&gt;+&lt;/a&gt;
+                {{/html}}
+            &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt; 
+          &lt;/div&gt;
       &lt;/div&gt;
       #end
     #end
+    &lt;div class="col-xs-12 hidden-md hidden-lg"&gt;
+      &lt;button id="toggle"&gt;Toggle&lt;/button&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
-
-  &lt;a class="left carousel-control hidden-xs" href="#myCarousel" role="button" data-slide="prev"&gt;
-    &lt;span class="glyphicon glyphicon-chevron-left" aria-hidden="true"&gt;&lt;/span&gt;
-    &lt;span class="sr-only"&gt;Previous&lt;/span&gt;
-  &lt;/a&gt;
-  &lt;a class="right carousel-control hidden-xs" href="#myCarousel" role="button" data-slide="next"&gt;
-    &lt;span class="glyphicon glyphicon-chevron-right" aria-hidden="true"&gt;&lt;/span&gt;
-    &lt;span class="sr-only"&gt;Next&lt;/span&gt;
-  &lt;/a&gt;
-&lt;/div&gt;
-
-&lt;div class="col-xs-12 hidden-md hidden-lg"&gt;
-#set($counter = 0)
-#foreach($document in $blockDisplayerDocList)
-  #set($counter = $counter + 1)
-  #set($title = $document.getTitle())
-  #set($url = $document.url)
-  #set($urlLogo = $document.getAttachmentURL($document.getValue('image'), 'download'))
-  #if($counter &lt;= 6)
-  &lt;div class="col-xs-4 col-md-2 multiImgRow multiImgdisplayer"&gt;
-      &lt;div class="display-cell center imageContainer"&gt;
-      &lt;div id="effect-1"&gt;
-        &lt;div id="box" class="box"&gt;
-          &lt;img class="multiImgImage "src="${urlLogo}" alt="Responsive image"&gt;
-          &lt;div class="overlay center"&gt;
-            {{html}}
-            &lt;a href='${url}' class="expand"&gt;+&lt;/a&gt;
-            {{/html}}
-        &lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/div&gt; 
-      &lt;/div&gt;
-  &lt;/div&gt;
-  #else
-  &lt;div class="col-xs-4 col-md-2 multiImgRow multiImgdisplayermob" style="display: none"&gt;
-      &lt;div class="display-cell center imageContainer"&gt;
-      &lt;div id="effect-1"&gt;
-        &lt;div id="box" class="box"&gt;
-          &lt;img class="multiImgImage "src="${urlLogo}" alt="Responsive image"&gt;
-          &lt;div class="overlay center"&gt;
-            {{html}}
-            &lt;a href='${url}' class="expand"&gt;+&lt;/a&gt;
-            {{/html}}
-        &lt;/div&gt;
-        &lt;/div&gt;
-      &lt;/div&gt; 
-      &lt;/div&gt;
-  &lt;/div&gt;
-  #end
-#end
-&lt;div class="col-xs-12 hidden-md hidden-lg"&gt;
-  &lt;button id="toggle"&gt;Toggle&lt;/button&gt;
-&lt;/div&gt;
 &lt;/div&gt;
 {{/html}}
 {{/velocity}}</content>
