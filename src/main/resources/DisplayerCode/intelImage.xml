@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
+<xwikidoc>
+  <web>DisplayerCode</web>
+  <name>intelImage</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <parent>DisplayerCode.WebHome</parent>
+  <creator>xwiki:XWiki.Admin</creator>
+  <author>xwiki:XWiki.Admin</author>
+  <customClass/>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <creationDate>1388530800000</creationDate>
+  <date>1388530800000</date>
+  <contentUpdateDate>1388530800000</contentUpdateDate>
+  <version>1.1</version>
+  <title>intelImage</title>
+  <defaultTemplate/>
+  <validationScript/>
+  <comment/>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <attachment>
+    <filename> .png</filename>
+    <filesize>2042</filesize>
+    <author>xwiki:XWiki.ppantiru</author>
+    <date>1423912496000</date>
+    <version>1.1</version>
+    <comment/>
+    <content>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
+</content>
+  </attachment>
+  <object>
+    <class>
+      <name>DisplayerCode.DisplayerSheetClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <providedType>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>providedType</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>providedType</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </providedType>
+    </class>
+    <name>DisplayerCode.intelImage</name>
+    <number>0</number>
+    <className>DisplayerCode.DisplayerSheetClass</className>
+    <guid>d9735cc1-5482-4dc4-a6d7-70ff09dfbcfe</guid>
+    <property>
+      <providedType>intelImage</providedType>
+    </property>
+  </object>
+  <object>
+    <class>
+      <name>XWiki.StyleSheetExtension</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <cache>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>cache</name>
+        <number>5</number>
+        <prettyName>Caching policy</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>long|short|default|forbid</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </cache>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Code</prettyName>
+        <rows>20</rows>
+        <size>50</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <parse>
+        <disabled>0</disabled>
+        <displayFormType>select</displayFormType>
+        <displayType>yesno</displayType>
+        <name>parse</name>
+        <number>4</number>
+        <prettyName>Parse content</prettyName>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+      </parse>
+      <use>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>use</name>
+        <number>3</number>
+        <prettyName>Use this extension</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>currentPage|onDemand|always</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </use>
+    </class>
+    <name>DisplayerCode.intelImage</name>
+    <number>0</number>
+    <className>XWiki.StyleSheetExtension</className>
+    <guid>4e114b93-6444-49c5-9ac8-08a863e87a5a</guid>
+    <property>
+      <cache>long</cache>
+    </property>
+    <property>
+      <code>.intelRow.inteldisplayer {
+  padding: 15px;
+  margin: 0;
+}
+.intelImage{
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 270px;
+}
+.imageContainer{
+  max-width: 270px;
+}
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.hcenter{
+  position: relative;
+  top: 50%;
+  transform: translateY(-60%);
+}
+.box{
+  margin: 0 !important;
+  padding: 0 !important;
+  border-top: 0;
+  border-left: 0;
+  box-shadow:inset 1px 1px 40px 0 rgba(0,0,0,.45);
+  border-bottom:2px solid #fff;
+  border-right:2px solid #fff;
+  margin:5% auto 0 auto; 
+  border-radius:5px;
+  overflow:hidden;
+}
+.overlay {
+  display: block;
+  position: absolute;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  transition: all 0.2s;
+  max-width: 270px;
+}
+
+a.close-overlay {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  width: 45px;
+  height: 45px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 45px;
+  text-align: center;
+  background-color: #000;
+  cursor: pointer;
+}
+a.expand {
+  display: block;
+  position: absolute;
+  z-index: 100;
+  width: 50px;
+  height: 50px;
+  border: solid 5px #fff;
+  text-align: center;
+  color: #fff;
+  line-height: 40px;
+  font-weight: 700;
+  font-size: 30px;
+  border-radius: 30px;
+}
+#effect-1 .overlay {
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  width: calc(100% - 30px);
+  height: 0;
+}
+#effect-1 .overlay a.expand {
+  left: 0;
+  right: 0;
+  bottom: 50%;
+  margin: 0 auto -25px auto;
+}
+#effect-1 .box:hover .overlay {
+  height: calc(100% - 30px);
+}</code>
+    </property>
+    <property>
+      <name/>
+    </property>
+    <property>
+      <parse>1</parse>
+    </property>
+    <property>
+      <use>onDemand</use>
+    </property>
+  </object>
+  <content>{{velocity}}
+$xwiki.ssx.use('DisplayerCode.intelImage')
+#set($discard = $xwiki.jsx.use('DisplayerCode.intelImage'))
+
+{{html wiki="true"}}
+&lt;div class="row"&gt;
+#if($blockDisplayerDocList.size() % 6 == 0)
+  #set($no_rows = $blockDisplayerDocList.size() / 6 )
+#else
+  #set($no_rows = ($blockDisplayerDocList.size() / 6) + 1)
+#end
+#set($start = 0)
+#set($end = $no_rows - 1)
+#set($rows = [$start..$end])
+#foreach($row in $rows)
+  #set($first = $row * 6)
+  #set($last = $first + 5)
+  #set($row_items = [$first..$last])
+  &lt;div class="line col-md-12"&gt;
+  #foreach($item in $row_items)
+    #if($item &lt; $blockDisplayerDocList.size())
+      #set($document = $blockDisplayerDocList[$item])
+      #set($url = $document.url)
+      #set($urlLogo = $document.getAttachmentURL($document.getValue('image'), 'download'))
+      &lt;div class="col-xs-4 col-md-2 intelRow inteldisplayer"&gt;
+          &lt;div class="display-cell center imageContainer"&gt;
+          &lt;div id="effect-1"&gt;
+            &lt;div id="box" class="box"&gt;
+              &lt;img class="intelImage "src="${urlLogo}" alt="Responsive image"&gt;
+              &lt;div class="overlay center"&gt;
+                {{html}}
+                &lt;a href='${url}' class="expand"&gt;+&lt;/a&gt;
+                {{/html}}
+            &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt; 
+          &lt;/div&gt;
+      &lt;/div&gt;
+    #end  
+  #end
+  &lt;/div&gt;
+#end
+&lt;/div&gt;
+{{/html}}
+{{/velocity}}</content>
+</xwikidoc>

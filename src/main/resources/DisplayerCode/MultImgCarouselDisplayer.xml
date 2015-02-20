@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
+<xwikidoc>
+  <web>DisplayerCode</web>
+  <name>MultImgCarouselDisplayer</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <parent>Main.SpaceIndex</parent>
+  <creator>xwiki:XWiki.Admin</creator>
+  <author>xwiki:XWiki.Admin</author>
+  <customClass/>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <creationDate>1388530800000</creationDate>
+  <date>1388530800000</date>
+  <contentUpdateDate>1388530800000</contentUpdateDate>
+  <version>1.1</version>
+  <title>MultImgCarouselDisplayer</title>
+  <defaultTemplate/>
+  <validationScript/>
+  <comment/>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <attachment>
+    <filename>sprite-2.png</filename>
+    <filesize>532</filesize>
+    <author>XWiki.kebir</author>
+    <date>1422880765000</date>
+    <version>1.1</version>
+    <comment/>
+    <content>iVBORw0KGgoAAAANSUhEUgAAADAAAAAJCAYAAAB0d6/iAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+AAALEgAACxIB0t1+/AAAAB50RVh0U29mdHdhcmUAQWRvYmUgRmlyZXdvcmtzIENTNS4xqx9I6wAA
+ABV0RVh0Q3JlYXRpb24gVGltZQAzLzA1LzE0AS89vQAAAWtJREFUOI29k7FKA0EURY8rBAQhICMs
+WAUyjVUqbTSKQcFG0TIwtb2Cf+AHCDZWikMKsU2lJGAaISAKQRFGTCUsONgKW9mMEDe7yayFp7z3
+zZt7izfBAEKqLeDLGn2DB9VWFAJrwDTQ7dTCx1HzQqoCsA7MAe9A2xr95fOXkKoOvFqju4N6kAh/
+BRQ8w9eBN6ABnAIP1VbUqLaiyYwAZeAFaLr5JvDkdB+KwLWQamGowB/Cl4EzYCph1YH9jGdXQCmh
+lZzuy1CJIG/4gaBZ8yopCKnmgUrGfMX5vvwqEQAXI8JkMTPCC1O02TH7xvlJikBDSFUIgG3A65AG
+uB/hdVO0HhBnzMfOz8MHsGuNjgNr9C2wSb4SlxmfxsBRUrRGfwLHGbtOnO/LB7Bqje6BO2JXYgPP
+Ep1aGAPLwDnw83kbWOzUwru0N9boQ2AP6DupD+xZow9yhI9c+OdUV0i1JKRaybHw3xBS7aQd+zc6
+tXEfZJKdtgAAAABJRU5ErkJggg==
+</content>
+  </attachment>
+  <object>
+    <class>
+      <name>DisplayerCode.DisplayerSheetClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <providedType>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>providedType</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>providedType</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </providedType>
+    </class>
+    <name>DisplayerCode.MultImgCarouselDisplayer</name>
+    <number>0</number>
+    <className>DisplayerCode.DisplayerSheetClass</className>
+    <guid>992fd1dc-faf7-4452-bef1-5b3166b5cbde</guid>
+    <property>
+      <providedType>MultImgCarousel</providedType>
+    </property>
+  </object>
+  <object>
+    <class>
+      <name>XWiki.JavaScriptExtension</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <cache>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>cache</name>
+        <number>5</number>
+        <prettyName>Caching policy</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>long|short|default|forbid</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </cache>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Code</prettyName>
+        <rows>20</rows>
+        <size>50</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <parse>
+        <disabled>0</disabled>
+        <displayFormType>select</displayFormType>
+        <displayType>yesno</displayType>
+        <name>parse</name>
+        <number>4</number>
+        <prettyName>Parse content</prettyName>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+      </parse>
+      <use>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>use</name>
+        <number>3</number>
+        <prettyName>Use this extension</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>currentPage|onDemand|always</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </use>
+    </class>
+    <name>DisplayerCode.MultImgCarouselDisplayer</name>
+    <number>0</number>
+    <className>XWiki.JavaScriptExtension</className>
+    <guid>14f15fa1-ba51-439d-8c0d-6260ff5b1af4</guid>
+    <property>
+      <cache>long</cache>
+    </property>
+    <property>
+      <code>require(['jquery'], function ($) {
+$( window ).load(function() {
+  $('#myCarousel').carousel({
+  interval: 6000
+});
+});
+
+$('.carousel .item').each(function(){
+  var nr_images = 5;
+    
+  var next = $(this);
+  for (i=0; i&lt;nr_images; i++){
+    next = next.next();
+    if (!next.length) {
+      next = $(this).siblings(':first');
+    }
+    next.children(':first-child').clone().appendTo($(this));
+  }
+});
+
+var flip = 0;
+$( "#toggle" ).click(function() {
+$( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
+});
+});</code>
+    </property>
+    <property>
+      <name>MultImgCarousel</name>
+    </property>
+    <property>
+      <parse>0</parse>
+    </property>
+    <property>
+      <use>currentPage</use>
+    </property>
+  </object>
+  <object>
+    <class>
+      <name>XWiki.StyleSheetExtension</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <cache>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>cache</name>
+        <number>5</number>
+        <prettyName>Caching policy</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>long|short|default|forbid</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </cache>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Code</prettyName>
+        <rows>20</rows>
+        <size>50</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <parse>
+        <disabled>0</disabled>
+        <displayFormType>select</displayFormType>
+        <displayType>yesno</displayType>
+        <name>parse</name>
+        <number>4</number>
+        <prettyName>Parse content</prettyName>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+      </parse>
+      <use>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>use</name>
+        <number>3</number>
+        <prettyName>Use this extension</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>currentPage|onDemand|always</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </use>
+    </class>
+    <name>DisplayerCode.MultImgCarouselDisplayer</name>
+    <number>0</number>
+    <className>XWiki.StyleSheetExtension</className>
+    <guid>88f1d2ac-18a9-4092-be45-31b001847359</guid>
+    <property>
+      <cache>long</cache>
+    </property>
+    <property>
+      <code>.carousel-inner .item         { height: 100%;             }
+.carousel-inner .active.left  { left: -16.7%;             }
+.carousel-inner .active.right { left: 16.7%;              }
+.carousel-inner .next         { left: 16.7%;              }
+.carousel-inner .prev         { left: -16.7%;             }
+.carousel-control.left        { background-image: none;   }
+.carousel-control.right       { background-image: none;   }
+
+.img-responsive {
+  margin-left: auto;
+  margin-right: auto;
+}
+.carousel-inner{
+  width: 80%;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.carouselImgContainer{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#toggle{
+  -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  box-shadow:inset 0px 1px 0px 0px #ffffff;
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf));
+  background:-moz-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+  background:-webkit-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+  background:-o-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+  background:-ms-linear-gradient(top, #ededed 5%, #dfdfdf 100%);
+  background:linear-gradient(to bottom, #ededed 5%, #dfdfdf 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf',GradientType=0);
+  background-color:#ededed;
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
+  border-radius:6px;
+  border:1px solid #dcdcdc;
+  display:inline-block;
+  cursor:pointer;
+  color:#777777;
+  font-family:arial;
+  font-size:15px;
+  font-weight:bold;
+  padding:6px 24px;
+  text-decoration:none;
+  text-shadow:0px 1px 0px #ffffff;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#toggle:hover {
+  background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed));
+  background:-moz-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+  background:-webkit-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+  background:-o-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+  background:-ms-linear-gradient(top, #dfdfdf 5%, #ededed 100%);
+  background:linear-gradient(to bottom, #dfdfdf 5%, #ededed 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed',GradientType=0);
+  background-color:#dfdfdf;
+}
+#toggle:active {
+  position:relative;
+  top:1px;
+}
+.multiImgRow.multiImgdisplayer {
+  padding: 15px;
+  margin: 0;
+}
+.multiImgImage{
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 270px;
+}</code>
+    </property>
+    <property>
+      <name/>
+    </property>
+    <property>
+      <parse>1</parse>
+    </property>
+    <property>
+      <use>onDemand</use>
+    </property>
+  </object>
+  <content>{{velocity}}
+#set($discard = $xwiki.ssx.use('DisplayerCode.MultImgCarouselDisplayer'))
+#set($discard = $xwiki.jsx.use('DisplayerCode.MultImgCarouselDisplayer'))
+#set($width='100%')
+#set($sectionSize=100 + 'vw')
+#set($height='100%')
+{{html wiki='true'}}
+&lt;div id="myCarousel" class="carousel slide hidden-xs"&gt;
+  &lt;div class="carousel-inner"&gt;
+  #set($start = 1)
+  #set($end = $blockDisplayerDocList.size() - 1)
+  #set($range = [$start..$end])
+  #set($firstImgSrc = $blockDisplayerDocList[0].getAttachmentURL($blockDisplayerDocList[0].getValue('image'), 'download'))
+    &lt;div class="item active"&gt;
+      &lt;div class="col-md-2 carouselImgContainer"&gt;&lt;a href="#"&gt;&lt;img src="${firstImgSrc}" class="img-responsive"&gt;&lt;/a&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    #foreach($i in $range)
+      #set($document = $blockDisplayerDocList[$i])
+      #set($sectionNumber = $mathtool.sub($velocityCount, 1))    
+      #set($image = $document.getValue('image'))
+      #if($image!='')
+      #set($imgSrc = $document.getAttachmentURL($document.getValue('image'), 'download'))
+      &lt;div class="item"&gt;
+        &lt;div class="col-md-2 carouselImgContainer"&gt;
+          {{html}}
+            &lt;a href="${url}"&gt;&lt;img src="${imgSrc}" class="img-responsive"&gt;&lt;/a&gt;
+          {{/html}}
+        &lt;/div&gt;
+      &lt;/div&gt;
+      #end
+    #end
+  &lt;/div&gt;
+
+  &lt;a class="left carousel-control hidden-xs" href="#myCarousel" role="button" data-slide="prev"&gt;
+    &lt;span class="glyphicon glyphicon-chevron-left" aria-hidden="true"&gt;&lt;/span&gt;
+    &lt;span class="sr-only"&gt;Previous&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;a class="right carousel-control hidden-xs" href="#myCarousel" role="button" data-slide="next"&gt;
+    &lt;span class="glyphicon glyphicon-chevron-right" aria-hidden="true"&gt;&lt;/span&gt;
+    &lt;span class="sr-only"&gt;Next&lt;/span&gt;
+  &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;div class="col-xs-12 hidden-md hidden-lg"&gt;
+#set($counter = 0)
+#foreach($document in $blockDisplayerDocList)
+  #set($counter = $counter + 1)
+  #set($title = $document.getTitle())
+  #set($url = $document.url)
+  #set($urlLogo = $document.getAttachmentURL($document.getValue('image'), 'download'))
+  #if($counter &lt;= 6)
+  &lt;div class="col-xs-4 col-md-2 multiImgRow multiImgdisplayer"&gt;
+      &lt;div class="display-cell center imageContainer"&gt;
+      &lt;div id="effect-1"&gt;
+        &lt;div id="box" class="box"&gt;
+          &lt;img class="multiImgImage "src="${urlLogo}" alt="Responsive image"&gt;
+          &lt;div class="overlay center"&gt;
+            {{html}}
+            &lt;a href='${url}' class="expand"&gt;+&lt;/a&gt;
+            {{/html}}
+        &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt; 
+      &lt;/div&gt;
+  &lt;/div&gt;
+  #else
+  &lt;div class="col-xs-4 col-md-2 multiImgRow multiImgdisplayermob" style="display: none"&gt;
+      &lt;div class="display-cell center imageContainer"&gt;
+      &lt;div id="effect-1"&gt;
+        &lt;div id="box" class="box"&gt;
+          &lt;img class="multiImgImage "src="${urlLogo}" alt="Responsive image"&gt;
+          &lt;div class="overlay center"&gt;
+            {{html}}
+            &lt;a href='${url}' class="expand"&gt;+&lt;/a&gt;
+            {{/html}}
+        &lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt; 
+      &lt;/div&gt;
+  &lt;/div&gt;
+  #end
+#end
+&lt;div class="col-xs-12 hidden-md hidden-lg"&gt;
+  &lt;button id="toggle"&gt;Toggle&lt;/button&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+{{/html}}
+{{/velocity}}</content>
+</xwikidoc>

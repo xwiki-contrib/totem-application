@@ -22,7 +22,7 @@
 
 <xwikidoc>
   <web>DisplayerCode</web>
-  <name>ImageGaucheDisplayer</name>
+  <name>Thumbnail</name>
   <language/>
   <defaultLanguage/>
   <translation>0</translation>
@@ -35,7 +35,7 @@
   <date>1388530800000</date>
   <contentUpdateDate>1388530800000</contentUpdateDate>
   <version>1.1</version>
-  <title>ImageGaucheDisplayer</title>
+  <title>Thumbnail</title>
   <defaultTemplate/>
   <validationScript/>
   <comment/>
@@ -66,12 +66,12 @@
         <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
       </providedType>
     </class>
-    <name>DisplayerCode.ImageGaucheDisplayer</name>
+    <name>DisplayerCode.Thumbnail</name>
     <number>0</number>
     <className>DisplayerCode.DisplayerSheetClass</className>
-    <guid>d4e5edec-95c0-4818-be46-881477da0aaf</guid>
+    <guid>15f65077-0e09-4b7e-9f38-916c7856e0d7</guid>
     <property>
-      <providedType>ImageLeft</providedType>
+      <providedType>Thumbnail</providedType>
     </property>
   </object>
   <object>
@@ -146,39 +146,52 @@
         <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
       </use>
     </class>
-    <name>DisplayerCode.ImageGaucheDisplayer</name>
+    <name>DisplayerCode.Thumbnail</name>
     <number>0</number>
     <className>XWiki.StyleSheetExtension</className>
-    <guid>ad31cf87-5c9e-403d-970f-550de66520a6</guid>
+    <guid>0dbf5345-1ac4-4849-bf0e-3e3fecaf6a9e</guid>
     <property>
       <cache>long</cache>
     </property>
     <property>
-      <code>.totemHeaderRow.leftimagedisplayer {
-  padding: 42px 15px 42px 15px;
+      <code>.thumbdisplayer {
+  margin: 12px 0;
+  padding-right: 0 !important;
+  max-height: 270px;
 }
-.leftSideImage{
-  display: block;
-  margin: 0 auto;
-  max-width: 400px;
-  width: 100%;
+.thumbimgContainer{
+  padding: 12px 0;
 }
-.imgContainer{
-  min-width: 150px;
+.thumbImage{
+    display: block;
+    margin: 0 auto;
+    max-height: 270px;
+    max-width: 215px;
+    width: 100%;
 }
-.leftImageTitle {
-  font-size: 28px;
+.thumbText{
+  padding-top: 15px;
+}
+.thumbTitle {
+  font-size: 22px;
   font-weight: bold;
+  color: #08c;
 }
 .center {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
 }
-.leftSideImageDescription{
-  font-size: 18px;
+.right{
+  float:right;
 }
-.imgLeftLink{
+.thumbDescription{
+  font-size: 14px;
+}
+.thumbDescription p{
+  text-align: left;
+}
+.thumbLink{
   float: right;
   font-size: 18px;
   font-weight: bold;
@@ -186,17 +199,17 @@
 
 @media only screen and (max-device-width: 640px) {
 
-  .leftSideImageDescription { font-size: 14px }
+  .thumbDescription { font-size: 12px }
 
 }
 @media only screen and (max-device-width: 640px) {
 
-  .leftImageTitle { font-size: 20px }
+  .thumbTitle { font-size: 18px }
 
 }
 @media only screen and (max-device-width: 640px) {
 
-  .imgLeftLink &gt; a { font-size: 14px }
+  .thumbLink &gt; a { font-size: 14px }
 
 }</code>
     </property>
@@ -211,7 +224,7 @@
     </property>
   </object>
   <content>{{velocity}}
-$xwiki.ssx.use('DisplayerCode.ImageGaucheDisplayer')
+$xwiki.ssx.use('DisplayerCode.Thumbnail')
 
 {{html wiki="true"}}
 #foreach($document in $blockDisplayerDocList)
@@ -220,25 +233,25 @@ $xwiki.ssx.use('DisplayerCode.ImageGaucheDisplayer')
   #set($url = $document.url)
   #set($urlLogo = $document.getAttachmentURL($document.getValue('image'), 'download'))
 
-  &lt;div class="row totemHeaderRow leftimagedisplayer"&gt;
-    &lt;div class="col-xs-12 col-md-4 display-table vcenter imgContainer"&gt;
-      &lt;div class="display-cell center"&gt;
-        &lt;img class="leftSideImage" src="${urlLogo}" alt="Responsive image"&gt;
+  &lt;div class="col-xs-12 col-md-6 row totemHeaderRow thumbdisplayer"&gt;
+    &lt;div class="col-xs-4 col-md-4 display-table vcenter thumbimgContainer"&gt;
+      &lt;div class="display-cell"&gt;
+        &lt;img class="thumbImage right" src="${urlLogo}" alt="Responsive image"&gt;
       &lt;/div&gt;
     &lt;/div&gt;#*
-  *#&lt;div class="col-xs-12 col-md-8 display-table vcenter"&gt;
+  *#&lt;div class="col-xs-8 col-md-8 display-table vcenter thumbText"&gt;
       &lt;div class="display-cell"&gt;
-          &lt;span class='leftImageTitle'&gt;
+          &lt;span class='thumbTitle'&gt;
             $title
           &lt;/span&gt;
-      &lt;div class="leftSideImageDescription"&gt;
-        $description
-      &lt;/div&gt;
-      {{html}}
-        &lt;div class="imgLeftLink"&gt;
-          &lt;a href='$escapetool.xml($url)'&gt;More info&lt;/a&gt;
-        &lt;/div&gt; 
-      {{/html}}
+		  &lt;div class="thumbDescription"&gt;
+		    $description
+		  &lt;/div&gt;
+		  {{html}}
+		  &lt;div class="thumbLink"&gt;
+		    &lt;a href='$escapetool.xml($url)'&gt;More info&lt;/a&gt;
+		  &lt;/div&gt; 
+		  {{/html}}
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;

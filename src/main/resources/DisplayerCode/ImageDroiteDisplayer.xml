@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+ * See the NOTICE file distributed with this work for additional
+ * information regarding copyright ownership.
+ *
+ * This is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as
+ * published by the Free Software Foundation; either version 2.1 of
+ * the License, or (at your option) any later version.
+ *
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this software; if not, write to the Free
+ * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
+ * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
+-->
+
 <xwikidoc>
   <web>DisplayerCode</web>
   <name>ImageDroiteDisplayer</name>
@@ -11,9 +31,9 @@
   <author>xwiki:XWiki.Admin</author>
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-  <creationDate>1399932000000</creationDate>
-  <date>1399932000000</date>
-  <contentUpdateDate>1399932000000</contentUpdateDate>
+  <creationDate>1388530800000</creationDate>
+  <date>1388530800000</date>
+  <contentUpdateDate>1388530800000</contentUpdateDate>
   <version>1.1</version>
   <title>ImageDroiteDisplayer</title>
   <defaultTemplate/>
@@ -51,7 +71,7 @@
     <className>DisplayerCode.DisplayerSheetClass</className>
     <guid>b0f52752-f0f1-4ae6-88cc-78c4a59adf16</guid>
     <property>
-      <providedType>ImageGauche</providedType>
+      <providedType>ImageRight</providedType>
     </property>
   </object>
   <object>
@@ -122,7 +142,7 @@
         <separators> ,|</separators>
         <size>1</size>
         <unmodifiable>0</unmodifiable>
-        <values>currentPage=Always on this page|onDemand=On demand|always=Always on this wiki</values>
+        <values>currentPage|onDemand|always</values>
         <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
       </use>
     </class>
@@ -134,25 +154,51 @@
       <cache>long</cache>
     </property>
     <property>
-      <code>.rightImageText {
-   padding:22px 0 22px 141px;
-   display: block;
+      <code>.totemHeaderRow.rightimagedisplayer {
+  padding: 42px 15px 42px 15px;
 }
-
-.rightImageContainer {
-   overflow : hidden;
-}
-
-/* TYPE 3 - Left / Right Image Block Displayer
----------------------------------------------------------------------- */ 
-
-.imageDroiteText a {
+.rightSideImage{
   display: block;
-  font-family: "DINCompPro";
-  font-size: 16px;
-  margin: 30px 0;
-  width: 127px;
-  }</code>
+  margin: 0 auto;
+  max-width: 400px;
+  width: 100%;
+}
+.imgContainer{
+  min-width: 150px;
+}
+.rightImageTitle {
+  font-size: 28px;
+  font-weight: bold;
+}
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.rightSideImageDescription{
+  font-size: 18px;
+}
+.imgRightLink{
+  float: right;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+@media only screen and (max-device-width: 640px) {
+
+  .rightSideImageDescription { font-size: 14px }
+
+}
+@media only screen and (max-device-width: 640px) {
+
+  .rightImageTitle { font-size: 20px }
+
+}
+@media only screen and (max-device-width: 640px) {
+
+  .imgRightLink &gt; a { font-size: 14px }
+
+}</code>
     </property>
     <property>
       <name/>
@@ -167,25 +213,36 @@
   <content>{{velocity}}
 $xwiki.ssx.use('DisplayerCode.ImageDroiteDisplayer')
 
-{{html}}
+{{html wiki="true"}}
 #foreach($document in $blockDisplayerDocList)
   #set($title = $document.getTitle())
-  #set($url = $document.getValue('url'))
-  #set($image = $document.getValue('image'))
-  #set($urlImage = $document.getAttachmentURL($image, 'download', 'width=120'))
-  ##set($attach = $services.model.resolveAttachment($image, "explicit", $document.getDocumentReference()))
-  ##set($image2 = $services.model.serialize($attach, "default"))
-  &lt;div class="rightimagedisplayer"&gt;
-    &lt;div class='rightImageContainer' style="background:url($urlImage) no-repeat scroll 10px center transparent;"&gt;
-      &lt;a href="$escapetool.xml($url)"&gt;
-        &lt;span class='rightImageText'&gt;
-          $title
-        &lt;/span&gt;
-      &lt;/a&gt;
+  #set($description = $document.description)
+  #set($url = $document.url)
+  #set($urlLogo = $document.getAttachmentURL($document.getValue('image'), 'download'))
+
+  &lt;div class="row totemHeaderRow rightimagedisplayer"&gt;
+    &lt;div class="col-xs-12 col-md-8 display-table vcenter"&gt;
+      &lt;div class="display-cell"&gt;
+          &lt;span class='rightImageTitle'&gt;
+            $title
+          &lt;/span&gt;
+      &lt;div class="rightSideImageDescription"&gt;
+        $description
+      &lt;/div&gt;
+      {{html}}
+        &lt;div class="imgRightLink"&gt;
+          &lt;a href='$escapetool.xml($url)'&gt;More info&lt;/a&gt;
+        &lt;/div&gt; 
+      {{/html}}
+      &lt;/div&gt;
+    &lt;/div&gt;#*
+  *#&lt;div class="col-xs-12 col-md-4 display-table vcenter imgContainer"&gt;
+      &lt;div class="display-cell center"&gt;
+        &lt;img class="rightSideImage" src="${urlLogo}" alt="Responsive image"&gt;
+      &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 #end
 {{/html}}
-
 {{/velocity}}</content>
 </xwikidoc>

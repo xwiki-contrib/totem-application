@@ -22,7 +22,7 @@
 
 <xwikidoc>
   <web>DisplayerCode</web>
-  <name>ImageGaucheDisplayer</name>
+  <name>imageOnTop</name>
   <language/>
   <defaultLanguage/>
   <translation>0</translation>
@@ -35,7 +35,7 @@
   <date>1388530800000</date>
   <contentUpdateDate>1388530800000</contentUpdateDate>
   <version>1.1</version>
-  <title>ImageGaucheDisplayer</title>
+  <title>imageOnTop</title>
   <defaultTemplate/>
   <validationScript/>
   <comment/>
@@ -66,12 +66,12 @@
         <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
       </providedType>
     </class>
-    <name>DisplayerCode.ImageGaucheDisplayer</name>
+    <name>DisplayerCode.imageOnTop</name>
     <number>0</number>
     <className>DisplayerCode.DisplayerSheetClass</className>
-    <guid>d4e5edec-95c0-4818-be46-881477da0aaf</guid>
+    <guid>85127acc-3d95-4d22-b556-f9be8699c282</guid>
     <property>
-      <providedType>ImageLeft</providedType>
+      <providedType>imageOnTop</providedType>
     </property>
   </object>
   <object>
@@ -146,57 +146,65 @@
         <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
       </use>
     </class>
-    <name>DisplayerCode.ImageGaucheDisplayer</name>
+    <name>DisplayerCode.imageOnTop</name>
     <number>0</number>
     <className>XWiki.StyleSheetExtension</className>
-    <guid>ad31cf87-5c9e-403d-970f-550de66520a6</guid>
+    <guid>209490d2-ea89-443b-a8b5-4678c673c14c</guid>
     <property>
       <cache>long</cache>
     </property>
     <property>
-      <code>.totemHeaderRow.leftimagedisplayer {
-  padding: 42px 15px 42px 15px;
+      <code>.topRow.topdisplayer {
+  padding: 15px;
+  margin: 0;
 }
-.leftSideImage{
+.topimgContainer{
+  padding: 12px 0;
+}
+.topImage{
   display: block;
   margin: 0 auto;
-  max-width: 400px;
   width: 100%;
+  max-width: 400px;
 }
-.imgContainer{
-  min-width: 150px;
-}
-.leftImageTitle {
-  font-size: 28px;
+
+.topTitle {
+  font-size: 22px;
   font-weight: bold;
+  color: #08c;
 }
 .center {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
 }
-.leftSideImageDescription{
-  font-size: 18px;
+.right{
+  float:right;
 }
-.imgLeftLink{
+.topDescription{
+  font-size: 14px;
+}
+.topDescription p{
+  text-align: left;
+}
+.topdContainer{
+  padding: 0;
+}
+
+.link{
   float: right;
-  font-size: 18px;
+  font-size: 22px;
   font-weight: bold;
 }
 
 @media only screen and (max-device-width: 640px) {
 
-  .leftSideImageDescription { font-size: 14px }
+  .topDescription { font-size: 12px }
 
 }
 @media only screen and (max-device-width: 640px) {
 
-  .leftImageTitle { font-size: 20px }
-
-}
-@media only screen and (max-device-width: 640px) {
-
-  .imgLeftLink &gt; a { font-size: 14px }
+  .topTitle { font-size: 18px }
 
 }</code>
     </property>
@@ -211,7 +219,7 @@
     </property>
   </object>
   <content>{{velocity}}
-$xwiki.ssx.use('DisplayerCode.ImageGaucheDisplayer')
+$xwiki.ssx.use('DisplayerCode.imageOnTop')
 
 {{html wiki="true"}}
 #foreach($document in $blockDisplayerDocList)
@@ -220,25 +228,25 @@ $xwiki.ssx.use('DisplayerCode.ImageGaucheDisplayer')
   #set($url = $document.url)
   #set($urlLogo = $document.getAttachmentURL($document.getValue('image'), 'download'))
 
-  &lt;div class="row totemHeaderRow leftimagedisplayer"&gt;
-    &lt;div class="col-xs-12 col-md-4 display-table vcenter imgContainer"&gt;
-      &lt;div class="display-cell center"&gt;
-        &lt;img class="leftSideImage" src="${urlLogo}" alt="Responsive image"&gt;
+  &lt;div class="col-xs-12 col-md-3 row topRow topdisplayer"&gt;
+    &lt;div class="col-md-12 display-table vcenter center topimgContainer"&gt;
+      &lt;div class="display-cell"&gt;
+        &lt;span class='topTitle'&gt;
+          $title
+        &lt;/span&gt;
+        &lt;img class="topImage" src="${urlLogo}" alt="Responsive image"&gt;
       &lt;/div&gt;
     &lt;/div&gt;#*
-  *#&lt;div class="col-xs-12 col-md-8 display-table vcenter"&gt;
+  *#&lt;div class="col-md-12 display-table topdContainer vcenter"&gt;
       &lt;div class="display-cell"&gt;
-          &lt;span class='leftImageTitle'&gt;
-            $title
-          &lt;/span&gt;
-      &lt;div class="leftSideImageDescription"&gt;
-        $description
-      &lt;/div&gt;
-      {{html}}
-        &lt;div class="imgLeftLink"&gt;
-          &lt;a href='$escapetool.xml($url)'&gt;More info&lt;/a&gt;
+        &lt;div class="topDescription"&gt;
+    $description
+        &lt;/div&gt;
+        {{html}}
+        &lt;div class="link"&gt;
+          &lt;a href='$escapetool.xml($url)'&gt;link&lt;/a&gt;
         &lt;/div&gt; 
-      {{/html}}
+        {{/html}}
       &lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
