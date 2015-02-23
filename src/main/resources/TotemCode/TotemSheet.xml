@@ -12,8 +12,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1399932000000</creationDate>
-  <date>1423660158000</date>
-  <contentUpdateDate>1423660158000</contentUpdateDate>
+  <date>1424657801000</date>
+  <contentUpdateDate>1424657801000</contentUpdateDate>
   <version>1.1</version>
   <title>#if($doc.name == 'TotemSheet')Totem Sheet#{else}$services.display.title($doc, {'displayerHint': 'default'})#end</title>
   <defaultTemplate/>
@@ -114,7 +114,6 @@
     }.bind(this));
     
     this.hookAddButton();
-    this.setupAdditionalDataEdit();
   },
   
   hookEditOrder : function () {
@@ -295,12 +294,6 @@
         addForm.addClassName('hidden');
       }.bind(this));
     }
-  },
-
-  setupAdditionalDataEdit : function() {
-  	$('.displayerAdditionalData').observe('change', function(event) {
-	  //TODO
-	});
   }
 });
   return XWiki;
@@ -479,6 +472,153 @@ require(['jquery', 'colpick'], function($, Colpick) {
   </object>
   <object>
     <class>
+      <name>XWiki.JavaScriptExtension</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <cache>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>cache</name>
+        <number>5</number>
+        <prettyName>Caching policy</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>long|short|default|forbid</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </cache>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Code</prettyName>
+        <rows>20</rows>
+        <size>50</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <parse>
+        <disabled>0</disabled>
+        <displayFormType>select</displayFormType>
+        <displayType>yesno</displayType>
+        <name>parse</name>
+        <number>4</number>
+        <prettyName>Parse content</prettyName>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+      </parse>
+      <use>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>use</name>
+        <number>3</number>
+        <prettyName>Use this extension</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>currentPage|onDemand|always</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </use>
+    </class>
+    <name>TotemCode.TotemSheet</name>
+    <number>2</number>
+    <className>XWiki.JavaScriptExtension</className>
+    <guid>31a5edfd-5305-444c-b817-fc604f35a422</guid>
+    <property>
+      <cache>long</cache>
+    </property>
+    <property>
+      <code>document.observe('xwiki:dom:loaded', function() {
+  // Use JQuery
+  require(['jquery'], function($) {
+    // The following script will allow to update the hidden input data with the specific additional data for displayers
+    // Additonal Datas are displayed as individual input and are all saved in a common textarea field.
+    // ****
+    function updateHiddenInputData() {
+      // get displayer additonal data inputs
+      var additionalDataInputList = $('.displayerAdditionalData');
+      additionalDataInputList.each( function() {
+        // observe Change event
+        $(this).change(function() {
+          var dataValues = "";
+          // get the list of input with class .displayerAdditionalData from the parent
+          var additionalDataParent = $(this).parent().parent();
+          var total = additionalDataParent.find('.displayerAdditionalData').length;
+          additionalDataParent.find('.displayerAdditionalData').each( function(index) {
+            // store field data
+            dataValues += $(this).attr('name') + ":" + $(this).val();
+            if (index != total - 1) {
+              dataValues += ",";
+            }
+          });
+          // update the data hidden input
+          additionalDataParent.find('input[type=hidden]').val(dataValues);
+        });
+      });
+    }
+    // call our updateHiddenInputData function
+    updateHiddenInputData();
+    updateHiddenInputData();
+    updateHiddenInputData();
+    // update the additional specific to match the selected displayer
+    $("select[id*='type']").change( function() {
+      // get the addtional data container
+      var additionalDataDiv = $(this).parents().eq(2).find('.additionalData');
+      // TotemCode.TotemAdditionalDataDisplayer page is used to build the displayer specific input
+      // we build the url to access it
+      var additionalDataDisplayerUrl = "$xwiki.getURL('TotemCode.TotemAdditionalDataDisplayer', 'get', '')?totem=" + $(this).val();
+      additionalDataDisplayerUrl += "&amp;totemBlock=" + $(this).closest(".totemBlock").attr("id")
+      // then we call it in ajax
+      $.ajax({
+        url: additionalDataDisplayerUrl,
+      }).done(function( html ) {
+        // update the additionalData container
+        $(additionalDataDiv).html(html);
+        // bind the new inputs
+        updateHiddenInputData();
+      });
+    });
+  });
+});
+
+
+
+</code>
+    </property>
+    <property>
+      <name>Displayer additional Data </name>
+    </property>
+    <property>
+      <parse>1</parse>
+    </property>
+    <property>
+      <use>currentPage</use>
+    </property>
+  </object>
+  <object>
+    <class>
       <name>XWiki.StyleSheetExtension</name>
       <customClass/>
       <customMapping/>
@@ -611,8 +751,22 @@ require(['jquery', 'colpick'], function($, Colpick) {
   #end
     (%class="totemBlockContent" style="${totemBlockContentStyle}"%)(((
       ## display the block. get its values and then call the displayer macro
-      #set($totemBlockSheet = $totemBlock.getProperty('type').value)   
-      #displayBlock($totemBlockSheet, '', $totemBlock.getProperty('title').value, $totemBlock.getProperty('footer').value, 'doclist', $totemBlock.getProperty('source').value, $totemItemClass, 0, $sheetFieldsMapping.get($totemBlockSheet))
+      #set($totemBlockSheet = $totemBlock.getProperty('type').value.class)  
+      test : $!{totemBlock.getProperty('appsource_app').value.size()}
+      ## Case of item coming from application
+      #if("${totemBlock.getProperty('appsource_app').value}" != "" &amp;&amp; "${totemBlock.getProperty('appsource_app').value.size()}" != "0")
+        ## create field mapping with data filled by the user
+        #set($sourceClassFieldsMapping = {})
+        #set($discard = $sourceClassFieldsMapping.put("description", "${totemBlock.getProperty('appsource_description').value}"))
+        #set($discard = $sourceClassFieldsMapping.put("date", "${totemBlock.getProperty('appsource_date').value}"))
+        #set($discard = $sourceClassFieldsMapping.put("image", "${totemBlock.getProperty('appsource_image').value}"))
+        #set($discard = $sourceClassFieldsMapping.put("url", "${totemBlock.getProperty('appsource_url').value}"))
+        ## We use item from application, sourceType = 'sourceClass'
+        #displayBlock($totemBlockSheet, '', $totemBlock.getProperty('title').value, $totemBlock.getProperty('footer').value, 'sourceClass', '', $!{totemBlock.getProperty('appsource_app').value.get(0)}, 0, $sourceClassFieldsMapping )
+      #else
+        ## We use the items list using sourceType as doclist
+        #displayBlock($totemBlockSheet, '', $totemBlock.getProperty('title').value, $totemBlock.getProperty('footer').value, 'doclist', $totemBlock.getProperty('source').value, $totemItemClass, 0, $sheetFieldsMapping.get($totemBlockSheet))
+      #end 
       #if($withEdit)
         ## load the css used by the color picker input in edit mode
         #set($discard = $xwiki.linkx.use($services.webjars.url('colpick/2.0.2/css/colpick.css'), {'rel': 'stylesheet'}))
@@ -692,15 +846,17 @@ displayImage="false" link="true" filter="mp4, avi, mpg"/}}
     ## Add additional specific data from the displayer
     #set( $totemItemAdditionalDataObjects = $xwiki.getDocument("DisplayerCode.${totemBlock.type}").getObjects('TotemCode.TotemItemAdditionalDataClass') )
     #getDisplayerAdditionalDataInMap($totemItemAdditionalDataObjects $!doc.getValue('data', ${totemBlock}))
+    (%class="additionalData" id %)(((
     #foreach( $additionalData in $!{totemItemAdditionalDataObjects} )
       ; $additionalData.key
     {{html clean=false}}
-      &lt;input id="${additionalData.key}_${totemBlock.number}" type="text" name="${additionalData.key}_${totemBlock.number}" value="$!{displayerAdditionalDataMap.get(${additionalData.key})}" class="displayerAdditionalData"&gt;
+      &lt;input id="${additionalData.key}_${totemBlock.number}" type="text" name="${additionalData.key}" value="$!{displayerAdditionalDataMap.get(${additionalData.key})}" class="displayerAdditionalData"&gt;
     {{/html}}
     #end
     {{html clean=false}}
     &lt;input type="hidden" id="TotemCode.TotemBlockClass_${totemBlock.number}_data" name="TotemCode.TotemBlockClass_${totemBlock.number}_data" value="$escapetool.xml($!doc.getValue('data', ${totemBlock}))"/&gt;
     {{/html}}
+    )))
   {{html clean="false"}}
     &lt;div class="buttonwrapper"&gt;
       &lt;input type="submit" value="$msg.get('save')" class="button" /&gt;
@@ -719,9 +875,14 @@ displayImage="false" link="true" filter="mp4, avi, mpg"/}}
       &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
       &lt;input type="hidden" name="xredirect" value="$escapetool.xml($editURL)" /&gt;
     {{/html}}
-    ## display the totem source property
+    ## display the totem source properties
     #set($totemBlockClass = $totemBlock.xWikiClass)
     #foreach ($propName in ['source'])
+      ; $doc.displayPrettyName($propName, $totemBlock)
+      : $doc.display($propName, 'edit', $totemBlock)
+    #end
+    **For advanced user only :**
+    #foreach ($propName in ['appsource_app', 'appsource_date', 'appsource_description', 'appsource_image', 'appsource_url'])
       ; $doc.displayPrettyName($propName, $totemBlock)
       : $doc.display($propName, 'edit', $totemBlock)
     #end
@@ -796,8 +957,8 @@ displayImage="false" link="true" filter="mp4, avi, mpg"/}}
 #set($totemItemClass = 'TotemCode.SimpleTotemItemClass')
 ## 2/ a couple of mappings between the different types of blocks and the items from this totem class that should be used. 
 ## TODO: Normally this should be demanded by the sheet somehow but I don't know exactly how for now :(
-#set($sheetFieldsMapping = {'DisplayerCode.ListDisplayerSheet' : ['date', 'doc.title', 'url'],  'DisplayerCode.EvenementDisplayer' : ['image', 'doc.title', 'url'],
-                       'DisplayerCode.CarouselDisplayerSheet' : []})
+## NOTE: This approach base is no used for the moment
+#set($sheetFieldsMapping = {'DisplayerCode.ListDisplayerSheet' : ['date', 'doc.title', 'url'],  'DisplayerCode.EvenementDisplayer' : ['image', 'doc.title', 'url']})
 ## 3/ the page where the items to be displayed in totem blocks are held: the page called items in the current space
 #set($totemItemsURL = $xwiki.getURL('Items'))
 ## figure out if we're in edit mode. If we are but the document is loaded for editing in the wysiwyg, then pretend we're in view :) -- this makes include work
@@ -871,13 +1032,6 @@ displayImage="false" link="true" filter="mp4, avi, mpg"/}}
         #if ($totemBlock)
           #set($urlBackground = $doc.getAttachmentURL("${totemBlock.getValue('background-image')}"))
           (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end col-sm-${totemBlockSize}" id="totemBlock_${totemBlock.number}" style="background:url(${urlBackground});  background-size: 100% 100%; background-color: ${totemBlock.background-color};  object-fit: cover;"%)(((
-            #if( !$doc.getAttachment("${totemBlock.getValue('background-image')}").isImage() )
-            ## {{html}}
-            ## &lt;video autoplay autoloop muted id="bgvid"&gt;
-            ##    &lt;source src="${urlBackground}" type="video/mp4"&gt;
-            ## &lt;/video&gt;
-            ## {{/html}}
-            #end
             #displayTotemBlock($totemBlock, $enableEdit, $cancelURL, $editURL $totemItemClass, $sheetFieldsMapping, $totemItemsURL)
           )))
           #set($discard = $displayedBlocks.add($totemBlock.number))
@@ -915,11 +1069,6 @@ displayImage="false" link="true" filter="mp4, avi, mpg"/}}
   ## if we're in edit mode, send a redirect to the edit screen, since the totem has a special edit form (available in view).
   $response.sendRedirect("$editURL")
 #end
-## {{html}}
-## &lt;video autoplay loop muted id="bgvid"&gt;
-## &lt;source src="http://florian-xwiki:8080/download/Sandbox/Video/small.mp4" type="video/mp4"&gt;
-## &lt;/video&gt;
-## {{/html}}
 {{/velocity}}
 
 </content>
