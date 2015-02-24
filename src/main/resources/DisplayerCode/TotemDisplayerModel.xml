@@ -6,7 +6,7 @@
   <language/>
   <defaultLanguage/>
   <translation>0</translation>
-  <parent/>
+  <parent>DisplayerCode.WebHome</parent>
   <creator>xwiki:XWiki.Admin</creator>
   <author>xwiki:XWiki.Admin</author>
   <customClass/>
@@ -47,8 +47,8 @@
   ## set other 
   #foreach($blockDisplayerFieldEntry in $!{blockDisplayerFields.entrySet()})
     #set($fieldName = "$!{blockDisplayerFieldEntry.value}")
-    #if("$!{object.get('$fieldName')}" != "")
-      #set($discard = $dataMap.put("$!{blockDisplayerFieldEntry.key}", "$!{object.get('$fieldName')}"))
+    #if("$!{object.get($fieldName)}" != "")
+      #set($discard = $dataMap.put("$!{blockDisplayerFieldEntry.key}", "$!{object.get($fieldName)}"))
     #else
       #set($discard = $dataMap.put("$!{blockDisplayerFieldEntry.key}", ""))
     #end
@@ -65,11 +65,11 @@
   #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
   ## Then display information
   &lt;div class="totemDisplayerModelContent"&gt;
-    Title : $dataMap.title
-    Date : $dataMap.date
-    Description : $dataMap.description
-    Url : $dataMap.url
-    Image : $dataMap.image
+    Title : $dataMap.title &lt;br&gt;
+    Date : $dataMap.date &lt;br&gt;
+    Description : $dataMap.description &lt;br&gt;
+    Url : $dataMap.url &lt;br&gt;
+    Image : $dataMap.image &lt;br&gt;
   &lt;div&gt;
 #end
 {{/html}}

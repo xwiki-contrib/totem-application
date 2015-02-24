@@ -751,8 +751,7 @@ require(['jquery', 'colpick'], function($, Colpick) {
   #end
     (%class="totemBlockContent" style="${totemBlockContentStyle}"%)(((
       ## display the block. get its values and then call the displayer macro
-      #set($totemBlockSheet = $totemBlock.getProperty('type').value.class)  
-      test : $!{totemBlock.getProperty('appsource_app').value.size()}
+      #set($totemBlockSheet = $totemBlock.getProperty('type').value)  
       ## Case of item coming from application
       #if("${totemBlock.getProperty('appsource_app').value}" != "" &amp;&amp; "${totemBlock.getProperty('appsource_app').value.size()}" != "0")
         ## create field mapping with data filled by the user
