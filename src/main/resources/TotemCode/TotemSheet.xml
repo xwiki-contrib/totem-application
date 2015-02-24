@@ -832,7 +832,11 @@ require(['jquery', 'colpick'], function($, Colpick) {
     ## Background-color Custom input in order to display the color picker. Note : add color-picker class with javascript
     ; $doc.displayPrettyName('background-color', $totemBlock)
     {{html clean=false}}
-      &lt;input id="TotemCode.TotemBlockClass_${totemBlock.number}_background-color" type="text" name="TotemCode.TotemBlockClass_${totemBlock.number}_background-color" class="color-picker" value="$escapetool.xml($!doc.getValue('background-color', ${totemBlock}))"&gt;
+    #if ($isNewBlock)
+      &lt;input id="TotemCode.TotemBlockClass_background-color" type="text" name="TotemCode.TotemBlockClass_background-color" class="color-picker" value="$!{escapetool.xml($!doc.getValue('background-color', ${totemBlock}))}"&gt;
+    #else
+      &lt;input id="TotemCode.TotemBlockClass_${totemBlock.number}_background-color" type="text" name="TotemCode.TotemBlockClass_${totemBlock.number}_background-color" class="color-picker" value="$!{escapetool.xml($!doc.getValue('background-color', ${totemBlock}))}"&gt;
+    #end
     {{/html}}
     ## Background-image Custom input to use an attachment selector
     ; $doc.displayPrettyName('background-image', $totemBlock)
