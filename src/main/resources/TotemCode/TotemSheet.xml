@@ -1029,7 +1029,7 @@ displayImage="false" link="true" filter="mp4, avi, mpg"/}}
         #set($intNumber = $mathtool.toInteger($blockNumber))
         #set($totemBlock = $doc.getObject('TotemCode.TotemBlockClass', $intNumber))
         #set($totemBlockSize = 12 )
-        #if("${totemBlock.size}" != "")
+        #if("$!{totemBlock.size}" != "")
           #set($totemBlockSize = ${totemBlock.size})
         #end
         #if ($totemBlock)
@@ -1044,7 +1044,8 @@ displayImage="false" link="true" filter="mp4, avi, mpg"/}}
       ## for all the blocks that were not displayed before, display them
       #foreach($totemLeftBlock in $doc.getObjects('TotemCode.TotemBlockClass'))
         #if(!$displayedBlocks.contains($totemLeftBlock.number))
-          (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end col-sm-${totemBlockSize}" id="totemBlock_${totemLeftBlock.number}" style="background:url(${urlBackground});  background-size: 100% 100%; background-color: ${totemBlock.background-color};  object-fit: cover;"%)(((
+        #set($urlBackground = $doc.getAttachmentURL("${totemLeftBlock.getValue('background-image')}"))
+          (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end col-sm-${totemBlockSize}" id="totemBlock_${totemLeftBlock.number}" style="background:url(${urlBackground});  background-size: 100% 100%; background-color: ${totemLeftBlock.background-color};  object-fit: cover;"%)(((
             #displayTotemBlock($totemLeftBlock, $enableEdit, $cancelURL, $editURL $totemItemClass, $sheetFieldsMapping, $totemItemsURL)
           )))
           #set($discard = $displayedBlocks.add($totemBlock.number))
