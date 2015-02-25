@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -207,10 +206,10 @@ z+eDkZERcDgcHpvNVv3v1o6L56vebYnEXP4LZXu8cLcoAW4AAAAASUVORK5CYII=
   display: block;
   margin: 0 auto;
   width: 100%;
-  max-width: 270px;
+  max-width: 200px;
 }
 .imageContainer{
-  max-width: 270px;
+  max-width: 200px;
 }
 .center {
   margin-left: auto;
@@ -241,24 +240,8 @@ z+eDkZERcDgcHpvNVv3v1o6L56vebYnEXP4LZXu8cLcoAW4AAAAASUVORK5CYII=
   background: rgba(0, 0, 0, 0.8);
   overflow: hidden;
   transition: all 0.2s;
-  max-width: 270px;
-}
-
-a.close-overlay {
-  display: block;
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 100;
-  width: 45px;
-  height: 45px;
-  font-size: 20px;
-  font-weight: 700;
-  color: #fff;
-  line-height: 45px;
-  text-align: center;
-  background-color: #000;
-  cursor: pointer;
+  max-width: 200px;
+  border-radius:5px;
 }
 a.expand {
   display: block;
@@ -301,7 +284,9 @@ a.expand {
       <use>onDemand</use>
     </property>
   </object>
-  <content>{{velocity}}
+  <content>{{include reference="DisplayerCode.totemMacros"/}}
+
+{{velocity}}
 $xwiki.ssx.use('DisplayerCode.intelImage')
 #set($discard = $xwiki.jsx.use('DisplayerCode.intelImage'))
 
@@ -323,16 +308,16 @@ $xwiki.ssx.use('DisplayerCode.intelImage')
   #foreach($item in $row_items)
     #if($item &lt; $blockDisplayerDocList.size())
       #set($document = $blockDisplayerDocList[$item])
-      #set($url = $document.url)
-      #set($urlLogo = $document.getAttachmentURL($document.getValue('image'), 'download'))
+      #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
+      #set($urlLogo = $document.getAttachmentURL($dataMap.image, 'download'))
       &lt;div class="col-xs-4 col-md-2 intelRow inteldisplayer"&gt;
-          &lt;div class="display-cell center imageContainer"&gt;
+          &lt;div class="center imageContainer"&gt;
           &lt;div id="effect-1"&gt;
             &lt;div id="box" class="box"&gt;
               &lt;img class="intelImage "src="${urlLogo}" alt="Responsive image"&gt;
               &lt;div class="overlay center"&gt;
                 {{html}}
-                &lt;a href='${url}' class="expand"&gt;+&lt;/a&gt;
+                &lt;a href='${dataMap.url}' class="expand"&gt;+&lt;/a&gt;
                 {{/html}}
             &lt;/div&gt;
             &lt;/div&gt;

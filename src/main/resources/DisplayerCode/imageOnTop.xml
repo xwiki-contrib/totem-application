@@ -166,7 +166,6 @@
   width: 100%;
   max-width: 400px;
 }
-
 .topTitle {
   font-size: 22px;
   font-weight: bold;
@@ -189,7 +188,6 @@
 .topdContainer{
   padding: 0;
 }
-
 .imgTopLink{
   float: right;
   font-size: 18px;
@@ -222,37 +220,32 @@
       <use>onDemand</use>
     </property>
   </object>
-  <content>{{velocity}}
+  <content>{{include reference="DisplayerCode.totemMacros"/}}
+
+{{velocity}}
 $xwiki.ssx.use('DisplayerCode.imageOnTop')
 
 {{html wiki="true"}}
 &lt;div class="row"&gt;
   #foreach($document in $blockDisplayerDocList)
-    #set($title = $document.getTitle())
-    #set($description = $document.description)
-    #set($url = $document.url)
-    #set($urlLogo = $document.getAttachmentURL($document.getValue('image'), 'download'))
-
+    #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
+    #set($urlLogo = $document.getAttachmentURL($dataMap.image, 'download'))
     &lt;div class="col-xs-12 col-md-3 row topRow topdisplayer"&gt;
       &lt;div class="col-md-12 display-table vcenter center topimgContainer"&gt;
-        &lt;div class="display-cell"&gt;
           &lt;span class='topTitle'&gt;
-            $title
+            $dataMap.title
           &lt;/span&gt;
           &lt;img class="topImage" src="${urlLogo}" alt="Responsive image"&gt;
-        &lt;/div&gt;
       &lt;/div&gt;#*
     *#&lt;div class="col-md-12 display-table topdContainer vcenter"&gt;
-        &lt;div class="display-cell"&gt;
           &lt;div class="topDescription"&gt;
-      $description
+            $dataMap.description
           &lt;/div&gt;
           {{html}}
           &lt;div class="imgTopLink"&gt;
-            &lt;a href='$escapetool.xml($url)'&gt;More info&lt;/a&gt;
+            &lt;a href='$escapetool.xml($dataMap.url)'&gt;More info&lt;/a&gt;
           &lt;/div&gt; 
           {{/html}}
-        &lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
   #end

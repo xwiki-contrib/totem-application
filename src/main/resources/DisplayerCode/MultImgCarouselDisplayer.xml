@@ -354,7 +354,7 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
   position:relative;
   top:1px;
 }
-.multiImgRow.multiImgdisplayer {
+.multiImgRow.multiImgdisplayer, .multiImgRow.multiImgdisplayermob {
   padding: 15px;
   margin: 0;
 }
@@ -363,6 +363,58 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
   margin: 0 auto;
   width: 100%;
   max-width: 270px;
+}
+.box{
+  margin: 0 !important;
+  padding: 0 !important;
+  border-top: 0;
+  border-left: 0;
+  box-shadow:inset 1px 1px 40px 0 rgba(0,0,0,.45);
+  border-bottom:2px solid #fff;
+  border-right:2px solid #fff;
+  margin:5% auto 0 auto; 
+  border-radius:5px;
+  overflow:hidden;
+}
+.multiImgOverlay {
+  display: block;
+  position: absolute;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  transition: all 0.2s;
+  max-width: 200px;
+  border-radius:5px;
+}
+a.expand {
+  display: block;
+  position: absolute;
+  z-index: 100;
+  width: 50px;
+  height: 50px;
+  border: solid 5px #fff;
+  text-align: center;
+  color: #fff;
+  line-height: 40px;
+  font-weight: 700;
+  font-size: 30px;
+  border-radius: 30px;
+}
+#effect-1 .multiImgOverlay {
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  width: calc(100% - 30px);
+  height: 0;
+}
+#effect-1 .multiImgOverlay a.expand {
+  left: 0;
+  right: 0;
+  bottom: 50%;
+  margin: 0 auto -25px auto;
+}
+#effect-1 .box:hover .multiImgOverlay {
+  height: calc(100% - 30px);
 }</code>
     </property>
     <property>
@@ -375,7 +427,9 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
       <use>onDemand</use>
     </property>
   </object>
-  <content>{{velocity}}
+  <content>{{include reference="DisplayerCode.totemMacros"/}}
+
+{{velocity}}
 #set($discard = $xwiki.ssx.use('DisplayerCode.MultImgCarouselDisplayer'))
 #set($discard = $xwiki.jsx.use('DisplayerCode.MultImgCarouselDisplayer'))
 #set($width='100%')
@@ -394,14 +448,14 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
       &lt;/div&gt;
       #foreach($i in $range)
         #set($document = $blockDisplayerDocList[$i])
+        #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
         #set($sectionNumber = $mathtool.sub($velocityCount, 1))    
-        #set($image = $document.getValue('image'))
-        #if($image!='')
-        #set($imgSrc = $document.getAttachmentURL($document.getValue('image'), 'download'))
+        #if($dataMap.image!='')
+        #set($imgSrc = $document.getAttachmentURL($dataMap.image, 'download'))
         &lt;div class="item"&gt;
           &lt;div class="col-md-2 carouselImgContainer"&gt;
             {{html}}
-              &lt;a href="${url}"&gt;&lt;img src="${imgSrc}" class="img-responsive"&gt;&lt;/a&gt;
+              &lt;a href="${dataMap.url}"&gt;&lt;img src="${imgSrc}" class="img-responsive"&gt;&lt;/a&gt;
             {{/html}}
           &lt;/div&gt;
         &lt;/div&gt;
@@ -423,18 +477,16 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
     #set($counter = 0)
     #foreach($document in $blockDisplayerDocList)
       #set($counter = $counter + 1)
-      #set($title = $document.getTitle())
-      #set($url = $document.url)
       #set($urlLogo = $document.getAttachmentURL($document.getValue('image'), 'download'))
       #if($counter &lt;= 6)
       &lt;div class="col-xs-4 col-md-2 multiImgRow multiImgdisplayer"&gt;
-          &lt;div class="display-cell center imageContainer"&gt;
+          &lt;div class="center imageContainer"&gt;
           &lt;div id="effect-1"&gt;
             &lt;div id="box" class="box"&gt;
               &lt;img class="multiImgImage "src="${urlLogo}" alt="Responsive image"&gt;
               &lt;div class="overlay center"&gt;
                 {{html}}
-                &lt;a href='${url}' class="expand"&gt;+&lt;/a&gt;
+                &lt;a href='${dataMap.url}' class="expand"&gt;+&lt;/a&gt;
                 {{/html}}
             &lt;/div&gt;
             &lt;/div&gt;
@@ -443,18 +495,18 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
       &lt;/div&gt;
       #else
       &lt;div class="col-xs-4 col-md-2 multiImgRow multiImgdisplayermob" style="display: none"&gt;
-          &lt;div class="display-cell center imageContainer"&gt;
+        &lt;div class="center imageContainer"&gt;
           &lt;div id="effect-1"&gt;
             &lt;div id="box" class="box"&gt;
               &lt;img class="multiImgImage "src="${urlLogo}" alt="Responsive image"&gt;
               &lt;div class="overlay center"&gt;
                 {{html}}
-                &lt;a href='${url}' class="expand"&gt;+&lt;/a&gt;
+                  &lt;a href='${dataMap.url}' class="expand"&gt;+&lt;/a&gt;
                 {{/html}}
-            &lt;/div&gt;
+              &lt;/div&gt;
             &lt;/div&gt;
           &lt;/div&gt; 
-          &lt;/div&gt;
+        &lt;/div&gt;
       &lt;/div&gt;
       #end
     #end

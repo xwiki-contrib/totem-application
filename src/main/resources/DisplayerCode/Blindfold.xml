@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -158,19 +157,16 @@
   color : white;
   padding: 42px 15px 42px 15px;
 }
-
 .vcenter {
     display: inline-block;
     vertical-align: middle;
     float: none;
 }
-
 .blindfoldTitle {
 	font-size: 28px;
 	text-shadow: 2px 2px #000000;
 	font-weight: bold;
 }
-
 .blindfoldDescription {
 	font-size: 18px;
 }
@@ -202,36 +198,32 @@
       <use>currentPage</use>
     </property>
   </object>
-  <content>{{velocity}}
+  <content>{{include reference="DisplayerCode.totemMacros"/}}
+
+{{velocity}}
 $xwiki.ssx.use('DisplayerCode.Blindfold')
 
 {{html wiki="true"}}
 #foreach($document in $blockDisplayerDocList)
-  #set($title = $document.getTitle())
-  #set($description = $document.description)
-  #set($urlLogo = $document.getAttachmentURL($document.getValue('image'), 'download'))
-
+  #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
+  #set($urlLogo = $document.getAttachmentURL($dataMap.image, 'download'))
   &lt;div class="row blindfoldRow blind"&gt;
     &lt;div class="col-xs-12 col-md-10 display-table vcenter"&gt;
-      &lt;div class="display-cell"&gt;
       &lt;div class="hidden-xs col-md-12 hLine"&gt;
       ----
       &lt;/div&gt;
       &lt;div class="blindfoldTitle"&gt;
-        $title
+        $dataMap.title
       &lt;/div&gt;
       &lt;div class="blindfoldDescription"&gt;
-        $description
+        $dataMap.description
       &lt;/div&gt;
       &lt;div class="hidden-xs col-md-12 hLine"&gt;
       ----
       &lt;/div&gt;
-      &lt;/div&gt;
     &lt;/div&gt;#*
   *#&lt;div class="hidden-xs hidden-sm col-md-2 display-table vcenter"&gt;
-      &lt;div class="display-cell"&gt;
-        &lt;img src="${urlLogo}" alt="Responsive image"&gt;
-      &lt;/div&gt;
+      &lt;img src="${urlLogo}" alt="Responsive image"&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 #end

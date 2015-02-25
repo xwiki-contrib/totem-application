@@ -209,36 +209,31 @@
       <use>onDemand</use>
     </property>
   </object>
-  <content>{{velocity}}
+  <content>{{include reference="DisplayerCode.totemMacros"/}}
+
+{{velocity}}
 $xwiki.ssx.use('DisplayerCode.ImageRightDisplayer')
 
 {{html wiki="true"}}
 #foreach($document in $blockDisplayerDocList)
-  #set($title = $document.getTitle())
-  #set($description = $document.description)
-  #set($url = $document.url)
-  #set($urlLogo = $document.getAttachmentURL($document.getValue('image'), 'download'))
-
+  #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
+  #set($urlLogo = $document.getAttachmentURL($dataMap.image, 'download'))
   &lt;div class="row totemHeaderRow rightimagedisplayer"&gt;
     &lt;div class="col-xs-12 col-md-8 display-table vcenter"&gt;
-      &lt;div class="display-cell"&gt;
-          &lt;span class='rightImageTitle'&gt;
-            $title
-          &lt;/span&gt;
+      &lt;span class='rightImageTitle'&gt;
+        $dataMap.title
+      &lt;/span&gt;
       &lt;div class="rightSideImageDescription"&gt;
-        $description
+        $dataMap.description
       &lt;/div&gt;
       {{html}}
         &lt;div class="imgRightLink"&gt;
-          &lt;a href='$escapetool.xml($url)'&gt;More info&lt;/a&gt;
+          &lt;a href='$escapetool.xml($dataMap.url)'&gt;More info&lt;/a&gt;
         &lt;/div&gt; 
       {{/html}}
-      &lt;/div&gt;
     &lt;/div&gt;#*
   *#&lt;div class="col-xs-12 col-md-4 display-table vcenter imgContainer"&gt;
-      &lt;div class="display-cell center"&gt;
-        &lt;img class="rightSideImage" src="${urlLogo}" alt="Responsive image"&gt;
-      &lt;/div&gt;
+      &lt;img class="rightSideImage" src="${urlLogo}" alt="Responsive image"&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 #end
