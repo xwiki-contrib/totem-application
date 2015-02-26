@@ -437,7 +437,7 @@ a.expand {
 #set($height='100%')
 {{html wiki='true'}}
 &lt;div class="row"&gt;
-  &lt;div id="myCarousel" class="carousel slide hidden-xs"&gt;
+  &lt;div id="myCarousel" class="carousel slide hidden-xs hidden-sm"&gt;
     &lt;div class="carousel-inner"&gt;
     #set($start = 1)
     #set($end = $blockDisplayerDocList.size() - 1)
