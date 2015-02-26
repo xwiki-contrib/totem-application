@@ -525,13 +525,13 @@ div.carousel.autostart {
 #set($discard = $xwiki.ssx.use('DisplayerCode.CarouselDisplayer'))
 #set($discard = $xwiki.jsx.use('DisplayerCode.CarouselDisplayer'))
 #set($obj = $doc.getObject('TotemCode.TotemClass'))
-#set($raw = $obj.getProperty('contentSize').value)
-#set($maxwidth=$raw + 'px')
+#set($contentSize = $obj.getProperty('contentSize').value)
+#set($maxwidth=$contentSize + 'px')
 #set($width='100%')
 #set($sectionSize=100 + 'vw')
 #set($height='100%')
 {{html wiki='true'}}
-&lt;div class="carouseldisplayer" style="max-width:${maxwidth};" &gt;
+&lt;div class="carouseldisplayer center" style="max-width:${maxwidth};" &gt;
 &lt;div class='carouselcontainer'&gt;
 &lt;div class='carousel autostart'&gt;
   &lt;div class="controls"&gt;
@@ -552,7 +552,7 @@ div.carousel.autostart {
     &lt;/a&gt;
   &lt;/div&gt;
 
-  &lt;div class='scroller' style="width:${width};height:${height};max-width:${maxwidth};"&gt;
+  &lt;div class='scroller center' style="width:${width};height:${height};max-width:${maxwidth};"&gt;
     &lt;div class='content'&gt;
     #foreach($document in $blockDisplayerDocList)
       #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
