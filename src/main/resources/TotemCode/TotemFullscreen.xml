@@ -217,18 +217,20 @@
       <cache>long</cache>
     </property>
     <property>
-      <code>#body.content.panel-left-width-Small.panel-right-width-Medium .main {
-  left: 0;
-  padding: 0;
+      <code>.main {
+  left: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
 }
 
-#body.content.panel-left-width-Small.panel-right-width-Medium .main {
-  width: 100%;
+#xwikicontent, .xcontent .container-fluid {
+  padding: 0 !important;
 }
 
-.xcontent {
+.xcontent, .xcontent .row {
   margin: 0 !important;
-}</code>
+}
+</code>
     </property>
     <property>
       <contentType>CSS</contentType>
