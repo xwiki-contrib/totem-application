@@ -165,7 +165,7 @@
     display: block;
     margin: 0 auto;
     max-height: 270px;
-    max-width: 215px;
+    max-width: 200px;
     width: 100%;
 }
 .thumbText{
@@ -222,37 +222,32 @@
       <use>onDemand</use>
     </property>
   </object>
-  <content>{{velocity}}
+  <content>{{include reference="DisplayerCode.totemMacros"/}}
+
+{{velocity}}
 $xwiki.ssx.use('DisplayerCode.Thumbnail')
 
 {{html wiki="true"}}
-&lt;div class='row'&gt;
+&lt;div class='row thumbContent'&gt;
   #foreach($document in $blockDisplayerDocList)
-    #set($title = $document.getTitle())
-    #set($description = $document.description)
-    #set($url = $document.url)
-    #set($urlLogo = $document.getAttachmentURL($document.getValue('image'), 'download'))
-
+    #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
+    #set($urlLogo = $document.getAttachmentURL($dataMap.image, 'download'))
     &lt;div class="col-xs-12 col-md-6 row totemHeaderRow thumbdisplayer"&gt;
       &lt;div class="col-xs-4 col-md-4 display-table vcenter thumbimgContainer"&gt;
-        &lt;div class="display-cell"&gt;
-          &lt;img class="thumbImage right" src="${urlLogo}" alt="Responsive image"&gt;
-        &lt;/div&gt;
+        &lt;img class="thumbImage right" src="${urlLogo}" alt="Responsive image"&gt;
       &lt;/div&gt;#*
     *#&lt;div class="col-xs-8 col-md-8 display-table vcenter thumbText"&gt;
-        &lt;div class="display-cell"&gt;
-            &lt;span class='thumbTitle'&gt;
-              $title
-            &lt;/span&gt;
-  		  &lt;div class="thumbDescription"&gt;
-  		    $description
-  		  &lt;/div&gt;
-  		  {{html}}
-  		  &lt;div class="thumbLink"&gt;
-  		    &lt;a href='$escapetool.xml($url)'&gt;More info&lt;/a&gt;
-  		  &lt;/div&gt; 
-  		  {{/html}}
-        &lt;/div&gt;
+          &lt;span class='thumbTitle'&gt;
+            $dataMap.title
+          &lt;/span&gt;
+  	  &lt;div class="thumbDescription"&gt;
+  	    $dataMap.description
+  	  &lt;/div&gt;
+  	  {{html}}
+  	  &lt;div class="thumbLink"&gt;
+  	    &lt;a href='$escapetool.xml($dataMap.url)'&gt;More info&lt;/a&gt;
+  	  &lt;/div&gt; 
+  	  {{/html}}
       &lt;/div&gt;
     &lt;/div&gt;
   #end
