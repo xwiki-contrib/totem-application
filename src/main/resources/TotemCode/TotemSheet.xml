@@ -742,6 +742,7 @@ require(['jquery', 'colpick'], function($, Colpick) {
   <content>{{include document="DisplayerCode.DisplayerMacros" /}}
 
 {{velocity output="false"}}
+$xwiki.ssx.use('DisplayerCode.DisplayerMacros')
 #macro(displayTotemBlock $totemBlock $withEdit $cancelURL $editURL $totemItemClass $sheetFieldsMapping $totemItemsURL)
   #set( $isBlockFullscreen = $doc.getObject('TotemCode.TotemClass').getProperty('fullscreen').value )
   #set( $blockContentSize = $doc.getObject('TotemCode.TotemClass').getProperty('contentSize').value )
