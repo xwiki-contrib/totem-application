@@ -280,7 +280,7 @@ a.expand {
       <use>onDemand</use>
     </property>
   </object>
-  <content>{{include reference="DisplayerCode.totemMacros"/}}
+  <content>{{include reference="DisplayerCode.DisplayerTools"/}}
 
 {{velocity}}
 $xwiki.ssx.use('DisplayerCode.intelImage')
