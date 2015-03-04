@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xwikidoc>
+  <web>TotemCode</web>
+  <name>EditContent</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <parent/>
+  <creator>xwiki:XWiki.Admin</creator>
+  <author>xwiki:XWiki.Admin</author>
+  <customClass/>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <creationDate>1424356988000</creationDate>
+  <date>1425460342000</date>
+  <contentUpdateDate>1425460342000</contentUpdateDate>
+  <version>1.1</version>
+  <title/>
+  <defaultTemplate/>
+  <validationScript/>
+  <comment/>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content>{{include document="DisplayerCode.DisplayerMacros" /}}
+{{include document="TotemCode.TotemMacros" /}}
+{{velocity }}
+#set($action = $request.action)
+#set($totemDocRef = $request.totemDocRef)
+#set($totemBlockNumber = $request.blockNumber)
+#if("$!action" != "" &amp;&amp; ($action == "editTotemBlock" || $action == "editTotemBlockSource") &amp;&amp; "$!totemBlockNumber" != "" &amp;&amp; "$!totemDocRef" != "" &amp;&amp; $xwiki.exists($totemDocRef))
+      #set($totemDoc = $xwiki.getDocument($request.totemDocRef))
+      #set($totemObj = $totemDoc.getObject("TotemCode.TotemClass"))
+      #set($totemBlockNumber = $mathtool.toInteger($totemBlockNumber))
+      #set($totemBlock = $totemDoc.getObject('TotemCode.TotemBlockClass', $totemBlockNumber))
+      #set($formAction = $totemDoc.getURL("save"))
+      #if($totemBlock)
+         ##displayTotemBlockEditForm($totemBlock, false, $cancelURL, $editURL)
+         #set($formAction = $xwiki.getURL($totemDoc.getDocumentReference(),"save","showEdit=true"))
+         #if($action == "editTotemBlock")
+            #set($discard = $xwiki.linkx.use($services.webjars.url('colpick/2.0.2/css/colpick.css'), {'rel': 'stylesheet'}))
+            #displayTotemBlockEditForm($totemBlock, false, "", "")
+         #elseif($action == "editTotemBlockSource")
+            ##displayTotemBlockEditSourceForm($totemBlock, $totemItemsURL, $cancelURL, $editURL)
+           (((
+              #set($totemItemsURL = $xwiki.getURL('Totem.Items','view','skin=TotemCode.PopupSkin&amp;fromIframe=1'))
+              #displayTotemBlockEditSourceForm($totemBlock, $totemItemsURL, "javascript:;", "")
+           )))
+         #end
+      #end
+#elseif("$!action" != "" &amp;&amp; $action == "saveItem")
+   #if("$!request.page" != "" &amp;&amp; "$!request.space" != "" &amp;&amp; "$!request.parent" != "")
+        #set($itemRef = "${request.space}.${request.page}")
+        #if($xwiki.exists($itemRef))
+           {"results":false}
+       #else
+           #set($documentReference = $services.model.createDocumentReference(null, $request.space, $request.page))
+           #set($redirectURL = $xwiki.getURL($documentReference,'edit',"template=TotemCode.SimpleTotemItemTemplate&amp;parent=${request.parent}&amp;title=${request.page}&amp;skin=TotemCode.PopupSkin&amp;fromIframe=1"))
+           {"results":"$redirectURL"}
+        #end
+   #end
+#elseif("$!action" != "" &amp;&amp; $action == "deleteItem")
+   #if("$!request.itemDocRef" != "" &amp;&amp; $xwiki.exists($request.itemDocRef))
+           #set($itemDoc = $xwiki.getDocument($request.itemDocRef))
+           #set($rep = $itemDoc.delete())
+           {"results":true}
+   #else
+           {"results":false}
+   #end
+#end
+{{/velocity}}</content>
+</xwikidoc>
