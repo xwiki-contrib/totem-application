@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -31,9 +30,9 @@
   <author>xwiki:XWiki.Admin</author>
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-  <creationDate>1388530800000</creationDate>
-  <date>1388530800000</date>
-  <contentUpdateDate>1388530800000</contentUpdateDate>
+  <creationDate>1423039791000</creationDate>
+  <date>1425399047000</date>
+  <contentUpdateDate>1425399047000</contentUpdateDate>
   <version>1.1</version>
   <title>Blindfold</title>
   <defaultTemplate/>
@@ -197,12 +196,14 @@
   <content>{{include reference="DisplayerCode.DisplayerTools"/}}
 
 {{velocity}}
-$xwiki.ssx.use('DisplayerCode.Blindfold')
+#set($discard = $xwiki.ssx.use('DisplayerCode.Blindfold'))
 
 {{html wiki="true"}}
 #foreach($document in $blockDisplayerDocList)
   #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
-  #set($urlLogo = $document.getAttachmentURL($dataMap.image, 'download'))
+  #if($!{dataMap.image} != '')
+    #set($urlLogo = $document.getAttachmentURL($dataMap.image, 'download'))
+  #end
   &lt;div class="row blindfoldRow blind"&gt;
     &lt;div class="col-xs-12 col-md-10 display-table vcenter"&gt;
       &lt;div class="hidden-xs col-md-12 hLine"&gt;
@@ -219,7 +220,7 @@ $xwiki.ssx.use('DisplayerCode.Blindfold')
       &lt;/div&gt;
     &lt;/div&gt;#*
   *#&lt;div class="hidden-xs hidden-sm col-md-2 display-table vcenter"&gt;
-      &lt;img src="${urlLogo}" alt="Responsive image"&gt;
+      &lt;img src="$!{urlLogo}" alt="Responsive image"&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 #end

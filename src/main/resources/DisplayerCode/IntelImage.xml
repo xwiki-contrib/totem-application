@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -22,7 +21,7 @@
 
 <xwikidoc>
   <web>DisplayerCode</web>
-  <name>intelImage</name>
+  <name>IntelImage</name>
   <language/>
   <defaultLanguage/>
   <translation>0</translation>
@@ -31,11 +30,11 @@
   <author>xwiki:XWiki.Admin</author>
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-  <creationDate>1388530800000</creationDate>
-  <date>1388530800000</date>
-  <contentUpdateDate>1388530800000</contentUpdateDate>
+  <creationDate>1423907602000</creationDate>
+  <date>1425475510000</date>
+  <contentUpdateDate>1425473277000</contentUpdateDate>
   <version>1.1</version>
-  <title>intelImage</title>
+  <title>IntelImage</title>
   <defaultTemplate/>
   <validationScript/>
   <comment/>
@@ -111,12 +110,12 @@ z+eDkZERcDgcHpvNVv3v1o6L56vebYnEXP4LZXu8cLcoAW4AAAAASUVORK5CYII=
         <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
       </providedType>
     </class>
-    <name>DisplayerCode.intelImage</name>
+    <name>DisplayerCode.IntelImage</name>
     <number>0</number>
     <className>DisplayerCode.DisplayerSheetClass</className>
     <guid>d9735cc1-5482-4dc4-a6d7-70ff09dfbcfe</guid>
     <property>
-      <providedType>intelImage</providedType>
+      <providedType>IntelImage</providedType>
     </property>
   </object>
   <object>
@@ -191,7 +190,7 @@ z+eDkZERcDgcHpvNVv3v1o6L56vebYnEXP4LZXu8cLcoAW4AAAAASUVORK5CYII=
         <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
       </use>
     </class>
-    <name>DisplayerCode.intelImage</name>
+    <name>DisplayerCode.IntelImage</name>
     <number>0</number>
     <className>XWiki.StyleSheetExtension</className>
     <guid>4e114b93-6444-49c5-9ac8-08a863e87a5a</guid>
@@ -283,47 +282,39 @@ a.expand {
   <content>{{include reference="DisplayerCode.DisplayerTools"/}}
 
 {{velocity}}
-$xwiki.ssx.use('DisplayerCode.intelImage')
-#set($discard = $xwiki.jsx.use('DisplayerCode.intelImage'))
+#set($discard = $xwiki.ssx.use('DisplayerCode.IntelImage'))
+#set($discard = $xwiki.jsx.use('DisplayerCode.IntelImage'))
 
 {{html wiki="true"}}
 &lt;div class="row"&gt;
-#if($blockDisplayerDocList.size() % 6 == 0)
-  #set($no_rows = $blockDisplayerDocList.size() / 6 )
-#else
-  #set($no_rows = ($blockDisplayerDocList.size() / 6) + 1)
-#end
-#set($start = 0)
-#set($end = $no_rows - 1)
-#set($rows = [$start..$end])
-#foreach($row in $rows)
-  #set($first = $row * 6)
-  #set($last = $first + 5)
-  #set($row_items = [$first..$last])
-  &lt;div class="line col-md-12"&gt;
-  #foreach($item in $row_items)
-    #if($item &lt; $blockDisplayerDocList.size())
-      #set($document = $blockDisplayerDocList[$item])
-      #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
-      #set($urlLogo = $document.getAttachmentURL($dataMap.image, 'download'))
-      &lt;div class="col-xs-4 col-md-2 intelRow inteldisplayer"&gt;
-          &lt;div class="center imageContainer"&gt;
-          &lt;div id="effect-1"&gt;
-            &lt;div id="box" class="box"&gt;
-              &lt;img class="intelImage "src="${urlLogo}" alt="Responsive image"&gt;
-              &lt;div class="overlay center"&gt;
-                {{html}}
-                &lt;a href='${dataMap.url}' class="expand"&gt;+&lt;/a&gt;
-                {{/html}}
+  #foreach($document in $blockDisplayerDocList)
+    #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
+    #if($!{dataMap.image} != '')
+      #set($urlIntelLogo = $document.getAttachmentURL($dataMap.image, 'download'))
+    #end
+    ##START## Avoid cramming the images
+    #if(($velocityCount - 1) % 6 == 0 &amp;&amp; $velocityCount != 1)
+      &lt;div class="clearfix visible-md-block visible-sm-block visible-lg-block"&gt;&lt;/div&gt;
+    #end
+    #if(($velocityCount - 1) % 3 == 0 &amp;&amp; $velocityCount != 1)
+      &lt;div class="clearfix visible-xs-block"&gt;&lt;/div&gt;
+    #end
+    ##END##
+    &lt;div class="col-xs-4 col-sm-2 col-md-2 intelRow inteldisplayer"&gt;
+      &lt;div class="center imageContainer"&gt;
+        &lt;div id="effect-1"&gt;
+          &lt;div id="box" class="box"&gt;
+            &lt;img class="intelImage "src="$!{urlIntelLogo}" alt="Responsive image"&gt;
+            &lt;div class="overlay center"&gt;
+              {{html}}
+                &lt;a href='$!{dataMap.url}' class="expand"&gt;+&lt;/a&gt;
+              {{/html}}
             &lt;/div&gt;
-            &lt;/div&gt;
-          &lt;/div&gt; 
           &lt;/div&gt;
+        &lt;/div&gt; 
       &lt;/div&gt;
-    #end  
+    &lt;/div&gt;
   #end
-  &lt;/div&gt;
-#end
 &lt;/div&gt;
 {{/html}}
 {{/velocity}}</content>

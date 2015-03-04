@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -31,9 +30,9 @@
   <author>xwiki:XWiki.Admin</author>
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-  <creationDate>1388530800000</creationDate>
-  <date>1388530800000</date>
-  <contentUpdateDate>1388530800000</contentUpdateDate>
+  <creationDate>1399932000000</creationDate>
+  <date>1425402651000</date>
+  <contentUpdateDate>1425402597000</contentUpdateDate>
   <version>1.1</version>
   <title>CarouselDisplayer</title>
   <defaultTemplate/>
@@ -525,57 +524,51 @@ div.carousel.autostart {
 {{velocity}}
 #set($discard = $xwiki.ssx.use('DisplayerCode.CarouselDisplayer'))
 #set($discard = $xwiki.jsx.use('DisplayerCode.CarouselDisplayer'))
-#set($obj = $doc.getObject('TotemCode.TotemClass'))
-#set($contentSize = $obj.getProperty('contentSize').value)
-#set($maxwidth=$contentSize + 'px')
+#set($totemObj = $doc.getObject('TotemCode.TotemClass'))
+#set($contentSize = $totemObj.getProperty('contentSize').value)
+#set($maxwidth = $!{contentSize} + 'px')
 #set($width='100%')
-#set($sectionSize=100 + 'vw')
+#set($sectionSize='100vw')
 #set($height='100%')
 {{html wiki='true'}}
 &lt;div class="carouseldisplayer center" style="max-width:${maxwidth};" &gt;
-&lt;div class='carouselcontainer'&gt;
-&lt;div class='carousel autostart'&gt;
-  &lt;div class="controls"&gt;
-    #set($lastListItem = $mathtool.sub($blockDisplayerDocList.size(), 1))
-    &lt;a class='left simpleCarousel-control carousel-control previousImage' href="#section${lastListItem}" title="$escapetool.xml($msg.get('totem.carousel.controls.previous'))"&gt;
-      &lt;span class="glyphicon glyphicon-chevron-left" aria-hidden="true"&gt;&lt;/span&gt;
-      &lt;span class="sr-only"&gt;Previous&lt;/span&gt;
-    &lt;/a&gt;
-    &lt;div id="slider-navigation" class="carousel-indicators clearfix"&gt;
-      #foreach($document in $blockDisplayerDocList)
-        #set($sectionNumber = $mathtool.sub($velocityCount, 1))
-        &lt;a class="item #if($sectionNumber == 0)on#end" href="#section${sectionNumber}" title="$escapetool.xml($msg.get('totem.carousel.controls.slide', [$velocityCount]))"&gt;$escapetool.xml($msg.get('totem.carousel.controls.slide', [$velocityCount]))&lt;/a&gt;
-      #end
-    &lt;/div&gt;
-    &lt;a class="right simpleCarousel-control carousel-control nextImage" href="#section1" title="$escapetool.xml($msg.get('totem.carousel.controls.next'))"&gt;
-      &lt;span class="glyphicon glyphicon-chevron-right" aria-hidden="true"&gt;&lt;/span&gt;
-      &lt;span class="sr-only"&gt;Next&lt;/span&gt;
-    &lt;/a&gt;
-  &lt;/div&gt;
-
-  &lt;div class='scroller center' style="width:${width};height:${height};max-width:${maxwidth};"&gt;
-    &lt;div class='content'&gt;
-    #foreach($document in $blockDisplayerDocList)
-      #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
-      #set($sectionNumber = $mathtool.sub($velocityCount, 1))    
-      #if($dataMap.image!='')
-        #set($attach = $services.model.resolveAttachment($dataMap.image, "explicit", $document.getDocumentReference()))
-        #set($image = $services.model.serialize($attach, "default"))
-        &lt;div id="section${sectionNumber}" class='section' style="width:${sectionSize}; height:${height};max-width:${maxwidth};"&gt;
-         #set($url = $dataMap.url)
-         #if(!$url.startWith('http://') || !$url.startWith('https://'))
-           #set($url = 'http://' +  $!url)   
-         #end
-          [[[[image:$image||width="${width}"||style="max-width:${maxwidth}"]]&gt;&gt;$document.display('url')]]
-        ##  &lt;span class="videoitem-date"&gt;$document.display('date')&lt;/span&gt;
-        ##  &lt;span class="videoitem-title"&gt;[[$document.title&gt;&gt;$!url]]&lt;/span&gt;
+  &lt;div class='carouselcontainer'&gt;
+    &lt;div class='carousel autostart'&gt;
+      &lt;div class="controls"&gt;
+        #set($lastListItem = $mathtool.sub($blockDisplayerDocList.size(), 1))
+        &lt;a class='left simpleCarousel-control carousel-control previousImage' href="#section${lastListItem}" title="$escapetool.xml($msg.get('totem.carousel.controls.previous'))"&gt;
+          &lt;span class="glyphicon glyphicon-chevron-left" aria-hidden="true"&gt;&lt;/span&gt;
+          &lt;span class="sr-only"&gt;Previous&lt;/span&gt;
+        &lt;/a&gt;
+        &lt;div id="slider-navigation" class="carousel-indicators clearfix"&gt;
+          #foreach($document in $blockDisplayerDocList)
+            #set($sectionNumber = $mathtool.sub($velocityCount, 1))
+            &lt;a class="item #if($sectionNumber == 0)on#end" href="#section${sectionNumber}" title="$escapetool.xml($msg.get('totem.carousel.controls.slide', [$velocityCount]))"&gt;$escapetool.xml($msg.get('totem.carousel.controls.slide', [$velocityCount]))&lt;/a&gt;
+          #end
         &lt;/div&gt;
-      #end
-    #end
-  &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/div&gt;##carousel
-&lt;/div&gt;##carouselcontainer
+        &lt;a class="right simpleCarousel-control carousel-control nextImage" href="#section1" title="$escapetool.xml($msg.get('totem.carousel.controls.next'))"&gt;
+          &lt;span class="glyphicon glyphicon-chevron-right" aria-hidden="true"&gt;&lt;/span&gt;
+          &lt;span class="sr-only"&gt;Next&lt;/span&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+
+      &lt;div class='scroller center' style="width:${width};height:${height};max-width:${maxwidth};"&gt;
+        &lt;div class='content'&gt;
+          #foreach($document in $blockDisplayerDocList)
+            #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
+            #set($sectionNumber = $mathtool.sub($velocityCount, 1))    
+            #if($!{dataMap.image} != '')
+              #set($attach = $services.model.resolveAttachment($dataMap.image, "explicit", $document.getDocumentReference()))
+              #set($image = $services.model.serialize($attach, "default"))
+              &lt;div id="section${sectionNumber}" class='section' style="width:${sectionSize}; height:${height};max-width:${maxwidth};"&gt;
+                [[[[image:$image||width="${width}"||style="max-width:${maxwidth}"]]&gt;&gt;${dataMap.url}]]
+              &lt;/div&gt;
+            #end
+          #end
+        &lt;/div&gt;
+      &lt;/div&gt;##scroller
+    &lt;/div&gt;##carousel
+  &lt;/div&gt;##carouselcontainer
 &lt;/div&gt;##videosdisplayer
 {{/html}}
 

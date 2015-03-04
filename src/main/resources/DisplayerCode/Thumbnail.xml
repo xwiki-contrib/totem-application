@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -31,9 +30,9 @@
   <author>xwiki:XWiki.Admin</author>
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-  <creationDate>1388530800000</creationDate>
-  <date>1388530800000</date>
-  <contentUpdateDate>1388530800000</contentUpdateDate>
+  <creationDate>1423823687000</creationDate>
+  <date>1425476303000</date>
+  <contentUpdateDate>1425476303000</contentUpdateDate>
   <version>1.1</version>
   <title>Thumbnail</title>
   <defaultTemplate/>
@@ -221,28 +220,32 @@
   <content>{{include reference="DisplayerCode.DisplayerTools"/}}
 
 {{velocity}}
-$xwiki.ssx.use('DisplayerCode.Thumbnail')
+#set($discard = $xwiki.ssx.use('DisplayerCode.Thumbnail'))
 
 {{html wiki="true"}}
 &lt;div class='row thumbContent'&gt;
   #foreach($document in $blockDisplayerDocList)
     #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
-    #set($urlLogo = $document.getAttachmentURL($dataMap.image, 'download'))
+    #if($!{dataMap.image} != '')
+      #set($urlThumbnailLogo = $document.getAttachmentURL($dataMap.image, 'download'))
+    #end
     &lt;div class="col-xs-12 col-md-6 row totemHeaderRow thumbdisplayer"&gt;
       &lt;div class="col-xs-4 col-md-4 display-table vcenter thumbimgContainer"&gt;
-        &lt;img class="thumbImage right" src="${urlLogo}" alt="Responsive image"&gt;
+        &lt;img class="thumbImage right" src="$!{urlThumbnailLogo}" alt="Responsive image"&gt;
       &lt;/div&gt;#*
     *#&lt;div class="col-xs-8 col-md-8 display-table vcenter thumbText"&gt;
-          &lt;span class='thumbTitle'&gt;
-            $dataMap.title
-          &lt;/span&gt;
+        &lt;span class='thumbTitle'&gt;
+          $dataMap.title
+        &lt;/span&gt;
   	  &lt;div class="thumbDescription"&gt;
   	    $dataMap.description
   	  &lt;/div&gt;
+          ##for the url to work properly
+          ##the wiki property from the html macro needs to be false
   	  {{html}}
-  	  &lt;div class="thumbLink"&gt;
-  	    &lt;a href='$escapetool.xml($dataMap.url)'&gt;More info&lt;/a&gt;
-  	  &lt;/div&gt; 
+  	    &lt;div class="thumbLink"&gt;
+  	      &lt;a href='$!{escapetool.xml($dataMap.url)}'&gt;More info&lt;/a&gt;
+  	    &lt;/div&gt; 
   	  {{/html}}
       &lt;/div&gt;
     &lt;/div&gt;

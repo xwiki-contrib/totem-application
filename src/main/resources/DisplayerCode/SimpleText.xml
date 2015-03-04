@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -31,9 +30,9 @@
   <author>xwiki:XWiki.Admin</author>
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-  <creationDate>1388530800000</creationDate>
-  <date>1388530800000</date>
-  <contentUpdateDate>1388530800000</contentUpdateDate>
+  <creationDate>1423135868000</creationDate>
+  <date>1425398970000</date>
+  <contentUpdateDate>1425398878000</contentUpdateDate>
   <version>1.1</version>
   <title/>
   <defaultTemplate/>
@@ -190,7 +189,7 @@
   <content>{{include reference="DisplayerCode.DisplayerTools"/}}
 
 {{velocity}}
-$xwiki.ssx.use('DisplayerCode.SimpleText')
+#set($discard = $xwiki.ssx.use('DisplayerCode.SimpleText'))
 
 {{html wiki="true"}}
 #foreach($document in $blockDisplayerDocList)

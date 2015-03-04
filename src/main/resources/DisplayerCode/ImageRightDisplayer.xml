@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -31,9 +30,9 @@
   <author>xwiki:XWiki.Admin</author>
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-  <creationDate>1388530800000</creationDate>
-  <date>1388530800000</date>
-  <contentUpdateDate>1388530800000</contentUpdateDate>
+  <creationDate>1424685266000</creationDate>
+  <date>1425399131000</date>
+  <contentUpdateDate>1425399131000</contentUpdateDate>
   <version>1.1</version>
   <title>ImageRightDisplayer</title>
   <defaultTemplate/>
@@ -208,12 +207,14 @@
   <content>{{include reference="DisplayerCode.DisplayerTools"/}}
 
 {{velocity}}
-$xwiki.ssx.use('DisplayerCode.ImageRightDisplayer')
+#set($discard = $xwiki.ssx.use('DisplayerCode.ImageRightDisplayer'))
 
 {{html wiki="true"}}
 #foreach($document in $blockDisplayerDocList)
   #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
-  #set($urlLogo = $document.getAttachmentURL($dataMap.image, 'download'))
+  #if($!{dataMap.image} != '')
+    #set($urlLogoRight = $document.getAttachmentURL($dataMap.image, 'download'))
+  #end
   &lt;div class="row totemHeaderRow rightimagedisplayer"&gt;
     &lt;div class="col-xs-12 col-md-8 display-table vcenter"&gt;
       &lt;span class='rightImageTitle'&gt;
@@ -224,12 +225,12 @@ $xwiki.ssx.use('DisplayerCode.ImageRightDisplayer')
       &lt;/div&gt;
       {{html}}
         &lt;div class="imgRightLink"&gt;
-          &lt;a href='$escapetool.xml($dataMap.url)'&gt;More info&lt;/a&gt;
+          &lt;a href='$!{escapetool.xml($dataMap.url)}'&gt;More info&lt;/a&gt;
         &lt;/div&gt; 
       {{/html}}
     &lt;/div&gt;#*
   *#&lt;div class="col-xs-12 col-md-4 display-table vcenter imgContainer"&gt;
-      &lt;img class="rightSideImage" src="${urlLogo}" alt="Responsive image"&gt;
+      &lt;img class="rightSideImage" src="$!{urlLogoRight}" alt="Responsive image"&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 #end
