@@ -97,7 +97,7 @@
     <name>TotemCode.SimpleTotemItemSheet</name>
     <number>0</number>
     <className>XWiki.JavaScriptExtension</className>
-    <guid>bd8cff69-a9a6-4bb0-9965-b1d1a7ca8d19</guid>
+    <guid>5a8bca02-c2bb-4679-a90a-3f1269e34643</guid>
     <property>
       <cache>forbid</cache>
     </property>
@@ -106,15 +106,11 @@
   require(['jquery'],function($){
      var jqEvent = $(event);
      var targetBtnName = jqEvent[0].target.activeElement.name;
-     //if( (targetBtnName == "action_saveandcontinue") || (targetBtnName == "action_upload") ){
-        console.log(targetBtnName);
-           var form = $(event.memo["form"]);
-           var xcontinue = $("input[name='xcontinue']").val();
-           var xredirect = xcontinue.replace("editor=inline","");
-           xredirect = xredirect.replace("/edit/","/view/") + "skin=TotemCode.Skin&amp;fromIframe=1";
-           console.log(xredirect);
-           $("input[name='xredirect']").val(xredirect);
-     //}
+     var form = $(event.memo["form"]);
+     var xcontinue = $("input[name='xcontinue']").val();
+     var xredirect = xcontinue.replace("editor=inline","");
+     xredirect = xredirect.replace("/edit/","/view/") + "skin=TotemCode.Skin&amp;fromIframe=1";
+     $("input[name='xredirect']").val(xredirect);
   });
 });
 
@@ -129,12 +125,6 @@ document.observe("xwiki:actions:cancel", function(event){
 });
 
 document.observe("xwiki:actions:preview", function(event){
-});
-
-require(['jquery'],function($){
-$("input[name='action_save']").click(function(event){
-     //event.preventDefault();
-});
 });</code>
     </property>
     <property>
@@ -163,7 +153,7 @@ $("input[name='action_save']").click(function(event){
 #end
 #foreach($prop in $class.properties)
   ; $doc.displayPrettyName($prop.name, $object)
-  : #if($prop.name == 'image'){{attachmentSelector classname="$class.name" object="$object.number" property="$prop.name" width="120" buttontext="$msg.get('totemitem.edit.image')" displayImage="true" filter="png,jpg,gif" savemode="form" /}}
+  : #if($prop.name == 'image'){{attachmentSelector classname="$class.name" object="$object.number" property="$prop.name" width="120" buttontext="$msg.get('totemitem.edit.image')" displayImage="true" filter="png,jpg,gif" savemode="direct" /}}
   #else$doc.display($prop.getName())
   #end
 #end
