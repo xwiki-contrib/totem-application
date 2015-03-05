@@ -153,9 +153,7 @@
       <cache>long</cache>
     </property>
     <property>
-      <code>.display-table{
-  vertical-align: top;
-} 
+      <code>
 .thumbdisplayer {
   margin: 12px 0;
   padding-left: 0 !important;
@@ -226,7 +224,7 @@
       #set($urlThumbnailLogo = $document.getAttachmentURL($dataMap.image, 'download'))
     #end
     &lt;div class="col-xs-12 col-md-6 row totemHeaderRow thumbdisplayer"&gt;
-      &lt;div class="col-xs-2 col-md-3 display-table vcenter thumbimgContainer"&gt;
+      &lt;div class="col-xs-2 col-md-3 display-table thumbimgContainer"&gt;
         &lt;img class="thumbImage" src="$!{urlThumbnailLogo}" alt="Responsive image"&gt;
       &lt;/div&gt;#*
     *#&lt;div class="col-xs-10 col-md-9 display-table vcenter thumbText"&gt;
