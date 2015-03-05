@@ -31,8 +31,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1424685633000</creationDate>
-  <date>1425487936000</date>
-  <contentUpdateDate>1425487936000</contentUpdateDate>
+  <date>1425574407000</date>
+  <contentUpdateDate>1425574407000</contentUpdateDate>
   <version>1.1</version>
   <title>ImageLeftDisplayer</title>
   <defaultTemplate/>
@@ -233,7 +233,10 @@
       &lt;/div&gt;
       {{html}}
         &lt;div class="imgLeftLink"&gt;
-          &lt;a href='$!{escapetool.xml($dataMap.url)}'&gt;More info&lt;/a&gt;
+          &lt;a href='$!{escapetool.xml($dataMap.url)}'&gt;
+            &lt;span class="fa fa-plus-circle"&gt; &lt;/span&gt;
+            More info
+          &lt;/a&gt;
         &lt;/div&gt; 
       {{/html}}
     &lt;/div&gt;
