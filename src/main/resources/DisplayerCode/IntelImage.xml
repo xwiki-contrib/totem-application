@@ -31,7 +31,7 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1423907602000</creationDate>
-  <date>1425475510000</date>
+  <date>1425552527000</date>
   <contentUpdateDate>1425473277000</contentUpdateDate>
   <version>1.1</version>
   <title>IntelImage</title>
@@ -237,6 +237,7 @@ z+eDkZERcDgcHpvNVv3v1o6L56vebYnEXP4LZXu8cLcoAW4AAAAASUVORK5CYII=
   transition: all 0.2s;
   max-width: 200px;
   border-radius:5px;
+  max-width: 150px;
 }
 a.expand {
   display: block;
@@ -251,6 +252,7 @@ a.expand {
   font-weight: 700;
   font-size: 30px;
   border-radius: 30px;
+  text-decoration: none;
 }
 #effect-1 .overlay {
   bottom: 15px;
