@@ -155,7 +155,7 @@
     <property>
       <code>.simpleRow.simpleText{
   color : white;
-  padding: 42px 15px 42px 15px;
+  padding: 15px;
 }
 .simpleTitle {
   font-size: 28px;
@@ -196,9 +196,6 @@
   #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
   &lt;div class="row simpleRow simpleText"&gt;
     &lt;div class="col-xs-12 col-md-12 display-table"&gt;
-      &lt;div class="simpleTitle"&gt;
-        $dataMap.title
-      &lt;/div&gt;
       &lt;div class="simpleDescription"&gt;
         $dataMap.description
       &lt;/div&gt;
