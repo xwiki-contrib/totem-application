@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xwikidoc>
+  <web>TotemCode</web>
+  <name>TotemMacros</name>
+  <language/>
+  <defaultLanguage/>
+  <translation>0</translation>
+  <parent>TotemCode.WebHome</parent>
+  <creator>xwiki:XWiki.Admin</creator>
+  <author>xwiki:XWiki.Admin</author>
+  <customClass/>
+  <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
+  <creationDate>1424357402000</creationDate>
+  <date>1425487504000</date>
+  <contentUpdateDate>1425487504000</contentUpdateDate>
+  <version>1.1</version>
+  <title/>
+  <defaultTemplate/>
+  <validationScript/>
+  <comment/>
+  <minorEdit>false</minorEdit>
+  <syntaxId>xwiki/2.1</syntaxId>
+  <hidden>false</hidden>
+  <content>{{velocity output="false"}}
+#macro(displayTotemBlock $totemBlock $withEdit $cancelURL $editURL $totemItemClass $sheetFieldsMapping $totemItemsURL)
+  #set( $isBlockFullscreen = $doc.getObject('TotemCode.TotemClass').getProperty('fullscreen').value )
+  #set( $blockContentSize = $doc.getObject('TotemCode.TotemClass').getProperty('contentSize').value )
+  #set( $totemBlockContentStyle = '' )
+  #if( ${isBlockFullscreen} == 1 &amp;&amp; "${blockContentSize}" != "")
+    #set( $totemBlockContentStyle = "max-width: ${blockContentSize}px; margin: 0 auto;" )
+  #end
+    (%class="totemBlockContent" style="${totemBlockContentStyle}"%)(((
+      ## display the block. get its values and then call the displayer macro
+      #set($totemBlockSheet = $totemBlock.getProperty('type').value)  
+      ## Case of item coming from application
+      #if("${totemBlock.getProperty('appsource_app').value}" != "" &amp;&amp; "${totemBlock.getProperty('appsource_app').value.size()}" != "0")
+        ## create field mapping with data filled by the user
+        #set($sourceClassFieldsMapping = {})
+        #set($discard = $sourceClassFieldsMapping.put("description", "${totemBlock.getProperty('appsource_description').value}"))
+        #set($discard = $sourceClassFieldsMapping.put("date", "${totemBlock.getProperty('appsource_date').value}"))
+        #set($discard = $sourceClassFieldsMapping.put("image", "${totemBlock.getProperty('appsource_image').value}"))
+        #set($discard = $sourceClassFieldsMapping.put("url", "${totemBlock.getProperty('appsource_url').value}"))
+        ## We use item from application, sourceType = 'sourceClass'
+        #displayBlock($totemBlockSheet, '', $totemBlock.getProperty('title').value, $totemBlock.getProperty('footer').value, 'sourceClass', '', $!{totemBlock.getProperty('appsource_app').value.get(0)}, 0, $sourceClassFieldsMapping )
+      #else
+        ## We use the items list using sourceType as doclist
+        #displayBlock($totemBlockSheet, '', $totemBlock.getProperty('title').value, $totemBlock.getProperty('footer').value, 'doclist', $totemBlock.getProperty('source').value, $totemItemClass, 0, $sheetFieldsMapping.get($totemBlockSheet))
+      #end 
+      #if($withEdit)
+        ## load the css used by the color picker input in edit mode
+        #set($discard = $xwiki.linkx.use($services.webjars.url('colpick/2.0.2/css/colpick.css'), {'rel': 'stylesheet'}))
+        (%class="#if("$!request.editblock" != "$totemBlock.number")hidden#end editblockform"%)(((
+          #displayTotemBlockEditForm($totemBlock, false, $cancelURL, $editURL, $totemItemClass)
+        )))
+        (%class="#if("$!request.editblocksource" != "$totemBlock.number")hidden#end editsourceblockform"%)(((
+          #displayTotemBlockEditSourceForm($totemBlock, $totemItemsURL, $cancelURL, $editURL)
+        )))
+      #end
+      #if($withEdit)
+        (%class="editactions"%)((({{html clean="false"}}
+        &lt;input type="hidden" value="$doc.getDocumentReference()" id="totemDocRef"/&gt;
+        &lt;a href="$escapetool.xml($doc.getURL('view', "showEdit=true&amp;editblock=${totemBlock.number}"))" class="editbutton btn btn-primary" rel="${totemBlock.number}"&gt;$msg.get('totem.edit.editblock.button')&lt;/a&gt;
+        &lt;a href="$escapetool.xml($doc.getURL('view', "showEdit=true&amp;editblocksource=${totemBlock.number}"))" class="editsourcebutton btn btn-primary" rel="${totemBlock.number}"&gt;$msg.get('totem.edit.editblocksource.button')&lt;/a&gt;
+        #displayTotemBlockRemoveForm($totemBlock, $cancelURL, $editURL){{/html}})))
+      #end
+    )))
+#end
+
+#macro(getDisplayerAdditionalDataInMap $totemItemAdditionalDataObjects $totemBlockStoredData)
+  ## Read stored data
+  #set( $totemBlockStoredDataMap = {} )
+  #foreach( $dataLine in $!{totemBlockStoredData.replaceAll("\r", "").replaceAll("\n", "").replaceAll(" ", "").split(",")} )
+  #set( $dkey = "" )
+  #set( $dvalue = "" )
+    #foreach( $d in ${dataLine.split(":")})
+      #if( ${foreach.index} == 0 )
+        #set( $dkey = "$!{d}" )
+      #else
+        #set( $dvalue = "$!{d}" )
+      #end
+    #end
+    #set( $discard = $totemBlockStoredDataMap.put("${dkey}","${dvalue}") )
+  #end
+  ## Set additional data from displayer keys
+  #set( $displayerAdditionalDataMap = {}) ## Map
+  #foreach( $additionalData in $!{totemItemAdditionalDataObjects})
+    #set( $discard = $displayerAdditionalDataMap.put("${additionalData.key}","$!{totemBlockStoredDataMap.get(${additionalData.key})}") )
+  #end
+#end
+
+#macro(displayTotemBlockEditForm $totemBlock $isNewBlock $cancelURL $editURL, $totemItemClass)
+  #if(!$formAction)
+     #set($formAction = "$doc.getURL('save')")
+  #end
+  #if ($isNewBlock)
+    #set($formAction = "$doc.getURL('objectadd')")
+  #end
+  {{html clean="false" wiki="true"}}  
+
+  {{info}}$msg.get('totem.edit.editblock.help'){{/info}}
+
+  {{/html}}
+
+  {{html clean="false"}}
+   &lt;form action="$formAction" method="post" class="xform"&gt;
+    &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
+    &lt;input type="hidden" name="xredirect" value="$escapetool.xml($editURL)" /&gt;
+    #if ($isNewBlock)
+      &lt;input type="hidden" name="classname" value="TotemCode.TotemBlockClass" /&gt;
+    #end
+  {{/html}}
+  ## display the totem editable properties
+  #set($totemBlockClass = $totemBlock.xWikiClass)
+  #foreach ($propName in ['type', 'title', 'size']) ## - footer, data
+    ; $doc.displayPrettyName($propName, $totemBlock)
+    : #if($isNewBlock){{html clean="false"}}$doc.displayEdit($totemBlockClass.get($propName), 'TotemCode.TotemBlockClass_', $totemBlock){{/html}}
+      #else$doc.display($propName, 'edit', $totemBlock)
+      #end
+     #set($discard = $xwiki.jsx.use('TotemCode.TotemSheet'))
+  #end
+    ## Background-color Custom input in order to display the color picker. Note : add color-picker class with javascript
+    ; $doc.displayPrettyName('background-color', $totemBlock)
+    {{html clean=false}}
+    #if ($isNewBlock)
+      &lt;input id="TotemCode.TotemBlockClass_background-color" type="text" name="TotemCode.TotemBlockClass_background-color" class="color-picker" value="$!{escapetool.xml($!doc.getValue('background-color', ${totemBlock}))}"&gt;
+    #else
+      &lt;input id="TotemCode.TotemBlockClass_${totemBlock.number}_background-color" type="text" name="TotemCode.TotemBlockClass_${totemBlock.number}_background-color" class="color-picker" value="$!{escapetool.xml($!doc.getValue('background-color', ${totemBlock}))}"&gt;
+    #end
+    {{/html}}
+    ## Background-image Custom input to use an attachment selector
+    ; $doc.displayPrettyName('background-image', $totemBlock)
+    {{attachmentSelector classname="${totemBlockClass.name}" object="${totemBlock.number}" property="background-image" savemode="direct"
+displayImage="false" link="true" filter="png,jpg,gif"/}}
+     ## Background-image Custom input to use an attachment selector
+    ; $doc.displayPrettyName('background-video', $totemBlock)
+    {{attachmentSelector classname="${totemBlockClass.name}" object="${totemBlock.number}" property="background-video" savemode="direct"
+displayImage="false" link="true" filter="mp4, avi, mpg"/}}
+    ## Add additional specific data from the displayer
+    #set( $totemItemAdditionalDataObjects = $xwiki.getDocument("DisplayerCode.${totemBlock.type}").getObjects('TotemCode.TotemItemAdditionalDataClass') )
+    #getDisplayerAdditionalDataInMap($totemItemAdditionalDataObjects $!doc.getValue('data', ${totemBlock}))
+    (%class="additionalData" id %)(((
+    #foreach( $additionalData in $!{totemItemAdditionalDataObjects} )
+      ; $additionalData.key
+    {{html clean=false}}
+      &lt;input id="${additionalData.key}_${totemBlock.number}" type="text" name="${additionalData.key}" value="$!{displayerAdditionalDataMap.get(${additionalData.key})}" class="displayerAdditionalData"&gt;
+    {{/html}}
+    #end
+    {{html clean=false}}
+    &lt;input type="hidden" id="TotemCode.TotemBlockClass_${totemBlock.number}_data" name="TotemCode.TotemBlockClass_${totemBlock.number}_data" value="$escapetool.xml($!doc.getValue('data', ${totemBlock}))"/&gt;
+    {{/html}}
+    )))
+  {{html clean="false"}}
+    &lt;div class="buttonwrapper"&gt;
+      &lt;input type="submit" value="$msg.get('save')" class="button saveBlockBtn" /&gt;
+      &lt;a href="$cancelURL" class="cancelbutton"&gt;$msg.get('cancel')&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;/form&gt;
+  {{/html}}
+#end
+
+#macro(displayTotemBlockEditSourceForm $totemBlock $totemItemsURL $cancelURL $editURL)
+    #if(!$formAction)
+     #set($formAction = "$doc.getURL('save')")
+    #end
+    {{html clean="false" wiki="true"}}
+      &lt;form action="$formAction" method="post" class="xform"&gt;
+
+      {{info}}$msg.get('totem.edit.editblocksource.help'){{/info}}
+
+      &lt;ul class="nav nav-tabs" role="tablist"&gt;
+         &lt;li class="active"&gt;&lt;a href="#simple" role="tab" data-toggle="tab"&gt;Simple&lt;/a&gt;&lt;/li&gt;
+         &lt;li&gt;&lt;a href="#advanced" role="tab" data-toggle="tab"&gt;Advanced&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;div class="tab-content"&gt;
+         &lt;div class="tab-pane active" id="simple"&gt;
+             &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
+             &lt;input type="hidden" name="xredirect" value="$escapetool.xml($editURL)" /&gt;
+             ## display the totem source properties
+             #set($totemBlockClass = $totemBlock.xWikiClass)
+             &lt;br/&gt;
+             #foreach ($propName in ['source'])
+                ; $doc.displayPrettyName($propName, $totemBlock)
+                : $doc.display($propName, 'edit', $totemBlock)
+             #end
+         &lt;/div&gt;
+         &lt;div class="tab-pane" id="advanced"&gt;
+            &lt;br/&gt;
+            **For advanced user only :**
+
+            #foreach ($propName in ['appsource_app', 'appsource_date', 'appsource_description', 'appsource_image', 'appsource_url'])
+               ; $doc.displayPrettyName($propName, $totemBlock)
+               : $doc.display($propName, 'edit', $totemBlock)
+            #end
+         &lt;/div&gt;
+      &lt;/div&gt;
+       &lt;div class="buttonwrapper"&gt;
+        &lt;input type="submit" value="$msg.get('save')" class="button saveSourceBtn" /&gt;
+        &lt;a href="$cancelURL" class="cancelbutton"&gt;$msg.get('cancel')&lt;/a&gt;
+      &lt;/div&gt;
+      &lt;/form&gt;
+    {{/html}}
+  #*(((
+  (%class="buttonwrapper"%)[[$msg.get('totem.edit.editblocksource.itemslink')&gt;&gt;path:$totemItemsURL||class="button adminItemsBtn" rel="__blank"]](%%)
+  )))*#
+#end
+
+#macro(displayTotemBlockRemoveForm $totemBlock $cancelURL $editURL)
+  &lt;form action="$doc.getURL('objectremove')" method="post" class="removeblockform"&gt;
+    &lt;span&gt;
+      &lt;input type="hidden" name="classname" value="TotemCode.TotemBlockClass" /&gt;
+      &lt;input type="hidden" name="classid" value="$totemBlock.number" /&gt;
+      &lt;input type="hidden" name="cancelURL" value="$escapetool.xml($cancelURL)" /&gt;
+      &lt;input type="hidden" name="xredirect" value="$escapetool.xml($editURL)" /&gt;
+      &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
+   &lt;/span&gt;
+  &lt;input type="submit" value="$msg.get('totem.edit.removeitem.button')" class="deletebutton btn btn-danger" /&gt;
+  &lt;/form&gt;
+#end
+
+#macro(displayEditTotemConfigurationForm)
+  {{html clean="false" wiki="true"}}
+    &lt;form action="$doc.getURL('save')" method="post"&gt;
+    &lt;fieldset&gt;
+      &lt;input type="hidden" name="xredirect" value="$escapetool.xml($editURL)" /&gt;
+      &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
+    &lt;/fieldset&gt;
+    #set($totemObject = $doc.getObject('TotemCode.TotemClass'))
+    enable fullscreen : $totemObject.display('fullscreen','edit')&lt;br&gt;
+    content size : $totemObject.display('contentSize','edit') px (not applied if empty)
+    &lt;div class="buttonwrapper"&gt;
+      &lt;input type="submit" value="$msg.get('Save Configuration')" class="button" /&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+  {{/html}}
+#end
+
+#macro(displayEditOrderForm $editURL)
+  {{html clean="false" wiki="true"}}
+    &lt;form action="$doc.getURL('save')" method="post" class="editorderform"&gt;
+    &lt;fieldset&gt;
+      &lt;input type="hidden" name="xredirect" value="$escapetool.xml($editURL)" /&gt;
+      &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
+    &lt;/fieldset&gt;
+    $doc.displayEdit($totemObject.xWikiClass.get('blockOrder'), "TotemCode.TotemClass_${totemObject.number}_", $totemObject)
+    &lt;div class="buttonwrapper"&gt;
+      &lt;input type="submit" value="$msg.get('totem.order.save')" class="button" /&gt;
+    &lt;/div&gt;
+  &lt;/form&gt;
+  {{/html}}
+#end
+
+#macro(displayModal $modalID)
+&lt;div class="modal fade" id="$modalID"&gt;
+  &lt;div class="modal-dialog"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;button type="button" class="close" data-dismiss="modal" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&amp;times;&lt;/span&gt;&lt;/button&gt;
+        &lt;h4 class="modal-title"&gt;&lt;/h4&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;
+         &lt;iframe id="editIframe" frameborder="0" scrolling="yes" width="870px" height="450px" src="" style="display:none;"&gt;&lt;/iframe&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-footer"&gt;
+        ##&lt;button type="button" class="btn btn-default" data-dismiss="modal"&gt;Close&lt;/button&gt;
+        ##&lt;button type="button" class="btn btn-primary"&gt;Save changes&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;&lt;!-- /.modal-content --&gt;
+  &lt;/div&gt;&lt;!-- /.modal-dialog --&gt;
+&lt;/div&gt;&lt;!-- /.modal --&gt;
+&lt;input type="hidden" id="redirectURL" value="$doc.getURL('view','showEdit=true')"/&gt;
+&lt;input type="hidden" id="showIframe" value="1"/&gt;
+#end
+{{/velocity}}</content>
+</xwikidoc>

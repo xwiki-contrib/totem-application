@@ -12,8 +12,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1398855257000</creationDate>
-  <date>1422027885000</date>
-  <contentUpdateDate>1422027885000</contentUpdateDate>
+  <date>1425460342000</date>
+  <contentUpdateDate>1425025219000</contentUpdateDate>
   <version>1.1</version>
   <title>$msg.get('totem.items.webhome.title')</title>
   <defaultTemplate/>
@@ -22,10 +22,183 @@
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
   <hidden>false</hidden>
+  <object>
+    <class>
+      <name>XWiki.JavaScriptExtension</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <cache>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>cache</name>
+        <number>5</number>
+        <prettyName>Caching policy</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>long|short|default|forbid</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </cache>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Code</prettyName>
+        <rows>20</rows>
+        <size>50</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <parse>
+        <disabled>0</disabled>
+        <displayFormType>select</displayFormType>
+        <displayType>yesno</displayType>
+        <name>parse</name>
+        <number>4</number>
+        <prettyName>Parse content</prettyName>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+      </parse>
+      <use>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>use</name>
+        <number>3</number>
+        <prettyName>Use this extension</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>currentPage|onDemand|always</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </use>
+    </class>
+    <name>TotemCode.SimpleTotemItemWebHomeSheet</name>
+    <number>0</number>
+    <className>XWiki.JavaScriptExtension</className>
+    <guid>960a72c9-9aa2-47d3-ae01-d30977868368</guid>
+    <property>
+      <cache>long</cache>
+    </property>
+    <property>
+      <code>require(['jquery'], function ($) {
+$(function(){
+//Initialize new item button
+$("input.createItemBtn").click(function(event){
+  if($.trim($("#createform-page").val()) != ""){
+   //Submit the form to create the item document
+   var saveURL = "$xwiki.getURL('TotemCode.EditContent','view','xpage=plain&amp;outputSyntax=plain&amp;action=saveItem')";
+   var data = $("form.xformInline").serialize();
+   saveURL = saveURL + "&amp;" + data;
+   $.ajax({
+      url:saveURL,
+      dataType: 'json',
+      success:function(rep, textStatus, jqXHR){
+         if(rep){ 
+             if(rep.results == false){
+                alert("The item name already exists!");
+             }
+             else
+             {
+                //Redirect
+                //document.location.replace(rep.results);
+             }
+         }
+      },
+      complete:function(event, XMLHttpRequest, ajaxOptions){
+        //ToDo
+      },
+      error:function(jqXHR, textStatus, errorThrown)//En cas d'erreur (jqXHR : objet XMLHttpRequest )
+      {
+        //ToDo
+      }
+    });
+  }
+  else
+  {
+     alert("$services.localization.render('xe.totem.inputmustnotbeempty')");
+  }
+  event.preventDefault();
+});
+});
+
+//Initialize edit item button
+$("body").on("click","a.actionedit",function(event){
+   event.preventDefault(event);
+   var URL = $(this).attr("href") + "?skin=TotemCode.PopupSkin&amp;fromIframe=1";
+   document.location.replace(URL);
+});
+
+//Initialize delete item button
+$("body").on("click","a.actiondelete",function(event){
+   event.preventDefault(event);
+   var rep = confirm("$!services.localization.render('core.recyclebin.confirm')");
+   if(rep){
+       var URL = $(this).attr("href");
+       var docRef = URL.split('/delete/');
+       docRef = docRef[1].replace("/",".");
+       var deleteURL = "$xwiki.getURL('TotemCode.EditContent','view','xpage=plain&amp;outputSyntax=plain&amp;action=deleteItem')";
+       deleteURL = deleteURL + "&amp;itemDocRef=" + docRef;
+       $.ajax({
+         url:deleteURL,
+         dataType: 'json',
+         success:function(rep, textStatus, jqXHR){
+            if(rep.results){
+               //Refresh live table
+               livetable_simpletotemitem.clearCache();
+               livetable_simpletotemitem.showRows(1, livetable_simpletotemitem.limit);
+            }
+         },
+         complete:function(event, XMLHttpRequest, ajaxOptions){
+            //ToDo
+         },
+         error:function(jqXHR, textStatus, errorThrown)//En cas d'erreur (jqXHR : objet XMLHttpRequest )
+         {
+	    //ToDo
+         }
+       });
+   }
+});
+});
+</code>
+    </property>
+    <property>
+      <name>JS code when the page is called from Iframe</name>
+    </property>
+    <property>
+      <parse>1</parse>
+    </property>
+    <property>
+      <use>onDemand</use>
+    </property>
+  </object>
   <content>{{velocity}}
 #if ($xwiki.hasAccessLevel('edit', $xcontext.user, "${doc.space}.${xwiki.getUniquePageName($doc.space)}"))
   == $msg.get('totem.items.webhome.createform') ==
-
+#if("$!request.fromIframe" != "")
+#set($discard = $xwiki.jsx.use("TotemCode.SimpleTotemItemWebHomeSheet"))
+#end
   {{html clean="false"}}
   &lt;form action="$escapetool.xml($doc.getURL('create'))" class="xformInline" method="get" /&gt;
     &lt;div&gt;
@@ -36,7 +209,7 @@
       &lt;label for="createform-page"&gt;$msg.get('totem.items.createform.namelabel')&lt;/label&gt;
       &lt;input id="createform-page" name="page" type="text" value="" size="30"/&gt;
       &lt;span class="buttonwrapper"&gt;
-        &lt;input class="button" type="submit" value="$msg.get('create')"/&gt;
+        &lt;input class="button createItemBtn" type="submit" value="$msg.get('create')"/&gt;
       &lt;/span&gt;
     &lt;/div&gt;
   &lt;/form&gt;
