@@ -386,7 +386,7 @@ document.observe('xwiki:dom:loading', function() {
     <name>TotemCode.TotemSheet</name>
     <number>1</number>
     <className>XWiki.JavaScriptExtension</className>
-    <guid>ee885013-5ae2-493a-84e9-91bdaad0b23f</guid>
+    <guid>7ceb9a37-4b00-4549-806f-6e2c62429505</guid>
     <property>
       <cache>long</cache>
     </property>
@@ -543,7 +543,7 @@ require(['jquery', 'colpick'], function($, Colpick) {
     <name>TotemCode.TotemSheet</name>
     <number>2</number>
     <className>XWiki.JavaScriptExtension</className>
-    <guid>74d894ba-d5c1-4c8f-9403-ebecbd361432</guid>
+    <guid>31a5edfd-5305-444c-b817-fc604f35a422</guid>
     <property>
       <cache>long</cache>
     </property>

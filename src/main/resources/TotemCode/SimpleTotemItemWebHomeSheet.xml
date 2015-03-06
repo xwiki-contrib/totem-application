@@ -115,7 +115,6 @@ $("input.createItemBtn").click(function(event){
       url:saveURL,
       dataType: 'json',
       success:function(rep, textStatus, jqXHR){
-         //$("#totemModal .modal-body").html(rep);
          if(rep){ 
              if(rep.results == false){
                 alert("The item name already exists!");
@@ -123,16 +122,16 @@ $("input.createItemBtn").click(function(event){
              else
              {
                 //Redirect
-                console.log(rep.results);
                 //document.location.replace(rep.results);
              }
          }
       },
       complete:function(event, XMLHttpRequest, ajaxOptions){
+        //ToDo
       },
       error:function(jqXHR, textStatus, errorThrown)//En cas d'erreur (jqXHR : objet XMLHttpRequest )
       {
-	console.log("The is a problem with the request :" + jqXHR.status + "\n try again");
+        //ToDo
       }
     });
   }
@@ -167,16 +166,16 @@ $("body").on("click","a.actiondelete",function(event){
          success:function(rep, textStatus, jqXHR){
             if(rep.results){
                //Refresh live table
-               console.log(livetable_simpletotemitem);
                livetable_simpletotemitem.clearCache();
                livetable_simpletotemitem.showRows(1, livetable_simpletotemitem.limit);
             }
          },
          complete:function(event, XMLHttpRequest, ajaxOptions){
+            //ToDo
          },
          error:function(jqXHR, textStatus, errorThrown)//En cas d'erreur (jqXHR : objet XMLHttpRequest )
          {
-	   console.log("The is a problem with the request :" + jqXHR.status + "\n try again");
+	    //ToDo
          }
        });
    }
