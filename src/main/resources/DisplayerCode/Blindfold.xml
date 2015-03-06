@@ -179,6 +179,9 @@
   margin: 0;
   padding: 0;
 }
+.blindImgCont > img {
+  max-width: 100%;
+}
 .xcontent hr{
   display: inherit;
 }</code>
@@ -219,7 +222,7 @@
       ----
       &lt;/div&gt;
     &lt;/div&gt;#*
-  *#&lt;div class="hidden-xs hidden-sm col-md-2 display-table vcenter"&gt;
+  *#&lt;div class="hidden-xs hidden-sm col-md-2 display-table vcenter blindImgCont"&gt;
       &lt;img src="$!{urlLogo}" alt="Responsive image"&gt;
     &lt;/div&gt;
   &lt;/div&gt;
