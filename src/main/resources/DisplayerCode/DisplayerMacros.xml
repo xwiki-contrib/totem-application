@@ -131,6 +131,9 @@
   margin-left: auto;
   margin-right: auto;
   width: 100%;
+}
+.totemBlockContent a {
+    text-decoration: none;
 }</code>
     </property>
     <property>
