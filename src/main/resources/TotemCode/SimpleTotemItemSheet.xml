@@ -99,7 +99,7 @@
     <className>XWiki.JavaScriptExtension</className>
     <guid>5a8bca02-c2bb-4679-a90a-3f1269e34643</guid>
     <property>
-      <cache>forbid</cache>
+      <cache>long</cache>
     </property>
     <property>
       <code>document.observe("xwiki:actions:save", function(event){

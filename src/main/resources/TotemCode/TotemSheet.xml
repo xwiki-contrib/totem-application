@@ -692,7 +692,7 @@ require(['jquery', 'colpick'], function($, Colpick) {
     <className>XWiki.JavaScriptExtension</className>
     <guid>20888b66-d110-4366-812e-c3c349ff4e07</guid>
     <property>
-      <cache>forbid</cache>
+      <cache>long</cache>
     </property>
     <property>
       <code>var editContentURL = "$xwiki.getURL('TotemCode.EditContent','view')";

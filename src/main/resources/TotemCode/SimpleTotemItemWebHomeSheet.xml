@@ -97,9 +97,9 @@
     <name>TotemCode.SimpleTotemItemWebHomeSheet</name>
     <number>0</number>
     <className>XWiki.JavaScriptExtension</className>
-    <guid>5eacd608-138e-4572-b890-250f57fa9fde</guid>
+    <guid>960a72c9-9aa2-47d3-ae01-d30977868368</guid>
     <property>
-      <cache>forbid</cache>
+      <cache>long</cache>
     </property>
     <property>
       <code>require(['jquery'], function ($) {
