@@ -139,12 +139,11 @@
     {{/html}}
     ## Background-image Custom input to use an attachment selector
     ; $doc.displayPrettyName('background-image', $totemBlock)
-    {{attachmentSelector classname="${totemBlockClass.name}" object="${totemBlock.number}" property="background-image" savemode="direct"
-displayImage="false" link="true" filter="png,jpg,gif"/}}
-     ## Background-image Custom input to use an attachment selector
-    ; $doc.displayPrettyName('background-video', $totemBlock)
-    {{attachmentSelector classname="${totemBlockClass.name}" object="${totemBlock.number}" property="background-video" savemode="direct"
-displayImage="false" link="true" filter="mp4, avi, mpg"/}}
+    {{attachmentSelector classname="${totemBlockClass.name}" object="${totemBlock.number}" property="background-image" savemode="direct" displayImage="false" link="true" filter="png,jpg,gif"/}}
+    ## Background-video Custom input to use an attachment selector
+    ## TODO : Develop this functionality
+    ## ; $doc.displayPrettyName('background-video', $totemBlock)
+    ## {{attachmentSelector classname="${totemBlockClass.name}" object="${totemBlock.number}" property="background-video" savemode="direct" displayImage="false" link="true" filter="mp4, avi, mpg"/}}
     ## Add additional specific data from the displayer
     #set( $totemItemAdditionalDataObjects = $xwiki.getDocument("DisplayerCode.${totemBlock.type}").getObjects('TotemCode.TotemItemAdditionalDataClass') )
     #getDisplayerAdditionalDataInMap($totemItemAdditionalDataObjects $!doc.getValue('data', ${totemBlock}))
@@ -195,9 +194,9 @@ displayImage="false" link="true" filter="mp4, avi, mpg"/}}
          &lt;/div&gt;
          &lt;div class="tab-pane" id="advanced"&gt;
             &lt;br/&gt;
-            **For advanced user only :**
+            {{warning}}**For advanced user only :**{{/warning}}
 
-            #foreach ($propName in ['appsource_app', 'appsource_date', 'appsource_description', 'appsource_image', 'appsource_url'])
+            #foreach ($propName in ['appsource_app', 'appsource_date', 'appsource_description', 'appsource_image', 'appsource_url', 'appsource_limit', 'appsource_sort', 'appsource_sortDirection'])
                ; $doc.displayPrettyName($propName, $totemBlock)
                : $doc.display($propName, 'edit', $totemBlock)
             #end
