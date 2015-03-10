@@ -164,10 +164,12 @@
  * @param $source the actual source for the items to be displayed. The interpretation of this param depends on the source type. For a doclist source type, the param is expected to be a list of strings, names of documents to be displayed
  * @param $sourceClass the class of the objects in the documents of the source
  * @param $sourceLimit the max number of items to use from the source, will be used from the beginning
+ * @parem $sourceSort the parameter to sort on
+ * @parem $sourceSortDirection the direction of the sort ascending or descending
  * @param $fields the fields to be used by the sheet. They can be in the form doc.&lt;property&gt; to use a default document property, or &lt;fieldname&gt; to use a field from the class $sourceClass. 
           The number of fields required depends on the type of block.
  *#
-#macro(displayBlock $sheet $cssClass $title $footer $sourceType $source $sourceClass $sourceLimit $fields)
+#macro(displayBlock $sheet $cssClass $title $footer $sourceType $source $sourceClass $sourceLimit $sourceSort $sourceSortDirection $fields)
 ## print the round work of the block
 (%class="blockdisplayer $!cssClass"%)(((
   #if("$!title" != '')
@@ -187,8 +189,17 @@
     #end
   #elseif("$!sourceType" == "sourceClass" &amp;&amp; "$!sourceClass" != "")
     ## retrieve data from the sourceClass
+    #set($orderBy = "")
+    #if("$!sourceSort" != "")
+      #set($orderBy = " order by ")
+      #if("${sourceSort}" == "appsource_date")
+        #set($orderBy = "${orderBy} source.${fields.get('date')} $!{sourceSortDirection}")
+      #else
+        #set($orderBy = "${orderBy} doc.${sourceSort} $!{sourceSortDirection}")
+      #end
+    #end
     #set($sourceTemplate = ${stringtool.replace($sourceClass,"Class","Template")})
-    #set($xwqlstatement = "from doc.object(${sourceClass}) as source where doc.fullName &lt;&gt; '${sourceTemplate}' ")
+    #set($xwqlstatement = "from doc.object(${sourceClass}) as source where doc.fullName &lt;&gt; '${sourceTemplate}' ${orderBy}")
     #set($query = $services.query.xwql(${xwqlstatement}))
     ## set limit
     #if("$!{sourceLimit}" != "" &amp;&amp; "$!{sourceLimit}" != "0")

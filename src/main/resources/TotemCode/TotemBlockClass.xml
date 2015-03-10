@@ -48,7 +48,7 @@
       <separators/>
       <size>1</size>
       <sort>none</sort>
-      <sql>select distinct doc.fullName, doc.title from XWikiDocument doc, BaseObject obj where doc.parent = 'XWiki.XWikiClasses' or doc.fullName = 'Blog.BlogPostClass'</sql>
+      <sql>select prop.value from XWikiDocument as doc, BaseObject as obj, StringProperty as prop where doc.fullName=obj.name and obj.className='AppWithinMinutes.LiveTableClass' and obj.id=prop.id.id and prop.id.name='class'</sql>
       <unmodifiable>0</unmodifiable>
       <validationMessage/>
       <validationRegExp/>
@@ -94,6 +94,61 @@
       <validationRegExp/>
       <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
     </appsource_image>
+    <appsource_limit>
+      <customDisplay/>
+      <disabled>0</disabled>
+      <name>appsource_limit</name>
+      <number>19</number>
+      <numberType>integer</numberType>
+      <prettyName>appsource_limit</prettyName>
+      <size>30</size>
+      <unmodifiable>0</unmodifiable>
+      <validationMessage/>
+      <validationRegExp/>
+      <classType>com.xpn.xwiki.objects.classes.NumberClass</classType>
+    </appsource_limit>
+    <appsource_sort>
+      <cache>0</cache>
+      <customDisplay/>
+      <disabled>0</disabled>
+      <displayType>select</displayType>
+      <multiSelect>0</multiSelect>
+      <name>appsource_sort</name>
+      <number>19</number>
+      <picker>0</picker>
+      <prettyName>appsource_sort</prettyName>
+      <relationalStorage>0</relationalStorage>
+      <separator/>
+      <separators> ,|</separators>
+      <size>1</size>
+      <sort>id</sort>
+      <unmodifiable>0</unmodifiable>
+      <validationMessage/>
+      <validationRegExp/>
+      <values> 1=date|2=creationDate|3=title|4=appsource_date</values>
+      <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+    </appsource_sort>
+    <appsource_sortDirection>
+      <cache>0</cache>
+      <customDisplay/>
+      <disabled>0</disabled>
+      <displayType>select</displayType>
+      <multiSelect>0</multiSelect>
+      <name>appsource_sortDirection</name>
+      <number>20</number>
+      <picker>0</picker>
+      <prettyName>appsource_sortDirection</prettyName>
+      <relationalStorage>0</relationalStorage>
+      <separator> </separator>
+      <separators> ,|</separators>
+      <size>1</size>
+      <sort>none</sort>
+      <unmodifiable>0</unmodifiable>
+      <validationMessage/>
+      <validationRegExp/>
+      <values>1=ASC|2=DESC</values>
+      <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+    </appsource_sortDirection>
     <appsource_url>
       <customDisplay/>
       <disabled>0</disabled>
@@ -226,6 +281,19 @@
       <valueField/>
       <classType>com.xpn.xwiki.objects.classes.DBListClass</classType>
     </source>
+    <text-color>
+      <customDisplay/>
+      <disabled>0</disabled>
+      <name>text-color</name>
+      <number>19</number>
+      <picker>0</picker>
+      <prettyName>text-color</prettyName>
+      <size>30</size>
+      <unmodifiable>0</unmodifiable>
+      <validationMessage/>
+      <validationRegExp/>
+      <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+    </text-color>
     <title>
       <customDisplay/>
       <disabled>0</disabled>

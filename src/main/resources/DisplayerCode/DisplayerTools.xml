@@ -49,23 +49,32 @@
 ## by the user throught $blockDisplayerDocClass and
 ## $blockDisplayerFields
 #macro(setDataMap $document $blockDisplayerDocClass $blockDisplayerFields)
-#set($dataMap = {})
-#set($object = $document.getObject("${blockDisplayerDocClass}"))
-## set Title
-#if("$!{object.get('title')}" != "")
-#set($discard = $dataMap.put("title", "$!{object.get('title')}"))
-#else
-#set($discard = $dataMap.put("title", "$!{document.getTitle()}"))
-#end
-## set other
-#foreach($blockDisplayerFieldEntry in $!{blockDisplayerFields.entrySet()})
-#set($fieldName = "$!{blockDisplayerFieldEntry.value}")
-#if("$!{object.get($fieldName)}" != "")
-#set($discard = $dataMap.put("$!{blockDisplayerFieldEntry.key}", "$!{object.get($fieldName)}"))
-#else
-#set($discard = $dataMap.put("$!{blockDisplayerFieldEntry.key}", ""))
-#end
-#end
+  #set($dataMap = {})
+  #set($object = $document.getObject("${blockDisplayerDocClass}"))
+  ## set Title
+  #if("$!{object.get('title')}" != "")
+    #set($discard = $dataMap.put("title", "$!{object.get('title')}"))
+  #elseif("$!{document.getTitle()}" != "")
+    #set($discard = $dataMap.put("title", "$!{document.getTitle()}"))
+  #else
+    #set($discard = $dataMap.put("title", "$!{document.getName()}"))
+  #end
+  ## set other
+  #foreach($blockDisplayerFieldEntry in $!{blockDisplayerFields.entrySet()})
+    #set($fieldName = "$!{blockDisplayerFieldEntry.value}")
+    #if("$!{object.get($fieldName)}" != "")
+      ## Get mapped value from the object
+      #set($discard = $dataMap.put("$!{blockDisplayerFieldEntry.key}", "$!{object.get($fieldName)}"))
+    #else
+      ## put an empty value
+      ## In case of url, we want at least the url of the document in view
+      #if("$!{fieldName}" == "url")
+        #set($discard = $dataMap.put("$!{blockDisplayerFieldEntry.key}", "$!{document.getURL()}"))
+      #else
+        #set($discard = $dataMap.put("$!{blockDisplayerFieldEntry.key}", ""))
+      #end
+    #end
+  #end
 #end
 {{/velocity}}</content>
 </xwikidoc>

@@ -42,10 +42,10 @@
         #set($discard = $sourceClassFieldsMapping.put("image", "${totemBlock.getProperty('appsource_image').value}"))
         #set($discard = $sourceClassFieldsMapping.put("url", "${totemBlock.getProperty('appsource_url').value}"))
         ## We use item from application, sourceType = 'sourceClass'
-        #displayBlock($totemBlockSheet, '', $totemBlock.getProperty('title').value, $totemBlock.getProperty('footer').value, 'sourceClass', '', $!{totemBlock.getProperty('appsource_app').value.get(0)}, 0, $sourceClassFieldsMapping )
+        #displayBlock($totemBlockSheet, '', $totemBlock.getProperty('title').value, $totemBlock.getProperty('footer').value, 'sourceClass', '', $!{totemBlock.getProperty('appsource_app').value.get(0)}, $!{totemBlock.getProperty('appsource_limit').value}, $!{totemBlock.get('appsource_sort')}, $!{totemBlock.get('appsource_sortDirection')}, $sourceClassFieldsMapping )
       #else
         ## We use the items list using sourceType as doclist
-        #displayBlock($totemBlockSheet, '', $totemBlock.getProperty('title').value, $totemBlock.getProperty('footer').value, 'doclist', $totemBlock.getProperty('source').value, $totemItemClass, 0, $sheetFieldsMapping.get($totemBlockSheet))
+        #displayBlock($totemBlockSheet, '', $totemBlock.getProperty('title').value, $totemBlock.getProperty('footer').value, 'doclist', $totemBlock.getProperty('source').value, $totemItemClass, $!{totemBlock.getProperty('appsource_limit').value}, $!{totemBlock.get('appsource_sort')}, $!{totemBlock.get('appsource_sortDirection')}, $sheetFieldsMapping.get($totemBlockSheet))
       #end 
       #if($withEdit)
         ## load the css used by the color picker input in edit mode
@@ -126,6 +126,15 @@
       &lt;input id="TotemCode.TotemBlockClass_background-color" type="text" name="TotemCode.TotemBlockClass_background-color" class="color-picker" value="$!{escapetool.xml($!doc.getValue('background-color', ${totemBlock}))}"&gt;
     #else
       &lt;input id="TotemCode.TotemBlockClass_${totemBlock.number}_background-color" type="text" name="TotemCode.TotemBlockClass_${totemBlock.number}_background-color" class="color-picker" value="$!{escapetool.xml($!doc.getValue('background-color', ${totemBlock}))}"&gt;
+    #end
+    {{/html}}
+    ## Text-color Custom input in order to display the color picker. Note : add color-picker class with javascript
+    ; $doc.displayPrettyName('text-color', $totemBlock)
+    {{html clean=false}}
+    #if ($isNewBlock)
+      &lt;input id="TotemCode.TotemBlockClass_text-color" type="text" name="TotemCode.TotemBlockClass_text-color" class="color-picker" value="$!{escapetool.xml($!doc.getValue('text-color', ${totemBlock}))}"&gt;
+    #else
+      &lt;input id="TotemCode.TotemBlockClass_${totemBlock.number}_text-color" type="text" name="TotemCode.TotemBlockClass_${totemBlock.number}_text-color" class="color-picker" value="$!{escapetool.xml($!doc.getValue('text-color', ${totemBlock}))}"&gt;
     #end
     {{/html}}
     ## Background-image Custom input to use an attachment selector

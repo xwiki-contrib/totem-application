@@ -22,7 +22,9 @@
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>false</hidden>
-  <content>{{velocity}}
+  <content>{{include reference="DisplayerCode.DisplayerTools"/}}
+
+{{velocity}}
 #######################################################
 ## This displayer is created in order to be used as 
 ## base or example to create new displayer. 
@@ -30,30 +32,6 @@
 ## Use css and javascript in object of the displayer
 ## $xwiki.ssx.use('DisplayerCode.TotemDisplayerModel')
 ## $xwiki.jsx.use('DisplayerCode.TotemDisplayerModel')
-#######################################################
-## The setDataMap Macro is used to put in a Map the 
-## datas from $document following parameters given 
-## by the user throught $blockDisplayerDocClass and
-## $blockDisplayerFields
-#macro(setDataMap $document $blockDisplayerDocClass $blockDisplayerFields)
-  #set($dataMap = {})
-  #set($object = $document.getObject("${blockDisplayerDocClass}"))
-  ## set Title
-  #if("$!{object.get('title')}" != "")
-    #set($discard = $dataMap.put("title", "$!{object.get('title')}"))
-  #else
-    #set($discard = $dataMap.put("title", "$!{document.getTitle()}"))
-  #end
-  ## set other 
-  #foreach($blockDisplayerFieldEntry in $!{blockDisplayerFields.entrySet()})
-    #set($fieldName = "$!{blockDisplayerFieldEntry.value}")
-    #if("$!{object.get($fieldName)}" != "")
-      #set($discard = $dataMap.put("$!{blockDisplayerFieldEntry.key}", "$!{object.get($fieldName)}"))
-    #else
-      #set($discard = $dataMap.put("$!{blockDisplayerFieldEntry.key}", ""))
-    #end
-  #end
-#end
 #######################################################
 ## And here start the specific code for the displayer
 {{html wiki="true"}}
