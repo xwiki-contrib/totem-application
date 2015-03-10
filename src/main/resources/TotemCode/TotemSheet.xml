@@ -1104,7 +1104,7 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
         #end
         #if ($totemBlock)
           #set($urlBackground = $doc.getAttachmentURL("${totemBlock.getValue('background-image')}"))
-          (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end col-sm-${totemBlockSize}" id="totemBlock_${totemBlock.number}" style="background:url(${urlBackground});  background-size: 100% 100%; background-color: ${totemBlock.background-color};  object-fit: cover;"%)(((
+          (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end col-sm-${totemBlockSize}" id="totemBlock_${totemBlock.number}" style="background:url($!{urlBackground});  background-size: 100% 100%; background-color: $!{totemBlock.background-color}; color: $!{totemBlock.text-color}; object-fit: cover;"%)(((
             #displayTotemBlock($totemBlock, $enableEdit, $cancelURL, $editURL $totemItemClass, $sheetFieldsMapping, $totemItemsURL)
           )))
           #set($discard = $displayedBlocks.add($totemBlock.number))
@@ -1115,7 +1115,7 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
       #foreach($totemLeftBlock in $doc.getObjects('TotemCode.TotemBlockClass'))
         #if(!$displayedBlocks.contains($totemLeftBlock.number))
         #set($urlBackground = $doc.getAttachmentURL("${totemLeftBlock.getValue('background-image')}"))
-          (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end col-sm-${totemBlockSize}" id="totemBlock_${totemLeftBlock.number}" style="background:url(${urlBackground});  background-size: 100% 100%; background-color: ${totemLeftBlock.background-color};  object-fit: cover;"%)(((
+          (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end col-sm-${totemBlockSize}" id="totemBlock_${totemLeftBlock.number}" style="background:url($!{urlBackground});  background-size: 100% 100%; background-color: $!{totemLeftBlock.background-color}; color: $!{totemBlock.text-color}; object-fit: cover;"%)(((
             #displayTotemBlock($totemLeftBlock, $enableEdit, $cancelURL, $editURL $totemItemClass, $sheetFieldsMapping, $totemItemsURL)
           )))
           #set($discard = $displayedBlocks.add($totemBlock.number))
