@@ -1015,6 +1015,7 @@ $(function(){
     </property>
   </object>
   <content>{{include document="DisplayerCode.DisplayerMacros" /}}
+  
 {{include document="TotemCode.TotemMacros" /}}
 
 {{velocity output="false"}}
@@ -1144,7 +1145,7 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
   $response.sendRedirect("$editURL")
 #end
 
-{{html}}
+{{html clean="false"}}
 #displayModal("totemModal")
 {{/html}}
 
