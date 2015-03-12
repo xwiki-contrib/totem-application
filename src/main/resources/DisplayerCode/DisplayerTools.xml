@@ -64,7 +64,7 @@
     #set($fieldName = "$!{blockDisplayerFieldEntry.value}")
     #if("$!{object.get($fieldName)}" != "")
       ## Get mapped value from the object
-      #set($discard = $dataMap.put("$!{blockDisplayerFieldEntry.key}", "$!{object.get($fieldName)}"))
+      #set($discard = $dataMap.put("$!{blockDisplayerFieldEntry.key}", "$!{object.getProperty($fieldName).value}"))
     #else
       ## put an empty value
       ## In case of url, we want at least the url of the document in view
