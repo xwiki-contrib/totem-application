@@ -1015,7 +1015,7 @@ $(function(){
     </property>
   </object>
   <content>{{include document="DisplayerCode.DisplayerMacros" /}}
-  
+
 {{include document="TotemCode.TotemMacros" /}}
 
 {{velocity output="false"}}
