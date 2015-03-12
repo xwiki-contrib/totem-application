@@ -157,6 +157,7 @@
   padding: 0;
 }
 .topImage{
+  padding: 15px 0;
   display: block;
   margin: 0 auto;
   width: 100%;
