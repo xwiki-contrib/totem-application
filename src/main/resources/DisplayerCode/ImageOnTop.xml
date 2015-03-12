@@ -31,8 +31,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1423840736000</creationDate>
-  <date>1426087721000</date>
-  <contentUpdateDate>1425574025000</contentUpdateDate>
+  <date>1426174409000</date>
+  <contentUpdateDate>1426174409000</contentUpdateDate>
   <version>1.1</version>
   <title>ImageOnTop</title>
   <defaultTemplate/>
@@ -196,6 +196,7 @@
 {{html wiki="true"}}
 &lt;div class="row"&gt;
   #foreach($document in $blockDisplayerDocList)
+    #set($urlTopLogo = '')
     #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
     ##START##Inserted clearfix div for proper display
     ##Every 4*k+1 element will be at the beginign of a new line
@@ -211,8 +212,10 @@
         &lt;h2&gt;
           $dataMap.title
         &lt;/h2&gt;
-        &lt;img class="topImage" src="$!{urlTopLogo}" alt="Responsive image"&gt;
-      &lt;/div&gt;#*
+        #if($urlTopLogo != '')
+          &lt;img class="topImage" src="$!{urlTopLogo}" alt=""&gt;
+        #end
+      &lt;/div&gt;#* This comments prevent bootstrap columns from breaking by inserting spaces
     *#&lt;div class="col-md-12 display-table topdContainer vcenter"&gt;
         &lt;div class="topDescription"&gt;
           $dataMap.description
