@@ -154,12 +154,10 @@
     </property>
     <property>
       <code>.blindfoldRow.blind {
-  color : white;
   padding: 42px 0;
 }
 .blindfoldTitle {
 	font-size: 2em;
-	text-shadow: 2px 2px #000000;
 	font-weight: bold;
 }
 .blindfoldDescription {
