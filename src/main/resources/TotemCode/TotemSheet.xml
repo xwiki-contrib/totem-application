@@ -1114,8 +1114,12 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
       #end
       ## for all the blocks that were not displayed before, display them
       #foreach($totemLeftBlock in $doc.getObjects('TotemCode.TotemBlockClass'))
+        #set($totemBlockSize = 12 )
+        #if("$!{totemLeftBlock.size}" != "")
+          #set($totemBlockSize = ${totemLeftBlock.size})
+        #end
         #if(!$displayedBlocks.contains($totemLeftBlock.number))
-        #set($urlBackground = $doc.getAttachmentURL("${totemLeftBlock.getValue('background-image')}"))
+          #set($urlBackground = $doc.getAttachmentURL("${totemLeftBlock.getValue('background-image')}"))
           (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end col-sm-${totemBlockSize}" id="totemBlock_${totemLeftBlock.number}" style="background:url($!{urlBackground});  background-size: 100% 100%; background-color: $!{totemLeftBlock.background-color}; color: $!{totemLeftBlock.text-color}; object-fit: cover;"%)(((
             #displayTotemBlock($totemLeftBlock, $enableEdit, $cancelURL, $editURL $totemItemClass, $sheetFieldsMapping, $totemItemsURL)
           )))
