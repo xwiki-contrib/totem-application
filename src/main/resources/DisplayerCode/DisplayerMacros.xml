@@ -173,7 +173,7 @@
 ## print the round work of the block
 (%class="blockdisplayer $!cssClass"%)(((
   #if("$!title" != '')
-    (%class="blocktitle"%)(((=$title=)))
+    (%class="blocktitle col-xs-12 col-md-12"%)(((=$title=)))
   #end
   ## prepare the documents list in variable $docList
   ## TODO: handle the other types of sources in the future
