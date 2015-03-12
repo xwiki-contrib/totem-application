@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -32,7 +31,7 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1423840736000</creationDate>
-  <date>1425574118000</date>
+  <date>1426087721000</date>
   <contentUpdateDate>1425574025000</contentUpdateDate>
   <version>1.1</version>
   <title>ImageOnTop</title>
@@ -166,9 +165,6 @@
 .right{
   float:right;
 }
-.topDescription{
-  font-size: 14px;
-}
 .topDescription p{
   text-align: left;
 }
@@ -177,14 +173,8 @@
 }
 .imgTopLink{
   float: right;
-  font-size: 12px;
+  font-size: 0.95em;
   font-weight: bold;
-}
-
-@media only screen and (max-device-width: 640px) {
-
-  .topDescription { font-size: 12px }
-
 }</code>
     </property>
     <property>

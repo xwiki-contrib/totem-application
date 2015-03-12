@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!--
  * See the NOTICE file distributed with this work for additional
  * information regarding copyright ownership.
@@ -32,8 +31,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1423135868000</creationDate>
-  <date>1425398970000</date>
-  <contentUpdateDate>1425398878000</contentUpdateDate>
+  <date>1426150874000</date>
+  <contentUpdateDate>1425636476000</contentUpdateDate>
   <version>1.1</version>
   <title/>
   <defaultTemplate/>
@@ -155,25 +154,14 @@
     </property>
     <property>
       <code>.simpleRow.simpleText{
-  color : white;
-  padding: 15px;
-}
-.simpleTitle {
-  font-size: 28px;
-  text-shadow: 2px 2px #000000;
-  font-weight: bold;
+  padding: 15px 0;
 }
 .simpleDescription {
-  font-size: 18px;
+  font-size: 1.3em;
 }
 @media only screen and (max-device-width: 640px) {
 
-  .simpleDescription { font-size: 14px }
-
-}
-@media only screen and (max-device-width: 640px) {
-
-  .simpleTitle { font-size: 20px }
+  .simpleDescription { font-size: 1em; }
 
 }</code>
     </property>
