@@ -155,14 +155,6 @@
     <property>
       <code>.simpleRow.simpleText{
   padding: 15px 0;
-}
-.simpleDescription {
-  font-size: 1.3em;
-}
-@media only screen and (max-device-width: 640px) {
-
-  .simpleDescription { font-size: 1em; }
-
 }</code>
     </property>
     <property>
