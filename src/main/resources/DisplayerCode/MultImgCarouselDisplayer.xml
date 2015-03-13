@@ -175,7 +175,7 @@ tXEfZJKdtgAAAABJRU5ErkJggg==
       <code>require(['jquery'], function ($) {
 $( window ).load(function() {
   $('#myCarousel').carousel({
-  interval: 6000
+  interval: 3000
 });
 });
 
