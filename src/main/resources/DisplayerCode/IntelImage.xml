@@ -297,14 +297,17 @@ a.expand {
     #end
     ##START## Avoid cramming the images
     #if(($velocityCount - 1) % 6 == 0 &amp;&amp; $velocityCount != 1)
-      &lt;div class="clearfix visible-md-block visible-sm-block visible-lg-block"&gt;&lt;/div&gt;
+      &lt;div class="clearfix visible-md-block visible-lg-block"&gt;&lt;/div&gt;
+    #end
+    #if(($velocityCount - 1) % 4 == 0 &amp;&amp; $velocityCount != 1)
+      &lt;div class="clearfix visible-sm-block"&gt;&lt;/div&gt;
     #end
     #if(($velocityCount - 1) % 3 == 0 &amp;&amp; $velocityCount != 1)
       &lt;div class="clearfix visible-xs-block"&gt;&lt;/div&gt;
     #end
     ##END##
     #if($urlIntelLogo != '')
-      &lt;div class="col-xs-4 col-sm-2 col-md-2 intelRow inteldisplayer"&gt;
+      &lt;div class="col-xs-4 col-sm-3 col-md-2 intelRow inteldisplayer"&gt;
         &lt;div class="center imageContainer"&gt;
           &lt;div id="effect-1"&gt;
             &lt;div id="box" class="box"&gt;
