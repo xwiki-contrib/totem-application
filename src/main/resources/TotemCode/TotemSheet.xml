@@ -662,6 +662,12 @@ $.extend({
 //Method to intialize edit forms
 initializeEditForm : function(editFormURL,XWModalContent){
    $(".xdialog-box").addClass("xwmlrg");
+
+    // Initialize color pickers
+    require(['colpick'], function(Colpick) {
+       $.initColorPickers();
+    });
+
    //Initialize attachment-picker fields
    $(".attachment-picker-start").click(function(event){
       var attPickerURL = $(this).attr("href") + "&amp;xpage=plain";
@@ -697,6 +703,46 @@ initializeEditForm : function(editFormURL,XWModalContent){
       $(".xdialog-close").click();
       event.preventDefault();
    });
+},
+
+//Method to intialize color pickers
+initColorPickers : function(){
+    // Get the inputs that need to be enhanced
+    $('.color-picker').each(function(index){
+         var input = $(this);
+         var parent = $(this).parent();
+         // Create the color preview box
+         parent.append('&lt;div class="input-group-addon color-preview"&gt;&lt;/div&gt;');
+         // Update the color preview box
+         $(".color-preview",parent).css('background-color', input.val());
+         // Enable the color picker
+         $(this).colpick({
+             layout: 'hex',
+             submit: true,
+             color: $(this).val(),
+             onShow: function(colpickobj){
+                $(colpickobj).css("z-index","99999");
+             },
+             onSubmit: function(hsb, hex, rgb, el) {
+                var element = $(el);
+                // Hide the color picker
+                element.colpickHide();
+                // Update the filled value
+                element.val('#'+hex);
+                // Update the color preview box
+                $(".color-preview",element.parent()).css('background-color', '#'+hex);
+                // Emit the "change" event
+                element.trigger('change');
+             }
+         });
+         // If the user write a value manually
+         input.keyup(function(event){
+            // Update the color preview box
+            $('.color-preview',$(this).parent()).css('background-color', $(this).val());
+            // Update the color picker
+            $(this).colpickSetColor($(this).val(), false);
+         });
+    });
 },
 
 //Method to intialize the attachment picker after loading it
@@ -792,7 +838,7 @@ initAttachmentPicker : function(editFormURL,attPickerURL,XWModalContent){
         $("#attachment-picker-close").click(function(event){
            //Reload edit item form
            $(XWModalContent).load(editFormURL,function(){
-              $.initializeItemEditForm(editFormURL,XWModalContent);
+              $.initializeEditForm(editFormURL,XWModalContent);
            });
            event.preventDefault();
         });
@@ -989,46 +1035,6 @@ XWiki.widgets.TotemModalPopup = Class.create(XWiki.widgets.ModalPopup, {
         require(['jquery'],function($){
            $.initializeEditForm(data.pageURL,content);
         });
-
-        //Initialize the color pickers
-        require(['jquery', 'colpick'], function($, Colpick) {
-          // Get the inputs that need to be enhanced
-          $('.color-picker').each(function(index){
-          var input = $(this);
-          var parent = $(this).parent();
-          // Create the color preview box
-          parent.append('&lt;div class="input-group-addon color-preview"&gt;&lt;/div&gt;');
-          // Update the color preview box
-          $(".color-preview",parent).css('background-color', input.val());
-          // Enable the color picker
-          $(this).colpick({
-             layout: 'hex',
-             submit: true,
-             color: $(this).val(),
-             onShow: function(colpickobj){
-             $(colpickobj).css("z-index","99999");
-          },
-          onSubmit: function(hsb, hex, rgb, el) {
-             var element = $(el);
-             // Hide the color picker
-             element.colpickHide();
-             // Update the filled value
-             element.val('#'+hex);
-             // Update the color preview box
-             $(".color-preview",element.parent()).css('background-color', '#'+hex);
-             // Emit the "change" event
-             element.trigger('change');
-           }
-        });
-        // If the user write a value manually
-        input.keyup(function(event){
-           // Update the color preview box
-           $('.color-preview',$(this).parent()).css('background-color', $(this).val());
-           // Update the color picker
-           $(this).colpickSetColor($(this).val(), false);
-        });
-     });
-});
       },
       onFailure: function(){ content.insert('Something went wrong...'); 
     }
