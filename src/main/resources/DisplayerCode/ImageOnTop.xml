@@ -207,7 +207,7 @@
     #if($!{dataMap.image} != '')
       #set($urlTopLogo = $document.getAttachmentURL($dataMap.image, 'download'))
     #end
-    &lt;div class="col-xs-12 col-md-3 row topRow topdisplayer"&gt;
+    &lt;div class="col-xs-12 col-sm-6 col-md-3 row topRow topdisplayer"&gt;
       &lt;div class="col-md-12 display-table vcenter center topimgContainer"&gt;
         &lt;h2&gt;
           $dataMap.title
