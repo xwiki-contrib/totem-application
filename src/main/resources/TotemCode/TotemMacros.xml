@@ -139,7 +139,7 @@
     {{/html}}
     ## Background-image Custom input to use an attachment selector
     ; $doc.displayPrettyName('background-image', $totemBlock)
-    {{attachmentSelector classname="${totemBlockClass.name}" object="${totemBlock.number}" property="background-image" savemode="direct" displayImage="false" link="true" filter="png,jpg,gif"/}}
+    {{attachmentSelector classname="${totemBlockClass.name}" object="${totemBlock.number}" property="background-image" savemode="direct" displayImage="true" link="true" filter="png,jpg,gif" width="100px"/}}
     ## Background-video Custom input to use an attachment selector
     ## TODO : Develop this functionality
     ## ; $doc.displayPrettyName('background-video', $totemBlock)
