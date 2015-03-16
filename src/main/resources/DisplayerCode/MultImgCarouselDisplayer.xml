@@ -31,8 +31,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1423997229000</creationDate>
-  <date>1426170443000</date>
-  <contentUpdateDate>1426170443000</contentUpdateDate>
+  <date>1426507971000</date>
+  <contentUpdateDate>1426507915000</contentUpdateDate>
   <version>1.1</version>
   <title>MultImgCarouselDisplayer</title>
   <defaultTemplate/>
@@ -366,32 +366,47 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
   display: block;
   margin: 0 auto;
   width: 100%;
-  max-width: 270px;
+  max-width: 200px;
 }
 .box{
+  max-width: 200px;
   margin: 0 !important;
   padding: 0 !important;
   border-top: 0;
   border-left: 0;
-  box-shadow:inset 1px 1px 40px 0 rgba(0,0,0,.45);
   border-bottom:2px solid #fff;
   border-right:2px solid #fff;
   margin:5% auto 0 auto; 
   border-radius:5px;
   overflow:hidden;
 }
-.multiImgOverlay {
-  display: block;
-  position: absolute;
-  z-index: 20;
-  background: rgba(0, 0, 0, 0.8);
-  overflow: hidden;
-  transition: all 0.2s;
-  max-width: 200px;
-  border-radius:5px;
-  max-width: 150px;
+.miniImageContainer:before {
+  left: 0;
+  right: 0;
+  bottom: 50%;
+  margin: 0 auto -25px auto;
 }
-a.expand {
+.miniImageContainer {
+  position:relative;
+}
+.miniImageContainer img {
+  width:100%;
+  vertical-align:top;
+}
+.miniImageContainer:after, .miniImageContainer:before {
+  position:absolute;
+  opacity:0;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+}
+.miniImageContainer:after {
+  content:'\A';
+  width:100%; height:100%;
+  top:0; left:0;
+  background:rgba(0,0,0,0.6);
+}
+.miniImageContainer:before {
+  content: attr(data-content);
   display: block;
   position: absolute;
   z-index: 100;
@@ -406,21 +421,8 @@ a.expand {
   border-radius: 30px;
   text-decoration: none;
 }
-#effect-1 .multiImgOverlay {
-  bottom: 15px;
-  left: 0;
-  right: 0;
-  width: calc(100% - 30px);
-  height: 0;
-}
-#effect-1 .multiImgOverlay a.expand {
-  left: 0;
-  right: 0;
-  bottom: 50%;
-  margin: 0 auto -25px auto;
-}
-#effect-1 .box:hover .multiImgOverlay {
-  height: calc(100% - 30px);
+.miniImageContainer:hover:after, .miniImageContainer:hover:before {
+  opacity:1;
 }</code>
     </property>
     <property>
@@ -451,19 +453,29 @@ a.expand {
           #if($foreach.isFirst() == true)
             &lt;div class="item active"&gt;
               &lt;div class="col-md-2 carouselImgContainer"&gt;
-                {{html}}
-                  &lt;a href="$!{dataMap.url}"&gt;
-                    &lt;img src="$!{imgSrc}" class="img-responsive"&gt;
+                &lt;div class="box"&gt;
+                  {{html}}
+                  &lt;a style="display:block" href='$!{dataMap.url}'&gt;
+                    &lt;div data-content="+" class="miniImageContainer"&gt;
+                      &lt;img class="multiImgImage "src="$!{imgSrc}" alt="Responsive image"&gt;
+                    &lt;/div&gt;
                   &lt;/a&gt;
-                {{/html}}
+                  {{/html}}
+                &lt;/div&gt;
               &lt;/div&gt;
             &lt;/div&gt;
           #else
           &lt;div class="item"&gt;
             &lt;div class="col-md-2 carouselImgContainer"&gt;
-              {{html}}
-                &lt;a href="$!{dataMap.url}"&gt;&lt;img src="$!{imgSrc}" class="img-responsive"&gt;&lt;/a&gt;
-              {{/html}}
+              &lt;div class="box"&gt;
+                {{html}}
+                &lt;a style="display:block" href='$!{dataMap.url}'&gt;
+                  &lt;div data-content="+" class="miniImageContainer"&gt;
+                    &lt;img class="multiImgImage "src="$!{imgSrc}" alt="Responsive image"&gt;
+                  &lt;/div&gt;
+                &lt;/a&gt;
+                {{/html}}
+              &lt;/div&gt;
             &lt;/div&gt;
           &lt;/div&gt;
           #end
@@ -501,31 +513,29 @@ a.expand {
       #if($velocityCount &lt;= 6 &amp;&amp; $urlMobLogo != '')
       &lt;div class="col-xs-4 col-sm-4 multiImgRow multiImgdisplayer"&gt;
         &lt;div class="center imageContainer"&gt;
-          &lt;div id="effect-1"&gt;
-            &lt;div id="box" class="box"&gt;
-              &lt;img class="multiImgImage "src="$!{urlMobLogo}" alt="Responsive image"&gt;
-              &lt;div class="multiImgOverlay center"&gt;
-                {{html}}
-                  &lt;a href='$!{dataMap.url}' class="expand"&gt;+&lt;/a&gt;
-                {{/html}}
+          &lt;div class="box"&gt;
+            {{html}}
+            &lt;a style="display:block" href='$!{dataMap.url}'&gt;
+              &lt;div data-content="+" class="miniImageContainer"&gt;
+                &lt;img class="multiImgImage "src="$!{urlMobLogo}" alt="Responsive image"&gt;
               &lt;/div&gt;
-            &lt;/div&gt;
-          &lt;/div&gt; 
+            &lt;/a&gt;
+            {{/html}}
+          &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
       #elseif($urlMobLogo != '')
       &lt;div class="col-xs-4 col-sm-4 multiImgRow multiImgdisplayermob" style="display: none"&gt;
         &lt;div class="center imageContainer"&gt;
-          &lt;div id="effect-1"&gt;
-            &lt;div id="box" class="box"&gt;
-              &lt;img class="multiImgImage "src="$!{urlMobLogo}" alt="Responsive image"&gt;
-              &lt;div class="multiImgOverlay center"&gt;
-                {{html}}
-                  &lt;a href='$!{dataMap.url}' class="expand"&gt;+&lt;/a&gt;
-                {{/html}}
+          &lt;div class="box"&gt;
+            {{html}}
+            &lt;a style="display:block" href='$!{dataMap.url}'&gt;
+              &lt;div data-content="+" class="miniImageContainer"&gt;
+                &lt;img class="multiImgImage "src="$!{urlMobLogo}" alt="Responsive image"&gt;
               &lt;/div&gt;
-            &lt;/div&gt;
-          &lt;/div&gt; 
+            &lt;/a&gt;
+            {{/html}}
+          &lt;/div&gt;
         &lt;/div&gt;
       &lt;/div&gt;
       #end
