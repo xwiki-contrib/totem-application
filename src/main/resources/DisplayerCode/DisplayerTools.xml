@@ -62,9 +62,16 @@
   ## set other
   #foreach($blockDisplayerFieldEntry in $!{blockDisplayerFields.entrySet()})
     #set($fieldName = "$!{blockDisplayerFieldEntry.value}")
+    #set($fieldKey = "$!{blockDisplayerFieldEntry.key}" )
     #if("$!{object.get($fieldName)}" != "")
       ## Get mapped value from the object
-      #set($discard = $dataMap.put("$!{blockDisplayerFieldEntry.key}", "$!{object.getProperty($fieldName).value}"))
+      #if("$!{fieldKey}" == "date")
+        ## For date, we take in account the date format set in the class
+        #set($discard = $dataMap.put("$!{blockDisplayerFieldEntry.key}", "$!{object.get($fieldName)}"))
+      #else
+        ## For the others, we take only the value without formating
+        #set($discard = $dataMap.put("$!{blockDisplayerFieldEntry.key}", "$!{object.getProperty($fieldName).value}"))
+      #end
     #else
       ## put an empty value
       ## In case of url, we want at least the url of the document in view
