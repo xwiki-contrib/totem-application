@@ -167,7 +167,7 @@
     <className>XWiki.XWikiSkins</className>
     <guid>88d7ec49-7691-4832-965a-4cec0d8b2caa</guid>
     <property>
-      <baseskin>XWiki.DefaultSkin</baseskin>
+      <baseskin>flamingo</baseskin>
     </property>
     <property>
       <edit.vm>###
