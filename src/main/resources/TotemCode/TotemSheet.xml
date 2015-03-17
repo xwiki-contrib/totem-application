@@ -1711,7 +1711,6 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
       #displayTotemBlockEditForm($fakeTotemBlock, true, $cancelURL, $editURL)
     )))
   #end
-
   {{html clean="false"}}#template("textarea_wysiwyg.vm"){{/html}}
 #else
   ## if we're in edit mode, send a redirect to the edit screen, since the totem has a special edit form (available in view).
