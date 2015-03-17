@@ -189,6 +189,12 @@
     #end
   #elseif("$!sourceType" == "sourceClass" &amp;&amp; "$!sourceClass" != "")
     ## retrieve data from the sourceClass
+    ### setup boolean condition
+    #set($booleanCondition = "")
+    #if("$!{fields.get('boolean')}" != "")
+      #set($booleanCondition = "and source.${fields.get('boolean')} = :booleanCondition")
+    #end
+    ### setup orderBy
     #set($orderBy = "")
     #if("$!sourceSort" != "")
       #set($orderBy = " order by ")
@@ -198,14 +204,20 @@
         #set($orderBy = "${orderBy} doc.${sourceSort} $!{sourceSortDirection}")
       #end
     #end
-    #set($sourceTemplate = ${stringtool.replace($sourceClass,"Class","Template")})
-    #set($xwqlstatement = "from doc.object(${sourceClass}) as source where doc.fullName &lt;&gt; '${sourceTemplate}' ${orderBy}")
+    ### Create the query
+    #set($xwqlstatement = "from doc.object(${sourceClass}) as source where doc.fullName &lt;&gt; :sourceTemplate $!{booleanCondition} ${orderBy}")
     #set($query = $services.query.xwql(${xwqlstatement}))
-    ## set limit
+    ### set limit
     #if("$!{sourceLimit}" != "" &amp;&amp; "$!{sourceLimit}" != "0")
       #set($query = $query.setLimit($!{sourceLimit}))
     #end
-    ## execute query
+    ### bind values
+    #set($sourceTemplate = ${stringtool.replace($sourceClass,"Class","Template")})
+    #set($discard = $query.bindValue("sourceTemplate", "$!{sourceTemplate}"))
+    #if("$!{booleanCondition}" != "")
+      #set($discard = $query.bindValue("booleanCondition", 1))
+    #end
+    ### execute query
     #set($results = $query.execute())
     #set($blockDisplayerDocList = [])
     #foreach($docName in $!{results})

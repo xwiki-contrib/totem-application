@@ -37,10 +37,11 @@
       #if("${totemBlock.getProperty('appsource_app').value}" != "" &amp;&amp; "${totemBlock.getProperty('appsource_app').value.size()}" != "0")
         ## create field mapping with data filled by the user
         #set($sourceClassFieldsMapping = {})
-        #set($discard = $sourceClassFieldsMapping.put("description", "${totemBlock.getProperty('appsource_description').value}"))
-        #set($discard = $sourceClassFieldsMapping.put("date", "${totemBlock.getProperty('appsource_date').value}"))
-        #set($discard = $sourceClassFieldsMapping.put("image", "${totemBlock.getProperty('appsource_image').value}"))
-        #set($discard = $sourceClassFieldsMapping.put("url", "${totemBlock.getProperty('appsource_url').value}"))
+        #set($discard = $sourceClassFieldsMapping.put("description", "$!{totemBlock.getProperty('appsource_description').value}"))
+        #set($discard = $sourceClassFieldsMapping.put("date", "$!{totemBlock.getProperty('appsource_date').value}"))
+        #set($discard = $sourceClassFieldsMapping.put("image", "$!{totemBlock.getProperty('appsource_image').value}"))
+        #set($discard = $sourceClassFieldsMapping.put("url", "$!{totemBlock.getProperty('appsource_url').value}"))
+        #set($discard = $sourceClassFieldsMapping.put("boolean", "$!{totemBlock.getProperty('appsource_boolean').value}"))
         ## We use item from application, sourceType = 'sourceClass'
         #displayBlock($totemBlockSheet, '', $totemBlock.getProperty('title').value, $totemBlock.getProperty('footer').value, 'sourceClass', '', $!{totemBlock.getProperty('appsource_app').value.get(0)}, $!{totemBlock.getProperty('appsource_limit').value}, $!{totemBlock.get('appsource_sort')}, $!{totemBlock.get('appsource_sortDirection')}, $sourceClassFieldsMapping )
       #else
@@ -196,7 +197,7 @@
             &lt;br/&gt;
             {{warning}}**For advanced user only :**{{/warning}}
 
-            #foreach ($propName in ['appsource_app', 'appsource_date', 'appsource_description', 'appsource_image', 'appsource_url', 'appsource_limit', 'appsource_sort', 'appsource_sortDirection'])
+            #foreach ($propName in ['appsource_app', 'appsource_date', 'appsource_description', 'appsource_image', 'appsource_url', 'appsource_boolean', 'appsource_limit', 'appsource_sort', 'appsource_sortDirection'])
                ; $doc.displayPrettyName($propName, $totemBlock)
                : $doc.display($propName, 'edit', $totemBlock)
             #end

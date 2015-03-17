@@ -55,6 +55,15 @@
       <valueField/>
       <classType>com.xpn.xwiki.objects.classes.DBListClass</classType>
     </appsource_app>
+    <appsource_boolean>
+      <disabled>0</disabled>
+      <name>appsource_boolean</name>
+      <number>21</number>
+      <prettyName>appsource_boolean</prettyName>
+      <size>30</size>
+      <unmodifiable>0</unmodifiable>
+      <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+    </appsource_boolean>
     <appsource_date>
       <customDisplay/>
       <disabled>0</disabled>
