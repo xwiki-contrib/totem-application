@@ -32,8 +32,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1423907602000</creationDate>
-  <date>1426508494000</date>
-  <contentUpdateDate>1426508494000</contentUpdateDate>
+  <date>1426664463000</date>
+  <contentUpdateDate>1426664463000</contentUpdateDate>
   <version>1.1</version>
   <title>IntelImage</title>
   <defaultTemplate/>
@@ -217,7 +217,7 @@ z+eDkZERcDgcHpvNVv3v1o6L56vebYnEXP4LZXu8cLcoAW4AAAAASUVORK5CYII=
   top: 50%;
   transform: translateY(-60%);
 }
-.box{
+.imgBox{
   max-width: 200px;
   margin: 0 !important;
   padding: 0 !important;
@@ -312,7 +312,7 @@ z+eDkZERcDgcHpvNVv3v1o6L56vebYnEXP4LZXu8cLcoAW4AAAAASUVORK5CYII=
     #if($urlIntelLogo != '')
       &lt;div class="col-xs-4 col-sm-3 col-md-2 intelRow inteldisplayer"&gt;
         &lt;div class="center IntelImageContainer"&gt;
-          &lt;div class="box"&gt;
+          &lt;div class="imgBox"&gt;
             {{html}}
             &lt;a style="display:block" href='$!{dataMap.url}'&gt;
               &lt;div data-content="+" class="image"&gt;

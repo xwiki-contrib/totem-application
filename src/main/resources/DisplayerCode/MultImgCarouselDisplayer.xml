@@ -32,8 +32,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1423997229000</creationDate>
-  <date>1426507971000</date>
-  <contentUpdateDate>1426507915000</contentUpdateDate>
+  <date>1426664359000</date>
+  <contentUpdateDate>1426664359000</contentUpdateDate>
   <version>1.1</version>
   <title>MultImgCarouselDisplayer</title>
   <defaultTemplate/>
@@ -369,7 +369,7 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
   width: 100%;
   max-width: 200px;
 }
-.box{
+.imgBox{
   max-width: 200px;
   margin: 0 !important;
   padding: 0 !important;
@@ -454,7 +454,7 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
           #if($foreach.isFirst() == true)
             &lt;div class="item active"&gt;
               &lt;div class="col-md-2 carouselImgContainer"&gt;
-                &lt;div class="box"&gt;
+                &lt;div class="imgBox"&gt;
                   {{html}}
                   &lt;a style="display:block" href='$!{dataMap.url}'&gt;
                     &lt;div data-content="+" class="miniImageContainer"&gt;
@@ -468,7 +468,7 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
           #else
           &lt;div class="item"&gt;
             &lt;div class="col-md-2 carouselImgContainer"&gt;
-              &lt;div class="box"&gt;
+              &lt;div class="imgBox"&gt;
                 {{html}}
                 &lt;a style="display:block" href='$!{dataMap.url}'&gt;
                   &lt;div data-content="+" class="miniImageContainer"&gt;
@@ -514,7 +514,7 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
       #if($velocityCount &lt;= 6 &amp;&amp; $urlMobLogo != '')
       &lt;div class="col-xs-4 col-sm-4 multiImgRow multiImgdisplayer"&gt;
         &lt;div class="center imageContainer"&gt;
-          &lt;div class="box"&gt;
+          &lt;div class="imgBox"&gt;
             {{html}}
             &lt;a style="display:block" href='$!{dataMap.url}'&gt;
               &lt;div data-content="+" class="miniImageContainer"&gt;
@@ -528,7 +528,7 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
       #elseif($urlMobLogo != '')
       &lt;div class="col-xs-4 col-sm-4 multiImgRow multiImgdisplayermob" style="display: none"&gt;
         &lt;div class="center imageContainer"&gt;
-          &lt;div class="box"&gt;
+          &lt;div class="imgBox"&gt;
             {{html}}
             &lt;a style="display:block" href='$!{dataMap.url}'&gt;
               &lt;div data-content="+" class="miniImageContainer"&gt;
