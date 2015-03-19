@@ -52,7 +52,11 @@
   #end
     (%class="totemBlockContent" style="${totemBlockContentStyle}"%)(((
       ## display the block. get its values and then call the displayer macro
-      #set($totemBlockSheet = $totemBlock.getProperty('type').value)  
+      #set($totemBlockSheet = $totemBlock.getProperty('type').value)
+      ## get additionalData
+      #set($totemItemAdditionalDataObjects = $xwiki.getDocument("${totemBlockSheet}").getObjects('TotemCode.TotemItemAdditionalDataClass'))
+      ## this macro set $displayerAdditionalDataMap
+      #getDisplayerAdditionalDataInMap($totemItemAdditionalDataObjects ${totemBlock.getProperty('data').value})
       ## Case of item coming from application
       #if("${totemBlock.getProperty('appsource_app').value}" != "" &amp;&amp; "${totemBlock.getProperty('appsource_app').value.size()}" != "0")
         ## create field mapping with data filled by the user
@@ -63,10 +67,10 @@
         #set($discard = $sourceClassFieldsMapping.put("url", "$!{totemBlock.getProperty('appsource_url').value}"))
         #set($discard = $sourceClassFieldsMapping.put("boolean", "$!{totemBlock.getProperty('appsource_boolean').value}"))
         ## We use item from application, sourceType = 'sourceClass'
-        #displayBlock($totemBlockSheet, '', $totemBlock.getProperty('title').value, $totemBlock.getProperty('footer').value, 'sourceClass', '', $!{totemBlock.getProperty('appsource_app').value.get(0)}, $!{totemBlock.getProperty('appsource_limit').value}, $!{totemBlock.get('appsource_sort')}, $!{totemBlock.get('appsource_sortDirection')}, $sourceClassFieldsMapping )
+        #displayBlock($totemBlockSheet, '', $totemBlock.getProperty('title').value, $totemBlock.getProperty('footer').value, 'sourceClass', '', $!{totemBlock.getProperty('appsource_app').value.get(0)}, $!{totemBlock.getProperty('appsource_limit').value}, $!{totemBlock.get('appsource_sort')}, $!{totemBlock.get('appsource_sortDirection')}, $sourceClassFieldsMapping, $!{displayerAdditionalDataMap})
       #else
         ## We use the items list using sourceType as doclist
-        #displayBlock($totemBlockSheet, '', $totemBlock.getProperty('title').value, $totemBlock.getProperty('footer').value, 'doclist', $totemBlock.getProperty('source').value, $totemItemClass, $!{totemBlock.getProperty('appsource_limit').value}, $!{totemBlock.get('appsource_sort')}, $!{totemBlock.get('appsource_sortDirection')}, $sheetFieldsMapping.get($totemBlockSheet))
+        #displayBlock($totemBlockSheet, '', $totemBlock.getProperty('title').value, $totemBlock.getProperty('footer').value, 'doclist', $totemBlock.getProperty('source').value, $totemItemClass, $!{totemBlock.getProperty('appsource_limit').value}, $!{totemBlock.get('appsource_sort')}, $!{totemBlock.get('appsource_sortDirection')}, $sheetFieldsMapping.get($totemBlockSheet), $!{displayerAdditionalDataMap})
       #end 
       #if($withEdit)
         ## load the css used by the color picker input in edit mode
@@ -90,23 +94,29 @@
 
 #macro(getDisplayerAdditionalDataInMap $totemItemAdditionalDataObjects $totemBlockStoredData)
   ## Read stored data
-  #set( $totemBlockStoredDataMap = {} )
-  #foreach( $dataLine in $!{totemBlockStoredData.replaceAll("\r", "").replaceAll("\n", "").replaceAll(" ", "").split(",")} )
-  #set( $dkey = "" )
-  #set( $dvalue = "" )
+  #set($totemBlockStoredDataMap = {})
+  #foreach($dataLine in $!{totemBlockStoredData.replaceAll("\r", "").replaceAll("\n", "").replaceAll(" ", "").split(",")})
+    #set($dkey = "" )
+    #set($dvalue = "" )
     #foreach( $d in ${dataLine.split(":")})
-      #if( ${foreach.index} == 0 )
-        #set( $dkey = "$!{d}" )
+      #if(${foreach.index} == 0 )
+        #set($dkey = "$!{d}" )
       #else
-        #set( $dvalue = "$!{d}" )
+        #set($dvalue = "$!{d}" )
       #end
     #end
-    #set( $discard = $totemBlockStoredDataMap.put("${dkey}","${dvalue}") )
+    #set($discard = $totemBlockStoredDataMap.put("${dkey}","${dvalue}") )
   #end
   ## Set additional data from displayer keys
-  #set( $displayerAdditionalDataMap = {}) ## Map
-  #foreach( $additionalData in $!{totemItemAdditionalDataObjects})
-    #set( $discard = $displayerAdditionalDataMap.put("${additionalData.key}","$!{totemBlockStoredDataMap.get(${additionalData.key})}") )
+  #set($displayerAdditionalDataMap = {})
+  #foreach($additionalData in $!{totemItemAdditionalDataObjects})
+    #set($key = "${additionalData.getProperty('key').value}")
+    #if("$!{totemBlockStoredDataMap.get(${key})}" != "")
+      #set($discard = $displayerAdditionalDataMap.put("${key}","$!{totemBlockStoredDataMap.get(${key})}"))
+    #else
+      ## if no stored value, use defaultValue
+      #set($discard = $displayerAdditionalDataMap.put("${key}","${additionalData.getProperty('defaultValue').value}"))
+    #end
   #end
 #end
 
@@ -191,14 +201,15 @@
     ## ; $doc.displayPrettyName('background-video', $totemBlock)
     ## {{attachmentSelector classname="${totemBlockClass.name}" object="${totemBlock.number}" property="background-video" savemode="direct" displayImage="false" link="true" filter="mp4, avi, mpg"/}}
     ## Add additional specific data from the displayer
-    #set( $totemItemAdditionalDataObjects = $xwiki.getDocument("DisplayerCode.${totemBlock.type}").getObjects('TotemCode.TotemItemAdditionalDataClass') )
-    #getDisplayerAdditionalDataInMap($totemItemAdditionalDataObjects $!doc.getValue('data', ${totemBlock}))
+    #set($totemBlockSheet = $totemBlock.getProperty('type').value)  
+    #set($totemItemAdditionalDataObjects = $xwiki.getDocument("$totemBlockSheet").getObjects('TotemCode.TotemItemAdditionalDataClass') )
+    #getDisplayerAdditionalDataInMap($totemItemAdditionalDataObjects ${totemBlock.getProperty('data').value})
     (%class="additionalData" id %)(((
-    #foreach( $additionalData in $!{totemItemAdditionalDataObjects} )
-      ; $additionalData.key
-    {{html clean=false}}
-      &lt;input id="${additionalData.key}_${totemBlock.number}" type="text" name="${additionalData.key}" value="$!{displayerAdditionalDataMap.get(${additionalData.key})}" class="displayerAdditionalData"&gt;
-    {{/html}}
+    #foreach($additionalDataKey in $!{displayerAdditionalDataMap.keySet()})
+      ; $additionalDataKey
+      {{html wiki="true" clean=false}}
+        &lt;input id="${key}_${totemBlock.number}" type="text" name="${key}" value="$!{displayerAdditionalDataMap.get(${additionalDataKey})}" class="displayerAdditionalData"&gt;
+      {{/html}}
     #end
     {{html clean=false}}
     &lt;input type="hidden" id="TotemCode.TotemBlockClass_${totemBlock.number}_data" name="TotemCode.TotemBlockClass_${totemBlock.number}_data" value="$escapetool.xml($!doc.getValue('data', ${totemBlock}))"/&gt;

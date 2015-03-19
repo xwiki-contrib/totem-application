@@ -168,8 +168,9 @@
  * @parem $sourceSortDirection the direction of the sort ascending or descending
  * @param $fields the fields to be used by the sheet. They can be in the form doc.&lt;property&gt; to use a default document property, or &lt;fieldname&gt; to use a field from the class $sourceClass. 
           The number of fields required depends on the type of block.
+ * @Param $additionalDataMap map filled with additional data set with class TotemCode.TotemItemAdditionalDataClass on displayer
  *#
-#macro(displayBlock $sheet $cssClass $title $footer $sourceType $source $sourceClass $sourceLimit $sourceSort $sourceSortDirection $fields)
+#macro(displayBlock $sheet $cssClass $title $footer $sourceType $source $sourceClass $sourceLimit $sourceSort $sourceSortDirection $fields $additionalDataMap)
 ## print the round work of the block
 (%class="blockdisplayer $!cssClass"%)(((
   #if("$!title" != '')
@@ -234,6 +235,8 @@
   #end
   #set($blockDisplayerDocClass = $sourceClass)
   #set($blockDisplayerFields = $baseFieldsMap)
+  ## set additionalDataMap to make the variable existing in displayers
+  #set($additionalDataMap = $additionalDataMap)
   (%class="blockcontent"%)((({{html clean="false" wiki="false"}}#includeInContext($sheet){{/html}})))
   ## TODO: should we do something special in this footer to escape syntax etc?
   (%class="blockfooter"%)((($footer)))

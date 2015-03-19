@@ -493,61 +493,59 @@ require.config({
       <cache>long</cache>
     </property>
     <property>
-      <code>document.observe('xwiki:dom:loaded', function() {
-  // Use JQuery
-  require(['jquery'], function($) {
-    // The following script will allow to update the hidden input data with the specific additional data for displayers
-    // Additonal Datas are displayed as individual input and are all saved in a common textarea field.
-    // ****
-    function updateHiddenInputData() {
-      // get displayer additonal data inputs
-      var additionalDataInputList = $('.displayerAdditionalData');
-      additionalDataInputList.each( function() {
-        // observe Change event
-        $(this).change(function() {
-          var dataValues = "";
-          // get the list of input with class .displayerAdditionalData from the parent
-          var additionalDataParent = $(this).parent().parent();
-          var total = additionalDataParent.find('.displayerAdditionalData').length;
-          additionalDataParent.find('.displayerAdditionalData').each( function(index) {
-            // store field data
-            dataValues += $(this).attr('name') + ":" + $(this).val();
-            if (index != total - 1) {
-              dataValues += ",";
-            }
-          });
-          // update the data hidden input
-          additionalDataParent.find('input[type=hidden]').val(dataValues);
-        });
-      });
-    }
-    // call our updateHiddenInputData function
-    updateHiddenInputData();
-    updateHiddenInputData();
-    updateHiddenInputData();
-    // update the additional specific to match the selected displayer
-    $("select[id*='type']").change( function() {
-      // get the addtional data container
-      var additionalDataDiv = $(this).parents().eq(2).find('.additionalData');
-      // TotemCode.TotemAdditionalDataDisplayer page is used to build the displayer specific input
-      // we build the url to access it
-      var additionalDataDisplayerUrl = "$xwiki.getURL('TotemCode.TotemAdditionalDataDisplayer', 'get', '')?totem=" + $(this).val();
-      additionalDataDisplayerUrl += "&amp;totemBlock=" + $(this).closest(".totemBlock").attr("id")
-      // then we call it in ajax
-      $.ajax({
-        url: additionalDataDisplayerUrl,
-      }).done(function( html ) {
-        // update the additionalData container
-        $(additionalDataDiv).html(html);
-        // bind the new inputs
-        updateHiddenInputData();
-      });
-    });
-  });
-});
-
-
-
+      <code>// This code was moved in Modal Popup Javascript
+// document.observe('xwiki:dom:loaded', function() {
+//   // Use JQuery
+//   require(['jquery'], function($) {
+//     // The following script will allow to update the hidden input data with the specific additional data for displayers
+//     // Additonal Datas are displayed as individual input and are all saved in a common textarea field.
+//     // ****
+//     function updateHiddenInputData() {
+//       // get displayer additonal data inputs
+//       var additionalDataInputList = $('.displayerAdditionalData');
+//       additionalDataInputList.each( function() {
+//         // observe Change event
+//         $(this).change(function() {
+//           var dataValues = "";
+//           // get the list of input with class .displayerAdditionalData from the parent
+//           var additionalDataParent = $(this).parent().parent();
+//           var total = additionalDataParent.find('.displayerAdditionalData').length;
+//           additionalDataParent.find('.displayerAdditionalData').each( function(index) {
+//             // store field data
+//             dataValues += $(this).attr('name') + ":" + $(this).val();
+//             if (index != total - 1) {
+//               dataValues += ",";
+//             }
+//           });
+//           // update the data hidden input
+//           additionalDataParent.find('input[type=hidden]').val(dataValues);
+//         });
+//       });
+//     }
+//     // call our updateHiddenInputData function
+//     updateHiddenInputData();
+//     updateHiddenInputData();
+//     updateHiddenInputData();
+//     // update the additional specific to match the selected displayer
+//     $("select[id*='type']").change( function() {
+//       // get the addtional data container
+//       var additionalDataDiv = $(this).parents().eq(2).find('.additionalData');
+//       // TotemCode.TotemAdditionalDataDisplayer page is used to build the displayer specific input
+//       // we build the url to access it
+//       var additionalDataDisplayerUrl = "$xwiki.getURL('TotemCode.TotemAdditionalDataDisplayer', 'get', '')?totem=" + $(this).val();
+//       additionalDataDisplayerUrl += "&totemBlock=" + $(this).closest(".totemBlock").attr("id")
+//       // then we call it in ajax
+//       $.ajax({
+//         url: additionalDataDisplayerUrl,
+//       }).done(function( html ) {
+//         // update the additionalData container
+//         $(additionalDataDiv).html(html);
+//         // bind the new inputs
+//         updateHiddenInputData();
+//       });
+//     });
+//   });
+// });
 </code>
     </property>
     <property>
@@ -1030,6 +1028,59 @@ XWiki.widgets.TotemModalPopup = Class.create(XWiki.widgets.ModalPopup, {
     {
       method:'get',
       onSuccess: function(transport){
+        //
+        // Start Displayer additional Data management
+        //
+        // Use JQuery
+        require(['jquery'], function($) {
+          // The following script will allow to update the hidden input data with the specific additional data for displayers
+          // Additonal Datas are displayed as individual input and are all saved in a common textarea field.
+          // ****
+          function updateHiddenInputData() {
+            // get displayer additonal data inputs
+            var additionalDataInputList = $('.displayerAdditionalData');
+            additionalDataInputList.each( function() {
+              // observe Change event
+              $(this).change(function() {
+                var dataValues = "";
+                // get the list of input with class .displayerAdditionalData from the parent
+                var additionalDataParent = $(this).parent().parent();
+                var total = additionalDataParent.find('.displayerAdditionalData').length;
+                additionalDataParent.find('.displayerAdditionalData').each( function(index) {
+                  // store field data
+                  dataValues += $(this).attr('name') + ":" + $(this).val();
+                  if (index != total - 1) {
+                    dataValues += ",";
+                  }
+                });
+                // update the data hidden input
+                additionalDataParent.find('input[type=hidden]').val(dataValues);
+              });
+            });
+          }
+          // call our updateHiddenInputData function
+          updateHiddenInputData();
+          // update the additional specific to match the selected displayer
+          $("select[id*='type']").change( function() {
+            // get the addtional data container
+            var additionalDataDiv = $(this).parents().eq(2).find('.additionalData');
+            // TotemCode.TotemAdditionalDataDisplayer page is used to build the displayer specific input
+            // we build the url to access it
+            var additionalDataDisplayerUrl = "$xwiki.getURL('TotemCode.TotemAdditionalDataDisplayer', 'get', '')?totem=" + $(this).val();
+            additionalDataDisplayerUrl += "&totemBlock=" + $(this).closest(".totemBlock").attr("id")
+            // then we call it in ajax
+            $.ajax({
+              url: additionalDataDisplayerUrl,
+            }).done(function( html ) {
+              // update the additionalData container
+              $(additionalDataDiv).html(html);
+              // bind the new inputs
+              updateHiddenInputData();
+            });
+          });
+        });
+        //
+        //
         var response = transport.responseText || "no response text";
         content.insert(response);
         require(['jquery'],function($){
