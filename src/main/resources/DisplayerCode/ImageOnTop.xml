@@ -241,10 +241,10 @@
     *#&lt;div class="col-md-12 display-table topdContainer vcenter"&gt;
         {{html}}
           &lt;a href='$!{escapetool.xml($dataMap.url)}' class="overLink hidden-md hidden-lg"&gt;&lt;/a&gt;
+        {{/html}}
           &lt;div class="topDescription"&gt;
             $dataMap.description
           &lt;/div&gt;
-        {{/html}}
         ##for the url to work properly, the wiki property from the html macro needs to be false
         {{html}}
           &lt;div class="imgTopLink"&gt;
