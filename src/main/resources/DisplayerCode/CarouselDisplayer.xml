@@ -32,7 +32,7 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1399932000000</creationDate>
-  <date>1426175109000</date>
+  <date>1426782166000</date>
   <contentUpdateDate>1426175109000</contentUpdateDate>
   <version>1.1</version>
   <title>CarouselDisplayer</title>
@@ -180,7 +180,7 @@ widgets.Carousel = Class.create({
     // How long does the sliding animation take
     duration : 0.5,
     // How long to display a slide before automatically switching to the next one
-    frequency : 6
+    frequency : 8
   },
 
   initialize : function(container, options) {
