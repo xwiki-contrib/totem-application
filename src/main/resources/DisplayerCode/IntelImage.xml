@@ -32,8 +32,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1423907602000</creationDate>
-  <date>1426664463000</date>
-  <contentUpdateDate>1426664463000</contentUpdateDate>
+  <date>1426780924000</date>
+  <contentUpdateDate>1426776022000</contentUpdateDate>
   <version>1.1</version>
   <title>IntelImage</title>
   <defaultTemplate/>
@@ -228,6 +228,8 @@ z+eDkZERcDgcHpvNVv3v1o6L56vebYnEXP4LZXu8cLcoAW4AAAAASUVORK5CYII=
   margin:5% auto 0 auto; 
   border-radius:5px;
   overflow:hidden;
+  border: 1px solid lightgray;
+  box-shadow: 2px 2px 5px #888888;
 }
 .image:before {
   left: 0;
