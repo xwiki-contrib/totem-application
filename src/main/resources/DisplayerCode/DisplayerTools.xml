@@ -65,7 +65,7 @@
     #set($fieldKey = "$!{blockDisplayerFieldEntry.key}" )
     #if("$!{object.get($fieldName)}" != "")
       ## Get mapped value from the object
-      #if("$!{fieldKey}" == "date")
+      #if("$!{fieldKey}" == "date" || "$!{fieldKey}" == "description")
         ## For date, we take in account the date format set in the class
         #set($discard = $dataMap.put("$!{blockDisplayerFieldEntry.key}", "$!{object.get($fieldName)}"))
       #else
