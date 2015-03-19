@@ -1674,7 +1674,8 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
         #end
         #if ($totemBlock)
           #set($urlBackground = $doc.getAttachmentURL("${totemBlock.getValue('background-image')}"))
-          (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end col-sm-${totemBlockSize}" id="totemBlock_${totemBlock.number}" style="background:url($!{urlBackground});  background-size: 100% 100%; background-color: $!{totemBlock.background-color}; color: $!{totemBlock.text-color}; object-fit: cover;"%)(((
+          #set($blocktype = $totemBlock.getProperty('type').value)
+          (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end col-sm-${totemBlockSize}" id="totemBlock_${totemBlock.number}" style="background:url($!{urlBackground});  background-size: 100% 100%; background-color: $!{totemBlock.background-color}; color: $!{totemBlock.text-color}; object-fit: cover; #if(${blocktype} == 'DisplayerCode.MultImgCarouselDisplayer' || ${blocktype} == 'DisplayerCode.CarouselDisplayer') padding-bottom: 0; #else padding-bottom: 20px; #end"%)(((
             #displayTotemBlock($totemBlock, $enableEdit, $cancelURL, $editURL $totemItemClass, $sheetFieldsMapping, $totemItemsURL)
           )))
           #set($discard = $displayedBlocks.add($totemBlock.number))
@@ -1689,7 +1690,8 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
         #end
         #if(!$displayedBlocks.contains($totemLeftBlock.number))
           #set($urlBackground = $doc.getAttachmentURL("${totemLeftBlock.getValue('background-image')}"))
-          (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end col-sm-${totemBlockSize}" id="totemBlock_${totemLeftBlock.number}" style="background:url($!{urlBackground});  background-size: 100% 100%; background-color: $!{totemLeftBlock.background-color}; color: $!{totemLeftBlock.text-color}; object-fit: cover;"%)(((
+          #set($blocktype = $totemBlock.getProperty('type').value)
+          (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end col-sm-${totemBlockSize}" id="totemBlock_${totemLeftBlock.number}" style="background:url($!{urlBackground});  background-size: 100% 100%; background-color: $!{totemLeftBlock.background-color}; color: $!{totemLeftBlock.text-color}; object-fit: cover; #if(${blocktype} == 'DisplayerCode.MultImgCarouselDisplayer' || ${blocktype} == 'DisplayerCode.CarouselDisplayer') padding-bottom: 0; #else padding-bottom: 20px; #end"%)(((
             #displayTotemBlock($totemLeftBlock, $enableEdit, $cancelURL, $editURL $totemItemClass, $sheetFieldsMapping, $totemItemsURL)
           )))
           #set($discard = $displayedBlocks.add($totemBlock.number))
