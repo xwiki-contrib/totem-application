@@ -76,6 +76,54 @@
   </object>
   <object>
     <class>
+      <name>TotemCode.TotemItemAdditionalDataClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <defaultValue>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>defaultValue</name>
+        <number>2</number>
+        <picker>0</picker>
+        <prettyName>defaultValue</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </defaultValue>
+      <key>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>key</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>key</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </key>
+    </class>
+    <name>DisplayerCode.ImageOnTop</name>
+    <number>0</number>
+    <className>TotemCode.TotemItemAdditionalDataClass</className>
+    <guid>35f6af88-1850-4a3e-badd-a86f36128e1c</guid>
+    <property>
+      <defaultValue>4</defaultValue>
+    </property>
+    <property>
+      <key>column</key>
+    </property>
+  </object>
+  <object>
+    <class>
       <name>XWiki.StyleSheetExtension</name>
       <customClass/>
       <customMapping/>
@@ -203,8 +251,8 @@
 &lt;div class="row"&gt;
   #set($columns = 3)
   #set($columnsParam = 0)
-  #if(${totemBlock.imageontop_size} != '')
-    #set($columnsParam = $columnsParam.parseInt(${totemBlock.imageontop_size}))
+  #if("$!{additionalDataMap.column}" != "")
+    #set($columnsParam = $columnsParam.parseInt(${additionalDataMap.column}))
     #if(12 % ${columnsParam} == 0)
       #set($columns = 12 / $columnsParam)
     #end
