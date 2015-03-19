@@ -253,6 +253,19 @@
       <validationRegExp/>
       <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
     </height>
+    <imageontop_size>
+      <customDisplay/>
+      <disabled>0</disabled>
+      <name>imageontop_size</name>
+      <number>22</number>
+      <numberType>long</numberType>
+      <prettyName>imageontop_size</prettyName>
+      <size>30</size>
+      <unmodifiable>0</unmodifiable>
+      <validationMessage/>
+      <validationRegExp/>
+      <classType>com.xpn.xwiki.objects.classes.NumberClass</classType>
+    </imageontop_size>
     <size>
       <customDisplay/>
       <disabled>0</disabled>

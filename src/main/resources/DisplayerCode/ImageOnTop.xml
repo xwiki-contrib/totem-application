@@ -32,8 +32,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1423840736000</creationDate>
-  <date>1426668603000</date>
-  <contentUpdateDate>1426668438000</contentUpdateDate>
+  <date>1426758432000</date>
+  <contentUpdateDate>1426758432000</contentUpdateDate>
   <version>1.1</version>
   <title>ImageOnTop</title>
   <defaultTemplate/>
@@ -201,19 +201,27 @@
 
 {{html wiki="true"}}
 &lt;div class="row"&gt;
+  #set($columns = 3)
+  #set($columnsParam = 0)
+  #if(${totemBlock.imageontop_size} != '')
+    #set($columnsParam = $columnsParam.parseInt(${totemBlock.imageontop_size}))
+    #if(12 % ${columnsParam} == 0)
+      #set($columns = 12 / $columnsParam)
+    #end
+  #end
   #foreach($document in $blockDisplayerDocList)
     #set($urlTopLogo = '')
     #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
     ##START##Inserted clearfix div for proper display
-    ##Every 4*k+1 element will be at the beginign of a new line
-    #if(($velocityCount - 1) % 4 == 0 &amp;&amp; $velocityCount != 1)
+    ##Every $columnsParam + 1 element will be at the beginign of a new line
+     #if(($velocityCount - 1) % $!{columnsParam} == 0 &amp;&amp; $velocityCount != 1)
       &lt;div class="clearfix visible-md-block visible-sm-block visible-lg-block"&gt;&lt;/div&gt;
     #end
     ##END##
     #if($!{dataMap.image} != '')
       #set($urlTopLogo = $document.getAttachmentURL($dataMap.image, 'download'))
     #end
-    &lt;div class="col-xs-12 col-sm-6 col-md-3 row topRow topdisplayer"&gt;
+    &lt;div class="col-xs-12 col-sm-4 col-md-${columns} row topRow topdisplayer"&gt;
       &lt;div class="col-md-12 display-table vcenter center topimgContainer"&gt;
         &lt;h2&gt;
           {{html}}
