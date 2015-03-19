@@ -1689,7 +1689,6 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
   #set($enableFullscreen = $doc.getObject('TotemCode.TotemClass').getProperty('fullscreen').value)
   #if($enableFullscreen == 1 )
     #set($discard = $xwiki.ssx.use('TotemCode.TotemFullscreen', {'minify' : false}))  
-    #set($discard = $xwiki.jsx.use('TotemCode.TotemFullscreen'))
   #end
   ## make up the cancel URL for the form cancellation and other cancels
   #set($cancelURL = $doc.getURL())
