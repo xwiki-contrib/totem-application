@@ -229,7 +229,6 @@ z+eDkZERcDgcHpvNVv3v1o6L56vebYnEXP4LZXu8cLcoAW4AAAAASUVORK5CYII=
   border-radius:5px;
   overflow:hidden;
   border: 1px solid lightgray;
-  box-shadow: 2px 2px 5px #888888;
 }
 .image:before {
   left: 0;
