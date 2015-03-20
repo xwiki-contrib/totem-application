@@ -32,8 +32,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1423039791000</creationDate>
-  <date>1426854083000</date>
-  <contentUpdateDate>1426854083000</contentUpdateDate>
+  <date>1426865305000</date>
+  <contentUpdateDate>1426865305000</contentUpdateDate>
   <version>1.1</version>
   <title>Blindfold</title>
   <defaultTemplate/>
@@ -294,18 +294,18 @@
 {{velocity}}
 #set($discard = $xwiki.ssx.use('DisplayerCode.Blindfold'))
 #set($extraHeight = 0)
-#if(${additionalDataMap.extra-height} != '')
+#if("$!{additionalDataMap.extra-height}" != '')
   #set($extraHeight = ${additionalDataMap.extra-height})
 #end
 #set($titleSize = 44)
-#if(${additionalDataMap.title-size} != '')
+#if("$!{additionalDataMap.title-size}" != '')
   #set($titleSize = ${additionalDataMap.title-size})
 #end
 {{html wiki="true"}}
 #foreach($document in $blockDisplayerDocList)
   #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
   #set($urlLogo = '')
-  #if($!{dataMap.image} != '')
+  #if("$!{dataMap.image}" != '')
     #set($urlLogo = $document.getAttachmentURL($dataMap.image, 'download'))
   #end
   &lt;div class="row blindfoldRow blind" style="padding: $!{extraHeight}px 0;"&gt;

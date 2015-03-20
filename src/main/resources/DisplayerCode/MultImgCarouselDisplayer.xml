@@ -32,8 +32,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1423997229000</creationDate>
-  <date>1426764406000</date>
-  <contentUpdateDate>1426665108000</contentUpdateDate>
+  <date>1426865749000</date>
+  <contentUpdateDate>1426865689000</contentUpdateDate>
   <version>1.1</version>
   <title>MultImgCarouselDisplayer</title>
   <defaultTemplate/>
@@ -454,7 +454,7 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
         #set($imgSrc = '')
         #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
         #set($sectionNumber = $mathtool.sub($velocityCount, 1))    
-        #if($!{dataMap.image} != '')
+        #if("$!{dataMap.image}" != '')
           #set($imgSrc = $document.getAttachmentURL($dataMap.image, 'download'))
           #if($foreach.isFirst() == true)
             &lt;div class="item active"&gt;
@@ -504,7 +504,7 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
     #foreach($document in $blockDisplayerDocList)
       #set($urlMobLogo = '')
       #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
-      #if($!{dataMap.image} != '')
+      #if("$!{dataMap.image}" != '')
         #set($urlMobLogo = $document.getAttachmentURL($dataMap.image, 'download'))
       #end
       ##START## Avoid cramming the images
@@ -516,7 +516,7 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
       ##For more then 6 items hide the rest
       ##until the Toggle button is pressed
       ##For less then 6 hide the button itslef
-      #if($velocityCount &lt;= 6 &amp;&amp; $urlMobLogo != '')
+      #if($velocityCount &lt;= 6 &amp;&amp; ("$!{urlMobLogo}" != ''))
       &lt;div class="col-xs-4 col-sm-4 multiImgRow multiImgdisplayer"&gt;
         &lt;div class="center imageContainer"&gt;
           &lt;div class="imgBox"&gt;

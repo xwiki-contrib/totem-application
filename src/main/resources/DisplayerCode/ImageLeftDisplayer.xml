@@ -32,8 +32,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1424685633000</creationDate>
-  <date>1426856020000</date>
-  <contentUpdateDate>1426856020000</contentUpdateDate>
+  <date>1426865017000</date>
+  <contentUpdateDate>1426865017000</contentUpdateDate>
   <version>1.1</version>
   <title>ImageLeftDisplayer</title>
   <defaultTemplate/>
@@ -242,13 +242,13 @@
 
 {{html wiki="true"}}
 #set($linkLabel = '')
-#if(${additionalDataMap.link-label} != '')
+#if("$!{additionalDataMap.link-label}" != '')
   #set($linkLabel = ${additionalDataMap.link-label})
 #end
 #foreach($document in $blockDisplayerDocList)
   #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
   #set($urlLogo = '')
-  #if($!{dataMap.image} != '')
+  #if("$!{dataMap.image}" != '')
     #set($urlLogo = $document.getAttachmentURL($dataMap.image, 'download'))
   #end
   &lt;div class="row totemHeaderRow leftimagedisplayer"&gt;
@@ -258,7 +258,7 @@
       &lt;/h2&gt;
     &lt;/div&gt;
     &lt;div class="col-xs-12 col-md-4 display-table vcenter imgContainer"&gt;
-      #if($urlLogo != '')
+      #if("$!{urlLogo}" != '')
         &lt;img class="leftSideImage" src="$!{urlLogo}" alt=""&gt;
       #end
     &lt;/div&gt;#* This comments prevent bootstrap columns from breaking by inserting spaces
@@ -269,7 +269,7 @@
       &lt;div&gt;
         $dataMap.description
       &lt;/div&gt;
-      #if(${linkLabel} != '')
+      #if("$!{linkLabel}" != '')
         {{html}}
           &lt;div class="imgLeftLink"&gt;
             &lt;a href='$!{escapetool.xml($dataMap.url)}'&gt;

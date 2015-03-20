@@ -32,8 +32,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1399932000000</creationDate>
-  <date>1426861982000</date>
-  <contentUpdateDate>1426861982000</contentUpdateDate>
+  <date>1426865210000</date>
+  <contentUpdateDate>1426865210000</contentUpdateDate>
   <version>1.1</version>
   <title>CarouselDisplayer</title>
   <defaultTemplate/>
@@ -559,11 +559,11 @@ div.carousel.autostart {
             #set($image = '')
             #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
             #set($sectionNumber = $mathtool.sub($velocityCount, 1))    
-            #if($!{dataMap.image} != '')
+            #if("$!{dataMap.image}" != '')
               #set($attach = $services.model.resolveAttachment($dataMap.image, "explicit", $document.getDocumentReference()))
               #set($image = $services.model.serialize($attach, "default"))
               #set($url = '#')
-              #if(${dataMap.url} != '')
+              #if("$!{dataMap.url}" != '')
                 #set($url = ${dataMap.url})
               #end
               &lt;div id="section${sectionNumber}" class='section' style="width:${sectionSize}; height:${height};max-width:${maxwidth};"&gt;

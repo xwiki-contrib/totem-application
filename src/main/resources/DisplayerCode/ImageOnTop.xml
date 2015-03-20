@@ -32,8 +32,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1423840736000</creationDate>
-  <date>1426859290000</date>
-  <contentUpdateDate>1426859290000</contentUpdateDate>
+  <date>1426865527000</date>
+  <contentUpdateDate>1426865527000</contentUpdateDate>
   <version>1.1</version>
   <title>ImageOnTop</title>
   <defaultTemplate/>
@@ -306,7 +306,7 @@
     #end
   #end
   #set($linkLabel = '')
-  #if(${additionalDataMap.link-label} != '')
+  #if("$!{additionalDataMap.link-label}" != '')
     #set($linkLabel = ${additionalDataMap.link-label})
   #end
   #foreach($document in $blockDisplayerDocList)
@@ -322,7 +322,7 @@
       &lt;div class="clearfix hidden-sx hidden-md hidden-lg"&gt;&lt;/div&gt;
     #end
     ##END##
-    #if($!{dataMap.image} != '')
+    #if("$!{dataMap.image}" != '')
       #set($urlTopLogo = $document.getAttachmentURL($dataMap.image, 'download'))
     #end
     &lt;div class="col-xs-12 col-sm-4 col-md-${columns} row topRow topdisplayer"&gt;
@@ -334,7 +334,7 @@
             &lt;/a&gt;
           {{/html}}
         &lt;/h2&gt;
-        #if($urlTopLogo != '')
+        #if("$!{urlTopLogo}" != '')
           {{html}}  
             &lt;a href='$!{escapetool.xml($dataMap.url)}'&gt;
               &lt;img class="topImage" src="$!{urlTopLogo}" alt=""&gt;
@@ -350,7 +350,7 @@
             $dataMap.description
           &lt;/div&gt;
         ##for the url to work properly, the wiki property from the html macro needs to be false
-        #if(${linkLabel} != '')
+        #if("$!{linkLabel}" != '')
           {{html}}
             &lt;div class="imgTopLink"&gt;
               &lt;a href='$!{escapetool.xml($dataMap.url)}'&gt;
