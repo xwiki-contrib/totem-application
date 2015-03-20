@@ -32,8 +32,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1423039791000</creationDate>
-  <date>1426841518000</date>
-  <contentUpdateDate>1426841518000</contentUpdateDate>
+  <date>1426854083000</date>
+  <contentUpdateDate>1426854083000</contentUpdateDate>
   <version>1.1</version>
   <title>Blindfold</title>
   <defaultTemplate/>
@@ -124,6 +124,54 @@
   </object>
   <object>
     <class>
+      <name>TotemCode.TotemItemAdditionalDataClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <defaultValue>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>defaultValue</name>
+        <number>2</number>
+        <picker>0</picker>
+        <prettyName>defaultValue</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </defaultValue>
+      <key>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>key</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>key</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </key>
+    </class>
+    <name>DisplayerCode.Blindfold</name>
+    <number>1</number>
+    <className>TotemCode.TotemItemAdditionalDataClass</className>
+    <guid>1b025c1a-e1ff-4633-abad-944ef8f32f5b</guid>
+    <property>
+      <defaultValue/>
+    </property>
+    <property>
+      <key>title-size</key>
+    </property>
+  </object>
+  <object>
+    <class>
       <name>XWiki.StyleSheetExtension</name>
       <customClass/>
       <customMapping/>
@@ -206,9 +254,11 @@
   padding: 42px 0;
 }
 .blindfoldTitle {
-  font-size: 2em;
-  font-weight: bold;
+  font-weight: normal;
   text-shadow: 3px 3px 0 #000;
+  -webkit-text-shadow: 3px 3px 0 #000;
+  -moz-text-shadow: 3px 3px 0 #000;
+  font-family: 'Exo 2',sans-serif;
 }
 .blindfoldDescription {
   font-size: 1.3em;
@@ -216,11 +266,6 @@
 @media only screen and (max-device-width: 640px) {
 
   .blindfoldDescription { font-size: 1em; }
-
-}
-@media only screen and (max-device-width: 640px) {
-
-  .blindfoldTitle { font-size: 1.5em; }
 
 }
 .hLine{
@@ -252,6 +297,10 @@
 #if(${additionalDataMap.extra-height} != '')
   #set($extraHeight = ${additionalDataMap.extra-height})
 #end
+#set($titleSize = 44)
+#if(${additionalDataMap.title-size} != '')
+  #set($titleSize = ${additionalDataMap.title-size})
+#end
 {{html wiki="true"}}
 #foreach($document in $blockDisplayerDocList)
   #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
@@ -264,7 +313,7 @@
       &lt;div class="hidden-xs col-md-12 hLine"&gt;
       ----
       &lt;/div&gt;
-      &lt;div class="blindfoldTitle"&gt;
+      &lt;div class="blindfoldTitle" style=" font-size: $!{titleSize}px;"&gt;
         $dataMap.title
       &lt;/div&gt;
       &lt;div class="blindfoldDescription"&gt;
