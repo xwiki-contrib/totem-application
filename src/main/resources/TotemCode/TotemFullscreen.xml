@@ -133,15 +133,15 @@
 }
 
 /* Remove upper part between header and content */
-#mainContentArea > #hierarchy {
+#mainContentArea &gt; #hierarchy {
   display: none;
 }
 
-.xcontent > .document-header {
+.xcontent &gt; .document-header {
   display: none;
 }
 
-.xcontent > hr {
+.xcontent &gt; hr {
   display: none !important;
 }
 </code>

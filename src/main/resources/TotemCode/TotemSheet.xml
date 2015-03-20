@@ -533,7 +533,7 @@ require.config({
 //       // TotemCode.TotemAdditionalDataDisplayer page is used to build the displayer specific input
 //       // we build the url to access it
 //       var additionalDataDisplayerUrl = "$xwiki.getURL('TotemCode.TotemAdditionalDataDisplayer', 'get', '')?totem=" + $(this).val();
-//       additionalDataDisplayerUrl += "&totemBlock=" + $(this).closest(".totemBlock").attr("id")
+//       additionalDataDisplayerUrl += "&amp;totemBlock=" + $(this).closest(".totemBlock").attr("id")
 //       // then we call it in ajax
 //       $.ajax({
 //         url: additionalDataDisplayerUrl,
@@ -1067,7 +1067,7 @@ XWiki.widgets.TotemModalPopup = Class.create(XWiki.widgets.ModalPopup, {
             // TotemCode.TotemAdditionalDataDisplayer page is used to build the displayer specific input
             // we build the url to access it
             var additionalDataDisplayerUrl = "$xwiki.getURL('TotemCode.TotemAdditionalDataDisplayer', 'get', '')?totem=" + $(this).val();
-            additionalDataDisplayerUrl += "&totemBlock=" + $(this).closest(".totemBlock").attr("id")
+            additionalDataDisplayerUrl += "&amp;totemBlock=" + $(this).closest(".totemBlock").attr("id")
             // then we call it in ajax
             $.ajax({
               url: additionalDataDisplayerUrl,
