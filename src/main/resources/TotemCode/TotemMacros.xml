@@ -168,31 +168,6 @@
       &lt;input id="TotemCode.TotemBlockClass_${totemBlock.number}_text-color" type="text" name="TotemCode.TotemBlockClass_${totemBlock.number}_text-color" class="color-picker" value="$!{escapetool.xml($!doc.getValue('text-color', ${totemBlock}))}"&gt;
     #end
     {{/html}}
-    ## Column number input for the ImageOnTop displayer for large and medium screen sizes
-    #if($totemBlock.getProperty('type').value == 'DisplayerCode.ImageOnTop')
-      ; $doc.displayPrettyName('imageontop_size', $totemBlock)
-    #end
-    {{html clean=false}}
-    #if ($isNewBlock &amp;&amp; $totemBlock.getProperty('type').value == 'DisplayerCode.ImageOnTop')
-      &lt;select id="TotemCode.TotemBlockClass_imageontop_size" name="TotemCode.TotemBlockClass_imageontop_size" &gt;
-        &lt;option hidden value="" disabled="disabled" selected="selected"&gt;$!{escapetool.xml($!doc.getValue('imageontop_size', ${totemBlock}))}&lt;/option&gt;
-        &lt;option value="1"&gt; 1 &lt;/option&gt;
-        &lt;option value="2"&gt; 2 &lt;/option&gt;
-        &lt;option value="3"&gt; 3 &lt;/option&gt;
-        &lt;option value="4"&gt; 4 &lt;/option&gt;
-        &lt;option value="6"&gt; 6 &lt;/option&gt;
-      &lt;/select&gt; 
-    #elseif($totemBlock.getProperty('type').value == 'DisplayerCode.ImageOnTop')
-       &lt;select id="TotemCode.TotemBlockClass_${totemBlock.number}_imageontop_size" name="TotemCode.TotemBlockClass_${totemBlock.number}_imageontop_size" &gt;
-          &lt;option hidden value="" disabled="disabled" selected="selected"&gt;$!{escapetool.xml($!doc.getValue('imageontop_size', ${totemBlock}))}&lt;/option&gt;
-          &lt;option value="1"&gt; 1 &lt;/option&gt;
-          &lt;option value="2"&gt; 2 &lt;/option&gt;
-          &lt;option value="3"&gt; 3 &lt;/option&gt;
-          &lt;option value="4"&gt; 4 &lt;/option&gt;
-          &lt;option value="6"&gt; 6 &lt;/option&gt;
-        &lt;/select&gt; 
-    #end
-    {{/html}}
     ## Background-image Custom input to use an attachment selector
     ; $doc.displayPrettyName('background-image', $totemBlock)
     {{attachmentSelector classname="${totemBlockClass.name}" object="${totemBlock.number}" property="background-image" savemode="direct" displayImage="true" link="true" filter="png,jpg,gif" width="100px"/}}
