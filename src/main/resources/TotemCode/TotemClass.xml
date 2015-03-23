@@ -21,7 +21,7 @@
   <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.0</syntaxId>
-  <hidden>false</hidden>
+  <hidden>true</hidden>
   <class>
     <name>TotemCode.TotemClass</name>
     <customClass/>
