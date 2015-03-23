@@ -373,17 +373,13 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
   width: 100%;
   max-width: 200px;
 }
-.imgBox{
-  max-width: 200px;
+.imgMobBox{
+  border: 1px solid grey;
+  border-radius: 5px;
   margin: 0 !important;
+  max-width: 200px;
+  overflow: hidden;
   padding: 0 !important;
-  border-top: 0;
-  border-left: 0;
-  border-bottom:2px solid #fff;
-  border-right:2px solid #fff;
-  margin:5% auto 0 auto; 
-  border-radius:5px;
-  overflow:hidden;
 }
 .miniImageContainer:before {
   left: 0;
@@ -463,7 +459,7 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
           #if($foreach.isFirst() == true)
             &lt;div class="item active"&gt;
               &lt;div class="col-md-2 carouselImgContainer"&gt;
-                &lt;div class="imgBox"&gt;
+                &lt;div class="imgMobBox"&gt;
                   {{html}}
                   &lt;a style="display:block" href='$!{dataMap.url}'&gt;
                     &lt;div data-content="+" class="miniImageContainer"&gt;
@@ -477,7 +473,7 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
           #else
           &lt;div class="item"&gt;
             &lt;div class="col-md-2 carouselImgContainer"&gt;
-              &lt;div class="imgBox"&gt;
+              &lt;div class="imgMobBox"&gt;
                 {{html}}
                 &lt;a style="display:block" href='$!{dataMap.url}'&gt;
                   &lt;div data-content="+" class="miniImageContainer"&gt;
@@ -523,7 +519,7 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
       #if($velocityCount &lt;= 6 &amp;&amp; ("$!{urlMobLogo}" != ''))
       &lt;div class="col-xs-4 col-sm-4 multiImgRow multiImgdisplayer"&gt;
         &lt;div class="center imageContainer"&gt;
-          &lt;div class="imgBox"&gt;
+          &lt;div class="imgMobBox"&gt;
             {{html}}
             &lt;a style="display:block" href='$!{dataMap.url}'&gt;
               &lt;div data-content="+" class="miniImageContainer"&gt;
@@ -537,7 +533,7 @@ $( '.multiImgdisplayermob' ).toggle( flip++ % 2 === 0 );
       #elseif($urlMobLogo != '')
       &lt;div class="col-xs-4 col-sm-4 multiImgRow multiImgdisplayermob" style="display: none"&gt;
         &lt;div class="center imageContainer"&gt;
-          &lt;div class="imgBox"&gt;
+          &lt;div class="imgMobBox"&gt;
             {{html}}
             &lt;a style="display:block" href='$!{dataMap.url}'&gt;
               &lt;div data-content="+" class="miniImageContainer"&gt;
