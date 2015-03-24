@@ -116,7 +116,7 @@
     <className>TotemCode.TotemItemAdditionalDataClass</className>
     <guid>de60ba28-5013-49ab-936a-0b32bae60264</guid>
     <property>
-      <defaultValue/>
+      <defaultValue>28</defaultValue>
     </property>
     <property>
       <key>extra-height</key>
@@ -164,7 +164,7 @@
     <className>TotemCode.TotemItemAdditionalDataClass</className>
     <guid>1b025c1a-e1ff-4633-abad-944ef8f32f5b</guid>
     <property>
-      <defaultValue/>
+      <defaultValue>38</defaultValue>
     </property>
     <property>
       <key>title-size</key>
