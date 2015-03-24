@@ -100,9 +100,9 @@
     #set($dvalue = "" )
     #foreach( $d in ${dataLine.split(":")})
       #if(${foreach.index} == 0 )
-        #set($dkey = "$!{d}" )
+        #set($dkey = "$!{d.trim()}" )
       #else
-        #set($dvalue = "$!{d}" )
+        #set($dvalue = "$!{d.trim()}" )
       #end
     #end
     #set($discard = $totemBlockStoredDataMap.put("${dkey}","${dvalue}") )
@@ -183,7 +183,7 @@
     #foreach($additionalDataKey in $!{displayerAdditionalDataMap.keySet()})
       ; $additionalDataKey
       {{html wiki="true" clean=false}}
-        &lt;input id="${key}_${totemBlock.number}" type="text" name="${key}" value="$!{displayerAdditionalDataMap.get(${additionalDataKey})}" class="displayerAdditionalData"&gt;
+        &lt;input id="${additionalDataKey}_${totemBlock.number}" type="text" name="${additionalDataKey}" value="$!{displayerAdditionalDataMap.get(${additionalDataKey})}" class="displayerAdditionalData"&gt;
       {{/html}}
     #end
     {{html clean=false}}
