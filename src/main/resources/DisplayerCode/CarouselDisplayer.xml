@@ -32,8 +32,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1399932000000</creationDate>
-  <date>1426865210000</date>
-  <contentUpdateDate>1426865210000</contentUpdateDate>
+  <date>1427212693000</date>
+  <contentUpdateDate>1427212088000</contentUpdateDate>
   <version>1.1</version>
   <title>CarouselDisplayer</title>
   <defaultTemplate/>
@@ -192,6 +192,8 @@ widgets.Carousel = Class.create({
     var l=this.controls.length;
     this.nextButton=this.controls.findAll(function(item){return item.hasClassName('nextImage');})[0];
     this.previousButton=this.controls.findAll(function(item){return item.hasClassName('previousImage');})[0];
+    this.container.down('#pauseButton').observe('click', this.stop.bind(this));
+    this.container.down('#playButton').observe('click', this.start.bind(this));
     this.options    = Object.extend(Object.clone(this.defaultOptions), options || {});
 
     this.sections.each(function(section, index) {
@@ -503,12 +505,23 @@ div#slider-navigation a.nextImage {
 div.carousel.autostart {
   position: relative;
 }
-  .carousel-inner &gt; .item &gt; img,
-  .carousel-inner &gt; .item &gt; a &gt; img {
-    width: 70%;
-    margin: auto;
-  }
-</code>
+.carousel-inner &gt; .item &gt; img,
+.carousel-inner &gt; .item &gt; a &gt; img {
+  width: 70%;
+  margin: auto;
+}
+#carouselButtons {
+  margin-left: 15px;
+  position: absolute;
+  bottom: 0px;
+}
+.playpause{
+  color: #fff;
+  cursor: pointer;
+}
+.playpause:hover{
+  color: grey;
+}</code>
     </property>
     <property>
       <name/>
@@ -551,6 +564,10 @@ div.carousel.autostart {
           &lt;span class="glyphicon glyphicon-chevron-right" aria-hidden="true"&gt;&lt;/span&gt;
           &lt;span class="sr-only"&gt;Next&lt;/span&gt;
         &lt;/a&gt;
+        &lt;div id="carouselButtons"&gt;
+          &lt;span id="playButton" class="playpause glyphicon glyphicon-play"&gt;&lt;/span&gt;
+          &lt;span id="pauseButton" class="playpause glyphicon glyphicon-pause"&gt;&lt;/span&gt;
+        &lt;/div&gt;
       &lt;/div&gt;
 
       &lt;div class='scroller center' style="width:${width};height:${height};max-width:${maxwidth};"&gt;
