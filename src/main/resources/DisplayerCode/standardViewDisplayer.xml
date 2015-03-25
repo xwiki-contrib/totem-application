@@ -260,14 +260,6 @@
 }
 .standardHeader .breadcrumb{
   display: block !important;
-}
-.standardContent {
-  font-size: 18px;
-}
-@media only screen and (max-device-width: 640px) {
-
-  .standardContent { font-size: 14px }
-
 }</code>
     </property>
     <property>
