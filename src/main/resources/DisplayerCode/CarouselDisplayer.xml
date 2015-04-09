@@ -504,6 +504,7 @@ div#slider-navigation a.nextImage {
 }
 div.carousel.autostart {
   position: relative;
+  clear:both;
 }
 .carousel-inner &gt; .item &gt; img,
 .carousel-inner &gt; .item &gt; a &gt; img {
