@@ -36,6 +36,7 @@
   <packaging>xar</packaging>
   <description>Allow creation of blocks with different representations from totems elements, each totem element contain a title, description and a image.</description>
   <properties>
+    <xwiki.version>6.4</xwiki.version>
     <!-- Name to display by the Extension Manager -->
     <xwiki.extension.name>Totem Application</xwiki.extension.name>
     <!-- Old names of this module used for retro compatibility when resolving dependencies of old extensions -->
@@ -89,14 +90,14 @@
       <extension>
         <groupId>org.xwiki.commons</groupId>
         <artifactId>xwiki-commons-tool-xar-handlers</artifactId>
-        <version>${project.parent.version}</version>
+        <version>${xwiki.version}</version>
       </extension>
     </extensions>
     <plugins>
       <plugin>
         <groupId>org.xwiki.commons</groupId>
         <artifactId>xwiki-commons-tool-xar-plugin</artifactId>
-        <version>${project.parent.version}</version>
+        <version>${xwiki.version}</version>
       </plugin>
     </plugins>
   </build>
