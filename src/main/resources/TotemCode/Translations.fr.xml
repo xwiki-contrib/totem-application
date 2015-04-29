@@ -1,37 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--
- * See the NOTICE file distributed with this work for additional
- * information regarding copyright ownership.
- *
- * This is free software; you can redistribute it and/or modify it
- * under the terms of the GNU Lesser General Public License as
- * published by the Free Software Foundation; either version 2.1 of
- * the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this software; if not, write to the Free
- * Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA
- * 02110-1301 USA, or see the FSF site: http://www.fsf.org.
--->
-
 <xwikidoc>
   <web>TotemCode</web>
   <name>Translations</name>
-  <language/>
+  <language>fr</language>
   <defaultLanguage/>
-  <translation>0</translation>
+  <translation>1</translation>
   <parent>TotemCode.WebHome</parent>
   <creator>xwiki:XWiki.Admin</creator>
   <author>xwiki:XWiki.Admin</author>
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-  <creationDate>1398855255000</creationDate>
+  <creationDate>1425485678000</creationDate>
   <date>1425487504000</date>
   <contentUpdateDate>1425487504000</contentUpdateDate>
   <version>1.1</version>
@@ -42,50 +22,18 @@
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
   <hidden>true</hidden>
-  <object>
-    <class>
-      <name>XWiki.TranslationDocumentClass</name>
-      <customClass/>
-      <customMapping/>
-      <defaultViewSheet/>
-      <defaultEditSheet/>
-      <defaultWeb/>
-      <nameField/>
-      <validationScript/>
-      <scope>
-        <cache>0</cache>
-        <disabled>0</disabled>
-        <displayType>select</displayType>
-        <multiSelect>0</multiSelect>
-        <name>scope</name>
-        <number>1</number>
-        <prettyName>Scope</prettyName>
-        <relationalStorage>0</relationalStorage>
-        <separator> </separator>
-        <separators> ,|</separators>
-        <size>1</size>
-        <unmodifiable>0</unmodifiable>
-        <values>GLOBAL|WIKI|USER|ON_DEMAND</values>
-        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
-      </scope>
-    </class>
-    <name>TotemCode.Translations</name>
-    <number>0</number>
-    <className>XWiki.TranslationDocumentClass</className>
-    <guid>eec57ead-81f6-465e-86ba-87f2c1f30f21</guid>
-    <property>
-      <scope>GLOBAL</scope>
-    </property>
-  </object>
   <content>totem.edit.editorder.info=Vous pouvez ici modifier chacune des sections du totem.\r\n* Vous pouvez changer l'ordre d'affichage des sections d'un simple glisser/déposer\r\n* En cliquant sur modifier la section, vous pouvez changer le type de la section, son titre et l'affichage du bas.\r\n* En cliquant sur Modifier les éléments de cette section, vous pouvez choisir les éléments qui constitueront cette section, en ajouter, en enlever, etc.\r\n\r\n
 totem.edit.editblock.button=Modifier cette section
 totem.edit.editblocksource.button=Modifier les éléments de cette section
 totem.edit.editblocksource.help=Veuillez choisir le mode d'édition, simple ou avancé. Le mode simple vous permet de sélectionner vos éléments parmi les contenus créées spécifiquement pour le Totem. Le mode avancé vous permet de choisir la source des contenus à utiliser parmi les Applications développées.
+totem.edit.editblock.help=Veuillez configurer le block. Vous pouvez choisir parmi différent mode de présentation disponible dont carrousel, liste ou simple text. Vous pouvez choisir la taille de votre block, sa couleur de fond, une image ou vidéo de fond éventuelle.
 totem.edit.editblocksource.itemslink=Administrer les éléments
 totem.edit.additem.button=Ajouter une section au totem
 totem.edit.exitedit=Revenir à la liste des totems
 totem.edit.removeitem.button=Supprimer la section
 totem.edit.removeitem.confirmation=Êtes-vous sûr de vouloir supprimer cet section du totem ? Les éléments le composant seront conservés.
+totem.edit.configuresection.title=Configurer la section
+totem.edit.configuresectionelements.title=Configurer les éléments de la section
 TotemCode.TotemBlockClass_type=Type d'affichage
 TotemCode.TotemBlockClass_title=Titre de la section
 TotemCode.TotemBlockClass_footer=Informations placées en bas de la section

@@ -31,9 +31,9 @@
   <author>xwiki:XWiki.Admin</author>
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-  <creationDate>1399932000000</creationDate>
-  <date>1399932000000</date>
-  <contentUpdateDate>1399932000000</contentUpdateDate>
+  <creationDate>1388530800000</creationDate>
+  <date>1388530800000</date>
+  <contentUpdateDate>1388530800000</contentUpdateDate>
   <version>1.1</version>
   <title>DisplayerMacros</title>
   <defaultTemplate/>
@@ -41,7 +41,111 @@
   <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
-  <hidden>false</hidden>
+  <hidden>true</hidden>
+  <object>
+    <class>
+      <name>XWiki.StyleSheetExtension</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <cache>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>cache</name>
+        <number>5</number>
+        <prettyName>Caching policy</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>long|short|default|forbid</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </cache>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Code</prettyName>
+        <rows>20</rows>
+        <size>50</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <parse>
+        <disabled>0</disabled>
+        <displayFormType>select</displayFormType>
+        <displayType>yesno</displayType>
+        <name>parse</name>
+        <number>4</number>
+        <prettyName>Parse content</prettyName>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+      </parse>
+      <use>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>use</name>
+        <number>3</number>
+        <prettyName>Use this extension</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>currentPage|onDemand|always</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </use>
+    </class>
+    <name>DisplayerCode.DisplayerMacros</name>
+    <number>0</number>
+    <className>XWiki.StyleSheetExtension</className>
+    <guid>0770b7c1-85f8-4512-a469-311334933097</guid>
+    <property>
+      <cache>long</cache>
+    </property>
+    <property>
+      <code>.vcenter {
+    display: inline-block;
+    float: none;
+    vertical-align: middle;
+}
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+.totemBlockContent a {
+    text-decoration: none;
+}</code>
+    </property>
+    <property>
+      <name/>
+    </property>
+    <property>
+      <parse/>
+    </property>
+    <property>
+      <use>currentPage</use>
+    </property>
+  </object>
   <content>{{velocity output="false"}}
 #* Macro handling the display of a field for an item / item object.
  * 
@@ -60,17 +164,22 @@
  * @param $source the actual source for the items to be displayed. The interpretation of this param depends on the source type. For a doclist source type, the param is expected to be a list of strings, names of documents to be displayed
  * @param $sourceClass the class of the objects in the documents of the source
  * @param $sourceLimit the max number of items to use from the source, will be used from the beginning
+ * @parem $sourceSort the parameter to sort on
+ * @parem $sourceSortDirection the direction of the sort ascending or descending
  * @param $fields the fields to be used by the sheet. They can be in the form doc.&lt;property&gt; to use a default document property, or &lt;fieldname&gt; to use a field from the class $sourceClass. 
           The number of fields required depends on the type of block.
+ * @Param $additionalDataMap map filled with additional data set with class TotemCode.TotemItemAdditionalDataClass on displayer
  *#
-#macro(displayBlock $sheet $cssClass $title $footer $sourceType $source $sourceClass $sourceLimit $fields)
+#macro(displayBlock $sheet $cssClass $title $footer $sourceType $source $sourceClass $sourceLimit $sourceSort $sourceSortDirection $fields $additionalDataMap)
 ## print the round work of the block
 (%class="blockdisplayer $!cssClass"%)(((
   #if("$!title" != '')
-    (%class="blocktitle"%)(((==$title==)))
+    (%class="blocktitle col-xs-12 col-md-12"%)(((=$title=)))
   #end
   ## prepare the documents list in variable $docList
   ## TODO: handle the other types of sources in the future
+  ## Set standard field Map using basic totem items
+  #set($baseFieldsMap = {"description":"description", "date":"date", "url":"url", "image":"image"})
   #if("$!sourceType" == "doclist" || "$!sourceType" == "")
     ## interpret $source as a list of strings. Responsibility of the caller to make it an actual list
     #set($blockDisplayerDocList = [])
@@ -79,9 +188,55 @@
         #set($discard = $blockDisplayerDocList.add($xwiki.getDocument($docName)))
       #end
     #end
+  #elseif("$!sourceType" == "sourceClass" &amp;&amp; "$!sourceClass" != "")
+    ## retrieve data from the sourceClass
+    ### setup boolean condition
+    #set($booleanCondition = "")
+    #if("$!{fields.get('boolean')}" != "")
+      #set($booleanCondition = "and source.${fields.get('boolean')} = :booleanCondition")
+    #end
+    ### setup orderBy
+    #set($orderBy = "")
+    #if("$!sourceSort" != "")
+      #set($orderBy = " order by ")
+      #if("${sourceSort}" == "appsource_date")
+        #set($orderBy = "${orderBy} source.${fields.get('date')} $!{sourceSortDirection}")
+      #else
+        #set($orderBy = "${orderBy} doc.${sourceSort} $!{sourceSortDirection}")
+      #end
+    #end
+    ### Create the query
+    #set($xwqlstatement = "from doc.object(${sourceClass}) as source where doc.fullName &lt;&gt; :sourceTemplate $!{booleanCondition} ${orderBy}")
+    #set($query = $services.query.xwql(${xwqlstatement}))
+    ### set limit
+    #if("$!{sourceLimit}" != "" &amp;&amp; "$!{sourceLimit}" != "0")
+      #set($query = $query.setLimit($!{sourceLimit}))
+    #end
+    ### bind values
+    #set($sourceTemplate = ${stringtool.replace($sourceClass,"Class","Template")})
+    #set($discard = $query.bindValue("sourceTemplate", "$!{sourceTemplate}"))
+    #if("$!{booleanCondition}" != "")
+      #set($discard = $query.bindValue("booleanCondition", 1))
+    #end
+    ### execute query
+    #set($results = $query.execute())
+    #set($blockDisplayerDocList = [])
+    #foreach($docName in $!{results})
+      #if($xwiki.exists("$!docName"))
+        #set($discard = $blockDisplayerDocList.add($xwiki.getDocument($docName)))
+      #end
+    #end
+    ## update field map according data filled by the user
+    #foreach($blockDisplayerFieldEntry in $!{fields.entrySet()})
+      #if("$!{blockDisplayerFieldEntry.value}" != "")
+        #set($discard = $baseFieldsMap.put("$!{blockDisplayerFieldEntry.key}", "$!{blockDisplayerFieldEntry.value}"))
+      #end
+    #end
   #end
   #set($blockDisplayerDocClass = $sourceClass)
-  #set($blockDisplayerFields = $fields)
+  #set($blockDisplayerFields = $baseFieldsMap)
+  ## set additionalDataMap to make the variable existing in displayers
+  #set($additionalDataMap = $additionalDataMap)
   (%class="blockcontent"%)((({{html clean="false" wiki="false"}}#includeInContext($sheet){{/html}})))
   ## TODO: should we do something special in this footer to escape syntax etc?
   (%class="blockfooter"%)((($footer)))
@@ -103,31 +258,31 @@
  * @param $width  the width of the block
  * @param $height the height of the block
  *# 
-#macro(displayBlock $sheet $cssClass $title $footer $sourceType $source $sourceClass $sourceLimit $fields  $blocWidth $blocHeight)
-## print the round work of the block
-(%class="blockdisplayer $!cssClass" style="width:${blocWidth}px;" %)(((
-  #if("$!title" != '')
-    (%class="blocktitle"%)(((==$title==)))
-  #end
-  ## prepare the documents list in variable $docList
-  ## TODO: handle the other types of sources in the future
-  #if("$!sourceType" == "doclist" || "$!sourceType" == "")
-    ## interpret $source as a list of strings. Responsibility of the caller to make it an actual list
-    #set($blockDisplayerDocList = [])
-    #foreach ($docName in $source)
-      #if($xwiki.exists("$!docName"))
-        #set($discard = $blockDisplayerDocList.add($xwiki.getDocument($docName)))
-      #end
-    #end
-  #end
-  #set($blockDisplayerDocClass = $sourceClass)
-  #set($blockDisplayerFields = $fields)
-  #set($width   = "$!blocWidth")
-  #set($height  = "$!blocHeight")
-  (%class="blockcontent"%)((({{html clean="false" wiki="false"}}#includeInContext($sheet){{/html}})))
-  ## TODO: should we do something special in this footer to escape syntax etc?
-  (%class="blockfooter"%)((($footer)))
-)))
-#end
+## #macro(displayBlock $sheet $cssClass $title $footer $sourceType $source $sourceClass $sourceLimit $fields $blocWidth $blocHeight)
+## ## print the round work of the block
+## (%class="blockdisplayer $!cssClass" style="width:${blocWidth}px;" %)(((
+##   #if("$!title" != '')
+##     (%class="blocktitle"%)(((==$title==)))
+##   #end
+##   ## prepare the documents list in variable $docList
+##   ## TODO: handle the other types of sources in the future
+##   #if("$!sourceType" == "doclist" || "$!sourceType" == "")
+##     ## interpret $source as a list of strings. Responsibility of the caller to make it an actual list
+##     #set($blockDisplayerDocList = [])
+##     #foreach ($docName in $source)
+##       #if($xwiki.exists("$!docName"))
+##         #set($discard = $blockDisplayerDocList.add($xwiki.getDocument($docName)))
+##       #end
+##     #end
+##   #end
+##   #set($blockDisplayerDocClass = $sourceClass)
+##   #set($blockDisplayerFields = $fields)
+##   #set($width   = "$!blocWidth")
+##   #set($height  = "$!blocHeight")
+##   (%class="blockcontent"%)((({{html clean="false" wiki="false"}}#includeInContext($sheet){{/html}})))
+##   ## TODO: should we do something special in this footer to escape syntax etc?
+##   (%class="blockfooter"%)((($footer)))
+## )))
+## #end
 {{/velocity}}</content>
 </xwikidoc>

@@ -22,7 +22,7 @@
 
 <xwikidoc>
   <web>DisplayerCode</web>
-  <name>ImageDroiteDisplayer</name>
+  <name>ImageRightDisplayer</name>
   <language/>
   <defaultLanguage/>
   <translation>0</translation>
@@ -31,17 +31,17 @@
   <author>xwiki:XWiki.Admin</author>
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-  <creationDate>1399932000000</creationDate>
-  <date>1399932000000</date>
-  <contentUpdateDate>1399932000000</contentUpdateDate>
+  <creationDate>1424685266000</creationDate>
+  <date>1426865142000</date>
+  <contentUpdateDate>1426865142000</contentUpdateDate>
   <version>1.1</version>
-  <title>ImageDroiteDisplayer</title>
+  <title>ImageRightDisplayer</title>
   <defaultTemplate/>
   <validationScript/>
   <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
-  <hidden>false</hidden>
+  <hidden>true</hidden>
   <object>
     <class>
       <name>DisplayerCode.DisplayerSheetClass</name>
@@ -66,12 +66,60 @@
         <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
       </providedType>
     </class>
-    <name>DisplayerCode.ImageDroiteDisplayer</name>
+    <name>DisplayerCode.ImageRightDisplayer</name>
     <number>0</number>
     <className>DisplayerCode.DisplayerSheetClass</className>
-    <guid>b0f52752-f0f1-4ae6-88cc-78c4a59adf16</guid>
+    <guid>4290b33f-ff89-4f5b-9ea9-197fcd69d109</guid>
     <property>
-      <providedType>ImageGauche</providedType>
+      <providedType>ImageRight</providedType>
+    </property>
+  </object>
+  <object>
+    <class>
+      <name>TotemCode.TotemItemAdditionalDataClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <defaultValue>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>defaultValue</name>
+        <number>2</number>
+        <picker>0</picker>
+        <prettyName>defaultValue</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </defaultValue>
+      <key>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>key</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>key</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </key>
+    </class>
+    <name>DisplayerCode.ImageRightDisplayer</name>
+    <number>0</number>
+    <className>TotemCode.TotemItemAdditionalDataClass</className>
+    <guid>72f19aec-68c5-4966-b5fa-06405e12f815</guid>
+    <property>
+      <defaultValue/>
+    </property>
+    <property>
+      <key>link-label</key>
     </property>
   </object>
   <object>
@@ -142,37 +190,40 @@
         <separators> ,|</separators>
         <size>1</size>
         <unmodifiable>0</unmodifiable>
-        <values>currentPage=Always on this page|onDemand=On demand|always=Always on this wiki</values>
+        <values>currentPage|onDemand|always</values>
         <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
       </use>
     </class>
-    <name>DisplayerCode.ImageDroiteDisplayer</name>
+    <name>DisplayerCode.ImageRightDisplayer</name>
     <number>0</number>
     <className>XWiki.StyleSheetExtension</className>
-    <guid>eba66814-0ff5-463f-a7cb-f6bed9c8f710</guid>
+    <guid>17eebfa2-4704-4e8e-924d-e67bede4eae2</guid>
     <property>
       <cache>long</cache>
     </property>
     <property>
-      <code>.rightImageText {
-   padding:22px 0 22px 141px;
-   display: block;
+      <code>.totemHeaderRow.rightimagedisplayer {
+  padding: 42px 0;
 }
-
-.rightImageContainer {
-   overflow : hidden;
-}
-
-/* TYPE 3 - Left / Right Image Block Displayer
----------------------------------------------------------------------- */ 
-
-.imageDroiteText a {
+.rightSideImage{
   display: block;
-  font-family: "DINCompPro";
-  font-size: 16px;
-  margin: 30px 0;
-  width: 127px;
-  }</code>
+  margin: 0 auto;
+  max-width: 400px;
+  width: 100%;
+}
+.imgContainer{
+  min-width: 150px;
+}
+.imgRightLink{
+  float: right;
+  font-size: 0.95em;
+  font-weight: bold;
+}
+@media only screen and (max-device-width: 640px) {
+  .rightSideImage{
+    padding: 15px 0;
+  }
+}</code>
     </property>
     <property>
       <name/>
@@ -184,28 +235,51 @@
       <use>onDemand</use>
     </property>
   </object>
-  <content>{{velocity}}
-$xwiki.ssx.use('DisplayerCode.ImageDroiteDisplayer')
+  <content>{{include reference="DisplayerCode.DisplayerTools"/}}
 
-{{html}}
+{{velocity}}
+#set($discard = $xwiki.ssx.use('DisplayerCode.ImageRightDisplayer'))
+
+{{html wiki="true"}}
+#set($linkLabel = '')
+#if("$!{additionalDataMap.link-label}" != '')
+  #set($linkLabel = ${additionalDataMap.link-label})
+#end
 #foreach($document in $blockDisplayerDocList)
-  #set($title = $document.getTitle())
-  #set($url = $document.getValue('url'))
-  #set($image = $document.getValue('image'))
-  #set($urlImage = $document.getAttachmentURL($image, 'download', 'width=120'))
-  ##set($attach = $services.model.resolveAttachment($image, "explicit", $document.getDocumentReference()))
-  ##set($image2 = $services.model.serialize($attach, "default"))
-  &lt;div class="rightimagedisplayer"&gt;
-    &lt;div class='rightImageContainer' style="background:url($urlImage) no-repeat scroll 10px center transparent;"&gt;
-      &lt;a href="$escapetool.xml($url)"&gt;
-        &lt;span class='rightImageText'&gt;
-          $title
-        &lt;/span&gt;
-      &lt;/a&gt;
+  #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
+  #set($urlLogoRight = '')
+  #if("$!{dataMap.image}" != '')
+    #set($urlLogoRight = $document.getAttachmentURL($dataMap.image, 'download'))
+  #end
+  &lt;div class="row totemHeaderRow rightimagedisplayer"&gt;
+    &lt;div class="col-xs-12 col-md-8 display-table vcenter"&gt;
+      &lt;h2&gt;
+        $dataMap.title
+      &lt;/h2&gt;
+      &lt;div class="col-xs-12 hidden-md hidden-lg display-table vcenter imgContainer"&gt;
+        #if("$!{urlLogoRight}" != '')
+          &lt;img class="rightSideIm/age" src="$!{urlLogoRight}" alt=""&gt;
+        #end
+      &lt;/div&gt;
+      &lt;div&gt;
+        $dataMap.description
+      &lt;/div&gt;
+      #if("$!{linkLabel}" != '')
+        {{html}}
+          &lt;div class="imgRightLink"&gt;
+            &lt;a href='$!{escapetool.xml($dataMap.url)}'&gt;
+              &lt;span class="fa fa-plus-circle"&gt; &lt;/span&gt;
+              $!{linkLabel}
+            &lt;/a&gt;
+          &lt;/div&gt; 
+        {{/html}}
+      #end
+    &lt;/div&gt;#* This comments prevent bootstrap columns from breaking by inserting spaces
+  *#&lt;div class="hidden-xs hidden-sm col-md-4 col-lg-4 display-table vcenter imgContainer"&gt;
+      &lt;img class="rightSideImage" src="$!{urlLogoRight}" alt="Responsive image"&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 #end
 {{/html}}
-
 {{/velocity}}</content>
 </xwikidoc>

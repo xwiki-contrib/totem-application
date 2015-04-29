@@ -21,21 +21,21 @@
 -->
 
 <xwikidoc>
-  <web>TotemCode</web>
-  <name>SimpleTotemItemSheet</name>
+  <web>DisplayerCode</web>
+  <name>SimpleText</name>
   <language/>
   <defaultLanguage/>
   <translation>0</translation>
-  <parent>TotemCode.SimpleTotemItemClass</parent>
+  <parent>DisplayerCode.WebHome</parent>
   <creator>xwiki:XWiki.Admin</creator>
   <author>xwiki:XWiki.Admin</author>
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-  <creationDate>1398855257000</creationDate>
-  <date>1425460342000</date>
-  <contentUpdateDate>1425460342000</contentUpdateDate>
+  <creationDate>1423135868000</creationDate>
+  <date>1426150874000</date>
+  <contentUpdateDate>1425636476000</contentUpdateDate>
   <version>1.1</version>
-  <title>#if($doc.name == 'SimpleTotemItemSheet')SimpleTotemItem Sheet#{else}$services.display.title($doc, {'displayerHint': 'default'})#end</title>
+  <title/>
   <defaultTemplate/>
   <validationScript/>
   <comment/>
@@ -44,7 +44,39 @@
   <hidden>true</hidden>
   <object>
     <class>
-      <name>XWiki.JavaScriptExtension</name>
+      <name>DisplayerCode.DisplayerSheetClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <providedType>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>providedType</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>providedType</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </providedType>
+    </class>
+    <name>DisplayerCode.SimpleText</name>
+    <number>0</number>
+    <className>DisplayerCode.DisplayerSheetClass</className>
+    <guid>2a8abad7-fcc0-4395-84ed-f2d3dfa7f36d</guid>
+    <property>
+      <providedType>SimpleText</providedType>
+    </property>
+  </object>
+  <object>
+    <class>
+      <name>XWiki.StyleSheetExtension</name>
       <customClass/>
       <customMapping/>
       <defaultViewSheet/>
@@ -114,68 +146,44 @@
         <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
       </use>
     </class>
-    <name>TotemCode.SimpleTotemItemSheet</name>
+    <name>DisplayerCode.SimpleText</name>
     <number>0</number>
-    <className>XWiki.JavaScriptExtension</className>
-    <guid>5a8bca02-c2bb-4679-a90a-3f1269e34643</guid>
+    <className>XWiki.StyleSheetExtension</className>
+    <guid>c8130f73-743e-4675-9822-fc18dccb058b</guid>
     <property>
       <cache>long</cache>
     </property>
     <property>
-      <code>document.observe("xwiki:actions:save", function(event){
-  require(['jquery'],function($){
-     var jqEvent = $(event);
-     var targetBtnName = jqEvent[0].target.activeElement.name;
-     var form = $(event.memo["form"]);
-     var xcontinue = $("input[name='xcontinue']").val();
-     var xredirect = xcontinue.replace("editor=inline","");
-     xredirect = xredirect.replace("/edit/","/view/") + "skin=TotemCode.Skin&amp;fromIframe=1";
-     $("input[name='xredirect']").val(xredirect);
-  });
-});
-
-document.observe("xwiki:actions:cancel", function(event){
-   require(['jquery'],function($){
-     var form = $(event.memo["form"]);
-     var xcontinue = $("input[name='xcontinue']").val();
-     var xredirect = xcontinue.replace("editor=inline","");
-     xredirect = xredirect.replace("/edit/","/view/") + "skin=TotemCode.Skin&amp;fromIframe=1";
-     $("input[name='xredirect']").val(xredirect);
-  });
-});
-
-document.observe("xwiki:actions:preview", function(event){
-});</code>
+      <code>.simpleRow.simpleText{
+  padding: 15px 0;
+}</code>
     </property>
     <property>
-      <name>Initialize save, preview, cancel buttons in iframe mode</name>
+      <name/>
     </property>
     <property>
-      <parse>1</parse>
+      <parse/>
     </property>
     <property>
-      <use>onDemand</use>
+      <use>currentPage</use>
     </property>
   </object>
-  <content>{{velocity}}
-## You can modify this page to customize the presentation of your object.
-## At first you should keep the default presentation and just save the document.
-#if("$!request.fromIframe" != "")
-   #set($discard = $xwiki.jsx.use("TotemCode.SimpleTotemItemSheet"))
+  <content>{{include reference="DisplayerCode.DisplayerTools"/}}
+
+{{velocity}}
+#set($discard = $xwiki.ssx.use('DisplayerCode.SimpleText'))
+
+{{html wiki="true"}}
+#foreach($document in $blockDisplayerDocList)
+  #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
+  &lt;div class="row simpleRow simpleText"&gt;
+    &lt;div class="col-xs-12 col-md-12 display-table"&gt;
+      &lt;div class="simpleDescription"&gt;
+        $dataMap.description
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
 #end
-#set($object = $doc.getObject('TotemCode.SimpleTotemItemClass'))
-#set($class = $object.xWikiClass)
-#if ($xcontext.action == "edit" || $xcontext.action == "inline")
-  #set($titlePrettyName = $msg.get("${class.name}_title"))
-  #set($titleId = "${class.name}_0_title")
-  ; $titlePrettyName
-  : {{html}}&lt;input name='title' type="text" value="$!{escapetool.xml($doc.title)}" id="$titleId" /&gt;{{/html}}
-#end
-#foreach($prop in $class.properties)
-  ; $doc.displayPrettyName($prop.name, $object)
-  : #if($prop.name == 'image'){{attachmentSelector classname="$class.name" object="$object.number" property="$prop.name" width="120" buttontext="$msg.get('totemitem.edit.image')" displayImage="true" filter="png,jpg,gif" savemode="direct" /}}
-  #else$doc.display($prop.getName())
-  #end
-#end
+{{/html}}
 {{/velocity}}</content>
 </xwikidoc>

@@ -22,7 +22,7 @@
 
 <xwikidoc>
   <web>DisplayerCode</web>
-  <name>ImageGaucheDisplayer</name>
+  <name>ImageLeftDisplayer</name>
   <language/>
   <defaultLanguage/>
   <translation>0</translation>
@@ -31,17 +31,17 @@
   <author>xwiki:XWiki.Admin</author>
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
-  <creationDate>1399932000000</creationDate>
-  <date>1399932000000</date>
-  <contentUpdateDate>1399932000000</contentUpdateDate>
+  <creationDate>1424685633000</creationDate>
+  <date>1426865017000</date>
+  <contentUpdateDate>1426865017000</contentUpdateDate>
   <version>1.1</version>
-  <title>ImageGaucheDisplayer</title>
+  <title>ImageLeftDisplayer</title>
   <defaultTemplate/>
   <validationScript/>
   <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
-  <hidden>false</hidden>
+  <hidden>true</hidden>
   <object>
     <class>
       <name>DisplayerCode.DisplayerSheetClass</name>
@@ -66,12 +66,60 @@
         <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
       </providedType>
     </class>
-    <name>DisplayerCode.ImageGaucheDisplayer</name>
+    <name>DisplayerCode.ImageLeftDisplayer</name>
     <number>0</number>
     <className>DisplayerCode.DisplayerSheetClass</className>
-    <guid>d4e5edec-95c0-4818-be46-881477da0aaf</guid>
+    <guid>10ef5b72-f3be-4a68-8bd3-84f3e030dccb</guid>
     <property>
-      <providedType>ImageDroite</providedType>
+      <providedType>ImageLeft</providedType>
+    </property>
+  </object>
+  <object>
+    <class>
+      <name>TotemCode.TotemItemAdditionalDataClass</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <defaultValue>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>defaultValue</name>
+        <number>2</number>
+        <picker>0</picker>
+        <prettyName>defaultValue</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </defaultValue>
+      <key>
+        <customDisplay/>
+        <disabled>0</disabled>
+        <name>key</name>
+        <number>1</number>
+        <picker>0</picker>
+        <prettyName>key</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <validationMessage/>
+        <validationRegExp/>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </key>
+    </class>
+    <name>DisplayerCode.ImageLeftDisplayer</name>
+    <number>0</number>
+    <className>TotemCode.TotemItemAdditionalDataClass</className>
+    <guid>ffd232cd-021b-4f57-b3ec-0c76ff0b4627</guid>
+    <property>
+      <defaultValue/>
+    </property>
+    <property>
+      <key>link-label</key>
     </property>
   </object>
   <object>
@@ -142,36 +190,40 @@
         <separators> ,|</separators>
         <size>1</size>
         <unmodifiable>0</unmodifiable>
-        <values>currentPage=Always on this page|onDemand=On demand|always=Always on this wiki</values>
+        <values>currentPage|onDemand|always</values>
         <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
       </use>
     </class>
-    <name>DisplayerCode.ImageGaucheDisplayer</name>
+    <name>DisplayerCode.ImageLeftDisplayer</name>
     <number>0</number>
     <className>XWiki.StyleSheetExtension</className>
-    <guid>ad31cf87-5c9e-403d-970f-550de66520a6</guid>
+    <guid>bbe5a1ab-fbc6-4b73-b3aa-9f4a725b0845</guid>
     <property>
       <cache>long</cache>
     </property>
     <property>
-      <code>.leftImageText {
-   padding:30px 140px 30px 0;
-   display: block;
+      <code>.totemHeaderRow.leftimagedisplayer {
+  padding: 42px 0;
 }
-
-.leftImageContainer {
-   overflow : hidden;
-}
-/* TYPE 3 - Left / Right Image Block Displayer
----------------------------------------------------------------------- */ 
-
-.imageGaucheText a {
+.leftSideImage{
   display: block;
-  font-family: "DINCompPro";
-  font-size: 16px;
-  margin: 30px 0;
-  width: 127px;
-  }</code>
+  margin: 0 auto;
+  max-width: 400px;
+  width: 100%;
+}
+.imgContainer{
+  min-width: 150px;
+}
+.imgLeftLink{
+  float: right;
+  font-size: 0.95em;
+  font-weight: bold;
+}
+@media only screen and (max-device-width: 640px) {
+  .leftSideImage{
+    padding: 15px 0;
+  }
+}</code>
     </property>
     <property>
       <name/>
@@ -183,26 +235,53 @@
       <use>onDemand</use>
     </property>
   </object>
-  <content>{{velocity}}
-$xwiki.ssx.use('DisplayerCode.ImageGaucheDisplayer')
+  <content>{{include reference="DisplayerCode.DisplayerTools"/}}
 
-{{html}}
+{{velocity}}
+#set($discard = $xwiki.ssx.use('DisplayerCode.ImageLeftDisplayer'))
+
+{{html wiki="true"}}
+#set($linkLabel = '')
+#if("$!{additionalDataMap.link-label}" != '')
+  #set($linkLabel = ${additionalDataMap.link-label})
+#end
 #foreach($document in $blockDisplayerDocList)
-  #set($title = $document.getTitle())
-  #set($url = $document.getValue('url'))
-  #set($image = $document.getValue('image'))
-  #set($urlImage = $document.getAttachmentURL($image, 'download', 'width=120'))
-  &lt;div class="leftimagedisplayer"&gt;
-    &lt;div class='leftImageContainer' style="background:url($urlImage) no-repeat scroll 150px center transparent;"&gt;
-      &lt;a href="$escapetool.xml($url)"&gt;
-        &lt;span class='leftImageText'&gt;
-          $title
-        &lt;/span&gt;
-      &lt;/a&gt;
+  #setDataMap($document $blockDisplayerDocClass $blockDisplayerFields)
+  #set($urlLogo = '')
+  #if("$!{dataMap.image}" != '')
+    #set($urlLogo = $document.getAttachmentURL($dataMap.image, 'download'))
+  #end
+  &lt;div class="row totemHeaderRow leftimagedisplayer"&gt;
+    &lt;div class="col-xs-12 col-md-8 display-table vcenter hidden-md hidden-lg"&gt;
+      &lt;h2&gt;
+        $dataMap.title
+      &lt;/h2&gt;
+    &lt;/div&gt;
+    &lt;div class="col-xs-12 col-md-4 display-table vcenter imgContainer"&gt;
+      #if("$!{urlLogo}" != '')
+        &lt;img class="leftSideImage" src="$!{urlLogo}" alt=""&gt;
+      #end
+    &lt;/div&gt;#* This comments prevent bootstrap columns from breaking by inserting spaces
+  *#&lt;div class="col-xs-12 col-md-8 display-table vcenter"&gt;
+      &lt;h2 class='hidden-xs hidden-sm '&gt;
+        $dataMap.title
+      &lt;/h2&gt;
+      &lt;div&gt;
+        $dataMap.description
+      &lt;/div&gt;
+      #if("$!{linkLabel}" != '')
+        {{html}}
+          &lt;div class="imgLeftLink"&gt;
+            &lt;a href='$!{escapetool.xml($dataMap.url)}'&gt;
+              &lt;span class="fa fa-plus-circle"&gt; &lt;/span&gt;
+              $!{linkLabel}
+            &lt;/a&gt;
+          &lt;/div&gt; 
+      {{/html}}
+      #end
     &lt;/div&gt;
   &lt;/div&gt;
 #end
 {{/html}}
-
 {{/velocity}}</content>
 </xwikidoc>

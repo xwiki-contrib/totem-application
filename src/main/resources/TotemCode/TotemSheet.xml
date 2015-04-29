@@ -32,8 +32,8 @@
   <customClass/>
   <contentAuthor>xwiki:XWiki.Admin</contentAuthor>
   <creationDate>1399932000000</creationDate>
-  <date>1399932000000</date>
-  <contentUpdateDate>1399932000000</contentUpdateDate>
+  <date>1425487504000</date>
+  <contentUpdateDate>1425460342000</contentUpdateDate>
   <version>1.1</version>
   <title>#if($doc.name == 'TotemSheet')Totem Sheet#{else}$services.display.title($doc, {'displayerHint': 'default'})#end</title>
   <defaultTemplate/>
@@ -110,7 +110,7 @@
         <separators> ,|</separators>
         <size>1</size>
         <unmodifiable>0</unmodifiable>
-        <values>currentPage=Always on this page|onDemand=On demand|always=Always on this wiki</values>
+        <values>currentPage|onDemand|always</values>
         <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
       </use>
     </class>
@@ -128,8 +128,6 @@
   initialize: function() {
     this.hookEditOrder();
     $$('.totemBlocks .totemBlock').each(function(item){
-      this.hookEditButton(item);
-      this.hookEditSourceButton(item);
       this.hookDeleteButton(item);
     }.bind(this));
     
@@ -314,7 +312,7 @@
         addForm.addClassName('hidden');
       }.bind(this));
     }
-  }  
+  }
 });
   return XWiki;
 }(XWiki || {}));
@@ -335,7 +333,7 @@ document.observe('xwiki:dom:loading', function() {
   </object>
   <object>
     <class>
-      <name>XWiki.StyleSheetExtension</name>
+      <name>XWiki.JavaScriptExtension</name>
       <customClass/>
       <customMapping/>
       <defaultViewSheet/>
@@ -401,7 +399,1097 @@ document.observe('xwiki:dom:loading', function() {
         <separators> ,|</separators>
         <size>1</size>
         <unmodifiable>0</unmodifiable>
-        <values>currentPage=Always on this page|onDemand=On demand|always=Always on this wiki</values>
+        <values>currentPage|onDemand|always</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </use>
+    </class>
+    <name>TotemCode.TotemSheet</name>
+    <number>1</number>
+    <className>XWiki.JavaScriptExtension</className>
+    <guid>7ceb9a37-4b00-4549-806f-6e2c62429505</guid>
+    <property>
+      <cache>long</cache>
+    </property>
+    <property>
+      <code>document.observe('xwiki:dom:loading', function() {
+// Configure require.js to use Colpick (https://github.com/josedvq/colpick-jQuery-Color-Picker/)
+require.config({
+  paths: {
+    'colpick': '$services.webjars.url('colpick/2.0.2/js/colpick.js')'
+  },
+  shim: {
+    'colpick' : ['jquery']
+  }
+});
+});</code>
+    </property>
+    <property>
+      <name>Color picker</name>
+    </property>
+    <property>
+      <parse>1</parse>
+    </property>
+    <property>
+      <use>onDemand</use>
+    </property>
+  </object>
+  <object>
+    <class>
+      <name>XWiki.JavaScriptExtension</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <cache>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>cache</name>
+        <number>5</number>
+        <prettyName>Caching policy</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>long|short|default|forbid</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </cache>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Code</prettyName>
+        <rows>20</rows>
+        <size>50</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <parse>
+        <disabled>0</disabled>
+        <displayFormType>select</displayFormType>
+        <displayType>yesno</displayType>
+        <name>parse</name>
+        <number>4</number>
+        <prettyName>Parse content</prettyName>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+      </parse>
+      <use>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>use</name>
+        <number>3</number>
+        <prettyName>Use this extension</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>currentPage|onDemand|always</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </use>
+    </class>
+    <name>TotemCode.TotemSheet</name>
+    <number>2</number>
+    <className>XWiki.JavaScriptExtension</className>
+    <guid>31a5edfd-5305-444c-b817-fc604f35a422</guid>
+    <property>
+      <cache>long</cache>
+    </property>
+    <property>
+      <code>// This code was moved in Modal Popup Javascript
+// document.observe('xwiki:dom:loaded', function() {
+//   // Use JQuery
+//   require(['jquery'], function($) {
+//     // The following script will allow to update the hidden input data with the specific additional data for displayers
+//     // Additonal Datas are displayed as individual input and are all saved in a common textarea field.
+//     // ****
+//     function updateHiddenInputData() {
+//       // get displayer additonal data inputs
+//       var additionalDataInputList = $('.displayerAdditionalData');
+//       additionalDataInputList.each( function() {
+//         // observe Change event
+//         $(this).change(function() {
+//           var dataValues = "";
+//           // get the list of input with class .displayerAdditionalData from the parent
+//           var additionalDataParent = $(this).parent().parent();
+//           var total = additionalDataParent.find('.displayerAdditionalData').length;
+//           additionalDataParent.find('.displayerAdditionalData').each( function(index) {
+//             // store field data
+//             dataValues += $(this).attr('name') + ":" + $(this).val();
+//             if (index != total - 1) {
+//               dataValues += ",";
+//             }
+//           });
+//           // update the data hidden input
+//           additionalDataParent.find('input[type=hidden]').val(dataValues);
+//         });
+//       });
+//     }
+//     // call our updateHiddenInputData function
+//     updateHiddenInputData();
+//     updateHiddenInputData();
+//     updateHiddenInputData();
+//     // update the additional specific to match the selected displayer
+//     $("select[id*='type']").change( function() {
+//       // get the addtional data container
+//       var additionalDataDiv = $(this).parents().eq(2).find('.additionalData');
+//       // TotemCode.TotemAdditionalDataDisplayer page is used to build the displayer specific input
+//       // we build the url to access it
+//       var additionalDataDisplayerUrl = "$xwiki.getURL('TotemCode.TotemAdditionalDataDisplayer', 'get', '')?totem=" + $(this).val();
+//       additionalDataDisplayerUrl += "&amp;totemBlock=" + $(this).closest(".totemBlock").attr("id")
+//       // then we call it in ajax
+//       $.ajax({
+//         url: additionalDataDisplayerUrl,
+//       }).done(function( html ) {
+//         // update the additionalData container
+//         $(additionalDataDiv).html(html);
+//         // bind the new inputs
+//         updateHiddenInputData();
+//       });
+//     });
+//   });
+// });
+</code>
+    </property>
+    <property>
+      <name>Displayer additional Data </name>
+    </property>
+    <property>
+      <parse>1</parse>
+    </property>
+    <property>
+      <use>currentPage</use>
+    </property>
+  </object>
+  <object>
+    <class>
+      <name>XWiki.JavaScriptExtension</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <cache>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>cache</name>
+        <number>5</number>
+        <prettyName>Caching policy</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>long|short|default|forbid</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </cache>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Code</prettyName>
+        <rows>20</rows>
+        <size>50</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <parse>
+        <disabled>0</disabled>
+        <displayFormType>select</displayFormType>
+        <displayType>yesno</displayType>
+        <name>parse</name>
+        <number>4</number>
+        <prettyName>Parse content</prettyName>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+      </parse>
+      <use>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>use</name>
+        <number>3</number>
+        <prettyName>Use this extension</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>currentPage|onDemand|always</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </use>
+    </class>
+    <name>TotemCode.TotemSheet</name>
+    <number>3</number>
+    <className>XWiki.JavaScriptExtension</className>
+    <guid>20888b66-d110-4366-812e-c3c349ff4e07</guid>
+    <property>
+      <cache>long</cache>
+    </property>
+    <property>
+      <code>require(['jquery'],function($){
+$.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
+
+$.extend({
+//Method to intialize edit forms
+initializeEditForm : function(editFormURL,XWModalContent){
+   $(".xdialog-box").addClass("xwmlrg");
+
+    // Initialize color pickers
+    require(['colpick'], function(Colpick) {
+       $.initColorPickers();
+    });
+
+   //Initialize attachment-picker fields
+   $(".attachment-picker-start").click(function(event){
+      var attPickerURL = $(this).attr("href") + "&amp;xpage=plain";
+      var totemDocRef = $("#totemDocRef").val();
+      attPickerURL = attPickerURL.replace("?docname=TotemCode.EditContent&amp;","?docname=" + encodeURIComponent(totemDocRef) + "&amp;");
+      $.initAttachmentPicker(editFormURL,attPickerURL,XWModalContent);
+      event.preventDefault();
+   });
+
+   //Intialize save button
+   $(".saveBlockBtn").click(function(event){
+       var form = $("form",$(this).parents());
+       if(form.length &gt; 0){
+          form = form.last();
+          var data = form.serialize();
+          var actionURL = form.attr("action") + "&amp;" + data;
+          $(XWModalContent).addClass("ajaxloader");
+          $.ajax({
+	      url:actionURL,
+	      type:'GET',
+              complete:function(event, XMLHttpRequest, ajaxOptions){
+                 //Redirect
+                 var redirectURL = $("#redirectURL").val();
+                 document.location.replace(redirectURL);   
+              }
+	  });
+       }
+       event.preventDefault();
+   });
+
+   //Intialize cancel button
+   $("a.cancelbutton").click(function(event){
+      $(".xdialog-close").click();
+      event.preventDefault();
+   });
+},
+
+//Method to intialize color pickers
+initColorPickers : function(){
+    // Get the inputs that need to be enhanced
+    $('.color-picker').each(function(index){
+         var input = $(this);
+         var parent = $(this).parent();
+         // Create the color preview box
+         parent.append('&lt;div class="input-group-addon color-preview"&gt;&lt;/div&gt;');
+         // Update the color preview box
+         $(".color-preview",parent).css('background-color', input.val());
+         // Enable the color picker
+         $(this).colpick({
+             layout: 'hex',
+             submit: true,
+             color: $(this).val(),
+             onShow: function(colpickobj){
+                $(colpickobj).css("z-index","99999");
+             },
+             onSubmit: function(hsb, hex, rgb, el) {
+                var element = $(el);
+                // Hide the color picker
+                element.colpickHide();
+                // Update the filled value
+                element.val('#'+hex);
+                // Update the color preview box
+                $(".color-preview",element.parent()).css('background-color', '#'+hex);
+                // Emit the "change" event
+                element.trigger('change');
+             }
+         });
+         // If the user write a value manually
+         input.keyup(function(event){
+            // Update the color preview box
+            $('.color-preview',$(this).parent()).css('background-color', $(this).val());
+            // Update the color picker
+            $(this).colpickSetColor($(this).val(), false);
+         });
+    });
+},
+
+//Method to intialize the attachment picker after loading it
+initAttachmentPicker : function(editFormURL,attPickerURL,XWModalContent){
+ $(XWModalContent).addClass("ajaxloader");
+ $(XWModalContent).load(attPickerURL,function(){
+ $(XWModalContent).removeClass("ajaxloader");
+   //Initialize attachment picker btns
+   $("input[name='action_upload'][type='submit']").click(function(event){
+      //Check input file filed
+      if($("#attachfile").val() == ""){//Empty field
+           new XWiki.widgets.Notification("$services.localization.render('xe.attachmentSelector.upload.error.noFile')", 'error');
+      }
+      else
+      {
+           //Check allowed extensions
+           var allowedExts = $("#attachfile").attr("title");
+           allowedExts = (allowedExts != "") ? allowedExts.split(', ') : new Array();
+           var fileExt = null;
+           var filename = $("#attachfile").val();
+           var fpath = filename.replace('\\', '/');
+           var pieces = fpath.split('/');
+           if(pieces.length &gt; 0){
+               var basename = pieces[pieces.length-1];
+               pieces = basename.split('.');
+               fileExt = pieces[pieces.length-1].toLowerCase();
+           }
+           if(fileExt &amp;&amp; allowedExts.indexOf(fileExt) == -1){
+               new XWiki.widgets.Notification("$services.localization.render('xe.attachmentSelector.upload.error.badExtension')", 'error');
+           }
+           else{
+               var uploadURL = $("#uploadAttachment").attr('action');
+               var params = $("#uploadAttachment :not(input[name='xredirect'])").serialize();
+               var xredirect = "$util.encodeURI($xwiki.getURL('XWiki.SuggestDisplayEditItems','view','xpage=plain&amp;outputSyntax=plain&amp;action=ajaxUploadAttachment'))";
+               uploadURL = uploadURL + "?" + params + "&amp;xredirect=" + xredirect;
+               new XWiki.widgets.Notification("$services.localization.render('xe.attachmentSelector.upload.inProgress')", 'inprogress');
+               jQuery.ajaxFileUpload({
+                  url:uploadURL,
+	          secureuri:false,
+   	          fileElementId:'attachfile',
+	          success: function (data, status){
+                  },
+                  complete:function(data, status){
+                      //Reload the page after upload
+                      $(".xnotification-inprogress").remove();
+                      $.initAttachmentPicker(editFormURL,attPickerURL,XWModalContent);
+                  },
+                  error: function (data, status, e){
+	          }
+               });
+             }  
+           }
+           event.preventDefault();
+        });
+        //Initialize delete attachment btns
+        $("a.delete").click(function(event){
+            var rep = confirm("$services.localization.render('core.viewers.attachments.delete.confirm')");
+            if(rep){
+               var deleteURL = $(this).attr("href");
+               var attElem =  $(this).parents().eq(3);
+               new XWiki.widgets.Notification("$services.localization.render('core.viewers.attachments.delete.inProgress')",'inprogress');
+               $.ajax({
+	          url:deleteURL,
+		  type:'POST',
+		  complete:function(event, XMLHttpRequest, ajaxOptions){
+                     $(".xnotification-inprogress").remove();
+                     new XWiki.widgets.Notification("$services.localization.render('core.viewers.attachments.delete.done')","done");
+                     attElem.remove();
+                  }
+	       });
+             }
+            event.preventDefault();
+        });
+        //Initialize select attachment btns
+        $("a.select").click(function(event){
+            var selectURL = $(this).attr("href");
+            new XWiki.widgets.Notification("Selecting",'inprogress');
+            $.ajax({
+	       url:selectURL,
+	       type:'POST',
+	       complete:function(event, XMLHttpRequest, ajaxOptions){
+                  $(".xnotification-inprogress").remove();
+                  new XWiki.widgets.Notification("Attachment selected","done");
+                  //Reload form with selected image modal
+                  $(XWModalContent).load(editFormURL,function(){
+                     $.initializeEditForm(editFormURL,XWModalContent);
+                  });
+               }
+	    });
+            event.preventDefault();
+        });
+        //Initialize attachment picker close button
+        $("#attachment-picker-close").click(function(event){
+           //Reload edit item form
+           $(XWModalContent).load(editFormURL,function(){
+              $.initializeEditForm(editFormURL,XWModalContent);
+           });
+           event.preventDefault();
+        });
+    });
+}
+});
+});
+
+require(['jquery'], function ($) {
+$(function(){
+      //Initialize edit Totem buttons
+      $(".editbutton").click(function(event){
+           event.preventDefault();
+           var blockNumber = $(this).attr("rel");
+           var totemDocRef = $("#totemDocRef").val();
+           var editContentURL = "$xwiki.getURL('TotemCode.EditContent','edit','xpage=plain&amp;editor=inline')";
+           var editURL = editContentURL + "&amp;action=editTotemBlock" + "&amp;totemDocRef=" + encodeURIComponent(totemDocRef) + "&amp;blockNumber=" + blockNumber;
+           var redirectURL = $("#redirectURL").val();
+           $('.xdialog-modal-container').remove();
+           new XWiki.widgets.TotemModalPopup({pageURL: editURL});
+      });
+      $(".editsourcebutton").click(function(event){
+           var blockNumber = $(this).attr("rel");
+           var totemDocRef = $("#totemDocRef").val();
+           var editContentURL = "$xwiki.getURL('TotemCode.EditContent','view')";
+           var editURL = editContentURL + "?action=editTotemBlockSource" + "&amp;totemDocRef=" + totemDocRef + "&amp;blockNumber=" + blockNumber;
+           var redirectURL = $("#redirectURL").val();
+           $("#editIframe").attr("src",editURL);
+           $("#totemModal .modal-dialog").addClass("modal-lg");
+           $("#totemModal .modal-body").addClass("loadingModal");
+           $("#totemModal .modal-title").html("$services.localization.render('totem.edit.configuresectionelements.title')");
+           $("#totemModal").modal("show");
+           //Initialize iframe buttons
+           $("#editIframe").load(function(event){
+              if($("#showIframe").val() == "1"){ 
+                 $(this).show();
+                 $("#totemModal .modal-body").removeClass("loadingModal");
+              }
+              $(this).contents().find(".saveSourceBtn").click(function(){
+                 $("#showIframe").val("0");
+                 $("#totemModal .modal-body").addClass("loadingModal");
+                 $("#editIframe").hide();
+              });   
+              if($(this).contents().find("#redirectURL").length &gt; 0){
+                 document.location.replace(redirectURL);   
+              }
+              //Initialize cancel edit block source button
+              $(this).contents().find("a.cancelbutton").click(function(event){
+                 event.preventDefault();
+                 $("#totemModal").modal("hide");
+              });
+              //Initialize the elements admin button
+              $(this).contents().find(".adminItemsBtn").click(function(event){
+                 event.preventDefault();
+                 var editURL = $(this).attr("href");
+                 $("#editIframe").attr("src",editURL);
+              });
+            });
+           event.preventDefault();
+      });
+   });//endReady
+});</code>
+    </property>
+    <property>
+      <name>Edit Totem content on page</name>
+    </property>
+    <property>
+      <parse>1</parse>
+    </property>
+    <property>
+      <use>onDemand</use>
+    </property>
+  </object>
+  <object>
+    <class>
+      <name>XWiki.JavaScriptExtension</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <cache>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>cache</name>
+        <number>5</number>
+        <prettyName>Caching policy</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>long|short|default|forbid</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </cache>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Code</prettyName>
+        <rows>20</rows>
+        <size>50</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <parse>
+        <disabled>0</disabled>
+        <displayFormType>select</displayFormType>
+        <displayType>yesno</displayType>
+        <name>parse</name>
+        <number>4</number>
+        <prettyName>Parse content</prettyName>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+      </parse>
+      <use>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>use</name>
+        <number>3</number>
+        <prettyName>Use this extension</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>currentPage|onDemand|always</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </use>
+    </class>
+    <name>TotemCode.TotemSheet</name>
+    <number>4</number>
+    <className>XWiki.JavaScriptExtension</className>
+    <guid>3b79fee2-e42a-4ea9-be0c-a56ced392396</guid>
+    <property>
+      <cache>long</cache>
+    </property>
+    <property>
+      <code>// Make sure the XWiki 'namespace' and the ModalPopup class exist.
+if(typeof(XWiki) == "undefined" || typeof(XWiki.widgets) == "undefined" || typeof(XWiki.widgets.ModalPopup) == "undefined") {
+ if (typeof console != "undefined" &amp;&amp; typeof console.warn == "function") {
+    console.warn("[MessageBox widget] Required class missing: XWiki.widgets.ModalPopup");
+  }
+} else {
+
+XWiki.widgets.TotemModalPopup = Class.create(XWiki.widgets.ModalPopup, {
+ /** Default parameters can be added to the custom class. */
+  defaultInteractionParameters : {
+  },
+ /** Constructor. Registers the key listener that pops up the dialog. */
+  initialize : function($super, interactionParameters) {
+   this.interactionParameters = Object.extend(Object.clone(this.defaultInteractionParameters), interactionParameters || {});
+    // call constructor from ModalPopup with params content, shortcuts, options
+    $super(
+     this.createContent(this.interactionParameters),
+      {
+       "show"  : { method : this.showDialog,  keys : [] },
+       "close" : { method : this.closeDialog, keys : ['Esc'] }
+      },
+      {
+         displayCloseButton : true, 
+         verticalPosition : "top",
+         backgroundColor : "#FFF"
+      }
+    );
+   this.showDialog();
+   this.setClass("my-modal-popup");
+  },
+ /** Get the content of the modal dialog using ajax */
+  createContent : function (data) {
+    var content =  new Element('div', {'class': 'modal-popup'});
+    // get page content for the pageURL
+    new Ajax.Request(data.pageURL,
+    {
+      method:'get',
+      onSuccess: function(transport){
+        //
+        // Start Displayer additional Data management
+        //
+        // Use JQuery
+        require(['jquery'], function($) {
+          // The following script will allow to update the hidden input data with the specific additional data for displayers
+          // Additonal Datas are displayed as individual input and are all saved in a common textarea field.
+          // ****
+          function updateHiddenInputData() {
+            // get displayer additonal data inputs
+            var additionalDataInputList = $('.displayerAdditionalData');
+            additionalDataInputList.each( function() {
+              // observe Change event
+              $(this).change(function() {
+                var dataValues = "";
+                // get the list of input with class .displayerAdditionalData from the parent
+                var additionalDataParent = $(this).parent().parent();
+                var total = additionalDataParent.find('.displayerAdditionalData').length;
+                additionalDataParent.find('.displayerAdditionalData').each( function(index) {
+                  // store field data
+                  dataValues += $(this).attr('name') + ":" + $(this).val();
+                  if (index != total - 1) {
+                    dataValues += ",";
+                  }
+                });
+                // update the data hidden input
+                additionalDataParent.find('input[type=hidden]').val(dataValues);
+              });
+            });
+          }
+          // call our updateHiddenInputData function
+          updateHiddenInputData();
+          // update the additional specific to match the selected displayer
+          $("select[id*='type']").change( function() {
+            // get the addtional data container
+            var additionalDataDiv = $(this).parents().eq(2).find('.additionalData');
+            // TotemCode.TotemAdditionalDataDisplayer page is used to build the displayer specific input
+            // we build the url to access it
+            var additionalDataDisplayerUrl = "$xwiki.getURL('TotemCode.TotemAdditionalDataDisplayer', 'get', '')?totem=" + $(this).val();
+            additionalDataDisplayerUrl += "&amp;totemBlock=" + $(this).closest(".totemBlock").attr("id")
+            // then we call it in ajax
+            $.ajax({
+              url: additionalDataDisplayerUrl,
+            }).done(function( html ) {
+              // update the additionalData container
+              $(additionalDataDiv).html(html);
+              // bind the new inputs
+              updateHiddenInputData();
+            });
+          });
+        });
+        //
+        //
+        var response = transport.responseText || "no response text";
+        content.insert(response);
+        require(['jquery'],function($){
+           $.initializeEditForm(data.pageURL,content);
+        });
+      },
+      onFailure: function(){ content.insert('Something went wrong...'); 
+    }
+    });
+
+    return content;
+  }
+});
+} // if the parent widget is defined</code>
+    </property>
+    <property>
+      <name>Use XWiki Modal Popup</name>
+    </property>
+    <property>
+      <parse>1</parse>
+    </property>
+    <property>
+      <use>onDemand</use>
+    </property>
+  </object>
+  <object>
+    <class>
+      <name>XWiki.JavaScriptExtension</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <cache>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>cache</name>
+        <number>5</number>
+        <prettyName>Caching policy</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>long|short|default|forbid</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </cache>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Code</prettyName>
+        <rows>20</rows>
+        <size>50</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <parse>
+        <disabled>0</disabled>
+        <displayFormType>select</displayFormType>
+        <displayType>yesno</displayType>
+        <name>parse</name>
+        <number>4</number>
+        <prettyName>Parse content</prettyName>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+      </parse>
+      <use>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>use</name>
+        <number>3</number>
+        <prettyName>Use this extension</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>currentPage|onDemand|always</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </use>
+    </class>
+    <name>TotemCode.TotemSheet</name>
+    <number>5</number>
+    <className>XWiki.JavaScriptExtension</className>
+    <guid>fb4e0bb8-fdc9-47ac-8dd8-571cc1820498</guid>
+    <property>
+      <cache>long</cache>
+    </property>
+    <property>
+      <code>require(['jquery'],function($){
+$.extend({
+	createUploadIframe: function(id, uri){
+		//create frame
+		var frameId = 'jUploadFrame' + id;
+		var iframeHtml = '&lt;iframe id="' + frameId + '" name="' + frameId + '" style="position:absolute; top:-9999px; left:-9999px"';
+		if(window.ActiveXObject){
+			if(typeof uri== 'boolean'){
+				iframeHtml += ' src="' + 'javascript:false' + '"';
+			}
+			else if(typeof uri== 'string'){
+				iframeHtml += ' src="' + uri + '"';
+			}	
+		}
+		iframeHtml += ' /&gt;';
+		$(iframeHtml).appendTo(document.body);
+		return $('#' + frameId).get(0);			
+    },
+    createUploadForm: function(id, fileElementId, data){
+		//create form	
+		var formId = 'jUploadForm' + id;
+		var fileId = 'jUploadFile' + id;
+		var form = $('&lt;form  action="" method="POST" name="' + formId + '" id="' + formId + '" enctype="multipart/form-data"&gt;&lt;/form&gt;');	
+		if(data){
+			for(var i in data)
+			{
+				$('&lt;input type="hidden" name="' + i + '" value="' + data[i] + '" /&gt;').appendTo(form);
+			}			
+		}		
+		var oldElement = $('#' + fileElementId);
+		var newElement = $(oldElement).clone();
+		$(oldElement).attr('id', fileId);
+		$(oldElement).before(newElement);
+		$(oldElement).appendTo(form);
+		
+		//set attributes
+		$(form).css('position', 'absolute');
+		$(form).css('top', '-1200px');
+		$(form).css('left', '-1200px');
+		$(form).appendTo('body');		
+		return form;
+    },
+	ajaxFileUpload: function(s) {
+        // TODO introduce global settings, allowing the client to modify them for all requests, not only timeout		
+        s = $.extend({}, $.ajaxSettings, s);
+        var id = new Date().getTime()        
+		var form = $.createUploadForm(id, s.fileElementId, (typeof(s.data)=='undefined'?false:s.data));
+		var io = $.createUploadIframe(id, s.secureuri);
+		var frameId = 'jUploadFrame' + id;
+		var formId = 'jUploadForm' + id;		
+        // Watch for a new set of requests
+        if ( s.global &amp;&amp; ! $.active++ ){
+			$.event.trigger( "ajaxStart" );
+		}            
+        var requestDone = false;
+        // Create the request object
+        var xml = {}   
+        if ( s.global )
+			$.event.trigger("ajaxSend", [xml, s]);
+        // Wait for a response to come back
+        var uploadCallback = function(isTimeout){			
+			var io = document.getElementById(frameId);
+            try {				
+				if(io.contentWindow){
+					 xml.responseText = io.contentWindow.document.body?io.contentWindow.document.body.innerHTML:null;
+                	 xml.responseXML = io.contentWindow.document.XMLDocument?io.contentWindow.document.XMLDocument:io.contentWindow.document;
+					 
+				}
+				else if(io.contentDocument){
+					xml.responseText = io.contentDocument.document.body?io.contentDocument.document.body.innerHTML:null;
+                	xml.responseXML = io.contentDocument.document.XMLDocument?io.contentDocument.document.XMLDocument:io.contentDocument.document;
+				}						
+            }catch(e){
+				$.handleError(s, xml, null, e);
+			}
+            if ( xml || isTimeout == "timeout") 
+			{				
+                requestDone = true;
+                var status;
+                try {
+                    status = isTimeout != "timeout" ? "success" : "error";
+                    // Make sure that the request was successful or notmodified
+                    if ( status != "error" ){
+                        // process the data (runs the xml through httpData regardless of callback)
+                        var data = $.uploadHttpData( xml, s.dataType );    
+                        // If a local callback was specified, fire it and pass it the data
+                        if ( s.success )
+                            s.success( data, status );
+    
+                        // Fire the global callback
+                        if( s.global )
+                            $.event.trigger( "ajaxSuccess", [xml, s] );
+                    } else
+                        $.handleError(s, xml, status);
+                } catch(e) 
+				{
+                    status = "error";
+                    $.handleError(s, xml, status, e);
+                }
+
+                // The request was completed
+                if( s.global )
+                    $.event.trigger( "ajaxComplete", [xml, s] );
+
+                // Handle the global AJAX counter
+                if ( s.global &amp;&amp; ! --$.active )
+                    $.event.trigger( "ajaxStop" );
+
+                // Process result
+                if ( s.complete )
+                    s.complete(xml, status);
+
+                $(io).unbind()
+
+                setTimeout(function()
+									{	try 
+										{
+											$(io).remove();
+											$(form).remove();	
+											
+										} catch(e) 
+										{
+											$.handleError(s, xml, null, e);
+										}									
+
+									}, 100)
+                xml = null
+
+            }
+        }
+        // Timeout checker
+        if ( s.timeout &gt; 0 ) 
+		{
+            setTimeout(function(){
+                // Check to see if the request is still happening
+                if( !requestDone ) uploadCallback( "timeout" );
+            }, s.timeout);
+        }
+        try 
+		{
+			var form = $('#' + formId);
+			$(form).attr('action', s.url);
+			$(form).attr('method', 'POST');
+			$(form).attr('target', frameId);
+            if(form.encoding)
+			{
+				$(form).attr('encoding', 'multipart/form-data');      			
+            }
+            else
+			{	
+				$(form).attr('enctype', 'multipart/form-data');			
+            }			
+            $(form).submit();
+
+        } catch(e) 
+		{			
+            $.handleError(s, xml, null, e);
+        }
+		$('#' + frameId).load(uploadCallback);
+        return {abort: function () {}};	
+	},
+	uploadHttpData: function( r, type ) {
+        var data = !type;
+        data = type == "xml" || data ? r.responseXML : r.responseText;
+        // If the type is "script", eval it in global context
+        if ( type == "script" )
+            $.globalEval( data );
+        // Get the JavaScript object, if JSON is used.
+        if ( type == "json" )
+            eval( "data = " + data );
+        // evaluate scripts within html
+        if ( type == "html" )
+            $("&lt;div&gt;").html(data).evalScripts();
+		return data;
+    },
+handleError: function( s, xhr, status, e ) {
+    // If a local callback was specified, fire it
+    if ( s.error ) {
+        s.error.call( s.context || window, xhr, status, e );
+    }
+
+    // Fire the global callback
+    if ( s.global ) {
+        (s.context ? jQuery(s.context) : jQuery.event).trigger( "ajaxError", [xhr, s, e] );
+    }
+}
+})
+});</code>
+    </property>
+    <property>
+      <name>jQuery Ajax File Uploader Version 2.1</name>
+    </property>
+    <property>
+      <parse/>
+    </property>
+    <property>
+      <use>onDemand</use>
+    </property>
+  </object>
+  <object>
+    <class>
+      <name>XWiki.StyleSheetExtension</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <cache>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>cache</name>
+        <number>5</number>
+        <prettyName>Caching policy</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>long|short|default|forbid</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </cache>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Code</prettyName>
+        <rows>20</rows>
+        <size>50</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <contentType>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>contentType</name>
+        <number>6</number>
+        <prettyName>Content Type</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>CSS|LESS</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </contentType>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <parse>
+        <disabled>0</disabled>
+        <displayFormType>select</displayFormType>
+        <displayType>yesno</displayType>
+        <name>parse</name>
+        <number>4</number>
+        <prettyName>Parse content</prettyName>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+      </parse>
+      <use>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>use</name>
+        <number>3</number>
+        <prettyName>Use this extension</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>currentPage|onDemand|always</values>
         <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
       </use>
     </class>
@@ -424,143 +1512,167 @@ document.observe('xwiki:dom:loading', function() {
 .totemBlocksEdit .blocktitle {
    cursor: move;
 }
-
 </code>
+    </property>
+    <property>
+      <contentType>CSS</contentType>
     </property>
     <property>
       <name>Totem editor stylesheet</name>
     </property>
     <property>
-      <parse/>
+      <parse>1</parse>
     </property>
     <property>
       <use>onDemand</use>
     </property>
   </object>
+  <object>
+    <class>
+      <name>XWiki.StyleSheetExtension</name>
+      <customClass/>
+      <customMapping/>
+      <defaultViewSheet/>
+      <defaultEditSheet/>
+      <defaultWeb/>
+      <nameField/>
+      <validationScript/>
+      <cache>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>cache</name>
+        <number>5</number>
+        <prettyName>Caching policy</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>long|short|default|forbid</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </cache>
+      <code>
+        <disabled>0</disabled>
+        <name>code</name>
+        <number>2</number>
+        <prettyName>Code</prettyName>
+        <rows>20</rows>
+        <size>50</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+      </code>
+      <contentType>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>contentType</name>
+        <number>6</number>
+        <prettyName>Content Type</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>CSS|LESS</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </contentType>
+      <name>
+        <disabled>0</disabled>
+        <name>name</name>
+        <number>1</number>
+        <prettyName>Name</prettyName>
+        <size>30</size>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+      </name>
+      <parse>
+        <disabled>0</disabled>
+        <displayFormType>select</displayFormType>
+        <displayType>yesno</displayType>
+        <name>parse</name>
+        <number>4</number>
+        <prettyName>Parse content</prettyName>
+        <unmodifiable>0</unmodifiable>
+        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+      </parse>
+      <use>
+        <cache>0</cache>
+        <disabled>0</disabled>
+        <displayType>select</displayType>
+        <multiSelect>0</multiSelect>
+        <name>use</name>
+        <number>3</number>
+        <prettyName>Use this extension</prettyName>
+        <relationalStorage>0</relationalStorage>
+        <separator> </separator>
+        <separators> ,|</separators>
+        <size>1</size>
+        <unmodifiable>0</unmodifiable>
+        <values>currentPage|onDemand|always</values>
+        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+      </use>
+    </class>
+    <name>TotemCode.TotemSheet</name>
+    <number>1</number>
+    <className>XWiki.StyleSheetExtension</className>
+    <guid>ec0a0939-5617-4be2-bf54-e19958e01de5</guid>
+    <property>
+      <cache>long</cache>
+    </property>
+    <property>
+      <code>.loadingModal{
+   background-image: url("$xwiki.getSkinFile('icons/xwiki/ajax-loader-large.gif')");
+   background-repeat: no-repeat;
+   background-position: center;
+}
+.xwmlrg{
+   width:90%;
+}
+.ajaxloader{
+   background-image: url("$xwiki.getSkinFile('icons/xwiki/ajax-loader-large.gif')");
+   background-repeat: no-repeat;
+   background-position: center;
+   height: 100px
+}
+.ajaxloader div,.ajaxloader form{
+   display:none;
+}</code>
+    </property>
+    <property>
+      <contentType>CSS</contentType>
+    </property>
+    <property>
+      <name>Edit Totem on page CSS</name>
+    </property>
+    <property>
+      <parse>1</parse>
+    </property>
+    <property>
+      <use>currentPage</use>
+    </property>
+  </object>
   <content>{{include document="DisplayerCode.DisplayerMacros" /}}
 
+{{include document="TotemCode.TotemMacros" /}}
+
 {{velocity output="false"}}
-#macro(displayTotemBlock $totemBlock $withEdit $cancelURL $editURL $totemItemClass $sheetFieldsMapping $totemItemsURL)
-  ## display the block. get its values and then call the displayer macro
-  #set($totemBlockSheet = $totemBlock.getProperty('type').value)   
-  #set($width   = "$!totemBlock.getProperty('width').value")
-  #set($height  = "$!totemBlock.getProperty('height').value")   
-  #displayBlock($totemBlockSheet, '', $totemBlock.getProperty('title').value, $totemBlock.getProperty('footer').value, 'doclist', $totemBlock.getProperty('source').value, $totemItemClass, 0, $sheetFieldsMapping.get($totemBlockSheet),"$!{width}","$!{height}")
-  #if($withEdit)
-    (%class="#if("$!request.editblock" != "$totemBlock.number")hidden#end editblockform"%)(((
-      #displayTotemBlockEditForm($totemBlock, false, $cancelURL, $editURL)
-    )))
-    (%class="#if("$!request.editblocksource" != "$totemBlock.number")hidden#end editsourceblockform"%)(((
-      #displayTotemBlockEditSourceForm($totemBlock, $totemItemsURL, $cancelURL, $editURL)
-    )))
-  #end
-  #if($withEdit)
-    (%class="editactions"%)((({{html clean="false"}}
-    &lt;a href="$escapetool.xml($doc.getURL('view', "showEdit=true&amp;editblock=${totemBlock.number}"))" class="editbutton"&gt;$msg.get('totem.edit.editblock.button')&lt;/a&gt;
-    &lt;a href="$escapetool.xml($doc.getURL('view', "showEdit=true&amp;editblocksource=${totemBlock.number}"))" class="editsourcebutton"&gt;$msg.get('totem.edit.editblocksource.button')&lt;/a&gt;
-    #displayTotemBlockRemoveForm($totemBlock, $cancelURL, $editURL){{/html}})))
-  #end
-#end
-
-#macro(displayTotemBlockEditForm $totemBlock $isNewBlock $cancelURL $editURL)
-  #set($formAction = "$doc.getURL('save')")
-  #if ($isNewBlock)
-    #set($formAction = "$doc.getURL('objectadd')")
-  #end
-  {{html clean="false"}}
-    &lt;form action="$formAction" method="post" class="xform"&gt;
-    &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
-    &lt;input type="hidden" name="xredirect" value="$escapetool.xml($editURL)" /&gt;
-    #if ($isNewBlock)
-      &lt;input type="hidden" name="classname" value="TotemCode.TotemBlockClass" /&gt;
-    #end
-  {{/html}}
-  ## display the totem editable properties
-  #set($totemBlockClass = $totemBlock.xWikiClass)
-  #foreach ($propName in ['type', 'title','width','height', 'footer'])
-    ; $doc.displayPrettyName($propName, $totemBlock)
-    : #if($isNewBlock){{html clean="false"}}$doc.displayEdit($totemBlockClass.get($propName), 'TotemCode.TotemBlockClass_', $totemBlock){{/html}}
-      #else$doc.display($propName, 'edit', $totemBlock)
-      #end
-  #end
-  {{html clean="false"}}
-    &lt;div class="buttonwrapper"&gt;
-      &lt;input type="submit" value="$msg.get('save')" class="button" /&gt;
-      &lt;a href="$cancelURL" class="cancelbutton"&gt;$msg.get('cancel')&lt;/a&gt;
-    &lt;/div&gt;
-    &lt;/form&gt;
-  {{/html}}
-#end
-
-#macro(displayTotemBlockEditSourceForm $totemBlock $totemItemsURL $cancelURL $editURL)
-  {{container layoutStyle="columns"}}
-  (((
-    #set($formAction = "$doc.getURL('save')")
-    {{html clean="false"}}
-      &lt;form action="$formAction" method="post" class="xform"&gt;
-      &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
-      &lt;input type="hidden" name="xredirect" value="$escapetool.xml($editURL)" /&gt;
-    {{/html}}
-    ## display the totem source property
-    #set($totemBlockClass = $totemBlock.xWikiClass)
-    #foreach ($propName in ['source'])
-      ; $doc.displayPrettyName($propName, $totemBlock)
-      : $doc.display($propName, 'edit', $totemBlock)
-    #end
-    {{html clean="false"}}
-      &lt;div class="buttonwrapper"&gt;
-        &lt;input type="submit" value="$msg.get('save')" class="button" /&gt;
-        &lt;a href="$cancelURL" class="cancelbutton"&gt;$msg.get('cancel')&lt;/a&gt;
-      &lt;/div&gt;
-      &lt;/form&gt;
-    {{/html}}
-  )))
-  (((
-  {{info}}$msg.get('totem.edit.editblocksource.help'){{/info}}
-
-  (%class="buttonwrapper"%)[[$msg.get('totem.edit.editblocksource.itemslink')&gt;&gt;path:$totemItemsURL||class="button" rel="__blank"]](%%)
-  )))
-  {{/container}}
-#end
-
-#macro(displayTotemBlockRemoveForm $totemBlock $cancelURL $editURL)
-  &lt;form action="$doc.getURL('objectremove')" method="post" class="removeblockform"&gt;
-    &lt;span&gt;
-      &lt;input type="hidden" name="classname" value="TotemCode.TotemBlockClass" /&gt;
-      &lt;input type="hidden" name="classid" value="$totemBlock.number" /&gt;
-      &lt;input type="hidden" name="cancelURL" value="$escapetool.xml($cancelURL)" /&gt;
-      &lt;input type="hidden" name="xredirect" value="$escapetool.xml($editURL)" /&gt;
-      &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
-   &lt;/span&gt;
-  &lt;input type="submit" value="$msg.get('totem.edit.removeitem.button')" class="deletebutton" /&gt;
-  &lt;/form&gt;
-#end
-
-#macro(displayEditOrderForm $editURL)
-  {{html clean="false"}}
-    &lt;form action="$doc.getURL('save')" method="post" class="editorderform"&gt;
-    &lt;fieldset&gt;
-      &lt;input type="hidden" name="xredirect" value="$escapetool.xml($editURL)" /&gt;
-      &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
-    &lt;/fieldset&gt;
-    #set($totemObject = $doc.getObject('TotemCode.TotemClass'))
-    $doc.displayEdit($totemObject.xWikiClass.get('blockOrder'), "TotemCode.TotemClass_${totemObject.number}_", $totemObject)
-    &lt;div class="buttonwrapper"&gt;
-      &lt;input type="submit" value="$msg.get('totem.order.save')" class="button" /&gt;
-    &lt;/div&gt;
-  &lt;/form&gt;
-  {{/html}}
-#end
+$xwiki.ssx.use('DisplayerCode.DisplayerMacros')
 {{/velocity}}
 
 {{velocity}}
+#set($xwikipanelwidth = 0)
+#set($rightPanelsWidth= 0)
+
 ## set a couple of constants that we want to be able to edit fast.
 ## 1/ class items of the totem
 #set($totemItemClass = 'TotemCode.SimpleTotemItemClass')
 ## 2/ a couple of mappings between the different types of blocks and the items from this totem class that should be used. 
 ## TODO: Normally this should be demanded by the sheet somehow but I don't know exactly how for now :(
-#set($sheetFieldsMapping = {'DisplayerCode.ListDisplayerSheet' : ['date', 'doc.title', 'url'],  'DisplayerCode.EvenementDisplayer' : ['image', 'doc.title', 'url'],
-                       'DisplayerCode.CarouselDisplayerSheet' : []})
+## NOTE: This approach base is no used for the moment
+#set($sheetFieldsMapping = {'DisplayerCode.ListDisplayerSheet' : ['date', 'doc.title', 'url'],  'DisplayerCode.EvenementDisplayer' : ['image', 'doc.title', 'url']})
 ## 3/ the page where the items to be displayed in totem blocks are held: the page called items in the current space
 #set($totemItemsURL = $xwiki.getURL('Items'))
 ## figure out if we're in edit mode. If we are but the document is loaded for editing in the wysiwyg, then pretend we're in view :) -- this makes include work
@@ -585,11 +1697,18 @@ document.observe('xwiki:dom:loading', function() {
   ## if edit is enabled, add the jsx and the ssx of the totemsheet (for enhancements of the edit form)
   ## IMHO no ssx/jsx from the sheet should be needed in view mode, I don't see any totem generic styling that could be done in view mode: 
   ## displayers will do their styling for blocks, the extra jsx / ssx will handle styling specific to a particular totem.
+
+    #set($discard = $xwiki.jsx.use('TotemCode.TotemSheet'))
   #if ($enableEdit)
     #set($discard = $xwiki.jsfx.use("js/scriptaculous/effects.js"))
     #set($discard = $xwiki.jsfx.use("js/scriptaculous/dragdrop.js"))
     #set($discard = $xwiki.jsx.use('TotemCode.TotemSheet', {'minify' : false}))
     #set($discard = $xwiki.ssx.use('TotemCode.TotemSheet', {'minify' : false}))
+  #end
+  ## pass the totem application fullscreen
+  #set($enableFullscreen = $doc.getObject('TotemCode.TotemClass').getProperty('fullscreen').value)
+  #if($enableFullscreen == 1 )
+    #set($discard = $xwiki.ssx.use('TotemCode.TotemFullscreen', {'minify' : false}))  
   #end
   ## make up the cancel URL for the form cancellation and other cancels
   #set($cancelURL = $doc.getURL())
@@ -600,6 +1719,10 @@ document.observe('xwiki:dom:loading', function() {
   ## if edit is enabled, add the input and form to save the order of the blocks which will be edited in js
   #if ($enableEdit)
     {{info}}
+    #displayEditTotemConfigurationForm()
+    {{/info}}
+    ----
+    {{info}}
     $msg.get('totem.edit.editorder.info')    
     #displayEditOrderForm($editURL)
     {{/info}}
@@ -609,29 +1732,43 @@ document.observe('xwiki:dom:loading', function() {
   #set($blockNumbers = $doc.getObject('TotemCode.TotemClass').getProperty('blockOrder').value.split(','))
   ## remember the displayed blocks, so that we can display all undisplayed blocks after the order read
   #set($displayedBlocks = [])
-  (%class="totemBlocks #if($enableEdit)totemBlocksEdit#end" id="totemBlocks"%)(((
-    #set($isOdd = true)
-    #foreach($blockNumber in $blockNumbers)
-      #set($intNumber = $mathtool.toInteger($blockNumber))
-      #set($totemBlock = $doc.getObject('TotemCode.TotemBlockClass', $intNumber))
-      #if ($totemBlock)
-        (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end" id="totemBlock_${totemBlock.number}"%)(((
-          #displayTotemBlock($totemBlock, $enableEdit, $cancelURL, $editURL $totemItemClass, $sheetFieldsMapping, $totemItemsURL)
-        )))
-        #set($discard = $displayedBlocks.add($totemBlock.number))
-        #set($isOdd = !$isOdd)
+  (%class="container-fluid"%)(((
+    (%class="totemBlocks #if($enableEdit)totemBlocksEdit#end row" id="totemBlocks"%)(((
+      #set($isOdd = true)
+      #foreach($blockNumber in $blockNumbers)
+        #set($intNumber = $mathtool.toInteger($blockNumber))
+        #set($totemBlock = $doc.getObject('TotemCode.TotemBlockClass', $intNumber))
+        #set($totemBlockSize = 12 )
+        #if("$!{totemBlock.size}" != "")
+          #set($totemBlockSize = ${totemBlock.size})
+        #end
+        #if ($totemBlock)
+          #set($urlBackground = $doc.getAttachmentURL("${totemBlock.getValue('background-image')}"))
+          #set($blocktype = $totemBlock.getProperty('type').value)
+          (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end col-sm-${totemBlockSize}" id="totemBlock_${totemBlock.number}" style="background:url($!{urlBackground});  background-size: 100% 100%; background-position: center center; background-color: $!{totemBlock.background-color}; color: $!{totemBlock.text-color}; object-fit: cover; #if(${blocktype} == 'DisplayerCode.MultImgCarouselDisplayer' || ${blocktype} == 'DisplayerCode.CarouselDisplayer') padding-bottom: 0; #else padding-bottom: 20px; #end"%)(((
+            #displayTotemBlock($totemBlock, $enableEdit, $cancelURL, $editURL $totemItemClass, $sheetFieldsMapping, $totemItemsURL)
+          )))
+          #set($discard = $displayedBlocks.add($totemBlock.number))
+          #set($isOdd = !$isOdd)
+        #end
       #end
-    #end
-    ## for all the blocks that were not displayed before, display them
-    #foreach($totemLeftBlock in $doc.getObjects('TotemCode.TotemBlockClass'))
-      #if(!$displayedBlocks.contains($totemLeftBlock.number))
-        (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end" id="totemBlock_${totemLeftBlock.number}"%)(((
-          #displayTotemBlock($totemLeftBlock, $enableEdit, $cancelURL, $editURL $totemItemClass, $sheetFieldsMapping, $totemItemsURL)
-        )))
-        #set($discard = $displayedBlocks.add($totemBlock.number))
-        #set($isOdd = !$isOdd)
+      ## for all the blocks that were not displayed before, display them
+      #foreach($totemLeftBlock in $doc.getObjects('TotemCode.TotemBlockClass'))
+        #set($totemBlockSize = 12 )
+        #if("$!{totemLeftBlock.size}" != "")
+          #set($totemBlockSize = ${totemLeftBlock.size})
+        #end
+        #if(!$displayedBlocks.contains($totemLeftBlock.number))
+          #set($urlBackground = $doc.getAttachmentURL("${totemLeftBlock.getValue('background-image')}"))
+          #set($blocktype = $totemBlock.getProperty('type').value)
+          (%class="totemBlock #if($isOdd)totemBlock-odd#{else}totemBlock-even#end col-sm-${totemBlockSize}" id="totemBlock_${totemLeftBlock.number}" style="background:url($!{urlBackground});  background-size: 100% 100%; background-position: center center; background-color: $!{totemLeftBlock.background-color}; color: $!{totemLeftBlock.text-color}; object-fit: cover; #if(${blocktype} == 'DisplayerCode.MultImgCarouselDisplayer' || ${blocktype} == 'DisplayerCode.CarouselDisplayer') padding-bottom: 0; #else padding-bottom: 20px; #end"%)(((
+            #displayTotemBlock($totemLeftBlock, $enableEdit, $cancelURL, $editURL $totemItemClass, $sheetFieldsMapping, $totemItemsURL)
+          )))
+          #set($discard = $displayedBlocks.add($totemBlock.number))
+          #set($isOdd = !$isOdd)
+        #end
       #end
-    #end
+    )))
   )))
 
   ## add new block item form
@@ -646,11 +1783,15 @@ document.observe('xwiki:dom:loading', function() {
       #displayTotemBlockEditForm($fakeTotemBlock, true, $cancelURL, $editURL)
     )))
   #end
-
   {{html clean="false"}}#template("textarea_wysiwyg.vm"){{/html}}
 #else
   ## if we're in edit mode, send a redirect to the edit screen, since the totem has a special edit form (available in view).
   $response.sendRedirect("$editURL")
 #end
+
+{{html clean="false"}}
+#displayModal("totemModal")
+{{/html}}
+
 {{/velocity}}</content>
 </xwikidoc>
