@@ -24,7 +24,7 @@
   <web>TotemCode</web>
   <name>Translations</name>
   <language/>
-  <defaultLanguage/>
+  <defaultLanguage>en</defaultLanguage>
   <translation>0</translation>
   <parent>TotemCode.WebHome</parent>
   <creator>xwiki:XWiki.Admin</creator>
@@ -80,12 +80,15 @@
   <content>totem.edit.editorder.info=Vous pouvez ici modifier chacune des sections du totem.\r\n* Vous pouvez changer l'ordre d'affichage des sections d'un simple glisser/déposer\r\n* En cliquant sur modifier la section, vous pouvez changer le type de la section, son titre et l'affichage du bas.\r\n* En cliquant sur Modifier les éléments de cette section, vous pouvez choisir les éléments qui constitueront cette section, en ajouter, en enlever, etc.\r\n\r\n
 totem.edit.editblock.button=Modifier cette section
 totem.edit.editblocksource.button=Modifier les éléments de cette section
-totem.edit.editblocksource.help=Veuillez choisir le mode d'édition, simple ou avancé. Le mode simple vous permet de sélectionner vos éléments parmi les contenus créées spécifiquement pour le Totem. Le mode avancé vous permet de choisir la source des contenus à utiliser parmi les Applications développées.
+totem.edit.editblocksource.help=Please choose the edit mode, simple or advanced. The simple mode allow you to select which content to use from content specifically created for the Totem. The advanced mode allow you to choose the source of content to be used from the available Applications.
+totem.edit.editblock.help=Please configure the block. You can choose among multiple presentation methods available, including Carrousel, List or Simple Text. You can choose the size of your block, it's background color or an optional image or video background.
 totem.edit.editblocksource.itemslink=Administrer les éléments
 totem.edit.additem.button=Ajouter une section au totem
 totem.edit.exitedit=Revenir à la liste des totems
 totem.edit.removeitem.button=Supprimer la section
 totem.edit.removeitem.confirmation=Êtes-vous sûr de vouloir supprimer cet section du totem ? Les éléments le composant seront conservés.
+totem.edit.configuresection.title=Configure section
+totem.edit.configuresectionelements.title=Configure section items
 TotemCode.TotemBlockClass_type=Type d'affichage
 TotemCode.TotemBlockClass_title=Titre de la section
 TotemCode.TotemBlockClass_footer=Informations placées en bas de la section
