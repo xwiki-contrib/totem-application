@@ -77,54 +77,54 @@
       <scope>GLOBAL</scope>
     </property>
   </object>
-  <content>totem.edit.editorder.info=Vous pouvez ici modifier chacune des sections du totem.\r\n* Vous pouvez changer l'ordre d'affichage des sections d'un simple glisser/déposer\r\n* En cliquant sur modifier la section, vous pouvez changer le type de la section, son titre et l'affichage du bas.\r\n* En cliquant sur Modifier les éléments de cette section, vous pouvez choisir les éléments qui constitueront cette section, en ajouter, en enlever, etc.\r\n\r\n
-totem.edit.editblock.button=Modifier cette section
-totem.edit.editblocksource.button=Modifier les éléments de cette section
+  <content>totem.edit.editorder.info=Here you can edit each section of the totem.\r\n* You can change the display order of the sections with a simple drag / drop\r\n* By clicking the edit section, you can change the type of the section, its title and the bottom display.\r\n * By clicking on Edit elements of this section, you can choose the elements that constitute this section, add, remove, etc.\r\n\r\n
+totem.edit.editblock.button=Edit this section
+totem.edit.editblocksource.button=Edit elements of this section
 totem.edit.editblocksource.help=Please choose the edit mode, simple or advanced. The simple mode allow you to select which content to use from content specifically created for the Totem. The advanced mode allow you to choose the source of content to be used from the available Applications.
 totem.edit.editblock.help=Please configure the block. You can choose among multiple presentation methods available, including Carrousel, List or Simple Text. You can choose the size of your block, it's background color or an optional image or video background.
-totem.edit.editblocksource.itemslink=Administrer les éléments
-totem.edit.additem.button=Ajouter une section au totem
-totem.edit.exitedit=Revenir à la liste des totems
-totem.edit.removeitem.button=Supprimer la section
-totem.edit.removeitem.confirmation=Êtes-vous sûr de vouloir supprimer cet section du totem ? Les éléments le composant seront conservés.
+totem.edit.editblocksource.itemslink=Administer elements
+totem.edit.additem.button=Add a section to a totem
+totem.edit.exitedit=Back to the list of totems
+totem.edit.removeitem.button=Delete section
+totem.edit.removeitem.confirmation=Are you sure you want to delete this section of the totem? The containing elements will be kept.
 totem.edit.configuresection.title=Configure section
 totem.edit.configuresectionelements.title=Configure section items
-TotemCode.TotemBlockClass_type=Type d'affichage
-TotemCode.TotemBlockClass_title=Titre de la section
-TotemCode.TotemBlockClass_footer=Informations placées en bas de la section
-TotemCode.TotemBlockClass_source=Sélectionnez les sections
+TotemCode.TotemBlockClass_type=Display Type
+TotemCode.TotemBlockClass_title=Section Title
+TotemCode.TotemBlockClass_footer=Information placed at the bottom of the section
+TotemCode.TotemBlockClass_source=Select the sections
 
-totem.items.webhome.title=Administration des éléments de totem
-totem.items.webhome.createform=Créer un nouvel élément
-totem.items.createform.namelabel=Nom de l'élément
-totem.items.webhome.entries=Éléments existants
-totem.items.doc.title=Nom de l'élément
-totem.items.doc.date=Dernière modification
-totem.items.doc.author=Dernier auteur
+totem.items.webhome.title=Administration of totem elements
+totem.items.webhome.createform=Create a new element
+totem.items.createform.namelabel=Element name
+totem.items.webhome.entries=Existing elements
+totem.items.doc.title=Element name
+totem.items.doc.date=Update date
+totem.items.doc.author=Last author
 totem.items._actions=Actions
 
-TotemCode.SimpleTotemItemClass_title=Titre
+TotemCode.SimpleTotemItemClass_title=Title
 TotemCode.SimpleTotemItemClass_date=Date
 TotemCode.SimpleTotemItemClass_description=Description
 TotemCode.SimpleTotemItemClass_url=URL
 TotemCode.SimpleTotemItemClass_image=Image
-totemitem.edit.image=Changer l'image
+totemitem.edit.image=Change image
 
 totem.carouseltotemblock.templateprovider.name=Carousel
 totem.templateprovider.name=Totem
-totem.item.templateprovider.name=Élément de totem
+totem.item.templateprovider.name=Totem element
 
-totem.home.title=Liste des Totem
-xe.index.totem.doc.name=Nom du totem
+totem.home.title=Totems
+xe.index.totem.doc.name=Totem
 xe.index.totem.doc.date=Date
-xe.index.totem.doc.author=Auteur
+xe.index.totem.doc.author=Author
 xe.index.totem._actions=Actions
-xe.index.totem.doc.fullName=Nom technique
+xe.index.totem.doc.fullName=Technical Name
 
-xe.totem.createtotem=Créer un nouveau totem
-xe.totem.inputmustnotbeempty=Ce champ est obligatoire
+xe.totem.createtotem=Create a new totem
+xe.totem.inputmustnotbeempty=Required
 xe.totem.validinput=OK.
-xe.totem.title=Titre du totem
-xe.totem.create=Créer
-xe.totem.createtoteminfo=Cette application vous permet de créer des totems afin de les intégrer dans des pages de votre wiki via la macro "include" et l'information donnée dans la colonne "Nom technique" du tableau ci-dessous.\r\n* Un totem est formé de différentes sections pouvant utiliser un style différent.\r\n* Chaque section est composée d'éléments qui peuvent être ajoutés aux totems. </content>
+xe.totem.title=Totem title
+xe.totem.create=Create
+xe.totem.createtoteminfo=This application allows you to create totems that can be integrated in your wiki pages via the "include" macro and with the information given in the "Technical Name" in the table below.\r\n* A totem is composed of different sections that can use a different style.\r\n* Each section is composed of elements that can be added to totems.</content>
 </xwikidoc>
