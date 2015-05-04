@@ -76,16 +76,13 @@
       <classType>com.xpn.xwiki.objects.classes.DBListClass</classType>
     </appsource_app>
     <appsource_boolean>
-      <customDisplay/>
-      <disabled>0</disabled>
+       <disabled>0</disabled>
       <name>appsource_boolean</name>
       <number>21</number>
       <picker>0</picker>
       <prettyName>appsource_boolean</prettyName>
       <size>30</size>
       <unmodifiable>0</unmodifiable>
-      <validationMessage/>
-      <validationRegExp/>
       <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
     </appsource_boolean>
     <appsource_date>
