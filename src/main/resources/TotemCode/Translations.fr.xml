@@ -77,6 +77,9 @@ TotemCode.SimpleTotemItemClass_image=Image
 totem.item.edit.image=Changer l'image
 
 totem.carouseltotemblock.templateprovider.name=Carousel
+totem.carousel.controls.previous=Précédent
+totem.carousel.controls.next=Suivante
+totem.carousel.controls.slide=Diapositive {0}
 totem.templateprovider.name=Totem
 totem.item.templateprovider.name=Élément de totem
 

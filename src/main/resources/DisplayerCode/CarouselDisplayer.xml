@@ -553,17 +553,17 @@ div.carousel.autostart {
         #set($lastListItem = $mathtool.sub($blockDisplayerDocList.size(), 1))
         &lt;a class='left simpleCarousel-control carousel-control previousImage' href="#section${lastListItem}"&gt;
           &lt;span class="glyphicon glyphicon-chevron-left" aria-hidden="true"&gt;&lt;/span&gt;
-          &lt;span class="sr-only"&gt;Previous&lt;/span&gt;
+          &lt;span class="sr-only"&gt;$services.localization.render('totem.carousel.controls.previous')&lt;/span&gt;
         &lt;/a&gt;
         &lt;div id="slider-navigation" class="carousel-indicators clearfix"&gt;
           #foreach($document in $blockDisplayerDocList)
             #set($sectionNumber = $mathtool.sub($velocityCount, 1))
-            &lt;a class="item #if($sectionNumber == 0)on#end" href="#section${sectionNumber}"&gt;$escapetool.xml($msg.get('totem.carousel.controls.slide', [$velocityCount]))&lt;/a&gt;
+            &lt;a class="item #if($sectionNumber == 0)on#end" href="#section${sectionNumber}"&gt;$escapetool.xml($services.localization.render('totem.carousel.controls.slide', [$velocityCount]))&lt;/a&gt;
           #end
         &lt;/div&gt;
         &lt;a class="right simpleCarousel-control carousel-control nextImage" href="#section1"&gt;
           &lt;span class="glyphicon glyphicon-chevron-right" aria-hidden="true"&gt;&lt;/span&gt;
-          &lt;span class="sr-only"&gt;Next&lt;/span&gt;
+          &lt;span class="sr-only"&gt;$services.localization.render('totem.carousel.controls.next')&lt;/span&gt;
         &lt;/a&gt;
         &lt;div id="carouselButtons"&gt;
           &lt;span id="playButton" class="playpause glyphicon glyphicon-play"&gt;&lt;/span&gt;
