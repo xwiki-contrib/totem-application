@@ -54,6 +54,7 @@ totem.edit.removeitem.button=Supprimer la section
 totem.edit.removeitem.confirmation=Êtes-vous sûr de vouloir supprimer cet section du totem ? Les éléments le composant seront conservés.
 totem.edit.configuresection.title=Configurer la section
 totem.edit.configuresectionelements.title=Configurer les éléments de la section
+totem.edit.order.save=Enregistrer l'ordre
 TotemCode.TotemBlockClass_type=Type d'affichage
 TotemCode.TotemBlockClass_title=Titre de la section
 TotemCode.TotemBlockClass_footer=Informations placées en bas de la section

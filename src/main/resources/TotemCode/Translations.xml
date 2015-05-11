@@ -89,6 +89,7 @@ totem.edit.removeitem.button=Delete section
 totem.edit.removeitem.confirmation=Are you sure you want to delete this section of the totem? The containing elements will be kept.
 totem.edit.configuresection.title=Configure section
 totem.edit.configuresectionelements.title=Configure section items
+totem.edit.order.save=Save Order
 TotemCode.TotemBlockClass_type=Display Type
 TotemCode.TotemBlockClass_title=Section Title
 TotemCode.TotemBlockClass_footer=Information placed at the bottom of the section

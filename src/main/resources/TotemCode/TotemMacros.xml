@@ -284,7 +284,7 @@
     &lt;/fieldset&gt;
     $doc.displayEdit($totemObject.xWikiClass.get('blockOrder'), "TotemCode.TotemClass_${totemObject.number}_", $totemObject)
     &lt;div class="buttonwrapper"&gt;
-      &lt;input type="submit" value="$msg.get('totem.order.save')" class="button" /&gt;
+      &lt;input type="submit" value="$msg.get('totem.edit.order.save')" class="button" /&gt;
     &lt;/div&gt;
   &lt;/form&gt;
   {{/html}}
