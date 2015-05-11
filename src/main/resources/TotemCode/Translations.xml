@@ -115,16 +115,16 @@ totem.templateprovider.name=Totem
 totem.item.templateprovider.name=Totem element
 
 totem.home.title=Totems
-xe.index.totem.doc.name=Totem
-xe.index.totem.doc.date=Date
-xe.index.totem.doc.author=Author
-xe.index.totem._actions=Actions
-xe.index.totem.doc.fullName=Technical Name
+totem.home.livetable.doc.name=Totem
+totem.home.livetable.doc.date=Date
+totem.home.livetable.doc.author=Author
+totem.home.livetable._actions=Actions
+totem.home.livetable.doc.fullName=Technical Name
 
-xe.totem.createtotem=Create a new totem
-xe.totem.inputmustnotbeempty=Required
-xe.totem.validinput=OK.
-xe.totem.title=Totem title
-xe.totem.create=Create
-xe.totem.createtoteminfo=This application allows you to create totems that can be integrated in your wiki pages via the "include" macro and with the information given in the "Technical Name" in the table below.\r\n* A totem is composed of different sections that can use a different style.\r\n* Each section is composed of elements that can be added to totems.</content>
+totem.home.createtotem=Create a new totem
+totem.home.inputmustnotbeempty=Required
+totem.home.validinput=OK.
+totem.home.title=Totem title
+totem.home.create=Create
+totem.home.createtoteminfo=This application allows you to create totems that can be integrated in your wiki pages via the "include" macro and with the information given in the "Technical Name" in the table below.\r\n* A totem is composed of different sections that can use a different style.\r\n* Each section is composed of elements that can be added to totems.</content>
 </xwikidoc>

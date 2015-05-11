@@ -131,11 +131,11 @@
    */
   initPageValidator : function() {
     var pageInput = $('page');
-    this.pageValidator = new LiveValidation(pageInput, { validMessage: "$msg.get('xe.totem.validinput')" });
+    this.pageValidator = new LiveValidation(pageInput, { validMessage: "$msg.get('totem.home.validinput')" });
     // We use a custom validation in order to handle the default value on browsers that don't support the placeholder attribute.
     this.pageValidator.displayMessageWhenEmpty = true;
     this.pageValidator.add(Validate.Custom, {
-      failureMessage: "$msg.get('xe.totem.inputmustnotbeempty')",
+      failureMessage: "$msg.get('totem.home.inputmustnotbeempty')",
       against: function(value) {
         return !pageInput.hasClassName('empty') &amp;&amp; typeof value == 'string' &amp;&amp; value.strip().length &gt; 0;
       }
@@ -145,9 +145,9 @@
    * Create Space Field Validator.
    */
   initSpaceValidator : function() {
-    this.spaceValidator = new LiveValidation($('space'), { validMessage: "$msg.get('xe.totem.validinput')" });
+    this.spaceValidator = new LiveValidation($('space'), { validMessage: "$msg.get('totem.home.validinput')" });
     this.spaceValidator.add(Validate.Presence, {
-       failureMessage: "$msg.get('xe.totem.inputmustnotbeempty')"
+       failureMessage: "$msg.get('totem.home.inputmustnotbeempty')"
     });
   },
   /**
@@ -194,7 +194,7 @@ Event.observe(document, 'xwiki:dom:loaded', function() {
       &lt;input type="hidden" name="space" value="$!{escapetool.xml($space)}"/&gt;
       &lt;input type="hidden" name="parent" value="Totem.WebHome"&gt;
       &lt;input type="hidden" name="templateprovider" value="TotemCode.TotemTemplateProvider" &gt;
-      &lt;label class="createPost" for="entryTitle"&gt;$services.localization.render('xe.totem.createtotem') &lt;/label&gt;&lt;input type="text" id="page" name="page" value="$services.localization.render('xe.totem.title')" class="withTip" size="30" /&gt; &lt;span class="buttonwrapper"&gt;&lt;input type="submit" value="${escapetool.xml($services.localization.render('xe.totem.create'))}" class="button"/&gt;&lt;/span&gt;
+      &lt;label class="createPost" for="entryTitle"&gt;$services.localization.render('totem.home.createtotem') &lt;/label&gt;&lt;input type="text" id="page" name="page" value="$services.localization.render('totem.home.title')" class="withTip" size="30" /&gt; &lt;span class="buttonwrapper"&gt;&lt;input type="submit" value="${escapetool.xml($services.localization.render('totem.home.create'))}" class="button"/&gt;&lt;/span&gt;
     &lt;/div&gt;
   &lt;/form&gt;
   {{/html}} 
