@@ -266,10 +266,10 @@
       &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
     &lt;/fieldset&gt;
     #set($totemObject = $doc.getObject('TotemCode.TotemClass'))
-    enable fullscreen : $totemObject.display('fullscreen','edit')&lt;br&gt;
-    content size : $totemObject.display('contentSize','edit') px (not applied if empty)
+    $services.localization.render('totem.edit.configuration.fullscreen') $totemObject.display('fullscreen','edit')&lt;br&gt;
+    $services.localization.render('totem.edit.configuration.size.label') $totemObject.display('contentSize','edit') $services.localization.render('totem.edit.configuration.size.hint')
     &lt;div class="buttonwrapper"&gt;
-      &lt;input type="submit" value="$msg.get('Save Configuration')" class="button" /&gt;
+      &lt;input type="submit" value="$services.localization.render('totem.edit.configuration.save')" class="button" /&gt;
     &lt;/div&gt;
   &lt;/form&gt;
   {{/html}}
