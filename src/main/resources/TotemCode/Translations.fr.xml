@@ -73,7 +73,7 @@ TotemCode.SimpleTotemItemClass_date=Date
 TotemCode.SimpleTotemItemClass_description=Description
 TotemCode.SimpleTotemItemClass_url=URL
 TotemCode.SimpleTotemItemClass_image=Image
-totemitem.edit.image=Changer l'image
+totem.item.edit.image=Changer l'image
 
 totem.carouseltotemblock.templateprovider.name=Carousel
 totem.templateprovider.name=Totem

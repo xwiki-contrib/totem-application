@@ -173,7 +173,7 @@ document.observe("xwiki:actions:preview", function(event){
 #end
 #foreach($prop in $class.properties)
   ; $doc.displayPrettyName($prop.name, $object)
-  : #if($prop.name == 'image'){{attachmentSelector classname="$class.name" object="$object.number" property="$prop.name" width="120" buttontext="$msg.get('totemitem.edit.image')" displayImage="true" filter="png,jpg,gif" savemode="direct" /}}
+  : #if($prop.name == 'image'){{attachmentSelector classname="$class.name" object="$object.number" property="$prop.name" width="120" buttontext="$msg.get('totem.item.edit.image')" displayImage="true" filter="png,jpg,gif" savemode="direct" /}}
   #else$doc.display($prop.getName())
   #end
 #end
