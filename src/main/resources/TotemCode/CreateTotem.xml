@@ -194,7 +194,7 @@ Event.observe(document, 'xwiki:dom:loaded', function() {
       &lt;input type="hidden" name="space" value="$!{escapetool.xml($space)}"/&gt;
       &lt;input type="hidden" name="parent" value="Totem.WebHome"&gt;
       &lt;input type="hidden" name="templateprovider" value="TotemCode.TotemTemplateProvider" &gt;
-      &lt;label class="createPost" for="entryTitle"&gt;$services.localization.render('totem.home.createtotem') &lt;/label&gt;&lt;input type="text" id="page" name="page" value="$services.localization.render('totem.home.title')" class="withTip" size="30" /&gt; &lt;span class="buttonwrapper"&gt;&lt;input type="submit" value="${escapetool.xml($services.localization.render('totem.home.create'))}" class="button"/&gt;&lt;/span&gt;
+      &lt;label class="createPost" for="entryTitle"&gt;$services.localization.render('totem.home.createtotem') &lt;/label&gt;&lt;input type="text" id="page" name="page" value="$services.localization.render('totem.home.title.label')" class="withTip" size="30" /&gt; &lt;span class="buttonwrapper"&gt;&lt;input type="submit" value="${escapetool.xml($services.localization.render('totem.home.create'))}" class="button"/&gt;&lt;/span&gt;
     &lt;/div&gt;
   &lt;/form&gt;
   {{/html}} 

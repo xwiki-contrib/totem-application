@@ -150,7 +150,7 @@ totem.home.livetable.doc.fullName=Technical Name
 totem.home.createtotem=Create a new totem
 totem.home.inputmustnotbeempty=Required
 totem.home.validinput=OK.
-totem.home.title=Totem title
+totem.home.title.label=Totem title
 totem.home.create=Create
 totem.home.createtoteminfo=This application allows you to create totems that can be integrated in your wiki pages via the "include" macro and with the information given in the "Technical Name" in the table below.\r\n* A totem is composed of different sections that can use a different style.\r\n* Each section is composed of elements that can be added to totems.</content>
 </xwikidoc>
