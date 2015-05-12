@@ -66,6 +66,8 @@
 })
 #livetable("userdirectory" $columns $columnsProperties $options )
 
+#set($docextras=[])
+
 {{/velocity}}
  </content>
 </xwikidoc>
