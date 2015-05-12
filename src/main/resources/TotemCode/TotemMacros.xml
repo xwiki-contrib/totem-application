@@ -181,7 +181,7 @@
     #getDisplayerAdditionalDataInMap($totemItemAdditionalDataObjects ${totemBlock.getProperty('data').value})
     (%class="additionalData" id %)(((
     #foreach($additionalDataKey in $!{displayerAdditionalDataMap.keySet()})
-      ; $additionalDataKey
+      ; $services.localization.render("totem.edit.$additionalDataKey")
       {{html wiki="true" clean=false}}
         &lt;input id="${additionalDataKey}_${totemBlock.number}" type="text" name="${additionalDataKey}" value="$!{displayerAdditionalDataMap.get(${additionalDataKey})}" class="displayerAdditionalData"&gt;
       {{/html}}
