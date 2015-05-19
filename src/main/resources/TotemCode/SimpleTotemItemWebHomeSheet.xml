@@ -255,5 +255,7 @@ $("body").on("click","a.actiondelete",function(event){
 })
 #set($columns = ['doc.title', 'doc.date', 'doc.author', '_actions'])
 #livetable('simpletotemitem' $columns $columnsProperties $options)
+
+#set($docextras=[])
 {{/velocity}}</content>
 </xwikidoc>

@@ -46,7 +46,7 @@
 
 ## Totem creation informations
 (((
-{{info}} $msg.get("xe.totem.createtoteminfo") {{/info}}
+{{info}} $msg.get("totem.home.createtoteminfo") {{/info}}
 )))
 ## Totem creation form
 {{include document='TotemCode.CreateTotem'/}}
@@ -61,10 +61,12 @@
                  }) 
 #set($options = { 
    "className":"TotemCode.TotemClass",
-   "translationPrefix" : "xe.index.totem.",
+   "translationPrefix" : "totem.home.livetable.",
    "rowCount": 10
 })
 #livetable("userdirectory" $columns $columnsProperties $options )
+
+#set($docextras=[])
 
 {{/velocity}}
  </content>
