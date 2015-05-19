@@ -658,10 +658,10 @@ require.config({
       <cache>long</cache>
     </property>
     <property>
-      <code>require(['jquery'],function($){
+      <code>require (['jquery'],function($) {
 $.extend({
-//Method to intialize edit forms
-initializeEditForm : function(editFormURL,XWModalContent){
+// Method to intialize edit forms
+initializeEditForm : function(editFormURL,XWModalContent) {
    $(".xdialog-box").addClass("xwmlrg");
 
     // Initialize color pickers
@@ -669,8 +669,8 @@ initializeEditForm : function(editFormURL,XWModalContent){
        $.initColorPickers();
     });
 
-   //Initialize attachment-picker fields
-   $(".attachment-picker-start").click(function(event){
+   // Initialize attachment-picker fields
+   $(".attachment-picker-start").click(function(event) {
       var attPickerURL = $(this).attr("href") + "&amp;xpage=plain";
       var totemDocRef = $("#totemDocRef").val();
       attPickerURL = attPickerURL.replace("?docname=TotemCode.EditContent&amp;","?docname=" + encodeURIComponent(totemDocRef) + "&amp;");
@@ -678,19 +678,19 @@ initializeEditForm : function(editFormURL,XWModalContent){
       event.preventDefault();
    });
 
-   //Intialize save button
-   $(".saveBlockBtn").click(function(event){
+   // Intialize save button
+   $(".saveBlockBtn").click(function(event) {
        var form = $("form",$(this).parents());
-       if(form.length &gt; 0){
+       if (form.length &gt; 0) {
           form = form.last();
           var data = form.serialize();
           var actionURL = form.attr("action") + "&amp;" + data;
           $(XWModalContent).addClass("ajaxloader");
           $.ajax({
-	      url:actionURL,
-	      type:'GET',
-              complete:function(event, XMLHttpRequest, ajaxOptions){
-                 //Redirect
+	      url: actionURL,
+	      type: 'GET',
+              complete:function(event, XMLHttpRequest, ajaxOptions) {
+                 // Redirect
                  var redirectURL = $("#redirectURL").val();
                  document.location.replace(redirectURL);   
               }
@@ -699,17 +699,17 @@ initializeEditForm : function(editFormURL,XWModalContent){
        event.preventDefault();
    });
 
-   //Intialize cancel button
-   $("a.cancelbutton").click(function(event){
+   // Intialize cancel button
+   $("a.cancelbutton").click(function(event) {
       $(".xdialog-close").click();
       event.preventDefault();
    });
 },
 
-//Method to intialize color pickers
-initColorPickers : function(){
+// Method to intialize color pickers
+initColorPickers : function() {
     // Get the inputs that need to be enhanced
-    $('.color-picker').each(function(index){
+    $('.color-picker').each(function(index) {
          var input = $(this);
          var parent = $(this).parent();
          // Create the color preview box
@@ -721,7 +721,7 @@ initColorPickers : function(){
              layout: 'hex',
              submit: true,
              color: $(this).val(),
-             onShow: function(colpickobj){
+             onShow: function(colpickobj) {
                 $(colpickobj).css("z-index","99999");
              },
              onSubmit: function(hsb, hex, rgb, el) {
@@ -737,7 +737,7 @@ initColorPickers : function(){
              }
          });
          // If the user write a value manually
-         input.keyup(function(event){
+         input.keyup(function(event) {
             // Update the color preview box
             $('.color-preview',$(this).parent()).css('background-color', $(this).val());
             // Update the color picker
@@ -746,39 +746,39 @@ initColorPickers : function(){
     });
 },
 
-//Method to intialize the attachment picker after loading it
-initAttachmentPicker : function(editFormURL,attPickerURL,XWModalContent){
+// Method to intialize the attachment picker after loading it
+initAttachmentPicker : function(editFormURL,attPickerURL,XWModalContent) {
  $(XWModalContent).addClass("ajaxloader");
- $(XWModalContent).load(attPickerURL,function(){
+ $(XWModalContent).load(attPickerURL,function() {
  $(XWModalContent).removeClass("ajaxloader");
-   //Initialize attachment picker btns
-   $("input[name='action_upload'][type='submit']").click(function(event){
-      //Check input file filed
-      if($("#attachfile").val() == ""){//Empty field
+   // Initialize attachment picker btns
+   $("input[name='action_upload'][type='submit']").click(function(event) {
+      // Check input file filed
+      if ($("#attachfile").val() == "") {// Empty field
            new XWiki.widgets.Notification("$services.localization.render('xe.attachmentSelector.upload.error.noFile')", 'error');
       }
       else
       {
-           //Check allowed extensions
+           // Check allowed extensions
            var allowedExts = $("#attachfile").attr("title");
            allowedExts = (allowedExts != "") ? allowedExts.split(', ') : new Array();
            var fileExt = null;
            var filename = $("#attachfile").val();
            var fpath = filename.replace('\\', '/');
            var pieces = fpath.split('/');
-           if(pieces.length &gt; 0){
+           if (pieces.length &gt; 0) {
                var basename = pieces[pieces.length-1];
                pieces = basename.split('.');
                fileExt = pieces[pieces.length-1].toLowerCase();
            }
-           if(fileExt &amp;&amp; allowedExts.indexOf(fileExt) == -1){
+           if (fileExt &amp;&amp; allowedExts.indexOf(fileExt) == -1) {
                new XWiki.widgets.Notification("$services.localization.render('xe.attachmentSelector.upload.error.badExtension')", 'error');
            }
            else{
                new XWiki.widgets.Notification("$services.localization.render('xe.attachmentSelector.upload.inProgress')", 'inprogress');
                require(['jquery-form'],function(jqf) {
                   $('#uploadAttachment').ajaxSubmit({
-                     success: function(){
+                     success: function() {
                         // Reload the page after upload
                         $(".xnotification-inprogress").remove();
                         $.initAttachmentPicker(editFormURL,attPickerURL,XWModalContent);  
@@ -789,17 +789,17 @@ initAttachmentPicker : function(editFormURL,attPickerURL,XWModalContent){
            }
            event.preventDefault();
         });
-        //Initialize delete attachment btns
-        $("a.delete").click(function(event){
+        // Initialize delete attachment btns
+        $("a.delete").click(function(event) {
             var rep = confirm("$services.localization.render('core.viewers.attachments.delete.confirm')");
-            if(rep){
+            if(rep) {
                var deleteURL = $(this).attr("href");
                var attElem =  $(this).parents().eq(3);
                new XWiki.widgets.Notification("$services.localization.render('core.viewers.attachments.delete.inProgress')",'inprogress');
                $.ajax({
-	          url:deleteURL,
-		  type:'POST',
-		  complete:function(event, XMLHttpRequest, ajaxOptions){
+	          url: deleteURL,
+		  type: 'POST',
+		  complete: function(event, XMLHttpRequest, ajaxOptions){
                      $(".xnotification-inprogress").remove();
                      new XWiki.widgets.Notification("$services.localization.render('core.viewers.attachments.delete.done')","done");
                      attElem.remove();
@@ -808,28 +808,28 @@ initAttachmentPicker : function(editFormURL,attPickerURL,XWModalContent){
              }
             event.preventDefault();
         });
-        //Initialize select attachment btns
-        $("a.select").click(function(event){
+        // Initialize select attachment btns
+        $("a.select").click(function(event) {
             var selectURL = $(this).attr("href");
             new XWiki.widgets.Notification("Selecting",'inprogress');
             $.ajax({
-	       url:selectURL,
-	       type:'POST',
-	       complete:function(event, XMLHttpRequest, ajaxOptions){
+	       url: selectURL,
+	       type: 'POST',
+	       complete:function(event, XMLHttpRequest, ajaxOptions) {
                   $(".xnotification-inprogress").remove();
                   new XWiki.widgets.Notification("Attachment selected","done");
-                  //Reload form with selected image modal
-                  $(XWModalContent).load(editFormURL,function(){
+                  // Reload form with selected image modal
+                  $(XWModalContent).load(editFormURL,function() {
                      $.initializeEditForm(editFormURL,XWModalContent);
                   });
                }
 	    });
             event.preventDefault();
         });
-        //Initialize attachment picker close button
-        $("#attachment-picker-close").click(function(event){
-           //Reload edit item form
-           $(XWModalContent).load(editFormURL,function(){
+        // Initialize attachment picker close button
+        $("#attachment-picker-close").click(function(event) {
+           // Reload edit item form
+           $(XWModalContent).load(editFormURL,function() {
               $.initializeEditForm(editFormURL,XWModalContent);
            });
            event.preventDefault();
@@ -840,9 +840,9 @@ initAttachmentPicker : function(editFormURL,attPickerURL,XWModalContent){
 });
 
 require(['jquery'], function ($) {
-$(function(){
-      //Initialize edit Totem buttons
-      $(".editbutton").click(function(event){
+$(function() {
+      // Initialize edit Totem buttons
+      $(".editbutton").click(function(event) {
            event.preventDefault();
            var blockNumber = $(this).attr("rel");
            var totemDocRef = $("#totemDocRef").val();
@@ -852,7 +852,7 @@ $(function(){
            $('.xdialog-modal-container').remove();
            new XWiki.widgets.TotemModalPopup({pageURL: editURL});
       });
-      $(".editsourcebutton").click(function(event){
+      $(".editsourcebutton").click(function(event) {
            var blockNumber = $(this).attr("rel");
            var totemDocRef = $("#totemDocRef").val();
            var editContentURL = "$xwiki.getURL('TotemCode.EditContent','view')";
@@ -863,27 +863,27 @@ $(function(){
            $("#totemModal .modal-body").addClass("loadingModal");
            $("#totemModal .modal-title").html("$services.localization.render('totem.edit.configuresectionelements.title')");
            $("#totemModal").modal("show");
-           //Initialize iframe buttons
-           $("#editIframe").load(function(event){
-              if($("#showIframe").val() == "1"){ 
+           // Initialize iframe buttons
+           $("#editIframe").load(function(event) {
+              if ($("#showIframe").val() == "1") { 
                  $(this).show();
                  $("#totemModal .modal-body").removeClass("loadingModal");
               }
-              $(this).contents().find(".saveSourceBtn").click(function(){
+              $(this).contents().find(".saveSourceBtn").click(function() {
                  $("#showIframe").val("0");
                  $("#totemModal .modal-body").addClass("loadingModal");
                  $("#editIframe").hide();
               });   
-              if($(this).contents().find("#redirectURL").length &gt; 0){
+              if ($(this).contents().find("#redirectURL").length &gt; 0) {
                  document.location.replace(redirectURL);   
               }
-              //Initialize cancel edit block source button
-              $(this).contents().find("a.cancelbutton").click(function(event){
+              // Initialize cancel edit block source button
+              $(this).contents().find("a.cancelbutton").click(function(event) {
                  event.preventDefault();
                  $("#totemModal").modal("hide");
               });
-              //Initialize the elements admin button
-              $(this).contents().find(".adminItemsBtn").click(function(event){
+              // Initialize the elements admin button
+              $(this).contents().find(".adminItemsBtn").click(function(event) {
                  event.preventDefault();
                  var editURL = $(this).attr("href");
                  $("#editIframe").attr("src",editURL);
@@ -891,7 +891,7 @@ $(function(){
             });
            event.preventDefault();
       });
-   });//endReady
+   });// endReady
 });</code>
     </property>
     <property>
@@ -985,7 +985,7 @@ $(function(){
     </property>
     <property>
       <code>// Make sure the XWiki 'namespace' and the ModalPopup class exist.
-if(typeof(XWiki) == "undefined" || typeof(XWiki.widgets) == "undefined" || typeof(XWiki.widgets.ModalPopup) == "undefined") {
+if (typeof(XWiki) == "undefined" || typeof(XWiki.widgets) == "undefined" || typeof(XWiki.widgets.ModalPopup) == "undefined") {
  if (typeof console != "undefined" &amp;&amp; typeof console.warn == "function") {
     console.warn("[MessageBox widget] Required class missing: XWiki.widgets.ModalPopup");
   }
@@ -1021,7 +1021,7 @@ XWiki.widgets.TotemModalPopup = Class.create(XWiki.widgets.ModalPopup, {
     new Ajax.Request(data.pageURL,
     {
       method:'get',
-      onSuccess: function(transport){
+      onSuccess: function(transport) {
         //
         // Start Displayer additional Data management
         //
@@ -1077,7 +1077,7 @@ XWiki.widgets.TotemModalPopup = Class.create(XWiki.widgets.ModalPopup, {
         //
         var response = transport.responseText || "no response text";
         content.insert(response);
-        require(['jquery'],function($){
+        require(['jquery'],function($) {
            $.initializeEditForm(data.pageURL,content);
         });
       },
@@ -1416,21 +1416,21 @@ require.config({
       <cache>long</cache>
     </property>
     <property>
-      <code>.loadingModal{
+      <code>.loadingModal {
    background-image: url("$xwiki.getSkinFile('icons/xwiki/ajax-loader-large.gif')");
    background-repeat: no-repeat;
    background-position: center;
 }
-.xwmlrg{
+.xwmlrg {
    width:90%;
 }
-.ajaxloader{
+.ajaxloader {
    background-image: url("$xwiki.getSkinFile('icons/xwiki/ajax-loader-large.gif')");
    background-repeat: no-repeat;
    background-position: center;
    height: 100px
 }
-.ajaxloader div,.ajaxloader form{
+.ajaxloader div,.ajaxloader form {
    display:none;
 }</code>
     </property>
