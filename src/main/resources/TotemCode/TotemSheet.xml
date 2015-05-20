@@ -1510,6 +1510,13 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
     #set($cancelURL = $doc.getURL('view', 'showEdit=true'))
   #end
   ## if edit is enabled, add the input and form to save the order of the blocks which will be edited in js
+  ## Show the edit button if the user is enabled to edit and the totem is in the view mode
+  #if ($hasEdit)
+    {{info}}
+    #displayTotemActionsLinks()
+    {{/info}}
+  #end
+ 
   #if ($enableEdit)
     {{info}}
     #displayEditTotemConfigurationForm()
