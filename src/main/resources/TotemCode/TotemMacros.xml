@@ -320,6 +320,7 @@
 #set($totemEditURL = $doc.getURL('view','showEdit=true'))
 #set($totemDocURL = $xwiki.getURL('TotemCode.Documentation','view'))
 {{html clean="false" wiki="true"}}
+&lt;div class="clearfix"&gt;
 &lt;div class="pull-right"&gt;
  &lt;a class="btn btn-info" href="$totemDocURL" target="_blank"&gt;&lt;span class="glyphicon glyphicon-book"&gt;&lt;/span&gt; $services.localization.render('totem.edit.documentation')&lt;/a&gt;
  #if ($hasEdit &amp;&amp; "$!request.showEdit" != 'true')
@@ -328,6 +329,7 @@
  #if ("$!request.showEdit" == 'true')
     &lt;a class="btn btn-info" href="$totemViewURL"&gt;&lt;span class="glyphicon glyphicon-eye-open"&gt;&lt;/span&gt; $services.localization.render('totem.edit.viewtotem')&lt;/a&gt; 
  #end
+&lt;/div&gt;
 &lt;/div&gt;
 {{/html}}
 #end
