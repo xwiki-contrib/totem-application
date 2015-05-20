@@ -76,6 +76,7 @@
       <classType>com.xpn.xwiki.objects.classes.DBListClass</classType>
     </appsource_app>
     <appsource_boolean>
+      <customDisplay/>
        <disabled>0</disabled>
       <name>appsource_boolean</name>
       <number>21</number>
@@ -83,6 +84,8 @@
       <prettyName>appsource_boolean</prettyName>
       <size>30</size>
       <unmodifiable>0</unmodifiable>
+      <validationMessage/>
+      <validationRegExp/>
       <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
     </appsource_boolean>
     <appsource_date>
@@ -304,8 +307,8 @@
       <cache>0</cache>
       <classname/>
       <customDisplay>{{velocity}}
-#set($SuggestDisplay_itemsEditable = true)
-#set($SuggestDisplay_editModeSpace = "Totem")
+#set($SuggestDisplayItemsEditable = true)
+#set($SuggestDisplayEditModeSpace = "Totem")
 {{/velocity}}
 {{include document="xwiki:XWiki.SuggestDisplay" /}}</customDisplay>
       <disabled>0</disabled>
