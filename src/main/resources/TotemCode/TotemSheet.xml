@@ -411,8 +411,7 @@ document.observe('xwiki:dom:loading', function() {
       <cache>long</cache>
     </property>
     <property>
-      <code>document.observe('xwiki:dom:loading', function() {
-// Configure require.js to use Colpick (https://github.com/josedvq/colpick-jQuery-Color-Picker/)
+      <code>// Configure require.js to use Colpick (https://github.com/josedvq/colpick-jQuery-Color-Picker/)
 require.config({
   paths: {
     'colpick': '$services.webjars.url('colpick/2.0.2/js/colpick.js')'
@@ -421,10 +420,15 @@ require.config({
     'colpick' : ['jquery']
   }
 });
+
+// Configure require.js to use jquery-form (https://github.com/malsup/form)
+require.config({
+   "paths": { "jquery-form": "$services.webjars.url('jquery-form/3.51/jquery.form.js')" },
+   "shim": { "jquery-form": [ "jquery" ] }
 });</code>
     </property>
     <property>
-      <name>Color picker</name>
+      <name>Color picker - jquery form plugins</name>
     </property>
     <property>
       <parse>1</parse>
@@ -658,7 +662,7 @@ require.config({
       <cache>long</cache>
     </property>
     <property>
-      <code>require (['jquery'],function($) {
+      <code>require (['jquery', 'jquery-form'], function($, jqf) {
 $.extend({
 // Method to intialize edit forms
 initializeEditForm : function(editFormURL,XWModalContent) {
@@ -776,15 +780,13 @@ initAttachmentPicker : function(editFormURL,attPickerURL,XWModalContent) {
            }
            else{
                new XWiki.widgets.Notification("$services.localization.render('xe.attachmentSelector.upload.inProgress')", 'inprogress');
-               require(['jquery-form'],function(jqf) {
-                  $('#uploadAttachment').ajaxSubmit({
-                     success: function() {
-                        // Reload the page after upload
-                        $(".xnotification-inprogress").remove();
-                        $.initAttachmentPicker(editFormURL,attPickerURL,XWModalContent);  
-                     }
-                  });
-               });   
+               $('#uploadAttachment').ajaxSubmit({
+                  success: function() {
+                     // Reload the page after upload
+                     $(".xnotification-inprogress").remove();
+                     $.initAttachmentPicker(editFormURL,attPickerURL,XWModalContent);  
+                  }
+               });
              }  
            }
            event.preventDefault();
@@ -1092,104 +1094,6 @@ XWiki.widgets.TotemModalPopup = Class.create(XWiki.widgets.ModalPopup, {
     </property>
     <property>
       <name>Use XWiki Modal Popup</name>
-    </property>
-    <property>
-      <parse>1</parse>
-    </property>
-    <property>
-      <use>onDemand</use>
-    </property>
-  </object>
-  <object>
-    <class>
-      <name>XWiki.JavaScriptExtension</name>
-      <customClass/>
-      <customMapping/>
-      <defaultViewSheet/>
-      <defaultEditSheet/>
-      <defaultWeb/>
-      <nameField/>
-      <validationScript/>
-      <cache>
-        <cache>0</cache>
-        <disabled>0</disabled>
-        <displayType>select</displayType>
-        <multiSelect>0</multiSelect>
-        <name>cache</name>
-        <number>5</number>
-        <prettyName>Caching policy</prettyName>
-        <relationalStorage>0</relationalStorage>
-        <separator> </separator>
-        <separators> ,|</separators>
-        <size>1</size>
-        <unmodifiable>0</unmodifiable>
-        <values>long|short|default|forbid</values>
-        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
-      </cache>
-      <code>
-        <disabled>0</disabled>
-        <name>code</name>
-        <number>2</number>
-        <prettyName>Code</prettyName>
-        <rows>20</rows>
-        <size>50</size>
-        <unmodifiable>0</unmodifiable>
-        <classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
-      </code>
-      <name>
-        <disabled>0</disabled>
-        <name>name</name>
-        <number>1</number>
-        <prettyName>Name</prettyName>
-        <size>30</size>
-        <unmodifiable>0</unmodifiable>
-        <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
-      </name>
-      <parse>
-        <disabled>0</disabled>
-        <displayFormType>select</displayFormType>
-        <displayType>yesno</displayType>
-        <name>parse</name>
-        <number>4</number>
-        <prettyName>Parse content</prettyName>
-        <unmodifiable>0</unmodifiable>
-        <classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
-      </parse>
-      <use>
-        <cache>0</cache>
-        <disabled>0</disabled>
-        <displayType>select</displayType>
-        <multiSelect>0</multiSelect>
-        <name>use</name>
-        <number>3</number>
-        <prettyName>Use this extension</prettyName>
-        <relationalStorage>0</relationalStorage>
-        <separator> </separator>
-        <separators> ,|</separators>
-        <size>1</size>
-        <unmodifiable>0</unmodifiable>
-        <values>currentPage|onDemand|always</values>
-        <classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
-      </use>
-    </class>
-    <name>TotemCode.TotemSheet</name>
-    <number>5</number>
-    <className>XWiki.JavaScriptExtension</className>
-    <guid>fb4e0bb8-fdc9-47ac-8dd8-571cc1820498</guid>
-    <property>
-      <cache>long</cache>
-    </property>
-    <property>
-      <code>document.observe('xwiki:dom:loading', function() {
-// Configure require.js to use jquery-form (https://github.com/malsup/form)
-require.config({
-   "paths": { "jquery-form": "$services.webjars.url('jquery-form/3.51/jquery.form.js')" },
-   "shim": { "jquery-form": [ "jquery" ] }
-    });
-});</code>
-    </property>
-    <property>
-      <name>jquery-form plugin</name>
     </property>
     <property>
       <parse>1</parse>
