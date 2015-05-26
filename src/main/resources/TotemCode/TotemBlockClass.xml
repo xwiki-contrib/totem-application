@@ -310,7 +310,7 @@
 #set($SuggestDisplayItemsEditable = true)
 #set($SuggestDisplayEditModeSpace = "Totem")
 {{/velocity}}
-{{include document="XWiki.SuggestDisplay" /}}</customDisplay>
+{{include reference="XWiki.SuggestDisplay" /}}</customDisplay>
       <disabled>0</disabled>
       <displayType>input</displayType>
       <idField/>
