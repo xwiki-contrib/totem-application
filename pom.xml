@@ -22,7 +22,8 @@
  *
 -->
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.xwiki.commons</groupId>
@@ -34,7 +35,9 @@
   <name>Totem Application</name>
   <version>1.1-SNAPSHOT</version>
   <packaging>xar</packaging>
-  <description>Allow creation of blocks with different representations from totems elements, each totem element contain a title, description and a image.</description>
+  <description>Allow creation of blocks with different representations from totems elements, each totem element contain
+    a title, description and a image.
+  </description>
   <properties>
     <xwiki.version>6.4</xwiki.version>
     <!-- Name to display by the Extension Manager -->
@@ -84,8 +87,8 @@
                (seems there are a log of bugs, especially http://jira.codehaus.org/browse/MRELEASE-812 ) -->
           <version>2.5</version>
         </plugin>
-      </plugins> 
-    </pluginManagement>  
+      </plugins>
+    </pluginManagement>
     <extensions>
       <extension>
         <groupId>org.xwiki.commons</groupId>
@@ -102,10 +105,17 @@
     </plugins>
   </build>
   <dependencies>
-   <dependency>
-     <groupId>org.webjars</groupId>
-     <artifactId>jquery-form</artifactId>
-     <version>3.51</version>
-   </dependency>
+    <dependency>
+      <groupId>org.xwiki.contrib</groupId>
+      <artifactId>displayer-multiselect-suggest</artifactId>
+      <version>1.3</version>
+      <type>xar</type>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.webjars</groupId>
+      <artifactId>jquery-form</artifactId>
+      <version>3.51</version>
+    </dependency>
   </dependencies>
 </project>

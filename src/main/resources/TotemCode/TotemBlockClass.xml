@@ -54,7 +54,7 @@
     <appsource_app>
       <cache>0</cache>
       <classname/>
-      <customDisplay>{{include document="xwiki:XWiki.SuggestDisplay" /}}</customDisplay>
+      <customDisplay>{{include reference="XWiki.SuggestDisplay" /}}</customDisplay>
       <disabled>0</disabled>
       <displayType>input</displayType>
       <idField/>
@@ -310,7 +310,7 @@
 #set($SuggestDisplayItemsEditable = true)
 #set($SuggestDisplayEditModeSpace = "Totem")
 {{/velocity}}
-{{include document="xwiki:XWiki.SuggestDisplay" /}}</customDisplay>
+{{include document="XWiki.SuggestDisplay" /}}</customDisplay>
       <disabled>0</disabled>
       <displayType>input</displayType>
       <idField/>
