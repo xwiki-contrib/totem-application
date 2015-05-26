@@ -411,20 +411,16 @@ document.observe('xwiki:dom:loading', function() {
       <cache>long</cache>
     </property>
     <property>
-      <code>// Configure require.js to use Colpick (https://github.com/josedvq/colpick-jQuery-Color-Picker/)
+      <code>// Configure require.js to use Colpick (https://github.com/josedvq/colpick-jQuery-Color-Picker/) and jquery-form (https://github.com/malsup/form)
 require.config({
   paths: {
-    'colpick': '$services.webjars.url('colpick/2.0.2/js/colpick.js')'
+    'colpick': '$services.webjars.url('colpick/2.0.2/js/colpick.js')',
+    'jquery-form': '$services.webjars.url('jquery-form/3.51/jquery.form.js')'    
   },
   shim: {
-    'colpick' : ['jquery']
+    'colpick' : ['jquery'],
+    'jquery-form': ['jquery']
   }
-});
-
-// Configure require.js to use jquery-form (https://github.com/malsup/form)
-require.config({
-   "paths": { "jquery-form": "$services.webjars.url('jquery-form/3.51/jquery.form.js')" },
-   "shim": { "jquery-form": [ "jquery" ] }
 });</code>
     </property>
     <property>
