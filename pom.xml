@@ -68,6 +68,11 @@
       <name>Yacine Kebir</name>
       <organization>XWiki SAS</organization>
     </developer>
+    <developer>
+      <id>mouhb</id>
+      <name>Mohamed Boussaa</name>
+      <organization>XWiki SAS</organization>
+    </developer>
   </developers>
   <distributionManagement>
     <repository>
