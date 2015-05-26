@@ -76,12 +76,16 @@
       <classType>com.xpn.xwiki.objects.classes.DBListClass</classType>
     </appsource_app>
     <appsource_boolean>
-      <disabled>0</disabled>
+      <customDisplay/>
+       <disabled>0</disabled>
       <name>appsource_boolean</name>
       <number>21</number>
+      <picker>0</picker>
       <prettyName>appsource_boolean</prettyName>
       <size>30</size>
       <unmodifiable>0</unmodifiable>
+      <validationMessage/>
+      <validationRegExp/>
       <classType>com.xpn.xwiki.objects.classes.StringClass</classType>
     </appsource_boolean>
     <appsource_date>
@@ -302,7 +306,11 @@
     <source>
       <cache>0</cache>
       <classname/>
-      <customDisplay>{{include document="xwiki:XWiki.SuggestDisplay" /}}</customDisplay>
+      <customDisplay>{{velocity}}
+#set($SuggestDisplayItemsEditable = true)
+#set($SuggestDisplayEditModeSpace = "Totem")
+{{/velocity}}
+{{include document="xwiki:XWiki.SuggestDisplay" /}}</customDisplay>
       <disabled>0</disabled>
       <displayType>input</displayType>
       <idField/>
