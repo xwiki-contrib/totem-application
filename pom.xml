@@ -114,7 +114,7 @@
       <artifactId>displayer-multiselect-suggest</artifactId>
       <version>1.4</version>
       <type>xar</type>
-      <scope>provided</scope>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.webjars</groupId>
