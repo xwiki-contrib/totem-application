@@ -1415,8 +1415,8 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
     {{info}}
     #displayTotemActionsLinks()
     {{/info}}
+
   #end
- 
   #if ($enableEdit)
     {{info}}
     #displayEditTotemConfigurationForm()
