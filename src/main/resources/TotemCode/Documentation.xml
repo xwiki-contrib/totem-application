@@ -41,7 +41,7 @@
   <comment/>
   <minorEdit>false</minorEdit>
   <syntaxId>xwiki/2.1</syntaxId>
-  <hidden>false</hidden>
+  <hidden>true</hidden>
   <attachment>
     <filename>confirm-creation.png</filename>
     <filesize>13429</filesize>
