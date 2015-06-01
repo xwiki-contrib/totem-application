@@ -32,7 +32,7 @@
   <groupId>org.xwiki.contrib</groupId>
   <artifactId>xwiki-totem-application</artifactId>
   <name>Totem Application</name>
-  <version>1.3</version>
+  <version>1.4-SNAPSHOT</version>
   <packaging>xar</packaging>
   <description>Allow creation of blocks with different representations from totems elements, each totem element contain
     a title, description and a image.
@@ -50,7 +50,7 @@
     <connection>scm:git:git://github.com/xwiki-contrib/totem-application.git</connection>
     <developerConnection>scm:git:git@github.com:xwiki-contrib/totem-application.git</developerConnection>
     <url>https://github.com/xwiki-contrib/totem-application.git</url>
-    <tag>xwiki-totem-application-1.3</tag>
+    <tag>HEAD</tag>
   </scm>
   <developers>
     <developer>
