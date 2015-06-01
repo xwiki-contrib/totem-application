@@ -532,8 +532,10 @@
 		## -----------------------------------------------------------------------------------
 		## Display the footnotes if the document is in 1.0 syntax and if there are any defined
 		## -----------------------------------------------------------------------------------
-		#set($footnotes = "#putFootnotes()")
-		$xwiki.renderText($footnotes, $doc)
+    #if ($doc.syntax.toIdString() == 'xwiki/1.0')
+		  #set($footnotes = "#putFootnotes()")
+		  $xwiki.renderText($footnotes, $doc)
+    #end
 		###template("contentview.vm")
   &lt;/div&gt;## mainContentArea</view.vm>
     </property>

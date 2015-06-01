@@ -35,7 +35,7 @@
   <date>1425460342000</date>
   <contentUpdateDate>1425025219000</contentUpdateDate>
   <version>1.1</version>
-  <title>$msg.get('totem.items.webhome.title')</title>
+  <title>$services.localization.render('totem.items.webhome.title')</title>
   <defaultTemplate/>
   <validationScript/>
   <comment/>
@@ -215,7 +215,7 @@ $("body").on("click","a.actiondelete",function(event){
   </object>
   <content>{{velocity}}
 #if ($xwiki.hasAccessLevel('edit', $xcontext.user, "${doc.space}.${xwiki.getUniquePageName($doc.space)}"))
-  == $msg.get('totem.items.webhome.createform') ==
+  == $services.localization.render('totem.items.webhome.createform') ==
 #if("$!request.fromIframe" != "")
 #set($discard = $xwiki.jsx.use("TotemCode.SimpleTotemItemWebHomeSheet"))
 #end
@@ -226,17 +226,17 @@ $("body").on("click","a.actiondelete",function(event){
       &lt;input type="hidden" value="$escapetool.xml($doc.space)" name="space" /&gt;
       &lt;input type="hidden" value="$escapetool.xml($doc.fullName)" name="parent" /&gt;
       &lt;input type="hidden" value="TotemCode.SimpleTotemItemTemplateProvider" name="templateprovider"&gt;
-      &lt;label for="createform-page"&gt;$msg.get('totem.items.createform.namelabel')&lt;/label&gt;
+      &lt;label for="createform-page"&gt;$services.localization.render('totem.items.createform.namelabel')&lt;/label&gt;
       &lt;input id="createform-page" name="page" type="text" value="" size="30"/&gt;
       &lt;span class="buttonwrapper"&gt;
-        &lt;input class="button createItemBtn" type="submit" value="$msg.get('create')"/&gt;
+        &lt;input class="button createItemBtn" type="submit" value="$services.localization.render('create')"/&gt;
       &lt;/span&gt;
     &lt;/div&gt;
   &lt;/form&gt;
   {{/html}}
 #end
 
-== $msg.get('totem.items.webhome.entries') ==
+== $services.localization.render('totem.items.webhome.entries') ==
 
 #set($columnsProperties = {
   'doc.name': {'type': 'text', 'link': 'view', 'size': 10, 'filterable': true, 'sortable': true},

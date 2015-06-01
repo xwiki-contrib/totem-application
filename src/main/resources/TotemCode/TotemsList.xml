@@ -46,7 +46,7 @@
 
 ## Totem creation informations
 (((
-{{info}} $msg.get("totem.home.createtoteminfo") {{/info}}
+{{info}} $services.localization.render("totem.home.createtoteminfo") {{/info}}
 )))
 ## Totem creation form
 {{include document='TotemCode.CreateTotem'/}}

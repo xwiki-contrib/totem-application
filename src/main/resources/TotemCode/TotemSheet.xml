@@ -279,7 +279,7 @@
         {
           onYes : function() {_this.submit();},
         },
-        {confirmationText: "$msg.get('totem.edit.removeitem.confirmation')",}
+        {confirmationText: "$escapetool.javascript($services.localization.render('totem.edit.removeitem.confirmation'))",}
         )
     }.bind(this));
   },
@@ -1423,7 +1423,7 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
     {{/info}}
     ----
     {{info}}
-    $msg.get('totem.edit.editorder.info')    
+    $services.localization.render('totem.edit.editorder.info')
     #displayEditOrderForm($editURL)
     {{/info}}
   #end
@@ -1474,9 +1474,9 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
   ## add new block item form
   #if($enableEdit)
     (%class="addactions"%)(((
-     [[$msg.get('totem.edit.additem.button')&gt;&gt;path:$doc.getURL('view', 'showEdit=true&amp;additem=true')||class="addblock"]]
+     [[$services.localization.render('totem.edit.additem.button')&gt;&gt;path:$doc.getURL('view', 'showEdit=true&amp;additem=true')||class="addblock"]]
       ## display a button to exit the edit form. TODO: move me in an appropriate place (where?)
-     (%class="totemeditactions buttonwrapper"%)((([[$msg.get('totem.edit.exitedit')&gt;&gt;Totem.WebHome]])))
+     (%class="totemeditactions buttonwrapper"%)((([[$services.localization.render('totem.edit.exitedit')&gt;&gt;Totem.WebHome]])))
     )))
     (%class="#if("$!request.additem" != 'true')hidden#end addblockform"%)(((
       #set($fakeTotemBlock = $doc.newObject("TotemCode.TotemBlockClass"))    

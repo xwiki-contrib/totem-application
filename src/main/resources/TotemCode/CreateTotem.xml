@@ -131,11 +131,11 @@
    */
   initPageValidator : function() {
     var pageInput = $('page');
-    this.pageValidator = new LiveValidation(pageInput, { validMessage: "$msg.get('totem.home.validinput')" });
+    this.pageValidator = new LiveValidation(pageInput, { validMessage: "$services.localization.render('totem.home.validinput')" });
     // We use a custom validation in order to handle the default value on browsers that don't support the placeholder attribute.
     this.pageValidator.displayMessageWhenEmpty = true;
     this.pageValidator.add(Validate.Custom, {
-      failureMessage: "$msg.get('totem.home.inputmustnotbeempty')",
+      failureMessage: "$services.localization.render('totem.home.inputmustnotbeempty')",
       against: function(value) {
         return !pageInput.hasClassName('empty') &amp;&amp; typeof value == 'string' &amp;&amp; value.strip().length &gt; 0;
       }
@@ -145,9 +145,9 @@
    * Create Space Field Validator.
    */
   initSpaceValidator : function() {
-    this.spaceValidator = new LiveValidation($('space'), { validMessage: "$msg.get('totem.home.validinput')" });
+    this.spaceValidator = new LiveValidation($('space'), { validMessage: "$services.localization.render('totem.home.validinput')" });
     this.spaceValidator.add(Validate.Presence, {
-       failureMessage: "$msg.get('totem.home.inputmustnotbeempty')"
+       failureMessage: "$services.localization.render('totem.home.inputmustnotbeempty')"
     });
   },
   /**
@@ -187,7 +187,7 @@ Event.observe(document, 'xwiki:dom:loaded', function() {
   $xwiki.get('ssfx').use('uicomponents/widgets/validation/livevalidation.css')
   $xwiki.get('jsx').use('TotemCode.CreateTotem')
   #set($space = $doc.space)
-  {{html clean="false" wiki="true"}}
+  {{html clean="false"}}
   &lt;form action="$doc.getURL('create')" id="newBlogPost" method="post" class="xformInline"&gt;
     &lt;div&gt;
       &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
