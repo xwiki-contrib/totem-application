@@ -78,9 +78,6 @@
         (%class="#if("$!request.editblock" != "$totemBlock.number")hidden#end editblockform"%)(((
           #displayTotemBlockEditForm($totemBlock, false, $cancelURL, $editURL, $totemItemClass)
         )))
-        (%class="#if("$!request.editblocksource" != "$totemBlock.number")hidden#end editsourceblockform"%)(((
-          #displayTotemBlockEditSourceForm($totemBlock, $totemItemsURL, $cancelURL, $editURL)
-        )))
       #end
       #if($withEdit)
         (%class="editactions"%)((({{html clean="false"}}
@@ -215,7 +212,10 @@
       &lt;div class="tab-content"&gt;
          &lt;div class="tab-pane active" id="simple"&gt;
              &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
-             &lt;input type="hidden" name="xredirect" value="$escapetool.xml($editURL)" /&gt;
+             #if ("$!request.totemDocRef" != "" &amp;&amp; $xwiki.exists($request.totemDocRef))
+                #set($totemEditURL = $xwiki.getURL($request.totemDocRef,'view','showEdit=true'))
+             #end
+             &lt;input type="hidden" name="xredirect" value="$!escapetool.xml($totemEditURL)" /&gt;
              ## display the totem source properties
              #set($totemBlockClass = $totemBlock.xWikiClass)
              &lt;br/&gt;

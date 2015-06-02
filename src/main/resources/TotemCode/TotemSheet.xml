@@ -850,43 +850,16 @@ $(function() {
            $('.xdialog-modal-container').remove();
            new XWiki.widgets.TotemModalPopup({pageURL: editURL});
       });
+      // Initialize edit section elements buttons
       $(".editsourcebutton").click(function(event) {
+           // Clear the old content of the modal popup
+           $('.xdialog-modal-container').remove();
            var blockNumber = $(this).attr("rel");
            var totemDocRef = $("#totemDocRef").val();
-           var editContentURL = "$xwiki.getURL('TotemCode.EditContent','view')";
-           var editURL = editContentURL + "?action=editTotemBlockSource" + "&amp;totemDocRef=" + totemDocRef + "&amp;blockNumber=" + blockNumber;
+           var editContentURL = "$xwiki.getURL('TotemCode.EditContent','view','xpage=plain')";
+           var editURL = editContentURL + "&amp;action=editTotemBlockSource" + "&amp;totemDocRef=" + totemDocRef + "&amp;blockNumber=" + blockNumber;
            var redirectURL = $("#redirectURL").val();
-           $("#editIframe").attr("src",editURL);
-           $("#totemModal .modal-dialog").addClass("modal-lg");
-           $("#totemModal .modal-body").addClass("loadingModal");
-           $("#totemModal .modal-title").html("$services.localization.render('totem.edit.configuresectionelements.title')");
-           $("#totemModal").modal("show");
-           // Initialize iframe buttons
-           $("#editIframe").load(function(event) {
-              if ($("#showIframe").val() == "1") { 
-                 $(this).show();
-                 $("#totemModal .modal-body").removeClass("loadingModal");
-              }
-              $(this).contents().find(".saveSourceBtn").click(function() {
-                 $("#showIframe").val("0");
-                 $("#totemModal .modal-body").addClass("loadingModal");
-                 $("#editIframe").hide();
-              });   
-              if ($(this).contents().find("#redirectURL").length &gt; 0) {
-                 document.location.replace(redirectURL);   
-              }
-              // Initialize cancel edit block source button
-              $(this).contents().find("a.cancelbutton").click(function(event) {
-                 event.preventDefault();
-                 $("#totemModal").modal("hide");
-              });
-              // Initialize the elements admin button
-              $(this).contents().find(".adminItemsBtn").click(function(event) {
-                 event.preventDefault();
-                 var editURL = $(this).attr("href");
-                 $("#editIframe").attr("src",editURL);
-              });
-            });
+           new XWiki.widgets.TotemModalPopup({pageURL: editURL});
            event.preventDefault();
       });
    });// endReady
@@ -1077,8 +1050,14 @@ XWiki.widgets.TotemModalPopup = Class.create(XWiki.widgets.ModalPopup, {
         content.insert(response);
         require(['jquery'],function($) {
            $.initializeEditForm(data.pageURL,content);
+           // Init items suggest picker
+           var suggestInput = $('input[id$="_source"]');
+           if (!suggestInput.hasClass('suggested')) {
+             suggestInput = $('input[id$="_source_suggest"]');
+           }
+           new XWiki.widgets.SuggestDisplayPicker(suggestInput.get(0));
         });
-      },
+       },
       onFailure: function(){ content.insert('Something went wrong...'); 
     }
     });
@@ -1397,6 +1376,12 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
     #set($discard = $xwiki.jsfx.use("js/scriptaculous/dragdrop.js"))
     #set($discard = $xwiki.jsx.use('TotemCode.TotemSheet', {'minify' : false}))
     #set($discard = $xwiki.ssx.use('TotemCode.TotemSheet', {'minify' : false}))
+    ## JS/CSS code used in manage totem items in popups
+    #set($discard = $xwiki.jsx.use('XWiki.SuggestDisplay', {'minify' : false}))
+    #set($discard = $xwiki.ssx.use('XWiki.SuggestDisplay', {'minify' : false}))
+    #set($discard = $xwiki.jsx.use('XWiki.SuggestDisplayEditItems', {'minify' : false}))
+    #set($discard = $xwiki.ssx.use('XWiki.SuggestDisplayEditItems', {'minify' : false}))
+    #wysiwyg_import(true)
   #end
   ## pass the totem application fullscreen
   #set($enableFullscreen = $doc.getObject('TotemCode.TotemClass').getProperty('fullscreen').value)
