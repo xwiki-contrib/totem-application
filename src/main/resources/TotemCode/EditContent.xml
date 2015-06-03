@@ -61,7 +61,7 @@
             #displayTotemBlockEditForm($totemBlock, false, "", "")
          #elseif($action == "editTotemBlockSource")
            (((
-              #set($totemItemsURL = $xwiki.getURL('Totem.Items','view','skin=TotemCode.PopupSkin&amp;fromIframe=1'))
+              #set($totemItemsURL = $xwiki.getURL('Totem.Items','view'))
               #displayTotemBlockEditSourceForm($totemBlock, $totemItemsURL, "javascript:;", "")
            )))
          #end
@@ -73,7 +73,7 @@
            {"results":false}
        #else
            #set($documentReference = $services.model.createDocumentReference(null, $request.space, $request.page))
-           #set($redirectURL = $xwiki.getURL($documentReference,'edit',"template=TotemCode.SimpleTotemItemTemplate&amp;parent=${request.parent}&amp;title=${request.page}&amp;skin=TotemCode.PopupSkin&amp;fromIframe=1"))
+           #set($redirectURL = $xwiki.getURL($documentReference,'edit',"template=TotemCode.SimpleTotemItemTemplate&amp;parent=${request.parent}&amp;title=${request.page}"))
            {"results":"$redirectURL"}
         #end
    #end
