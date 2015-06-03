@@ -1051,6 +1051,10 @@ XWiki.widgets.TotemModalPopup = Class.create(XWiki.widgets.ModalPopup, {
         require(['jquery'],function($) {
            $.initializeEditForm(data.pageURL,content);
            // Init items suggest picker
+           // Set the current vertical position of the scroll bar to 0.
+           // if we do not do that the results of the suggest picker will not be displayed in the popup.
+           // TODO : fix this issue directly in the SuggestDisplayPicker extension.
+           $(document).scrollTop(0);
            var suggestInput = $('input[id$="_source"]');
            if (!suggestInput.hasClass('suggested')) {
              suggestInput = $('input[id$="_source_suggest"]');
@@ -1381,7 +1385,10 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
     #set($discard = $xwiki.ssx.use('XWiki.SuggestDisplay', {'minify' : false}))
     #set($discard = $xwiki.jsx.use('XWiki.SuggestDisplayEditItems', {'minify' : false}))
     #set($discard = $xwiki.ssx.use('XWiki.SuggestDisplayEditItems', {'minify' : false}))
+    {{html}}
     #wysiwyg_import(true)
+    {{/html}}
+
   #end
   ## pass the totem application fullscreen
   #set($enableFullscreen = $doc.getObject('TotemCode.TotemClass').getProperty('fullscreen').value)
