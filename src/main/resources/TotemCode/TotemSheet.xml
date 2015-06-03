@@ -130,9 +130,7 @@
     $$('.totemBlocks .totemBlock').each(function(item){
       this.hookDeleteButton(item);
     }.bind(this));
-    
-    this.hookAddButton();
-  },
+ },
   
   hookEditOrder : function () {
     // find the editorder form
@@ -282,36 +280,6 @@
         {confirmationText: "$escapetool.javascript($services.localization.render('totem.edit.removeitem.confirmation'))",}
         )
     }.bind(this));
-  },
-  
-  hookAddButton : function() {
-    // find the edit button in the actions
-    var addButton = $$('.addactions a.addblock')[0];
-    if (!addButton) {
-      return;
-    }
-    addButton.observe('click', function(event) {
-      // find the edit form and show it
-      var addForm = $$('.addblockform')[0];
-      if (!addForm) {
-        return;
-      }
-      // we have an edit form, stop the event
-      event.stop();
-      addForm.removeClassName('hidden');
-    });
-    // find the cancel button of this add form and make it hide the form
-    var cancelButton = $$('.addblockform a.cancelbutton')[0];
-    if (cancelButton) {
-      cancelButton.observe('click', function(event){
-        var addForm = event.findElement('.addblockform');
-        if (!addForm) {
-          return;
-        }
-        event.stop();
-        addForm.addClassName('hidden');
-      }.bind(this));
-    }
   }
 });
   return XWiki;
