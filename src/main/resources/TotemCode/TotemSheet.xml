@@ -846,7 +846,6 @@ $(function() {
            var totemDocRef = $("#totemDocRef").val();
            var editContentURL = "$xwiki.getURL('TotemCode.EditContent','edit','xpage=plain&amp;editor=inline')";
            var editURL = editContentURL + "&amp;action=editTotemBlock" + "&amp;totemDocRef=" + encodeURIComponent(totemDocRef) + "&amp;blockNumber=" + blockNumber;
-           var redirectURL = $("#redirectURL").val();
            $('.xdialog-modal-container').remove();
            new XWiki.widgets.TotemModalPopup({pageURL: editURL});
       });
@@ -858,7 +857,16 @@ $(function() {
            var totemDocRef = $("#totemDocRef").val();
            var editContentURL = "$xwiki.getURL('TotemCode.EditContent','view','xpage=plain')";
            var editURL = editContentURL + "&amp;action=editTotemBlockSource" + "&amp;totemDocRef=" + totemDocRef + "&amp;blockNumber=" + blockNumber;
-           var redirectURL = $("#redirectURL").val();
+           new XWiki.widgets.TotemModalPopup({pageURL: editURL});
+           event.preventDefault();
+      });
+
+      // Initialize add section buttons
+      $(".addblock").click(function(event) {
+           var totemDocRef = $("#totemDocRef").val();
+           var editContentURL = "$xwiki.getURL('TotemCode.EditContent','edit','xpage=plain&amp;editor=inline')";
+           var editURL = editContentURL + "&amp;action=newTotemBlock" + "&amp;totemDocRef=" + encodeURIComponent(totemDocRef);
+           $('.xdialog-modal-container').remove();
            new XWiki.widgets.TotemModalPopup({pageURL: editURL});
            event.preventDefault();
       });
@@ -1469,10 +1477,6 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
      [[$services.localization.render('totem.edit.additem.button')&gt;&gt;path:$doc.getURL('view', 'showEdit=true&amp;additem=true')||class="addblock"]]
       ## display a button to exit the edit form. TODO: move me in an appropriate place (where?)
      (%class="totemeditactions buttonwrapper"%)((([[$services.localization.render('totem.edit.exitedit')&gt;&gt;Totem.WebHome]])))
-    )))
-    (%class="#if("$!request.additem" != 'true')hidden#end addblockform"%)(((
-      #set($fakeTotemBlock = $doc.newObject("TotemCode.TotemBlockClass"))    
-      #displayTotemBlockEditForm($fakeTotemBlock, true, $cancelURL, $editURL)
     )))
   #end
   {{html clean="false"}}#template("textarea_wysiwyg.vm"){{/html}}

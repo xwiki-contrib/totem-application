@@ -122,7 +122,7 @@
      #set($formAction = "$doc.getURL('save')")
   #end
   #if ($isNewBlock)
-    #set($formAction = "$doc.getURL('objectadd')")
+    #set($formAction = "$doc.getURL('objectadd','showEdit=true')")
   #end
   {{html clean="false" wiki="true"}}  
 
