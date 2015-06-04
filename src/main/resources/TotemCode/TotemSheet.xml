@@ -1438,14 +1438,6 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
     )))
   )))
 
-  ## add new block item form
-  #if($enableEdit)
-    (%class="addactions"%)(((
-     [[$services.localization.render('totem.edit.additem.button')&gt;&gt;path:$doc.getURL('view', 'showEdit=true&amp;additem=true')||class="addblock"]]
-      ## display a button to exit the edit form. TODO: move me in an appropriate place (where?)
-     (%class="totemeditactions buttonwrapper"%)((([[$services.localization.render('totem.edit.exitedit')&gt;&gt;Totem.WebHome]])))
-    )))
-  #end
   {{html clean="false"}}#template("textarea_wysiwyg.vm"){{/html}}
 #else
   ## if we're in edit mode, send a redirect to the edit screen, since the totem has a special edit form (available in view).
@@ -1456,5 +1448,11 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
 #displayModal("totemModal")
 {{/html}}
 
+## Show the edit button if the user is enabled to edit and the totem is in the view mode
+#if ($hasEdit)
+  {{info}}
+  #displayTotemActionsLinks()
+  {{/info}}
+#end
 {{/velocity}}</content>
 </xwikidoc>
