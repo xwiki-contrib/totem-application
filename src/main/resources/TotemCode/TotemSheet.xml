@@ -1444,8 +1444,8 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
   $response.sendRedirect("$editURL")
 #end
 
-{{html clean="false"}}
-#displayModal("totemModal")
+{{html}}
+&lt;input type="hidden" id="redirectURL" value="$doc.getURL('view','showEdit=true')"/&gt;
 &lt;input type="hidden" value="$doc.getDocumentReference()" id="totemDocRef"/&gt;
 {{/html}}
 

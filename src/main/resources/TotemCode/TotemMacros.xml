@@ -290,28 +290,6 @@
   {{/html}}
 #end
 
-#macro(displayModal $modalID)
-&lt;div class="modal fade" id="$modalID"&gt;
-  &lt;div class="modal-dialog"&gt;
-    &lt;div class="modal-content"&gt;
-      &lt;div class="modal-header"&gt;
-        &lt;button type="button" class="close" data-dismiss="modal" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&amp;times;&lt;/span&gt;&lt;/button&gt;
-        &lt;h4 class="modal-title"&gt;&lt;/h4&gt;
-      &lt;/div&gt;
-      &lt;div class="modal-body"&gt;
-         &lt;iframe id="editIframe" frameborder="0" scrolling="yes" width="870px" height="450px" src="" style="display:none;"&gt;&lt;/iframe&gt;
-      &lt;/div&gt;
-      &lt;div class="modal-footer"&gt;
-        ##&lt;button type="button" class="btn btn-default" data-dismiss="modal"&gt;Close&lt;/button&gt;
-        ##&lt;button type="button" class="btn btn-primary"&gt;Save changes&lt;/button&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;&lt;!-- /.modal-content --&gt;
-  &lt;/div&gt;&lt;!-- /.modal-dialog --&gt;
-&lt;/div&gt;&lt;!-- /.modal --&gt;
-&lt;input type="hidden" id="redirectURL" value="$doc.getURL('view','showEdit=true')"/&gt;
-&lt;input type="hidden" id="showIframe" value="1"/&gt;
-#end
-
 #**
 * Display the totem actions links : Edit totem, documentation ...
 *#
