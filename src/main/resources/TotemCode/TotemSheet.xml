@@ -1446,6 +1446,7 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
 
 {{html clean="false"}}
 #displayModal("totemModal")
+&lt;input type="hidden" value="$doc.getDocumentReference()" id="totemDocRef"/&gt;
 {{/html}}
 
 ## Show the edit button if the user is enabled to edit and the totem is in the view mode
