@@ -1,6 +1,8 @@
 totem-application
 =================
 
+[![XWiki labs logo](https://labs.xwiki.com/xwiki/bin/download/Developments/Xlabs/xlabs-mini.png "XWiki labs")](https://labs.xwiki.com/xwiki/bin/view/Main/WebHome)
+
 Application that allows to create totems.
 
 A Totem is a content composed of several sections and each section contains multiple items.
