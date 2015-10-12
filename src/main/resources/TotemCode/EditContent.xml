@@ -49,7 +49,7 @@
 #set($totemDocRef = $request.totemDocRef)
 #set($totemBlockNumber = $request.blockNumber)
 #if("$!action" != "" &amp;&amp; ($action == "editTotemBlock" || $action == "editTotemBlockSource") &amp;&amp; "$!totemBlockNumber" != "" &amp;&amp; "$!totemDocRef" != "" &amp;&amp; $xwiki.exists($totemDocRef))
-      #set($totemDoc = $xwiki.getDocument($request.totemDocRef))
+      #set($totemDoc = $xwiki.getDocument($totemDocRef))
       #set($totemObj = $totemDoc.getObject("TotemCode.TotemClass"))
       #set($totemBlockNumber = $mathtool.toInteger($totemBlockNumber))
       #set($totemBlock = $totemDoc.getObject('TotemCode.TotemBlockClass', $totemBlockNumber))
@@ -61,11 +61,16 @@
             #displayTotemBlockEditForm($totemBlock, false, "", "")
          #elseif($action == "editTotemBlockSource")
            (((
-              #set($totemItemsURL = $xwiki.getURL('Totem.Items','view','skin=TotemCode.PopupSkin&amp;fromIframe=1'))
+              #set($totemItemsURL = $xwiki.getURL('Totem.Items','view'))
               #displayTotemBlockEditSourceForm($totemBlock, $totemItemsURL, "javascript:;", "")
            )))
          #end
       #end
+#elseif("$!action" != "" &amp;&amp; $action == "newTotemBlock" &amp;&amp; "$!totemDocRef" != "" &amp;&amp; $xwiki.exists($totemDocRef))
+      #set($totemDoc = $xwiki.getDocument($totemDocRef))
+      #set($fakeTotemBlock = $totemDoc.newObject("TotemCode.TotemBlockClass")) 
+      #set($doc = $totemDoc)   
+      #displayTotemBlockEditForm($fakeTotemBlock, true, "", "")
 #elseif("$!action" != "" &amp;&amp; $action == "saveItem")
    #if("$!request.page" != "" &amp;&amp; "$!request.space" != "" &amp;&amp; "$!request.parent" != "")
         #set($itemRef = "${request.space}.${request.page}")
@@ -73,7 +78,7 @@
            {"results":false}
        #else
            #set($documentReference = $services.model.createDocumentReference(null, $request.space, $request.page))
-           #set($redirectURL = $xwiki.getURL($documentReference,'edit',"template=TotemCode.SimpleTotemItemTemplate&amp;parent=${request.parent}&amp;title=${request.page}&amp;skin=TotemCode.PopupSkin&amp;fromIframe=1"))
+           #set($redirectURL = $xwiki.getURL($documentReference,'edit',"template=TotemCode.SimpleTotemItemTemplate&amp;parent=${request.parent}&amp;title=${request.page}"))
            {"results":"$redirectURL"}
         #end
    #end

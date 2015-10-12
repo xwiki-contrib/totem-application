@@ -78,9 +78,6 @@
         (%class="#if("$!request.editblock" != "$totemBlock.number")hidden#end editblockform"%)(((
           #displayTotemBlockEditForm($totemBlock, false, $cancelURL, $editURL, $totemItemClass)
         )))
-        (%class="#if("$!request.editblocksource" != "$totemBlock.number")hidden#end editsourceblockform"%)(((
-          #displayTotemBlockEditSourceForm($totemBlock, $totemItemsURL, $cancelURL, $editURL)
-        )))
       #end
       #if($withEdit)
         (%class="editactions"%)((({{html clean="false"}}
@@ -125,7 +122,7 @@
      #set($formAction = "$doc.getURL('save')")
   #end
   #if ($isNewBlock)
-    #set($formAction = "$doc.getURL('objectadd')")
+    #set($formAction = "$doc.getURL('objectadd','showEdit=true')")
   #end
   {{html clean="false" wiki="true"}}  
 
@@ -215,7 +212,10 @@
       &lt;div class="tab-content"&gt;
          &lt;div class="tab-pane active" id="simple"&gt;
              &lt;input type="hidden" name="form_token" value="$!{services.csrf.getToken()}" /&gt;
-             &lt;input type="hidden" name="xredirect" value="$escapetool.xml($editURL)" /&gt;
+             #if ("$!request.totemDocRef" != "" &amp;&amp; $xwiki.exists($request.totemDocRef))
+                #set($totemEditURL = $xwiki.getURL($request.totemDocRef,'view','showEdit=true'))
+             #end
+             &lt;input type="hidden" name="xredirect" value="$!escapetool.xml($totemEditURL)" /&gt;
              ## display the totem source properties
              #set($totemBlockClass = $totemBlock.xWikiClass)
              &lt;br/&gt;
@@ -290,28 +290,6 @@
   {{/html}}
 #end
 
-#macro(displayModal $modalID)
-&lt;div class="modal fade" id="$modalID"&gt;
-  &lt;div class="modal-dialog"&gt;
-    &lt;div class="modal-content"&gt;
-      &lt;div class="modal-header"&gt;
-        &lt;button type="button" class="close" data-dismiss="modal" aria-label="Close"&gt;&lt;span aria-hidden="true"&gt;&amp;times;&lt;/span&gt;&lt;/button&gt;
-        &lt;h4 class="modal-title"&gt;&lt;/h4&gt;
-      &lt;/div&gt;
-      &lt;div class="modal-body"&gt;
-         &lt;iframe id="editIframe" frameborder="0" scrolling="yes" width="870px" height="450px" src="" style="display:none;"&gt;&lt;/iframe&gt;
-      &lt;/div&gt;
-      &lt;div class="modal-footer"&gt;
-        ##&lt;button type="button" class="btn btn-default" data-dismiss="modal"&gt;Close&lt;/button&gt;
-        ##&lt;button type="button" class="btn btn-primary"&gt;Save changes&lt;/button&gt;
-      &lt;/div&gt;
-    &lt;/div&gt;&lt;!-- /.modal-content --&gt;
-  &lt;/div&gt;&lt;!-- /.modal-dialog --&gt;
-&lt;/div&gt;&lt;!-- /.modal --&gt;
-&lt;input type="hidden" id="redirectURL" value="$doc.getURL('view','showEdit=true')"/&gt;
-&lt;input type="hidden" id="showIframe" value="1"/&gt;
-#end
-
 #**
 * Display the totem actions links : Edit totem, documentation ...
 *#
@@ -319,16 +297,31 @@
 #set($totemViewURL = $doc.getURL())
 #set($totemEditURL = $doc.getURL('view','showEdit=true'))
 #set($totemDocURL = $xwiki.getURL('TotemCode.Documentation','view'))
+#set($totemsListURL = $xwiki.getURL("${services.wiki.currentWikiId}:Totem.WebHome"))
 {{html clean="false"}}
 &lt;div class="clearfix"&gt;
 &lt;div class="pull-right"&gt;
- &lt;a class="btn btn-info" href="$totemDocURL" target="_blank"&gt;$services.icon.renderHTML('book') $services.localization.render('totem.edit.documentation')&lt;/a&gt;
+ &lt;a class="btn btn-info" href="$totemDocURL" target="_blank"&gt;
+    $services.icon.renderHTML('book') $services.localization.render('totem.edit.documentation')
+ &lt;/a&gt;
  #if ($hasEdit &amp;&amp; "$!request.showEdit" != 'true')
-    &lt;a class="btn btn-info" href="$totemEditURL"&gt;$services.icon.renderHTML('pencil') $services.localization.render('totem.edit.edittotem')&lt;/a&gt; 
+    &lt;a class="btn btn-info" href="$totemEditURL"&gt;
+       $services.icon.renderHTML('pencil') $services.localization.render('totem.edit.edittotem')
+    &lt;/a&gt; 
  #end
  #if ("$!request.showEdit" == 'true')
     &lt;a class="btn btn-info" href="$totemViewURL"&gt;$services.icon.renderHTML('eye') $services.localization.render('totem.edit.viewtotem')&lt;/a&gt; 
  #end
+&lt;/div&gt;
+&lt;div class="pull-left"&gt;
+  &lt;a class="btn btn-info" href="$totemsListURL" class="addblock"&gt;
+     $services.icon.renderHTML('list') $services.localization.render('totem.edit.exitedit')
+  &lt;/a&gt;
+  #if ("$!request.showEdit" == 'true')
+     &lt;a class="btn btn-info addblock" href="javascript:;"&gt;
+        $services.icon.renderHTML('add') $services.localization.render('totem.edit.additem.button')
+     &lt;/a&gt;
+  #end  
 &lt;/div&gt;
 &lt;/div&gt;
 {{/html}}

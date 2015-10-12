@@ -130,9 +130,7 @@
     $$('.totemBlocks .totemBlock').each(function(item){
       this.hookDeleteButton(item);
     }.bind(this));
-    
-    this.hookAddButton();
-  },
+ },
   
   hookEditOrder : function () {
     // find the editorder form
@@ -282,36 +280,6 @@
         {confirmationText: "$escapetool.javascript($services.localization.render('totem.edit.removeitem.confirmation'))",}
         )
     }.bind(this));
-  },
-  
-  hookAddButton : function() {
-    // find the edit button in the actions
-    var addButton = $$('.addactions a.addblock')[0];
-    if (!addButton) {
-      return;
-    }
-    addButton.observe('click', function(event) {
-      // find the edit form and show it
-      var addForm = $$('.addblockform')[0];
-      if (!addForm) {
-        return;
-      }
-      // we have an edit form, stop the event
-      event.stop();
-      addForm.removeClassName('hidden');
-    });
-    // find the cancel button of this add form and make it hide the form
-    var cancelButton = $$('.addblockform a.cancelbutton')[0];
-    if (cancelButton) {
-      cancelButton.observe('click', function(event){
-        var addForm = event.findElement('.addblockform');
-        if (!addForm) {
-          return;
-        }
-        event.stop();
-        addForm.addClassName('hidden');
-      }.bind(this));
-    }
   }
 });
   return XWiki;
@@ -789,10 +757,9 @@ initAttachmentPicker : function(editFormURL,attPickerURL,XWModalContent) {
         });
         // Initialize delete attachment btns
         $("a.delete").click(function(event) {
-            var rep = confirm("$services.localization.render('core.viewers.attachments.delete.confirm')");
-            if(rep) {
-               var deleteURL = $(this).attr("href");
-               var attElem =  $(this).parents().eq(3);
+            var deleteURL = $(this).attr("href");
+            var attElem =  $(this).parents().eq(3);
+            new XWiki.widgets.ConfirmationBox({onYes: function() {
                new XWiki.widgets.Notification("$services.localization.render('core.viewers.attachments.delete.inProgress')",'inprogress');
                $.ajax({
 	          url: deleteURL,
@@ -803,7 +770,7 @@ initAttachmentPicker : function(editFormURL,attPickerURL,XWModalContent) {
                      attElem.remove();
                   }
 	       });
-             }
+            }}, {confirmationText:"$services.localization.render('core.viewers.attachments.delete.confirm')"});
             event.preventDefault();
         });
         // Initialize select attachment btns
@@ -846,47 +813,28 @@ $(function() {
            var totemDocRef = $("#totemDocRef").val();
            var editContentURL = "$xwiki.getURL('TotemCode.EditContent','edit','xpage=plain&amp;editor=inline')";
            var editURL = editContentURL + "&amp;action=editTotemBlock" + "&amp;totemDocRef=" + encodeURIComponent(totemDocRef) + "&amp;blockNumber=" + blockNumber;
-           var redirectURL = $("#redirectURL").val();
            $('.xdialog-modal-container').remove();
            new XWiki.widgets.TotemModalPopup({pageURL: editURL});
       });
+      // Initialize edit section elements buttons
       $(".editsourcebutton").click(function(event) {
+           // Clear the old content of the modal popup
+           $('.xdialog-modal-container').remove();
            var blockNumber = $(this).attr("rel");
            var totemDocRef = $("#totemDocRef").val();
-           var editContentURL = "$xwiki.getURL('TotemCode.EditContent','view')";
-           var editURL = editContentURL + "?action=editTotemBlockSource" + "&amp;totemDocRef=" + totemDocRef + "&amp;blockNumber=" + blockNumber;
-           var redirectURL = $("#redirectURL").val();
-           $("#editIframe").attr("src",editURL);
-           $("#totemModal .modal-dialog").addClass("modal-lg");
-           $("#totemModal .modal-body").addClass("loadingModal");
-           $("#totemModal .modal-title").html("$services.localization.render('totem.edit.configuresectionelements.title')");
-           $("#totemModal").modal("show");
-           // Initialize iframe buttons
-           $("#editIframe").load(function(event) {
-              if ($("#showIframe").val() == "1") { 
-                 $(this).show();
-                 $("#totemModal .modal-body").removeClass("loadingModal");
-              }
-              $(this).contents().find(".saveSourceBtn").click(function() {
-                 $("#showIframe").val("0");
-                 $("#totemModal .modal-body").addClass("loadingModal");
-                 $("#editIframe").hide();
-              });   
-              if ($(this).contents().find("#redirectURL").length &gt; 0) {
-                 document.location.replace(redirectURL);   
-              }
-              // Initialize cancel edit block source button
-              $(this).contents().find("a.cancelbutton").click(function(event) {
-                 event.preventDefault();
-                 $("#totemModal").modal("hide");
-              });
-              // Initialize the elements admin button
-              $(this).contents().find(".adminItemsBtn").click(function(event) {
-                 event.preventDefault();
-                 var editURL = $(this).attr("href");
-                 $("#editIframe").attr("src",editURL);
-              });
-            });
+           var editContentURL = "$xwiki.getURL('TotemCode.EditContent','view','xpage=plain')";
+           var editURL = editContentURL + "&amp;action=editTotemBlockSource" + "&amp;totemDocRef=" + totemDocRef + "&amp;blockNumber=" + blockNumber;
+           new XWiki.widgets.TotemModalPopup({pageURL: editURL});
+           event.preventDefault();
+      });
+
+      // Initialize add section buttons
+      $(".addblock").click(function(event) {
+           var totemDocRef = $("#totemDocRef").val();
+           var editContentURL = "$xwiki.getURL('TotemCode.EditContent','edit','xpage=plain&amp;editor=inline')";
+           var editURL = editContentURL + "&amp;action=newTotemBlock" + "&amp;totemDocRef=" + encodeURIComponent(totemDocRef);
+           $('.xdialog-modal-container').remove();
+           new XWiki.widgets.TotemModalPopup({pageURL: editURL});
            event.preventDefault();
       });
    });// endReady
@@ -1077,8 +1025,18 @@ XWiki.widgets.TotemModalPopup = Class.create(XWiki.widgets.ModalPopup, {
         content.insert(response);
         require(['jquery'],function($) {
            $.initializeEditForm(data.pageURL,content);
+           // Init items suggest picker
+           // Set the current vertical position of the scroll bar to 0.
+           // if we do not do that the results of the suggest picker will not be displayed in the popup.
+           // TODO : fix this issue directly in the SuggestDisplayPicker extension.
+           $(document).scrollTop(0);
+           var suggestInput = $('input[id$="_source"]');
+           if (!suggestInput.hasClass('suggested')) {
+             suggestInput = $('input[id$="_source_suggest"]');
+           }
+           new XWiki.widgets.SuggestDisplayPicker(suggestInput.get(0));
         });
-      },
+       },
       onFailure: function(){ content.insert('Something went wrong...'); 
     }
     });
@@ -1397,6 +1355,15 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
     #set($discard = $xwiki.jsfx.use("js/scriptaculous/dragdrop.js"))
     #set($discard = $xwiki.jsx.use('TotemCode.TotemSheet', {'minify' : false}))
     #set($discard = $xwiki.ssx.use('TotemCode.TotemSheet', {'minify' : false}))
+    ## JS/CSS code used in manage totem items in popups
+    #set($discard = $xwiki.jsx.use('XWiki.SuggestDisplay', {'minify' : false}))
+    #set($discard = $xwiki.ssx.use('XWiki.SuggestDisplay', {'minify' : false}))
+    #set($discard = $xwiki.jsx.use('XWiki.SuggestDisplayEditItems', {'minify' : false}))
+    #set($discard = $xwiki.ssx.use('XWiki.SuggestDisplayEditItems', {'minify' : false}))
+    {{html}}
+    #wysiwyg_import(true)
+    {{/html}}
+
   #end
   ## pass the totem application fullscreen
   #set($enableFullscreen = $doc.getObject('TotemCode.TotemClass').getProperty('fullscreen').value)
@@ -1471,27 +1438,22 @@ $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
     )))
   )))
 
-  ## add new block item form
-  #if($enableEdit)
-    (%class="addactions"%)(((
-     [[$services.localization.render('totem.edit.additem.button')&gt;&gt;path:$doc.getURL('view', 'showEdit=true&amp;additem=true')||class="addblock"]]
-      ## display a button to exit the edit form. TODO: move me in an appropriate place (where?)
-     (%class="totemeditactions buttonwrapper"%)((([[$services.localization.render('totem.edit.exitedit')&gt;&gt;Totem.WebHome]])))
-    )))
-    (%class="#if("$!request.additem" != 'true')hidden#end addblockform"%)(((
-      #set($fakeTotemBlock = $doc.newObject("TotemCode.TotemBlockClass"))    
-      #displayTotemBlockEditForm($fakeTotemBlock, true, $cancelURL, $editURL)
-    )))
-  #end
   {{html clean="false"}}#template("textarea_wysiwyg.vm"){{/html}}
 #else
   ## if we're in edit mode, send a redirect to the edit screen, since the totem has a special edit form (available in view).
   $response.sendRedirect("$editURL")
 #end
 
-{{html clean="false"}}
-#displayModal("totemModal")
+{{html}}
+&lt;input type="hidden" id="redirectURL" value="$doc.getURL('view','showEdit=true')"/&gt;
+&lt;input type="hidden" value="$doc.getDocumentReference()" id="totemDocRef"/&gt;
 {{/html}}
 
+## Show the edit button if the user is enabled to edit and the totem is in the view mode
+#if ($hasEdit)
+  {{info}}
+  #displayTotemActionsLinks()
+  {{/info}}
+#end
 {{/velocity}}</content>
 </xwikidoc>
