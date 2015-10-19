@@ -112,7 +112,7 @@
     <dependency>
       <groupId>org.xwiki.contrib</groupId>
       <artifactId>displayer-multiselect-suggest</artifactId>
-      <version>1.4</version>
+      <version>1.5-SNAPSHOT</version>
       <type>xar</type>
       <scope>runtime</scope>
     </dependency>
