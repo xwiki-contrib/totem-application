@@ -270,6 +270,9 @@
   hookDeleteButton : function(totemBlockItem) {
     // get the delete form and add a conversation message to the submit
     var deleteForm = totemBlockItem.down('form.removeblockform');
+    if (!deleteForm) {
+      return;
+    }
     deleteForm.observe('submit', function(event){
       event.stop();
       var _this = event.findElement('form.removeblockform');
