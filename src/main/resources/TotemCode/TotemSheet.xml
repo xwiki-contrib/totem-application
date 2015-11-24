@@ -1037,7 +1037,9 @@ XWiki.widgets.TotemModalPopup = Class.create(XWiki.widgets.ModalPopup, {
            if (!suggestInput.hasClass('suggested')) {
              suggestInput = $('input[id$="_source_suggest"]');
            }
-           new XWiki.widgets.SuggestDisplayPicker(suggestInput.get(0));
+           if(suggestInput.length > 0) {
+             new XWiki.widgets.SuggestDisplayPicker(suggestInput.get(0));
+           }
         });
        },
       onFailure: function(){ content.insert('Something went wrong...'); 
