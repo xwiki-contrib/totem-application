@@ -642,6 +642,12 @@ initializeEditForm : function(editFormURL,XWModalContent) {
 
    // Initialize attachment-picker fields
    $(".attachment-picker-start").click(function(event) {
+      var form = $("form",$(this).parents());
+      if (form.length > 0) {
+        form = form.last();
+        var data = form.serialize();
+        editFormURL+= "&" + data;
+      }
       var attPickerURL = $(this).attr("href") + "&amp;xpage=plain";
       var totemDocRef = $("#totemDocRef").val();
       attPickerURL = attPickerURL.replace("?docname=TotemCode.EditContent&amp;","?docname=" + encodeURIComponent(totemDocRef) + "&amp;");

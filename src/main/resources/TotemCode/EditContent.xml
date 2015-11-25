@@ -70,6 +70,14 @@
       #set($totemDoc = $xwiki.getDocument($totemDocRef))
       #set($fakeTotemBlock = $totemDoc.newObject("TotemCode.TotemBlockClass")) 
       #set($doc = $totemDoc)   
+      ## Reset the value previously filed in the form
+      #set($class = $fakeTotemBlock.xWikiClass)
+      #foreach($prop in $class.properties)
+        #set($proVal = $request.get("TotemCode.TotemBlockClass_${prop.getName()}"))
+        #if("$!proVal" != '')
+          $fakeTotemBlock.set($prop.getName(), $proVal)
+        #end
+      #end
       #displayTotemBlockEditForm($fakeTotemBlock, true, "", "")
 #elseif("$!action" != "" &amp;&amp; $action == "saveItem")
    #if("$!request.page" != "" &amp;&amp; "$!request.space" != "" &amp;&amp; "$!request.parent" != "")
