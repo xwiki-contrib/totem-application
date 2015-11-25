@@ -58,6 +58,14 @@
          #set($formAction = $xwiki.getURL($totemDoc.getDocumentReference(),"save","showEdit=true"))
          #if($action == "editTotemBlock")
             #set($doc = $totemDoc)
+            ## Reset the value previously filed in the form
+            #set($class = $totemBlock.xWikiClass)
+            #foreach($prop in $class.properties)
+              #set($proVal = $request.get("TotemCode.TotemBlockClass_${totemBlockNumber}_${prop.getName()}"))
+              #if("$!proVal" != '')
+                $totemBlock.set($prop.getName(), $proVal)
+              #end
+            #end            
             #displayTotemBlockEditForm($totemBlock, false, "", "")
          #elseif($action == "editTotemBlockSource")
            (((
