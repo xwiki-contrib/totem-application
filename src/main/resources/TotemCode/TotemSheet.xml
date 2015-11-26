@@ -643,10 +643,10 @@ initializeEditForm : function(editFormURL,XWModalContent) {
    // Initialize attachment-picker fields
    $(".attachment-picker-start").click(function(event) {
       var form = $("form",$(this).parents());
-      if (form.length > 0) {
+      if (form.length &gt; 0) {
         form = form.last();
         var data = form.serialize();
-        editFormURL+= "&" + data;
+        editFormURL+= "&amp;" + data;
       }
       var attPickerURL = $(this).attr("href") + "&amp;xpage=plain";
       var totemDocRef = $("#totemDocRef").val();
@@ -1043,7 +1043,7 @@ XWiki.widgets.TotemModalPopup = Class.create(XWiki.widgets.ModalPopup, {
            if (!suggestInput.hasClass('suggested')) {
              suggestInput = $('input[id$="_source_suggest"]');
            }
-           if(suggestInput.length > 0) {
+           if(suggestInput.length &gt; 0) {
              new XWiki.widgets.SuggestDisplayPicker(suggestInput.get(0));
            }
         });
