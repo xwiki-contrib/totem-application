@@ -580,18 +580,18 @@ div.carousel.autostart {
             #if("$!{dataMap.image}" != '')
               #set($attach = $services.model.resolveAttachment($dataMap.image, "explicit", $document.getDocumentReference()))
               #set($image = $services.model.serialize($attach, "default"))
-              #set($url = '#')
-              #if("$!{dataMap.url}" != '')
-                #set($url = ${dataMap.url})
-              #end
-              &lt;div id="section${sectionNumber}" class='section' style="width:${sectionSize}; height:${height};max-width:${maxwidth};"&gt;
-                {{html}}
-                  &lt;a href='$!{dataMap.url}'&gt;
-                {{/html}}
-                    [[image:$image||width="${width}"||style="max-width:${maxwidth}"]]
-                  &lt;/a&gt;
-              &lt;/div&gt;
             #end
+            #set($url = '#')
+            #if("$!{dataMap.url}" != '')
+              #set($url = ${dataMap.url})
+            #end
+            &lt;div id="section${sectionNumber}" class='section' style="width:${sectionSize}; height:${height};max-width:${maxwidth};"&gt;
+              &lt;a href='$!{dataMap.url}'&gt;
+              #if("$!{dataMap.image}" != '')
+                [[image:$image||width="${width}"||style="max-width:${maxwidth}"]]
+              #end
+              &lt;/a&gt;
+            &lt;/div&gt;
           #end
         &lt;/div&gt;
       &lt;/div&gt;##scroller
