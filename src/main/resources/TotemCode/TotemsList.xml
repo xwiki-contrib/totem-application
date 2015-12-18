@@ -49,7 +49,7 @@
 {{info}} $services.localization.render("totem.home.createtoteminfo") {{/info}}
 )))
 ## Totem creation form
-{{include document='TotemCode.CreateTotem'/}}
+{{include reference='TotemCode.CreateTotem' /}}
 ## Totem listing
 #set($columns = ["doc.name","doc.fullName", "doc.date", "doc.author", "_actions"])
 #set($columnsProperties = {

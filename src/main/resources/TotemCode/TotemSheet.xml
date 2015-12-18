@@ -1316,9 +1316,9 @@ XWiki.widgets.TotemModalPopup = Class.create(XWiki.widgets.ModalPopup, {
       <use>currentPage</use>
     </property>
   </object>
-  <content>{{include document="DisplayerCode.DisplayerMacros" /}}
+  <content>{{include reference='DisplayerCode.DisplayerMacros' /}}
 
-{{include document="TotemCode.TotemMacros" /}}
+{{include reference='TotemCode.TotemMacros' /}}
 
 {{velocity output="false"}}
 $xwiki.ssx.use('DisplayerCode.DisplayerMacros')
