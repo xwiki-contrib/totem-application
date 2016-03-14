@@ -838,7 +838,7 @@ $(function() {
       });
 
       // Initialize add section buttons
-      $(".addblock").click(function(event) {
+      $(".addsection").click(function(event) {
            var totemDocRef = $("#totemDocRef").val();
            var editContentURL = "$xwiki.getURL('TotemCode.EditContent','edit','xpage=plain&amp;editor=inline')";
            var editURL = editContentURL + "&amp;action=newTotemBlock" + "&amp;totemDocRef=" + encodeURIComponent(totemDocRef);

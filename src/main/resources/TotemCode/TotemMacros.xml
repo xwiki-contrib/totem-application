@@ -314,11 +314,11 @@
  #end
 &lt;/div&gt;
 &lt;div class="pull-left"&gt;
-  &lt;a class="btn btn-info" href="$totemsListURL" class="addblock"&gt;
+  &lt;a class="btn btn-info" href="$totemsListURL" class="addsection"&gt;
      $services.icon.renderHTML('list') $services.localization.render('totem.edit.exitedit')
   &lt;/a&gt;
   #if ("$!request.showEdit" == 'true')
-     &lt;a class="btn btn-info addblock" href="javascript:;"&gt;
+     &lt;a class="btn btn-info addsection" href="javascript:;"&gt;
         $services.icon.renderHTML('add') $services.localization.render('totem.edit.additem.button')
      &lt;/a&gt;
   #end  
